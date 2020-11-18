@@ -1,6 +1,5 @@
 package view;
 
-//Kod preuzet sa materijala sa vjezbi
 
 import java.awt.BorderLayout;
 import java.awt.Desktop.Action;
@@ -68,6 +67,7 @@ public class ToolBar extends JToolBar{
 		add(Box.createHorizontalStrut(width/2));
 		
 		JTextField text = new JTextField();
+		text.setToolTipText("Unesite kriterijum pretrage: ");
 		add(text);
 		addSeparator();
 		

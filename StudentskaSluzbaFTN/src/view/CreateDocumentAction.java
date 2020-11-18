@@ -1,5 +1,7 @@
 package view;
 
+/*Kod preuzet iz materijala sa vjezbi*/
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -16,7 +18,7 @@ public class CreateDocumentAction extends AbstractAction {
 		//putValue(MNEMONIC_KEY, KeyEvent.VK_K);
 		//putValue(SHORT_DESCRIPTION, "Kreiranje novog dokumenta unutar worksapce");
 		//putValue(SMALL_ICON, new ImageIcon("images/home.png"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_K, KeyEvent.CTRL_MASK));
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_K, ActionEvent.CTRL_MASK));
 	}
 
 	@Override
