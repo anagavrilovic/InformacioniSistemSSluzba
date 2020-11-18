@@ -4,10 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Panel;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class GlavniProzor extends JFrame{
 	
@@ -35,10 +39,14 @@ public class GlavniProzor extends JFrame{
 		ToolBar tb = new ToolBar();
 		add(tb, BorderLayout.NORTH);
 		
-
 		StatusBar sb = new StatusBar();
 		add(sb, BorderLayout.SOUTH);
 		
+		Panel panel = new Panel();
+		panel.setBackground(Color.WHITE);
+		add(panel, BorderLayout.CENTER);
+		JLabel l = new JLabel("TODO: Prikaz entiteta sistema");
+		panel.add(l);
 	}
 
 	public int getHeigth() {

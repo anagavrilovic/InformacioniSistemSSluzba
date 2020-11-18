@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.Desktop.Action;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
@@ -42,7 +43,7 @@ public class ToolBar extends JToolBar{
 		
 		addSeparator();
 		
-		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_E, KeyEvent.CTRL_MASK));
+		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		JButton btnEdit = new JButton();
 		btnEdit.setToolTipText("Izmena postojeceg entiteta (CTRL+E)");
 		btnEdit.setIcon(new ImageIcon("images/edit.png"));
@@ -50,7 +51,7 @@ public class ToolBar extends JToolBar{
 		
 		addSeparator();
 		
-		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));
+		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		JButton btnDelete = new JButton();
 		btnDelete.setToolTipText("Brisanje entiteta (CTRL+D )");
 		btnDelete.setIcon(new ImageIcon("images/delete.png"));
