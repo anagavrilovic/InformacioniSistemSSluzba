@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -32,7 +33,7 @@ public class GlavniProzor extends JFrame{
 		/*ToolBar tb = new ToolBar();
 		add(tb, BorderLayout.NORTH);
 		
-		StatusBar sb = new StatusBar();
+		/*StatusBar sb = new StatusBar();
 		add(sb, BorderLayout.SOUTH);*/
 		
 	}
