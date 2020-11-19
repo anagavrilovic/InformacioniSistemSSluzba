@@ -25,11 +25,11 @@ public class MenuBar extends JMenuBar{
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
 		
-		JMenuItem newFile = new JMenuItem("New		");
+		JMenuItem newFile = new JMenuItem("New");
 		newFile.setIcon(new ImageIcon("images/add.png"));
 		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		
-		JMenuItem close = new JMenuItem("Close		");
+		JMenuItem close = new JMenuItem("Close");
 		close.setIcon(new ImageIcon("images/close.png"));
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		
@@ -42,11 +42,11 @@ public class MenuBar extends JMenuBar{
 		JMenu edit = new JMenu("Edit");
 		edit.setMnemonic(KeyEvent.VK_E);
 		
-		JMenuItem editFile = new JMenuItem("Edit		");
+		JMenuItem editFile = new JMenuItem("Edit");
 		editFile.setIcon(new ImageIcon("images/edit.png"));
 		editFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		
-		JMenuItem delete = new JMenuItem("Delete		");
+		JMenuItem delete = new JMenuItem("Delete");
 		delete.setIcon(new ImageIcon("images/trash.png"));
 		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		
@@ -59,11 +59,11 @@ public class MenuBar extends JMenuBar{
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
 		
-		JMenuItem helpItem = new JMenuItem("Help		");
-		helpItem.setIcon(new ImageIcon("images/help.png"));
+		JMenuItem helpItem = new JMenuItem("Help");
+		helpItem.setIcon(new ImageIcon("images/question.png"));
 		helpItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		
-		JMenuItem about = new JMenuItem("About		");
+		JMenuItem about = new JMenuItem("About");
 		about.setIcon(new ImageIcon("images/info.png"));
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		
