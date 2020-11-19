@@ -47,7 +47,7 @@ public class MenuBar extends JMenuBar{
 		editFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		
 		JMenuItem delete = new JMenuItem("Delete		");
-		delete.setIcon(new ImageIcon("images/delete.png"));
+		delete.setIcon(new ImageIcon("images/trash.png"));
 		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		
 		edit.add(editFile);
