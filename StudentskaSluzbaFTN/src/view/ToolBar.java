@@ -1,6 +1,8 @@
 package view;
 
 
+import static java.awt.event.InputEvent.CTRL_MASK;
+
 import java.awt.BorderLayout;
 import java.awt.Desktop.Action;
 import java.awt.Dimension;
@@ -34,7 +36,7 @@ public class ToolBar extends JToolBar{
 		CreateDocumentAction cda = new CreateDocumentAction();
 		String ak="Accelerator Key";
 		
-		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
+		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		JButton btnNew = new JButton(cda);
 		btnNew.setToolTipText("Dodavanje novog entiteta (CTRL+N)");
 		btnNew.setIcon(new ImageIcon("images/add.png"));
@@ -53,7 +55,7 @@ public class ToolBar extends JToolBar{
 		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		JButton btnDelete = new JButton();
 		btnDelete.setToolTipText("Brisanje entiteta (CTRL+D )");
-		btnDelete.setIcon(new ImageIcon("images/delete.png"));
+		btnDelete.setIcon(new ImageIcon("images/trash.png"));
 		add(btnDelete);
 		
 		addSeparator();
@@ -64,14 +66,15 @@ public class ToolBar extends JToolBar{
 		int heigth = screenSize.height;
 		int width = screenSize.width;
 		
-		add(Box.createHorizontalStrut(width/2));
+		add(Box.createGlue());
+		add(Box.createHorizontalStrut(width/3));
 		
 		JTextField text = new JTextField();
 		text.setToolTipText("Unesite kriterijum pretrage: ");
 		add(text);
 		addSeparator();
 		
-		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));
+		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		JButton btnSearch = new JButton();
 		btnSearch.setToolTipText("Pretraga entiteta (CTRL+S)");
 		btnSearch.setIcon(new ImageIcon("images/search.png"));

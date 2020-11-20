@@ -27,7 +27,10 @@ public class GlavniProzor extends JFrame{
 		this.heigth = screenSize.height;
 		this.width = screenSize.width;
 		
+		
 		setSize(this.width * 3/4, this.heigth * 3/4);
+		Font f = new Font("", Font.BOLD, 18);
+		setFont(f);
 		setTitle("Studentska služba");
 		getContentPane().setBackground(Color.white);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,7 +48,9 @@ public class GlavniProzor extends JFrame{
 		Panel panel = new Panel();
 		panel.setBackground(Color.WHITE);
 		add(panel, BorderLayout.CENTER);
+		Font f1 = new Font("", Font.PLAIN, 16);
 		JLabel l = new JLabel("TODO: Prikaz entiteta sistema");
+		l.setFont(f1);
 		panel.add(l);
 	}
 
