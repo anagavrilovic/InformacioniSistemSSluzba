@@ -3,16 +3,23 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
+import javax.swing.Timer;
 import javax.swing.border.EtchedBorder;
 
-public class StatusBar extends JPanel{
 
+public class StatusBar extends JPanel implements ActionListener{
+
+	JLabel nazivAplikacije;
+	JLabel datumVreme;
+	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm   dd.MM.yyyy.  ");
+	
 	public StatusBar() {
 		
 		Font f = new Font("sans-serif", Font.PLAIN, 12);
@@ -21,17 +28,22 @@ public class StatusBar extends JPanel{
 		setPreferredSize(new Dimension(GlavniProzor.width, 20));
 		setLayout(new BorderLayout());
 		
-		JLabel nazivAplikacije = new JLabel("  Studentska služba");
+		nazivAplikacije = new JLabel("  Studentska služba");
 		nazivAplikacije.setFont(f);
 		add(nazivAplikacije, BorderLayout.WEST);
 		
 		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm   dd.MM.yyyy.  ");
-		LocalDateTime now = LocalDateTime.now();
-		JLabel datumVreme = new JLabel(dtf.format(now));
+		// Mali deo koda vezan za postavljanje vremena i datuma preuzet sa Google-a
+		datumVreme = new JLabel(sdf.format(new GregorianCalendar().getTime()));
 		datumVreme.setFont(f);
 		add(datumVreme, BorderLayout.EAST);
 		
+		Timer timer = new Timer(1000, this);
+		timer.start();
+	}
+	
+	public void actionPerformed(ActionEvent ae) {
+		datumVreme.setText(sdf.format(new GregorianCalendar().getTime()));
 	}
 	
 }
