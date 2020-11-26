@@ -35,8 +35,10 @@ public class ToolBar extends JToolBar{
 		
 		CreateDocumentAction cda = new CreateDocumentAction();
 		String ak="Accelerator Key";
+		String mk="Mnemonic Key";
 		
 		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		cda.putValue(mk, KeyEvent.VK_N);
 		JButton btnNew = new JButton(cda);
 		btnNew.setToolTipText("Dodavanje novog entiteta (CTRL+N)");
 		btnNew.setIcon(new ImageIcon("images/add.png"));
@@ -45,6 +47,7 @@ public class ToolBar extends JToolBar{
 		addSeparator();
 		
 		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		cda.putValue(mk, KeyEvent.VK_E);
 		JButton btnEdit = new JButton();
 		btnEdit.setToolTipText("Izmena postojeceg entiteta (CTRL+E)");
 		btnEdit.setIcon(new ImageIcon("images/edit.png"));
@@ -53,6 +56,7 @@ public class ToolBar extends JToolBar{
 		addSeparator();
 		
 		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		cda.putValue(mk, KeyEvent.VK_D);
 		JButton btnDelete = new JButton();
 		btnDelete.setToolTipText("Brisanje entiteta (CTRL+D )");
 		btnDelete.setIcon(new ImageIcon("images/trash.png"));
@@ -67,14 +71,17 @@ public class ToolBar extends JToolBar{
 		int width = screenSize.width;
 		
 		add(Box.createGlue());
-		add(Box.createHorizontalStrut(width/3));
+		//add(Box.createHorizontalStrut(width/3));
 		
+		Dimension dim = new Dimension(width*5, heigth/20);
 		JTextField text = new JTextField();
+		text.setMaximumSize(dim);
 		text.setToolTipText("Unesite kriterijum pretrage: ");
 		add(text);
 		addSeparator();
 		
 		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		cda.putValue(mk, KeyEvent.VK_S);
 		JButton btnSearch = new JButton();
 		btnSearch.setToolTipText("Pretraga entiteta (CTRL+S)");
 		btnSearch.setIcon(new ImageIcon("images/search.png"));
