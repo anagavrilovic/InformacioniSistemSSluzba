@@ -13,7 +13,7 @@ public class CreateDocumentAction extends AbstractAction {
 
 	public CreateDocumentAction() {
 		//putValue(NAME, "Kreiranje dokumenta");
-		//putValue(MNEMONIC_KEY, KeyEvent.VK_K);
+		putValue(MNEMONIC_KEY, KeyEvent.VK_K);
 		//putValue(SHORT_DESCRIPTION, "Kreiranje novog dokumenta unutar worksapce");
 		//putValue(SMALL_ICON, new ImageIcon("images/home.png"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_K, KeyEvent.CTRL_MASK));
