@@ -16,7 +16,7 @@ public class CreateDocumentActionNew extends AbstractAction {
 	public CreateDocumentActionNew() {
 		//putValue(NAME, "New");
 		putValue(MNEMONIC_KEY, KeyEvent.VK_N);
-		putValue(SHORT_DESCRIPTION, "Dodavanje novog entiteta (Ctrl-N)");
+		putValue(SHORT_DESCRIPTION, "Dodavanje novog entiteta (Alt-N)");
 		putValue(SMALL_ICON, new ImageIcon("images/add.png"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
 	}

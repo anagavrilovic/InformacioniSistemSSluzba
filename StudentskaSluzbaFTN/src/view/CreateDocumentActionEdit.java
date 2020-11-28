@@ -16,7 +16,7 @@ public class CreateDocumentActionEdit extends AbstractAction {
 	public CreateDocumentActionEdit() {
 		//putValue(NAME, "Edit");
 		putValue(MNEMONIC_KEY, KeyEvent.VK_I);
-		putValue(SHORT_DESCRIPTION, "Izmena postojeceg entiteta (Ctrl-I)");
+		putValue(SHORT_DESCRIPTION, "Izmena postojeceg entiteta (Alt-I)");
 		putValue(SMALL_ICON, new ImageIcon("images/edit.png"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_I, KeyEvent.CTRL_MASK));
 	}
