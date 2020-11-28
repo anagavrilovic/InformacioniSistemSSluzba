@@ -1,7 +1,8 @@
 package view;
 
 
-import static java.awt.event.InputEvent.CTRL_MASK;
+//Kod napisan po uzoru na materijale sa vježbi
+
 
 import java.awt.BorderLayout;
 import java.awt.Desktop.Action;
@@ -20,8 +21,6 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
-import view.CreateDocumentAction;
-
 public class ToolBar extends JToolBar{
 	
 	/**
@@ -33,33 +32,20 @@ public class ToolBar extends JToolBar{
 		
 		super(SwingConstants.HORIZONTAL);
 		
-		CreateDocumentAction cda = new CreateDocumentAction();
-		String ak="Accelerator Key";
-		String mk="Mnemonic Key";
-		
-		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-		cda.putValue(mk, KeyEvent.VK_N);
-		JButton btnNew = new JButton(cda);
-		btnNew.setToolTipText("Dodavanje novog entiteta (Ctrl-N)");
-		btnNew.setIcon(new ImageIcon("images/add.png"));
+		CreateDocumentActionNew cdnew = new CreateDocumentActionNew();
+		JButton btnNew = new JButton(cdnew);
 		add(btnNew);
 		
 		addSeparator();
 		
-		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		cda.putValue(mk, KeyEvent.VK_E);
-		JButton btnEdit = new JButton(cda);
-		btnEdit.setToolTipText("Izmena postojeceg entiteta (Ctrl-E)");
-		btnEdit.setIcon(new ImageIcon("images/edit.png"));
+		CreateDocumentActionEdit cdedit = new CreateDocumentActionEdit();
+		JButton btnEdit = new JButton(cdedit);
 		add(btnEdit);
 		
 		addSeparator();
 		
-		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		cda.putValue(mk, KeyEvent.VK_D);
-		JButton btnDelete = new JButton(cda);
-		btnDelete.setToolTipText("Brisanje entiteta (Ctrl-D )");
-		btnDelete.setIcon(new ImageIcon("images/trash.png"));
+		CreateDocumentActionDelete cddelete = new CreateDocumentActionDelete();
+		JButton btnDelete = new JButton(cddelete);
 		add(btnDelete);
 		
 		addSeparator();
@@ -70,20 +56,19 @@ public class ToolBar extends JToolBar{
 		int heigth = screenSize.height;
 		int width = screenSize.width;
 		
-		add(Box.createGlue());
 		//add(Box.createHorizontalStrut(width/3));
+		add(Box.createGlue());
 		
-		Dimension dim = new Dimension(width*5, heigth/20);
 		JTextField text = new JTextField();
+		Dimension dim = new Dimension(width*5, heigth/20);
+		text.setToolTipText("Unesite kriterijum pretrage");
 		text.setMaximumSize(dim);
-		text.setToolTipText("Unesite kriterijum pretrage: ");
 		add(text);
+		
 		addSeparator();
 		
-		//cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
-		//cda.putValue(mk, KeyEvent.VK_S);
 		JButton btnSearch = new JButton();
-		btnSearch.setToolTipText("Pretraga entiteta ");
+		btnSearch.setToolTipText("Pretraga entiteta");
 		btnSearch.setIcon(new ImageIcon("images/search.png"));
 		add(btnSearch);		
 	}
