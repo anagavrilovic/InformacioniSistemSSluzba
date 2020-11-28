@@ -40,7 +40,7 @@ public class ToolBar extends JToolBar{
 		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		cda.putValue(mk, KeyEvent.VK_N);
 		JButton btnNew = new JButton(cda);
-		btnNew.setToolTipText("Dodavanje novog entiteta (CTRL+N)");
+		btnNew.setToolTipText("Dodavanje novog entiteta (Ctrl-N)");
 		btnNew.setIcon(new ImageIcon("images/add.png"));
 		add(btnNew);
 		
@@ -48,8 +48,8 @@ public class ToolBar extends JToolBar{
 		
 		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		cda.putValue(mk, KeyEvent.VK_E);
-		JButton btnEdit = new JButton();
-		btnEdit.setToolTipText("Izmena postojeceg entiteta (CTRL+E)");
+		JButton btnEdit = new JButton(cda);
+		btnEdit.setToolTipText("Izmena postojeceg entiteta (Ctrl-E)");
 		btnEdit.setIcon(new ImageIcon("images/edit.png"));
 		add(btnEdit);
 		
@@ -57,8 +57,8 @@ public class ToolBar extends JToolBar{
 		
 		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		cda.putValue(mk, KeyEvent.VK_D);
-		JButton btnDelete = new JButton();
-		btnDelete.setToolTipText("Brisanje entiteta (CTRL+D )");
+		JButton btnDelete = new JButton(cda);
+		btnDelete.setToolTipText("Brisanje entiteta (Ctrl-D )");
 		btnDelete.setIcon(new ImageIcon("images/trash.png"));
 		add(btnDelete);
 		
@@ -80,10 +80,10 @@ public class ToolBar extends JToolBar{
 		add(text);
 		addSeparator();
 		
-		cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
-		cda.putValue(mk, KeyEvent.VK_S);
+		//cda.putValue(ak, KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		//cda.putValue(mk, KeyEvent.VK_S);
 		JButton btnSearch = new JButton();
-		btnSearch.setToolTipText("Pretraga entiteta (CTRL+S)");
+		btnSearch.setToolTipText("Pretraga entiteta ");
 		btnSearch.setIcon(new ImageIcon("images/search.png"));
 		add(btnSearch);		
 	}
