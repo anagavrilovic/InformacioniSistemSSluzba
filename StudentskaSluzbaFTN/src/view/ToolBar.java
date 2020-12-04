@@ -33,20 +33,17 @@ public class ToolBar extends JToolBar{
 		super(SwingConstants.HORIZONTAL);
 		
 		CreateDocumentActionNew cdnew = new CreateDocumentActionNew();
-		JButton btnNew = new JButton(cdnew);
-		add(btnNew);
+		add(cdnew);
 		
 		addSeparator();
 		
 		CreateDocumentActionEdit cdedit = new CreateDocumentActionEdit();
-		JButton btnEdit = new JButton(cdedit);
-		add(btnEdit);
+		add(cdedit);
 		
 		addSeparator();
 		
 		CreateDocumentActionDelete cddelete = new CreateDocumentActionDelete();
-		JButton btnDelete = new JButton(cddelete);
-		add(btnDelete);
+		add(cddelete);
 		
 		addSeparator();
 		
