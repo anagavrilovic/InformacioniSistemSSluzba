@@ -64,10 +64,8 @@ public class ToolBar extends JToolBar{
 		
 		addSeparator();
 		
-		JButton btnSearch = new JButton();
-		btnSearch.setToolTipText("Pretraga entiteta");
-		btnSearch.setIcon(new ImageIcon("images/search.png"));
-		add(btnSearch);		
+		CreateDocumentActionSearch cdsearch = new CreateDocumentActionSearch();
+		add(cdsearch);	
 	}
 
 }
