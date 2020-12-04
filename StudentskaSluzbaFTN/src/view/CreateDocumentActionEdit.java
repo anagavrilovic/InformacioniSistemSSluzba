@@ -14,16 +14,15 @@ public class CreateDocumentActionEdit extends AbstractAction {
 	private static final long serialVersionUID = 1583426086994634757L;
 
 	public CreateDocumentActionEdit() {
-		//putValue(NAME, "Edit");
-		putValue(MNEMONIC_KEY, KeyEvent.VK_I);
-		putValue(SHORT_DESCRIPTION, "Izmena postojeceg entiteta (Alt-I)");
+		putValue(NAME, "Edit");
+		putValue(SHORT_DESCRIPTION, "Izmena postojeceg entiteta (Ctrl-E)");
 		putValue(SMALL_ICON, new ImageIcon("images/edit.png"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_I, KeyEvent.CTRL_MASK));
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E, KeyEvent.CTRL_MASK));
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		//putValue(NAME, "Novi naziv");
+		
 	}
 
 }

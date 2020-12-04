@@ -22,38 +22,27 @@ public class MenuBar extends JMenuBar{
 		UIManager.put("Menu.font", f);
 		UIManager.put("MenuItem.font", f);
 		
+		
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
 		
-		JMenuItem newFile = new JMenuItem("New");
-		newFile.setIcon(new ImageIcon("images/add.png"));
-		newFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		CreateDocumentActionNew cdNew = new CreateDocumentActionNew();
+		CreateDocumentActionClose cdClose = new CreateDocumentActionClose();
 		
-		JMenuItem close = new JMenuItem("Close");
-		close.setIcon(new ImageIcon("images/close.png"));
-		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		
-		file.add(newFile);
+		file.add(cdNew);
 		file.addSeparator();
-		file.add(close);
-		
+		file.add(cdClose);
 		
 		
 		JMenu edit = new JMenu("Edit");
 		edit.setMnemonic(KeyEvent.VK_E);
 		
-		JMenuItem editFile = new JMenuItem("Edit");
-		editFile.setIcon(new ImageIcon("images/edit.png"));
-		editFile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		CreateDocumentActionEdit cdEdit = new CreateDocumentActionEdit();
+		CreateDocumentActionDelete cdDelete = new CreateDocumentActionDelete();
 		
-		JMenuItem delete = new JMenuItem("Delete");
-		delete.setIcon(new ImageIcon("images/trash.png"));
-		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		
-		edit.add(editFile);
+		edit.add(cdEdit);
 		edit.addSeparator();
-		edit.add(delete);
-		
+		edit.add(cdDelete);
 		
 		
 		JMenu help = new JMenu("Help");
@@ -62,21 +51,21 @@ public class MenuBar extends JMenuBar{
 		JMenuItem helpItem = new JMenuItem("Help");
 		helpItem.setIcon(new ImageIcon("images/question.png"));
 		helpItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
+		helpItem.setToolTipText("Opis o nacinu koriscenja aplikacije (Ctrl-H)");
 		
 		JMenuItem about = new JMenuItem("About");
 		about.setIcon(new ImageIcon("images/info.png"));
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		about.setToolTipText("Opis aplikacije (Ctrl-A)");
 		
 		help.add(helpItem);
 		help.addSeparator();
 		help.add(about);
 		
 		
-		
 		add(file);
 		add(edit);
 		add(help);
-		
 		
 	}
 }

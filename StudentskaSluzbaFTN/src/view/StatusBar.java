@@ -33,7 +33,8 @@ public class StatusBar extends JPanel implements ActionListener{
 		add(nazivAplikacije, BorderLayout.WEST);
 		
 		
-		// Mali deo koda vezan za postavljanje vremena i datuma preuzet sa Google-a
+		// Mali deo koda vezan za postavljanje vremena i datuma preuzet sa Google-a 
+		// (https://coderanch.com/t/331575/java/Display-time-date-status-bar)
 		datumVreme = new JLabel(sdf.format(new GregorianCalendar().getTime()));
 		datumVreme.setFont(f);
 		add(datumVreme, BorderLayout.EAST);
