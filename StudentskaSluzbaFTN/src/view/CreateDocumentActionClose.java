@@ -13,7 +13,8 @@ public class CreateDocumentActionClose extends AbstractAction {
 		putValue(NAME, "Close");
 		putValue(SHORT_DESCRIPTION, "Izlaz (Ctrl-C)");
 		putValue(SMALL_ICON, new ImageIcon("images/close.png"));
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK));
+		putValue(MNEMONIC_KEY, KeyEvent.VK_C);
 	}
 
 	@Override

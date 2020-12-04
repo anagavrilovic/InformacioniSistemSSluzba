@@ -48,19 +48,12 @@ public class MenuBar extends JMenuBar{
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
 		
-		JMenuItem helpItem = new JMenuItem("Help");
-		helpItem.setIcon(new ImageIcon("images/question.png"));
-		helpItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
-		helpItem.setToolTipText("Opis o nacinu koriscenja aplikacije (Ctrl-H)");
+		CreateDocumentActionHelp cdHelp = new CreateDocumentActionHelp();
+		CreateDocumentActionAbout cdAbout = new CreateDocumentActionAbout();
 		
-		JMenuItem about = new JMenuItem("About");
-		about.setIcon(new ImageIcon("images/info.png"));
-		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
-		about.setToolTipText("Opis aplikacije (Ctrl-A)");
-		
-		help.add(helpItem);
+		help.add(cdHelp);
 		help.addSeparator();
-		help.add(about);
+		help.add(cdAbout);
 		
 		
 		add(file);

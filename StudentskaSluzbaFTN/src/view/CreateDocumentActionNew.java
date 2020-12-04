@@ -18,7 +18,7 @@ public class CreateDocumentActionNew extends AbstractAction {
 		putValue(SHORT_DESCRIPTION, "Dodavanje novog entiteta (Ctrl-N)");
 		putValue(SMALL_ICON, new ImageIcon("images/add.png"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
-		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
+		putValue(MNEMONIC_KEY, KeyEvent.VK_N);
 	}
 
 	@Override

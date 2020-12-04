@@ -18,7 +18,7 @@ public class CreateDocumentActionEdit extends AbstractAction {
 		putValue(SHORT_DESCRIPTION, "Izmena postojeceg entiteta (Ctrl-E)");
 		putValue(SMALL_ICON, new ImageIcon("images/edit.png"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_E, KeyEvent.CTRL_MASK));
-		putValue(MNEMONIC_KEY, KeyEvent.VK_I);
+		putValue(MNEMONIC_KEY, KeyEvent.VK_E);
 	}
 
 	@Override
