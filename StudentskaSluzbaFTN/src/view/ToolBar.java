@@ -1,24 +1,13 @@
 package view;
 
 
-//Kod napisan po uzoru na materijale sa vježbi
-
-
-import java.awt.BorderLayout;
-import java.awt.Desktop.Action;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 public class ToolBar extends JToolBar{
@@ -33,6 +22,8 @@ public class ToolBar extends JToolBar{
 		super(SwingConstants.HORIZONTAL);
 		
 		CreateDocumentActionNew cdnew = new CreateDocumentActionNew();
+		//ActionEvent evt = new ActionEvent();
+		//cdnew.actionPerformed(evt);
 		add(cdnew);
 		
 		addSeparator();

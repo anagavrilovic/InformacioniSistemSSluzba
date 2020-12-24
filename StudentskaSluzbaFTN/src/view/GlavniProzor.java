@@ -19,6 +19,16 @@ public class GlavniProzor extends JFrame{
 	public static int heigth;
 	public static int width;
 	
+	public static GlavniProzor instance = null;
+	
+	public static GlavniProzor getInstance() {
+		
+		if (instance == null) {
+			instance = new GlavniProzor();
+		}
+		return instance;
+	}
+	
 	public GlavniProzor() {
 		
 		Toolkit tk = Toolkit.getDefaultToolkit();
@@ -31,7 +41,7 @@ public class GlavniProzor extends JFrame{
 		setSize(this.width * 3/4, this.heigth * 3/4);
 		Font f = new Font("", Font.BOLD, 18);
 		setFont(f);
-		setTitle("Studentska sluûba");
+		setTitle("Studentska slu≈æba");
 		getContentPane().setBackground(Color.white);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);	

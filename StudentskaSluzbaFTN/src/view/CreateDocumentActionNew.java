@@ -1,6 +1,6 @@
 package view;
 
-//Kod napisan po uzoru na materijale sa vjeûbi
+//Kod napisan po uzoru na materijale sa vje≈æbi
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
+
+import controller.DodavanjeProfesora;
 
 public class CreateDocumentActionNew extends AbstractAction {
 
@@ -23,7 +25,7 @@ public class CreateDocumentActionNew extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+		DodavanjeProfesora dp = new DodavanjeProfesora(GlavniProzor.getInstance());
 	}
 
 }

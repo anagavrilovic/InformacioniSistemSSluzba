@@ -28,7 +28,7 @@ public class StatusBar extends JPanel implements ActionListener{
 		setPreferredSize(new Dimension(GlavniProzor.width, 20));
 		setLayout(new BorderLayout());
 		
-		nazivAplikacije = new JLabel("  Studentska sluûba");
+		nazivAplikacije = new JLabel("  Studentska slu≈æba");
 		nazivAplikacije.setFont(f);
 		add(nazivAplikacije, BorderLayout.WEST);
 		
