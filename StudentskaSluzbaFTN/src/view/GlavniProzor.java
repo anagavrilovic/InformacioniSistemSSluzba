@@ -29,7 +29,7 @@ public class GlavniProzor extends JFrame{
 		return instance;
 	}
 	
-	
+
 	public GlavniProzor() {
 		
 		Toolkit tk = Toolkit.getDefaultToolkit();

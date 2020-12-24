@@ -9,7 +9,11 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+
 import controller.DodavanjeStudenta;
+
+import controller.DodavanjeProfesora;
+
 
 public class CreateDocumentActionNew extends AbstractAction {
 
@@ -25,7 +29,11 @@ public class CreateDocumentActionNew extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		DodavanjeStudenta ds = new DodavanjeStudenta(GlavniProzor.getInstance());
+
+		//DodavanjeStudenta ds = new DodavanjeStudenta(GlavniProzor.getInstance());
+
+		//DodavanjeProfesora dp = new DodavanjeProfesora(GlavniProzor.getInstance());
+
 	}
 
 }
