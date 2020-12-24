@@ -9,6 +9,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import controller.DodavanjeStudenta;
+
 public class CreateDocumentActionNew extends AbstractAction {
 
 	private static final long serialVersionUID = 1583426086994634757L;
@@ -23,7 +25,7 @@ public class CreateDocumentActionNew extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+		DodavanjeStudenta ds = new DodavanjeStudenta(GlavniProzor.getInstance());
 	}
 
 }

@@ -19,6 +19,17 @@ public class GlavniProzor extends JFrame{
 	public static int heigth;
 	public static int width;
 	
+	public static GlavniProzor instance = null;
+	
+	public static GlavniProzor getInstance() {
+		
+		if (instance == null) {
+			instance = new GlavniProzor();
+		}
+		return instance;
+	}
+	
+	
 	public GlavniProzor() {
 		
 		Toolkit tk = Toolkit.getDefaultToolkit();
