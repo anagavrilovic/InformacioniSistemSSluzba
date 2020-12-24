@@ -9,6 +9,11 @@ import javax.swing.KeyStroke;
 
 public class CreateDocumentActionClose extends AbstractAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public CreateDocumentActionClose() {
 		putValue(NAME, "Close");
 		putValue(SHORT_DESCRIPTION, "Izlaz (Ctrl-C)");
