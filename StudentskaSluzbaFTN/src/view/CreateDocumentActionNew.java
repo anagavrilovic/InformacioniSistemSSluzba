@@ -25,7 +25,7 @@ public class CreateDocumentActionNew extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		DodavanjeProfesora dp = new DodavanjeProfesora(GlavniProzor.getInstance());
+		//DodavanjeProfesora dp = new DodavanjeProfesora(GlavniProzor.getInstance());
 	}
 
 }
