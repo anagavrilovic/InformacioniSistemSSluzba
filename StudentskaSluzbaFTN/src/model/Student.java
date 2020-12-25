@@ -56,6 +56,17 @@ public class Student {
 		this.spisakPolozenih = spisakPolozenih;
 		this.spisakNepolozenih = spisakNepolozenih;
 	}
+	
+	public Student(String prezime, String ime, String brojIndeksa, int trGodStudija, Status status,
+			double prosecnaOcena) {
+		super();
+		this.prezime = prezime;
+		this.ime = ime;
+		this.brojIndeksa = brojIndeksa;
+		this.trGodStudija = trGodStudija;
+		this.status = status;
+		this.prosecnaOcena = prosecnaOcena;
+	}
 
 	public String getPrezime() {
 		return prezime;
