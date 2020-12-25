@@ -30,9 +30,9 @@ public class CreateDocumentActionNew extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		if(TabbedPane.getInstance().getIndex() == 1) {
+		if(TabbedPane.getInstance().getIndex() == 0) {
 			DodavanjeStudenta ds = new DodavanjeStudenta(GlavniProzor.getInstance());
-		} else {
+		} else if(TabbedPane.getInstance().getIndex() == 1) {
 			DodavanjeProfesora dp = new DodavanjeProfesora(GlavniProzor.getInstance());
 		}
 		

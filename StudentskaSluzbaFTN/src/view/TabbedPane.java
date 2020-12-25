@@ -55,16 +55,22 @@ public class TabbedPane extends JTabbedPane{
 		model.fireTableDataChanged();
 	}
 	
+	// Preuzeto sa sajta: http://www.java2s.com/Tutorial/Java/0240__Swing/ListeningforSelectedTabChanges.htm
 	ChangeListener changeListener = new ChangeListener() {
 		  public void stateChanged(ChangeEvent changeEvent) {
 		    JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
-		    index = sourceTabbedPane.getSelectedIndex();
+		    int index = sourceTabbedPane.getSelectedIndex();
+		    TabbedPane.getInstance().setIndex(index);
 		    System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
 		  }
 		};
 		
 	public int getIndex() {
 		return index;
+	}
+	
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 }
