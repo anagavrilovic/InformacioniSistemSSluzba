@@ -33,7 +33,7 @@ public class Profesor {
 	}
 	
 	public Profesor (String prz, String ime, Date dt, String adrStan, String email, String adrKanc, 
-					String brlk, String titula, String zvanje) {
+					 String brlk, String titula, String zvanje) {
 		super();
 		this.prezime = prz;
 		this.ime = ime;
@@ -45,6 +45,14 @@ public class Profesor {
 		this.titula = titula;
 		this.zvanje = zvanje;
 		this.predmeti = new ArrayList<String>();
+	}
+	
+	public Profesor (String ime, String prezime, String titula, String zvanje) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.titula = titula;
+		this.zvanje = zvanje;
 	}
 	
 	public Profesor (Profesor p) {

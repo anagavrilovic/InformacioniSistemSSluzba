@@ -1,16 +1,19 @@
 package view;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+
+import model.ProfesoriJtable;
 
 public class TabbedPane extends JTabbedPane{
 	
 	public TabbedPane() {
 		super();
-		JPanel panelStudent = new JPanel();
-		JPanel panelProfesor = new JPanel();
-		this.addTab("Student", panelStudent);
-		this.addTab("Profesor", panelProfesor);
+		
+		ProfesoriJtable profesoriTable = new ProfesoriJtable();
+		JScrollPane spProfesor = new JScrollPane(profesoriTable);
+		this.addTab("Profesor", spProfesor);
 	}
 
 }
