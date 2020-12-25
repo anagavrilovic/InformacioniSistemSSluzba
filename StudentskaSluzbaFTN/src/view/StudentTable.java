@@ -16,6 +16,7 @@ public class StudentTable extends JTable{
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setGridColor(Color.LIGHT_GRAY);
+		this.setAutoCreateRowSorter(true);
 		
 		this.setModel(new AbstractTableModelStudenti());
 	}
