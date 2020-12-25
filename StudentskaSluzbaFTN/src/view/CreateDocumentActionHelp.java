@@ -7,6 +7,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import controller.HelpDialog;
+
 public class CreateDocumentActionHelp extends AbstractAction {
 	
 	public CreateDocumentActionHelp() {
@@ -19,6 +21,6 @@ public class CreateDocumentActionHelp extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+		HelpDialog helpDialog = new HelpDialog(GlavniProzor.getInstance());
 	}
 }
