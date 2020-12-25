@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
+
 public class BazaProfesori {
 	
 	private static BazaProfesori instance = null;
@@ -22,18 +25,18 @@ public class BazaProfesori {
 		inicijalizacijaProfesira();
 
 		this.kolone = new ArrayList<String>();
-		this.kolone.add("IME");
-		this.kolone.add("PREZIME");
-		this.kolone.add("TITULA");
-		this.kolone.add("ZVANJE");
+		this.kolone.add("Ime");
+		this.kolone.add("Prezime");
+		this.kolone.add("Titula");
+		this.kolone.add("Zvanje");
 	}
 
 	private void inicijalizacijaProfesira() {
 		this.profesori = new ArrayList<Profesor>();
-		profesori.add(new Profesor("Aleksandar", "Kovačević", "Prof. dr", "Redovni profesor"));
-		profesori.add(new Profesor("Veljko", "Petrović", "Prof. dr", "Redovni profesor"));
-		profesori.add(new Profesor("Milan", "Rapaić", "Prof. dr", "Vanredni profesor"));
-		profesori.add(new Profesor("Petar", "Marić", "Dr", "Docent"));
+		profesori.add(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor));
+		profesori.add(new Profesor("Veljko", "Petrović", Titula.ProfDr, Zvanje.RedovniProfesor));
+		profesori.add(new Profesor("Milan", "Rapaić", Titula.ProfDr, Zvanje.VanredniProfesor));
+		profesori.add(new Profesor("Petar", "Marić", Titula.dr, Zvanje.Docent));
 	}
 
 	public List<Profesor> getProfesori() {
@@ -65,15 +68,15 @@ public class BazaProfesori {
 		case 1:
 			return profesor.getPrezime();
 		case 2:
-			return profesor.getTitula();
+			return profesor.getTitula().toString();
 		case 3:
-			return profesor.getZvanje();
+			return profesor.getZvanje().toString();
 		default:
 			return null;
 		}
 	}
 
-	public void dodajProfesora(String ime, String prezime, String titula, String zvanje) {
+	public void dodajProfesora(String ime, String prezime, Titula titula, Zvanje zvanje) {
 		this.profesori.add(new Profesor(ime, prezime, titula, zvanje));
 	}
 

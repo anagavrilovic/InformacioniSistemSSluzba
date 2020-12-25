@@ -5,6 +5,84 @@ import java.util.Date;
 
 public class Profesor {
 	
+	public enum Titula {
+		
+		BSc{
+			public String toString () {
+				return "BSc";
+			}
+		},
+		
+		MSc{
+			public String toString () {
+				return "MSc";
+			}
+		},
+		
+		mr{
+			public String toString () {
+				return "mr";
+			}
+		},
+		
+		dr{
+			public String toString () {
+				return "dr";
+			}
+		},
+		
+		ProfDr {
+			public String toString () {
+				return "Prof. dr";
+			}
+		}
+	}
+	
+	public enum Zvanje {
+		
+		SaradnikUNastavi {
+			public String toString () {
+				return "Saradnik u nastavi";
+			}
+		},
+		
+		Asistent {
+			public String toString () {
+				return "Asistent";
+			}
+		},
+		
+		AsistentSaDoktoratom{
+			public String toString () {
+				return "Asistent sa doktoratom";
+			}
+		},
+		
+		Docent{
+			public String toString () {
+				return "Docent";
+			}
+		},
+		
+		VanredniProfesor{
+			public String toString () {
+				return "Vanredni profesor";
+			}
+		},
+		
+		RedovniProfesor{
+			public String toString () {
+				return "Redovni profesor";
+			}
+		},
+		
+		ProfesorEmeritus{
+			public String toString () {
+				return "Profesor emeritus";
+			}
+		}	
+	}
+	
 	private String prezime;
 	private String ime;
 	private Date datumRodjenja;
@@ -13,9 +91,9 @@ public class Profesor {
 	private String emailAdresa;
 	private String adresaKancelarije;
 	private String brojLicneKarte;
-	private String titula;
-	private String zvanje;
-	private ArrayList<String>predmeti;
+	private Titula titula;
+	private Zvanje zvanje;
+	private ArrayList<Predmet>predmeti;
 	
 	public Profesor () {
 		super();
@@ -27,13 +105,13 @@ public class Profesor {
 		this.emailAdresa = "";
 		this.adresaKancelarije = "";
 		this.brojLicneKarte = "";
-		this.titula = "";
-		this.zvanje = "";
-		this.predmeti = new ArrayList<String>();
+		this.titula = Titula.BSc;
+		this.zvanje = Zvanje.Asistent;
+		this.predmeti = new ArrayList<Predmet>();
 	}
 	
 	public Profesor (String prz, String ime, Date dt, String adrStan, String email, String adrKanc, 
-					 String brlk, String titula, String zvanje) {
+					 String brlk, Titula titula, Zvanje zvanje) {
 		super();
 		this.prezime = prz;
 		this.ime = ime;
@@ -44,10 +122,10 @@ public class Profesor {
 		this.brojLicneKarte = brlk;
 		this.titula = titula;
 		this.zvanje = zvanje;
-		this.predmeti = new ArrayList<String>();
+		this.predmeti = new ArrayList<Predmet>();
 	}
 	
-	public Profesor (String ime, String prezime, String titula, String zvanje) {
+	public Profesor (String ime, String prezime, Titula titula, Zvanje zvanje) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -133,27 +211,27 @@ public class Profesor {
 		this.brojLicneKarte = brojLicneKarte;
 	}
 
-	public String getTitula() {
+	public Titula getTitula() {
 		return titula;
 	}
 
-	public void setTitula(String titula) {
+	public void setTitula(Titula titula) {
 		this.titula = titula;
 	}
 
-	public String getZvanje() {
+	public Zvanje getZvanje() {
 		return zvanje;
 	}
 
-	public void setZvanje(String zvanje) {
+	public void setZvanje(Zvanje zvanje) {
 		this.zvanje = zvanje;
 	}
 
-	public ArrayList<String> getPredmeti() {
+	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;
 	}
 
-	public void setPredmeti(ArrayList<String> predmeti) {
+	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
 }
