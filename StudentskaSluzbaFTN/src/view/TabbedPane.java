@@ -12,6 +12,7 @@ public class TabbedPane extends JTabbedPane{
 		super();
 		
 		ProfesoriJtable profesoriTable = new ProfesoriJtable();
+		//profesoriTable.setAutoCreateRowSorter(true);
 		JScrollPane spProfesor = new JScrollPane(profesoriTable);
 		this.addTab("Profesor", spProfesor);
 	}

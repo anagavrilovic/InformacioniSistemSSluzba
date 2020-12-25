@@ -7,6 +7,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class ProfesoriJtable extends JTable{
 	
@@ -16,7 +17,9 @@ public class ProfesoriJtable extends JTable{
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// Sama JTable komponenta je implementirana postujuci MVC arhitekturu.
 		this.setModel(new AbstractTableModelProfesori());
-	}
+		this.setAutoCreateRowSorter(true);
+		//this.setRowSorter(new TableRowSorter(new AbstractTableModelProfesori())); 
+	} 
 
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {

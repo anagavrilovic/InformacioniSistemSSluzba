@@ -5,6 +5,11 @@ import javax.swing.table.AbstractTableModel;
 public class AbstractTableModelProfesori extends AbstractTableModel {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public AbstractTableModelProfesori() {}
 
 	public int getRowCount() {

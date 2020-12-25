@@ -11,6 +11,8 @@ import javax.swing.JTabbedPane;
 
 public class GlavniProzor extends JFrame{
 	
+
+	private static final long serialVersionUID = 1L;
 	public Dimension screenSize;
 	public static int heigth;
 	public static int width;
@@ -31,11 +33,14 @@ public class GlavniProzor extends JFrame{
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		
 		Dimension screenSize = tk.getScreenSize();
-		this.heigth = screenSize.height;
-		this.width = screenSize.width;
+		//this.heigth = screenSize.height;
+		//this.width = screenSize.width;
+		//setSize(this.width * 3/4, this.heigth * 3/4);
 		
+		GlavniProzor.heigth = screenSize.height;
+		GlavniProzor.width = screenSize.width;
+		setSize(GlavniProzor.width * 3/4, GlavniProzor.heigth * 3/4);
 		
-		setSize(this.width * 3/4, this.heigth * 3/4);
 		Font f = new Font("", Font.BOLD, 18);
 		setFont(f);
 		setTitle("Studentska služba");
@@ -53,8 +58,7 @@ public class GlavniProzor extends JFrame{
 		add(tp, BorderLayout.CENTER);
 		
 		StatusBar sb = new StatusBar();
-		add(sb, BorderLayout.SOUTH);
-		
+		add(sb, BorderLayout.SOUTH);	
 	}
 
 	public int getHeigth() {

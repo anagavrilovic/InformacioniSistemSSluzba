@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.Main;
 import view.GlavniProzor;
 
 public class DodavanjeProfesora {
@@ -63,6 +65,8 @@ public class DodavanjeProfesora {
 		jp.setBackground(Color.WHITE);
 		jp.setBorder(BorderFactory.createCompoundBorder());
 		jp.setLayout(new GridBagLayout());
+		
+		Font f = new Font("sans-serif", Font.PLAIN, 13);
 
 		JLabel jlIme = new JLabel("Ime*");
 		GridBagConstraints gbcLabIme = new GridBagConstraints();
@@ -73,7 +77,7 @@ public class DodavanjeProfesora {
 		gbcLabIme.anchor = GridBagConstraints.LINE_START;
 		jp.add(jlIme, gbcLabIme);
 		
-		jtfIme = new JTextField(20); 
+	    jtfIme = new JTextField(20); 
 		GridBagConstraints gbctfIme = new GridBagConstraints();
 		gbctfIme.gridx = 5;
 		gbctfIme.gridy = 0;
@@ -263,7 +267,7 @@ public class DodavanjeProfesora {
 		gbcOdustani.insets = new Insets(40, 20, 0, 20);
 		jp.add(btnOdustani, gbcOdustani);
 		
-		
+		Main.changeFont(jp, f);
 		jd.add(jp);
 		jd.setVisible(true);
 
