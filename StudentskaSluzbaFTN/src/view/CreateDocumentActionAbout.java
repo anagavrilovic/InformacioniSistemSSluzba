@@ -7,6 +7,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import controller.AboutDialog;
+
 public class CreateDocumentActionAbout extends AbstractAction {
 
 	public CreateDocumentActionAbout() {
@@ -19,6 +21,6 @@ public class CreateDocumentActionAbout extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+		AboutDialog aboutDialog = new AboutDialog(GlavniProzor.getInstance());
 	}
 }
