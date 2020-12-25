@@ -6,6 +6,7 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 
+import model.BazaStudenti;
 import view.GlavniProzor;
 
 public class Main {
@@ -15,6 +16,8 @@ public class Main {
 		GlavniProzor gp = GlavniProzor.getInstance();
 		gp.setIconImage(new ImageIcon("images/user_group.png").getImage());
 		gp.setVisible(true);
+		
+		BazaStudenti.getInstance();
 	}
 	
 	
