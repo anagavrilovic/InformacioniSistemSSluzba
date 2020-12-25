@@ -19,7 +19,7 @@ public class BazaProfesori {
 
 	private BazaProfesori() {
 	
-		inicijalizacijaProfesira();
+		inicijalizacijaProfesora();
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("IME");
@@ -28,7 +28,7 @@ public class BazaProfesori {
 		this.kolone.add("ZVANJE");
 	}
 
-	private void inicijalizacijaProfesira() {
+	private void inicijalizacijaProfesora() {
 		this.profesori = new ArrayList<Profesor>();
 		profesori.add(new Profesor("Aleksandar", "Kovačević", "Prof. dr", "Redovni profesor"));
 		profesori.add(new Profesor("Veljko", "Petrović", "Prof. dr", "Redovni profesor"));
@@ -43,7 +43,6 @@ public class BazaProfesori {
 	public void setProfesori(List<Profesor> profesori) {
 		this.profesori = profesori;
 	}
-
 
 	public int getColumnCount() {
 		return 4;

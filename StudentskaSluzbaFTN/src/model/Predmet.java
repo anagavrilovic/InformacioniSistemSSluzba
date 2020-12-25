@@ -5,7 +5,16 @@ import java.util.ArrayList;
 public class Predmet {
 	
 	public enum Semestar{
-		 ZIMSKI(0), LETNJI(1);
+			 ZIMSKI(0) {
+				 public String toString() {
+					 return "Zimski";
+					 }
+			 }, 
+			 LETNJI(1) {
+				 public String toString() {
+					 return "Letnji";
+			}
+		 };
 		 int doba;
 		
 		private Semestar () {}
@@ -45,6 +54,15 @@ public class Predmet {
 		this.espb = espb;
 		this.studentiPolozili = studentiPolozili;
 		this.studentiNisuPolozili = studentiNisuPolozili;
+	}
+	
+	public Predmet(String sifra, String naziv, int espb, int godina, Semestar semestar) {
+		super();
+		this.sifraPredmeta = sifra;
+		this.nazivPredmeta = naziv;
+		this.espb = espb;
+		this.godinaStudija = godina; 
+		this.semestar = semestar;
 	}
 	
 	public Predmet(Predmet p) {
