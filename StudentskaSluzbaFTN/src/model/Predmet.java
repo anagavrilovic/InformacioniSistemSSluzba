@@ -18,8 +18,8 @@ public class Predmet {
 	private int godinaStudija;
 	private Profesor profesor;
 	private int espb;
-	private ArrayList<String> studentiPolozili;
-	private ArrayList<String> studentiNisuPolozili;
+	private ArrayList<Student> studentiPolozili;
+	private ArrayList<Student> studentiNisuPolozili;
 	
 	public Predmet() {
 		super();
@@ -29,13 +29,13 @@ public class Predmet {
 		this.godinaStudija = 0;
 		this.profesor = new Profesor();
 		this.espb = 0;
-		this.studentiPolozili = new ArrayList<String>();
-		this.studentiNisuPolozili = new ArrayList<String>();
+		this.studentiPolozili = new ArrayList<Student>();
+		this.studentiNisuPolozili = new ArrayList<Student>();
 	}
 
 	public Predmet(String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija, 
-					Profesor profesor, int espb, ArrayList<String> studentiPolozili, 
-					ArrayList<String> studentiNisuPolozili) {
+				   Profesor profesor, int espb, ArrayList<Student> studentiPolozili, 
+				   ArrayList<Student> studentiNisuPolozili) {
 		super();
 		this.sifraPredmeta = sifraPredmeta;
 		this.nazivPredmeta = nazivPredmeta;
@@ -107,19 +107,19 @@ public class Predmet {
 		this.espb = espb;
 	}
 
-	public ArrayList<String> getStudentiPolozili() {
+	public ArrayList<Student> getStudentiPolozili() {
 		return studentiPolozili;
 	}
 
-	public void setStudentiPolozili(ArrayList<String> studentiPolozili) {
+	public void setStudentiPolozili(ArrayList<Student> studentiPolozili) {
 		this.studentiPolozili = studentiPolozili;
 	}
 
-	public ArrayList<String> getStudentiNisuPolozili() {
+	public ArrayList<Student> getStudentiNisuPolozili() {
 		return studentiNisuPolozili;
 	}
 
-	public void setStudentiNisuPolozili(ArrayList<String> studentiNisuPolozili) {
+	public void setStudentiNisuPolozili(ArrayList<Student> studentiNisuPolozili) {
 		this.studentiNisuPolozili = studentiNisuPolozili;
 	}
 }
