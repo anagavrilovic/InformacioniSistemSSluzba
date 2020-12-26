@@ -9,6 +9,8 @@ import javax.swing.table.TableCellRenderer;
 
 public class ProfesorTable extends JTable{
 	
+	
+	
 	public ProfesorTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);

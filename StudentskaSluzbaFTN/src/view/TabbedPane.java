@@ -10,8 +10,8 @@ import javax.swing.event.ChangeListener;
 
 public class TabbedPane extends JTabbedPane{
 	
-	StudentTable studentTable;
-	ProfesorTable profesorTable;
+	private StudentTable studentTable;
+	private ProfesorTable profesorTable;
 	private int index;
 	
 	public static TabbedPane instance = null;

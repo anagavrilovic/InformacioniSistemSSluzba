@@ -23,18 +23,18 @@ public class ProfesorContoller {
 		return instance;
 	}
 	
-	private Profesor profesor;
-	private DodavanjeProfesoraView profesorView;
+	//private Profesor profesor;
+	//private DodavanjeProfesoraView profesorView;
 	
 	public ProfesorContoller() {
-		this.profesor = new Profesor();
-		this.profesorView = new DodavanjeProfesoraView();
+		//this.profesor = new Profesor();
+		//this.profesorView = new DodavanjeProfesoraView();
 	}
 
-	public ProfesorContoller(Profesor profesor, DodavanjeProfesoraView profesorView) {
+	/*public ProfesorContoller(Profesor profesor, DodavanjeProfesoraView profesorView) {
 		setProfesor(profesor);
 		setProfesorView(profesorView);
-	}
+	}*/
 	
 	public String updateProfesor(String ime, String prz, String datum, String adresaStan,
 								 String brTel, String eMail, String adresaKanc,
@@ -102,13 +102,13 @@ public class ProfesorContoller {
 			        eMail, adresaKanc, brLK, titula, zvanje);
 		
 		BazaProfesori.getInstance().dodajProfesora(prof);
-		TabbedPane.getInstance().azurirajPrikazProf(null, -1);
+		TabbedPane.getInstance().azurirajPrikazProf("Dodavanje profesora", -1);
 		
 		return "Uspešno ste uneli profesora!";
 	}
 
 
-	public Profesor getStudent() {
+	/*public Profesor getStudent() {
 		return profesor;
 	}
 
@@ -128,5 +128,5 @@ public class ProfesorContoller {
 			throw new NullPointerException();
 		}
 		this.profesorView = profesorView;
-	}
+	}*/
 }

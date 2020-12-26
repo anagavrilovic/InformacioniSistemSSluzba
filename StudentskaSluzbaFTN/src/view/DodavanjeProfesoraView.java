@@ -25,9 +25,6 @@ import model.Profesor.Zvanje;
 
 public class DodavanjeProfesoraView {
 	
-	private Profesor profesor;
-	private ProfesorContoller profesorController;
-	
 	private JDialog jd;
 	private JPanel jp;
 	
@@ -48,16 +45,12 @@ public class DodavanjeProfesoraView {
 
 	public DodavanjeProfesoraView() {
 		super();
-		this.profesor = new Profesor();
-		this.profesorController = ProfesorContoller.getInstance();
 		this.jd = new JDialog();
 		this.jp = new JPanel();
 	}
 	
 	public DodavanjeProfesoraView(GlavniProzor gp) {
 		super();
-		
-		setProfesor();
 		
 		jd = new JDialog(gp, "Dodavanje profesora", true);
 		jd.setSize(500,600);
@@ -314,21 +307,9 @@ public class DodavanjeProfesoraView {
 		jd.setVisible(true);
 	}
 	
-	public void setProfesor() {
-		profesor = new Profesor();
-		profesorController = null;
-		
-		refreshView();
-	}
-	
-	public void refreshView() {
-		TabbedPane.getInstance().azurirajPrikazProf(null, -1);
-	}
 	
 	public void potvrdi() {
-		if (profesorController == null) {
-			profesorController = new ProfesorContoller(profesor, this);
-		}
+		
 		String ime = jtfIme.getText();
 		String prezime = jtfPrz.getText();
 		String datum = jtfDatum.getText();
@@ -367,7 +348,7 @@ public class DodavanjeProfesoraView {
 		else 
 			zv = Zvanje.VanredniProfesor;
 		
-		String message = profesorController.updateProfesor(ime, prezime, datum, adresaStan, 
+		String message = ProfesorContoller.getInstance().updateProfesor(ime, prezime, datum, adresaStan, 
 											brTel, eMail, adresaKanc, brLK, tit, zv);
 
 		JOptionPane.showMessageDialog(jd, message);

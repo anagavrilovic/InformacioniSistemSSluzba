@@ -6,6 +6,8 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 
+import controller.ProfesorContoller;
+import model.BazaProfesori;
 import model.BazaStudenti;
 import view.GlavniProzor;
 
@@ -17,6 +19,8 @@ public class Main {
 		gp.setVisible(true);
 		
 		BazaStudenti.getInstance();
+		BazaProfesori.getInstance();
+		ProfesorContoller.getInstance();
 	}
 	
 	
