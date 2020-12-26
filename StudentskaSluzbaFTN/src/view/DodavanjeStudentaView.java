@@ -1,28 +1,45 @@
-package controller;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
+import controller.StudentController;
 import main.Main;
-import view.GlavniProzor;
+import model.Student.Status;
 
-public class DodavanjeStudenta {
+public class DodavanjeStudentaView {
 	private JDialog dialog;
 	private JPanel panel;
 	
+	private JTextField jtfIme;
+	private JTextField jtfPrezime;
+	private JTextField jtfDatum;
+	private JTextField jtfAdresa;
+	private JTextField jtfBrojTel;
+	private JTextField jtfEmail;
+	private JTextField jtfBrInd;
+	private JTextField jtfGodUpisa;
+	private JComboBox<String> cbTrGod;
+	private JComboBox<String> cbFin;
+	private JButton btnPotvrdi;
+	private JButton btnOdustani;
 	
-	public DodavanjeStudenta(GlavniProzor gp) {
+	
+	public DodavanjeStudentaView(GlavniProzor gp) {
 		
 		dialog = new JDialog(gp, "Dodavanje studenta", true);
 		dialog.setSize(500, 600);
@@ -53,7 +70,7 @@ public class DodavanjeStudenta {
 		gbcLeft.gridy = 0;
 		panel.add(jlIme, gbcLeft);
 		
-		JTextField jtfIme = new JTextField(20);
+		jtfIme = new JTextField(20);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 0;
 		panel.add(jtfIme, gbcRight);
@@ -64,7 +81,7 @@ public class DodavanjeStudenta {
 		gbcLeft.gridy = 1;
 		panel.add(jlPrezime, gbcLeft);
 		
-		JTextField jtfPrezime = new JTextField(20);
+		jtfPrezime = new JTextField(20);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 1;
 		panel.add(jtfPrezime, gbcRight);
@@ -75,7 +92,7 @@ public class DodavanjeStudenta {
 		gbcLeft.gridy = 2;
 		panel.add(jlDatum, gbcLeft);
 		
-		JTextField jtfDatum = new JTextField(20);
+		jtfDatum = new JTextField(20);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 2;
 		panel.add(jtfDatum, gbcRight);
@@ -86,7 +103,7 @@ public class DodavanjeStudenta {
 		gbcLeft.gridy = 3;
 		panel.add(jlAdresa, gbcLeft);
 		
-		JTextField jtfAdresa = new JTextField(20);
+		jtfAdresa = new JTextField(20);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 3;
 		panel.add(jtfAdresa, gbcRight);
@@ -97,7 +114,7 @@ public class DodavanjeStudenta {
 		gbcLeft.gridy = 4;
 		panel.add(jlBrojTel, gbcLeft);
 		
-		JTextField jtfBrojTel = new JTextField(20);
+		jtfBrojTel = new JTextField(20);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 4;
 		panel.add(jtfBrojTel, gbcRight);
@@ -108,7 +125,7 @@ public class DodavanjeStudenta {
 		gbcLeft.gridy = 5;
 		panel.add(jlEmail, gbcLeft);
 		
-		JTextField jtfEmail = new JTextField(20);
+		jtfEmail = new JTextField(20);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 5;
 		panel.add(jtfEmail, gbcRight);
@@ -119,7 +136,7 @@ public class DodavanjeStudenta {
 		gbcLeft.gridy = 6;
 		panel.add(jlBrInd, gbcLeft);
 		
-		JTextField jtfBrInd = new JTextField(20);
+		jtfBrInd = new JTextField(20);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 6;
 		panel.add(jtfBrInd, gbcRight);
@@ -130,7 +147,7 @@ public class DodavanjeStudenta {
 		gbcLeft.gridy = 7;
 		panel.add(jlGodUpisa, gbcLeft);
 		
-		JTextField jtfGodUpisa = new JTextField(20);
+		jtfGodUpisa = new JTextField(20);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 7;
 		panel.add(jtfGodUpisa, gbcRight);
@@ -142,7 +159,7 @@ public class DodavanjeStudenta {
 		panel.add(jlTrGod, gbcLeft);
 		
 		String[] god = {"I (prva)                                          ", "II (druga)", "III (treća)", "IV (četvrta)"};
-		JComboBox<String> cbTrGod = new JComboBox<String>(god);
+		cbTrGod = new JComboBox<String>(god);
 		cbTrGod.setEditable(false);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 8;
@@ -155,7 +172,7 @@ public class DodavanjeStudenta {
 		panel.add(jlFin, gbcLeft);
 		
 		String[] nacin = {"Budžet                                          ", "Samofinansiranje"};
-		JComboBox<String> cbFin = new JComboBox<String>(nacin);
+		cbFin = new JComboBox<String>(nacin);
 		cbTrGod.setEditable(false);
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 9;
@@ -171,13 +188,29 @@ public class DodavanjeStudenta {
 		gbcRight.gridy = 10;
 		panel.add(label2, gbcRight);
 		
-		JButton btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				potvrdi();
+			}
+			
+		});
 		gbcLeft.gridx = 0;
 		gbcLeft.gridy = 11;
 		gbcLeft.insets = new Insets(0, 120, 0, 0);
 		panel.add(btnPotvrdi, gbcLeft);
 		
-		JButton btnOdustani = new JButton("Odustani");
+		btnOdustani = new JButton("Odustani");
+		btnOdustani.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dialog.dispose();
+			}
+			
+		});
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 11;
 		gbcRight.insets = new Insets(0, 0, 0, 120);
@@ -187,5 +220,30 @@ public class DodavanjeStudenta {
 		Main.changeFont(panel, f);
 		dialog.add(panel);
 		dialog.setVisible(true);
+		
 	}
+
+	public void potvrdi() {
+		String ime = jtfIme.getText();
+		String prezime = jtfPrezime.getText();
+		String datRodj = jtfDatum.getText();
+		String adresa = jtfAdresa.getText();
+		String brTel = jtfBrojTel.getText();
+		String email = jtfEmail.getText();
+		String brojInd = jtfBrInd.getText();
+		String godUpisa = jtfGodUpisa.getText();
+		int trGod = cbTrGod.getSelectedIndex() + 1;
+		Status status;
+		if(cbFin.getSelectedIndex() == 0) {
+			status = Status.B;
+		} else {
+			status = Status.S;
+		}
+		
+		String message = StudentController.getInstance().dodajStudenta(ime, prezime, datRodj, adresa, brTel, email, brojInd, godUpisa, trGod, status);
+			
+		JOptionPane.showMessageDialog(dialog, message);
+		
+	}
+	
 }

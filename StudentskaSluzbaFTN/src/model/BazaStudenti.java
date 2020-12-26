@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Student.Status;
+
 
 // Klasa pisana po ugledu na klasu BazaIgraca sa vežbi
 public class BazaStudenti {
@@ -87,6 +89,11 @@ public class BazaStudenti {
 	
 	public void dodajStudenta(String brojIndeksa, String ime, String prezime, int trGodStudija, Status status, double prosecnaOcena) {
 		studentList.add(new Student(prezime, ime, brojIndeksa, trGodStudija, status, prosecnaOcena));
+	}
+	
+	public void dodajStudenta(Student student) {
+		studentList.add(new Student(student.getPrezime(), student.getIme(), student.getBrojIndeksa(), student.getTrGodStudija(), 
+				student.getStatus(), student.getProsecnaOcena()));
 	}
 	
 	public void izbrisiStudenta(String indeks) {

@@ -13,7 +13,7 @@ import model.ProfesoriJtable;
 
 public class TabbedPane extends JTabbedPane{
 	
-	StudentTable studentTable;
+	private StudentTable studentTable;
 	private int index;
 	
 	public static TabbedPane instance = null;
@@ -51,8 +51,8 @@ public class TabbedPane extends JTabbedPane{
 	
 	public void azurirajPrikaz(String akcija, int vrednost) {
 		AbstractTableModelStudenti model = (AbstractTableModelStudenti) studentTable.getModel();
-
 		model.fireTableDataChanged();
+		validate();
 	}
 	
 	// Preuzeto sa sajta: http://www.java2s.com/Tutorial/Java/0240__Swing/ListeningforSelectedTabChanges.htm
