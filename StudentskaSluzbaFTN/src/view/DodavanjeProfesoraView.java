@@ -7,6 +7,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -31,6 +35,15 @@ public class DodavanjeProfesoraView {
 	private JDialog jd;
 	private JPanel jp;
 	
+	private JLabel jlIme;
+	private JLabel jlPrz;
+	private JLabel jlDatum;
+	private JLabel jlAdresaStan;
+	private JLabel jlBrTel;
+	private JLabel jleMail;
+	private JLabel jlAdresaKanc;
+	private JLabel jlBrLK;
+	
 	private JTextField jtfIme;
 	private JTextField jtfPrz;
 	private JTextField jtfDatum;
@@ -39,12 +52,12 @@ public class DodavanjeProfesoraView {
 	private JTextField jtfeMail;
 	private JTextField jtfAdresaKanc;
 	private JTextField jtfBrLK;
-	private JTextField jtfTitula;
-	private JTextField jtfZvanje;
-	private JButton btnPotvrdi;
-	private JButton btnOdustani;
+	
 	private JComboBox<String> cbTit;
 	private JComboBox<String> cbZv;
+	
+	private JButton btnPotvrdi;
+	private JButton btnOdustani;
 
 	public DodavanjeProfesoraView() {
 		super();
@@ -54,6 +67,64 @@ public class DodavanjeProfesoraView {
 	
 	public DodavanjeProfesoraView(GlavniProzor gp) {
 		super();
+		
+		
+		class MyFocusListener implements FocusListener{
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				JTextField txt = (JTextField) e.getComponent();
+				txt.setBackground(Color.white);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				JTextField txt = (JTextField) e.getComponent();
+				JLabel label = izaberiLabelu(txt);
+				
+				if(txt.getText() == null || txt.getText().trim().isEmpty()) 
+					label.setForeground(Color.RED);
+				else 
+					label.setForeground(Color.black);
+
+				txt.setBackground(new Color(224, 224, 224));
+			} 
+			
+			public JLabel izaberiLabelu(JTextField txt) {
+				if(txt.getName().equals("txtIme")) {
+					return jlIme;
+				}
+				else if (txt.getName().equals("txtPrz")){
+					return jlPrz;
+				}
+				else if (txt.getName().equals("txtDatum")){
+					return jlDatum;
+				}
+				else if (txt.getName().equals("txtAdresaStan")){
+					return jlAdresaStan;
+				}
+				else if (txt.getName().equals("txtBrTel")){
+					return jlBrTel;
+				}
+				else if (txt.getName().equals("txteMail")){
+					return jleMail;
+				}
+				else if (txt.getName().equals("txtAdresaKanc")){
+					return jlAdresaKanc;
+				}
+				else if (txt.getName().equals("txtBrLK")){
+					return jlBrLK;
+				}
+				else {
+					return null;
+				}
+			}
+		}
+			
+		
+		FocusListener focusListener  = new MyFocusListener();
 		
 		jd = new JDialog(gp, "Dodavanje profesora", true);
 		jd.setSize(500,600);
@@ -65,7 +136,7 @@ public class DodavanjeProfesoraView {
 			public void windowClosing(WindowEvent e) {
 				String[] options = {"Yes", "No" };
 				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete unos studenta?",
-						"Prekid unosa studenta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("images/question.png"), 
+						"Prekid unosa studenta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("images/question.png"), 
 						options, options[0]);
 				
 				if (opcija == JOptionPane.YES_OPTION) 
@@ -80,10 +151,10 @@ public class DodavanjeProfesoraView {
 		jp.setBackground(Color.WHITE);
 		jp.setBorder(BorderFactory.createCompoundBorder());
 		jp.setLayout(new GridBagLayout());
-		
 		Font f = new Font("sans-serif", Font.PLAIN, 13);
+		
 
-		JLabel jlIme = new JLabel("Ime*");
+	    jlIme = new JLabel("Ime*");
 		GridBagConstraints gbcLabIme = new GridBagConstraints();
 		gbcLabIme.gridx = 0;
 		gbcLabIme.gridy = 0;
@@ -92,7 +163,11 @@ public class DodavanjeProfesoraView {
 		gbcLabIme.anchor = GridBagConstraints.LINE_START;
 		jp.add(jlIme, gbcLabIme);
 		
-		jtfIme = new JTextField(20); 
+		jtfIme = new JTextField(20);
+		jtfIme.setBackground(new Color(224, 224, 224));
+		jtfIme.setName("txtIme");
+		jtfIme.addFocusListener(focusListener);
+		
 		GridBagConstraints gbctfIme = new GridBagConstraints();
 		gbctfIme.gridx = 5;
 		gbctfIme.gridy = 0;
@@ -101,7 +176,7 @@ public class DodavanjeProfesoraView {
 		gbctfIme.insets = new Insets(20, 20, 0, 20);
 		jp.add(jtfIme, gbctfIme);
 		
-		JLabel jlPrz = new JLabel("Prezime*");
+		jlPrz = new JLabel("Prezime*");
 		GridBagConstraints gbcLabPrz = new GridBagConstraints();
 		gbcLabPrz.gridx = 0;
 		gbcLabPrz.gridy = 1;
@@ -111,6 +186,10 @@ public class DodavanjeProfesoraView {
 		jp.add(jlPrz, gbcLabPrz);
 		
 	    jtfPrz = new JTextField(20); 
+	    jtfPrz.setBackground(new Color(224, 224, 224));
+	    jtfPrz.setName("txtPrz");
+	    jtfPrz.addFocusListener(focusListener);
+		
 		GridBagConstraints gbctfPrz = new GridBagConstraints();
 		gbctfPrz.gridx = 5;
 		gbctfPrz.gridy = 1;
@@ -119,7 +198,7 @@ public class DodavanjeProfesoraView {
 		gbctfPrz.insets = new Insets(20, 20, 0, 20);
 		jp.add(jtfPrz, gbctfPrz);
 		
-		JLabel jlDatum = new JLabel("Datum rođenja*");
+		jlDatum = new JLabel("Datum rođenja*");
 		GridBagConstraints gbcLabDatum = new GridBagConstraints();
 		gbcLabDatum.gridx = 0;
 		gbcLabDatum.gridy = 2;
@@ -129,6 +208,9 @@ public class DodavanjeProfesoraView {
 		jp.add(jlDatum, gbcLabDatum);
 		
 		jtfDatum = new JTextField(20); 
+		jtfDatum.setBackground(new Color(224, 224, 224));
+		jtfDatum.setName("txtDatum");
+		jtfDatum.addFocusListener(focusListener);
 		GridBagConstraints gbctfDatum = new GridBagConstraints();
 		gbctfDatum.gridx = 5;
 		gbctfDatum.gridy = 2;
@@ -137,7 +219,7 @@ public class DodavanjeProfesoraView {
 		gbctfDatum.insets = new Insets(20, 20, 0, 20);
 		jp.add(jtfDatum, gbctfDatum);
 		
-		JLabel jlAdresaStan = new JLabel("Adresa stanovanja*");
+		jlAdresaStan = new JLabel("Adresa stanovanja*");
 		GridBagConstraints gbcLabAdresaStan = new GridBagConstraints();
 		gbcLabAdresaStan.gridx = 0;
 		gbcLabAdresaStan.gridy = 3;
@@ -147,6 +229,9 @@ public class DodavanjeProfesoraView {
 		jp.add(jlAdresaStan, gbcLabAdresaStan);
 		
 		jtfAdresaStan = new JTextField(20); 
+		jtfAdresaStan.setBackground(new Color(224, 224, 224));
+		jtfAdresaStan.setName("txtAdresaStan");
+		jtfAdresaStan.addFocusListener(focusListener);
 		GridBagConstraints gbctfAdresaStan = new GridBagConstraints();
 		gbctfAdresaStan.gridx = 5;
 		gbctfAdresaStan.gridy = 3;
@@ -155,7 +240,7 @@ public class DodavanjeProfesoraView {
 		gbctfAdresaStan.insets = new Insets(20, 20, 0, 20);
 		jp.add(jtfAdresaStan, gbctfAdresaStan);
 		
-		JLabel jlBrTel = new JLabel("Kontakt telefon*");
+		jlBrTel = new JLabel("Kontakt telefon*");
 		GridBagConstraints gbcLabBrTel = new GridBagConstraints();
 		gbcLabBrTel.gridx = 0;
 		gbcLabBrTel.gridy = 4;
@@ -165,6 +250,48 @@ public class DodavanjeProfesoraView {
 		jp.add(jlBrTel, gbcLabBrTel);
 		
 		jtfBrTel= new JTextField(20); 
+		jtfBrTel.setBackground(new Color(224, 224, 224));
+		jtfBrTel.setName("txtBrTel");
+		jtfBrTel.addFocusListener(focusListener);
+		
+		jtfBrTel.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER
+						|| e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					return;
+				}
+				char c = e.getKeyChar();
+				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
+						&& c != '9') {
+					JOptionPane.showMessageDialog(jd, "Dozvoljen je unos samo brojeva!");
+					JTextField txt = (JTextField) e.getComponent();
+					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
+				}
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER
+						|| e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					return;
+				}
+				JTextField txt = (JTextField) e.getComponent();
+				if (txt.getText().length() >= 10) {
+					JOptionPane.showMessageDialog(null, "Možete uneti maksimalno 10 karaktera!");
+					txt.setText(txt.getText().substring(0, 10));
+				}
+			}
+		});
+		
 		GridBagConstraints gbctfBrTel = new GridBagConstraints();
 		gbctfBrTel.gridx = 5;
 		gbctfBrTel.gridy = 4;
@@ -173,7 +300,7 @@ public class DodavanjeProfesoraView {
 		gbctfBrTel.insets = new Insets(20, 20, 0, 20);
 		jp.add(jtfBrTel, gbctfBrTel);
 		
-		JLabel jleMail = new JLabel("E-mail adresa*");
+		jleMail = new JLabel("E-mail adresa*");
 		GridBagConstraints gbcLabeMail = new GridBagConstraints();
 		gbcLabeMail.gridx = 0;
 		gbcLabeMail.gridy = 5;
@@ -182,7 +309,10 @@ public class DodavanjeProfesoraView {
 		gbcLabeMail.anchor = GridBagConstraints.LINE_START;
 		jp.add(jleMail, gbcLabeMail);
 		
-		jtfeMail = new JTextField(20); 
+		jtfeMail = new JTextField(20);
+		jtfeMail.setBackground(new Color(224, 224, 224));
+		jtfeMail.setName("txteMail");
+		jtfeMail.addFocusListener(focusListener);
 		GridBagConstraints gbctfeMail = new GridBagConstraints();
 		gbctfeMail.gridx = 5;
 		gbctfeMail.gridy = 5;
@@ -191,7 +321,7 @@ public class DodavanjeProfesoraView {
 		gbctfeMail.insets = new Insets(20, 20, 0, 20);
 		jp.add(jtfeMail, gbctfeMail);
 		
-		JLabel jlAdresaKanc = new JLabel("Adresa kancelarije*");
+		jlAdresaKanc = new JLabel("Adresa kancelarije*");
 		GridBagConstraints gbcLabelAdresaKanc = new GridBagConstraints();
 		gbcLabelAdresaKanc.gridx = 0;
 		gbcLabelAdresaKanc.gridy = 6;
@@ -201,6 +331,9 @@ public class DodavanjeProfesoraView {
 		jp.add(jlAdresaKanc, gbcLabelAdresaKanc);
 		
 		jtfAdresaKanc= new JTextField(20); 
+		jtfAdresaKanc.setBackground(new Color(224, 224, 224));
+		jtfAdresaKanc.setName("txtAdresaKanc");
+		jtfAdresaKanc.addFocusListener(focusListener);
 		GridBagConstraints gbctfAdresaKanc = new GridBagConstraints();
 		gbctfAdresaKanc.gridx = 5;
 		gbctfAdresaKanc.gridy = 6;
@@ -209,7 +342,7 @@ public class DodavanjeProfesoraView {
 		gbctfAdresaKanc.insets = new Insets(20, 20, 0, 20);
 		jp.add(jtfAdresaKanc, gbctfAdresaKanc);
 		
-		JLabel jlBrLK = new JLabel("Broj lične karte*");
+		jlBrLK = new JLabel("Broj lične karte*");
 		GridBagConstraints gbcBrLK = new GridBagConstraints();
 		gbcBrLK.gridx = 0;
 		gbcBrLK.gridy = 7;
@@ -219,6 +352,49 @@ public class DodavanjeProfesoraView {
 		jp.add(jlBrLK , gbcBrLK);
 		
 		jtfBrLK= new JTextField(20); 
+		jtfBrLK.setBackground(new Color(224, 224, 224));
+		jtfBrLK.setName("txtBrLK");
+		jtfBrLK.addFocusListener(focusListener);
+		
+		jtfBrLK.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER
+						|| e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					return;
+				}
+				char c = e.getKeyChar();
+				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
+						&& c != '9') {
+					JOptionPane.showMessageDialog(jd, "Dozvoljen je unos samo brojeva!");
+					JTextField txt = (JTextField) e.getComponent();
+					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
+				}
+
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER
+						|| e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					return;
+				}
+				JTextField txt = (JTextField) e.getComponent();
+				if (txt.getText().length() >= 9) {
+					JOptionPane.showMessageDialog(null, "Možete uneti maksimalno 10 karaktera!");
+					txt.setText(txt.getText().substring(0, 9));
+				}
+			}
+		});
+		
 		GridBagConstraints gbctfBrLK = new GridBagConstraints();
 		gbctfBrLK.gridx = 5;
 		gbctfBrLK.gridy = 7;
@@ -235,6 +411,7 @@ public class DodavanjeProfesoraView {
 		gbcTitula.insets = new Insets(20, 60, 0, 0);
 		gbcTitula.anchor = GridBagConstraints.LINE_START;
 		jp.add(jlTitula, gbcTitula);
+		
 		
 		/*jtfTitula= new JTextField(20); 
 		GridBagConstraints gbctfTitula = new GridBagConstraints();
@@ -306,6 +483,7 @@ public class DodavanjeProfesoraView {
 			}
 		});
 		
+		jd.getRootPane().setDefaultButton(btnPotvrdi);
 		
 		btnOdustani = new JButton("Odustani");
 		GridBagConstraints gbcOdustani = new GridBagConstraints();
@@ -331,8 +509,9 @@ public class DodavanjeProfesoraView {
 					jd.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 			}
 		});
-			
+		
 		Main.changeFont(jp, f);
+		jd.setIconImage(new ImageIcon("images/add.png").getImage());
 		jd.add(jp);
 		jd.setVisible(true);		
 	}
@@ -381,5 +560,18 @@ public class DodavanjeProfesoraView {
 											brTel, eMail, adresaKanc, brLK, tit, zv);
 
 		JOptionPane.showMessageDialog(jd, message);
+		
+		if(message.equals("Uspešno ste uneli profesora!")) {
+			jtfIme.setText("");
+			jtfPrz.setText("");
+			jtfDatum.setText("");
+			jtfAdresaStan.setText("");
+			jtfBrTel.setText("");
+			jtfeMail.setText("");
+			jtfAdresaKanc.setText("");
+			jtfBrLK.setText("");
+			cbTit.setSelectedIndex(0);
+			cbZv.setSelectedIndex(0);
+		}
 	}
 }

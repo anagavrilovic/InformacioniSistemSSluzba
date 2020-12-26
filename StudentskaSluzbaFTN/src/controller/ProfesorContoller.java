@@ -74,6 +74,8 @@ public class ProfesorContoller {
 			 return "Pogrešan format za e-mail adresu!";
 		 else if(!eMail.contains("."))
 			 return "Pogrešan format za e-mail adresu!";
+		 else if(!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,}", eMail))
+			 return "Pogrešan format za e-mail adresu!";
 		 
 		 if(!Pattern.matches("[0-9]+", brLK))
 				return "Broj lične karte se mora sastojati isključivo od cifara!";
