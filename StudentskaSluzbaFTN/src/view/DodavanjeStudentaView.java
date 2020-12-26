@@ -230,10 +230,13 @@ public class DodavanjeStudentaView {
 		}
 		
 		String message = StudentController.getInstance().dodajStudenta(ime, prezime, datRodj, adresa, brTel, email, brojInd, godUpisa, trGod, status);
-			
-		JOptionPane.showMessageDialog(dialog, message);
 		
-		if(message.equals("Model uspešno ažuriran!")) {
+		if (!message.equals("Model uspešno ažuriran!")) {
+			JOptionPane.showMessageDialog(dialog, message, "Nisu uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/remove-user.png")));
+		} else  {
+			JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));
 			jtfIme.setText("");
 			jtfPrezime.setText("");
 			jtfDatum.setText("");
