@@ -5,9 +5,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.WindowConstants;
 
 public class GlavniProzor extends JFrame{
 	
@@ -28,7 +33,7 @@ public class GlavniProzor extends JFrame{
 	}
 	
 
-	public GlavniProzor() {
+	private GlavniProzor() {
 		
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		
@@ -59,6 +64,60 @@ public class GlavniProzor extends JFrame{
 		
 		StatusBar sb = new StatusBar();
 		add(sb, BorderLayout.SOUTH);	
+		
+		this.addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// TODO Auto-generated method stub
+				String[] options = {"Yes", "No" };
+				JFrame frame = (JFrame) e.getComponent();
+				int code = JOptionPane.showConfirmDialog(frame, "Da li ste sigurni da želite da zatvorite aplikaciju?",
+						"Zatvaranje aplikacije?", JOptionPane.YES_NO_OPTION);
+				if (code != JOptionPane.YES_OPTION) {
+					frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+				} else {
+					frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				}
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		}); 
+				
 	}
 
 	public int getHeigth() {

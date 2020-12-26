@@ -80,6 +80,18 @@ public class BazaProfesori {
 		this.profesori.add(new Profesor(p.getIme(), p.getPrezime(), p.getTitula(),
 							p.getZvanje(), p.getBrojLicneKarte()));
 	}
+	
+	public boolean validirajProfesora(String brLK) {
+		
+		 if(BazaProfesori.getInstance() != null) {
+			 for(Profesor p : BazaProfesori.getInstance().getProfesori()) {
+				 if(brLK.equals(p.getBrojLicneKarte())) {
+					 return false;
+				 }
+			 }
+		 }
+		 return true;
+	}
 
 	/*public void izbrisiProfesora(long id) {
 		for (Profesor p : profesori) {

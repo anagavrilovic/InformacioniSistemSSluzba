@@ -24,7 +24,7 @@ public class TabbedPane extends JTabbedPane{
 		return instance;
 	}
 	
-	public TabbedPane() {
+	private TabbedPane() {
 		super();
 
 		Font font = new Font("sans-serif", Font.BOLD, 12);

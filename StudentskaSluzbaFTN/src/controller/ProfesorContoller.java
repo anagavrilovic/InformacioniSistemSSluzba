@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,12 +24,9 @@ public class ProfesorContoller {
 		return instance;
 	}
 	
-	//private Profesor profesor;
-	//private DodavanjeProfesoraView profesorView;
 	
-	public ProfesorContoller() {
-		//this.profesor = new Profesor();
-		//this.profesorView = new DodavanjeProfesoraView();
+	private ProfesorContoller() {
+		
 	}
 
 	/*public ProfesorContoller(Profesor profesor, DodavanjeProfesoraView profesorView) {
@@ -40,8 +38,9 @@ public class ProfesorContoller {
 								 String brTel, String eMail, String adresaKanc,
 								 String brLK, Titula titula, Zvanje zvanje){
 		
-		if(ime.trim().equals("")  || ime == null)		
+		if(ime.trim().equals("")  || ime == null) {
 			return "Morate unijeti ime profesora!";
+		}
 		else if(prz.trim().equals("") || prz == null )
 			return "Morate unijeti prezime profesora!";
 		else if(datum.trim().equals("") || datum == null)
@@ -81,13 +80,16 @@ public class ProfesorContoller {
 		 else if(!(brLK.length() == 9))
 			 return "Broj lične karte mora da sadrži tačno 9 cifara!";
 		 
-		 if(BazaProfesori.getInstance() != null) {
+		 if(!BazaProfesori.getInstance().validirajProfesora(brLK))
+			 return "Broj lične karte mora biti jedinstven!";
+		 
+		/* if(BazaProfesori.getInstance() != null) {
 			 for(Profesor p : BazaProfesori.getInstance().getProfesori()) {
-				 if(brLK == p.getBrojLicneKarte()) {
+				 if(brLK.equals(p.getBrojLicneKarte())) {
 					 return "Broj lične karte mora biti jedinstven!";
 				 }
 			 }
-		 }
+		 }*/
 		 
 		 Date datumRodjenja;
 			 
