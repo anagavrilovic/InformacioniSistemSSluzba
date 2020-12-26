@@ -135,8 +135,9 @@ public class DodavanjeProfesoraView {
 			
 			public void windowClosing(WindowEvent e) {
 				String[] options = {"Yes", "No" };
-				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete unos studenta?",
-						"Prekid unosa studenta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("images/question.png"), 
+				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete unos profesora?",
+						"Prekid unosa profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
 						options, options[0]);
 				
 				if (opcija == JOptionPane.YES_OPTION) 
@@ -499,8 +500,9 @@ public class DodavanjeProfesoraView {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String[] options = {"Yes", "No" };
-				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete unos studenta?",
-						"Prekid unosa studenta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("images/question.png"), 
+				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete unos profesora?",
+						"Prekid unosa profesora?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
 						options, options[0]);
 
 				if (opcija == JOptionPane.YES_OPTION) 
@@ -511,7 +513,7 @@ public class DodavanjeProfesoraView {
 		});
 		
 		Main.changeFont(jp, f);
-		jd.setIconImage(new ImageIcon("images/add.png").getImage());
+		jd.setIconImage(GlavniProzor.resizeIcon(new ImageIcon("images/plus.png")).getImage());
 		jd.add(jp);
 		jd.setVisible(true);		
 	}
