@@ -6,8 +6,12 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 
+
 import controller.ProfesorContoller;
 import model.BazaProfesori;
+
+import controller.StudentController;
+
 import model.BazaStudenti;
 import view.GlavniProzor;
 
@@ -21,6 +25,8 @@ public class Main {
 		BazaStudenti.getInstance();
 		BazaProfesori.getInstance();
 		ProfesorContoller.getInstance();
+		StudentController.getInstance();
+
 	}
 	
 	

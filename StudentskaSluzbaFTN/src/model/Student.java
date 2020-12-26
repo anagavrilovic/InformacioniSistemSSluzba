@@ -3,9 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
-enum Status{B, S};
 
 public class Student {
+	
+	public enum Status{B, S};
+	
 	public String prezime;
 	public String ime;
 	public Date datumRodjenja;

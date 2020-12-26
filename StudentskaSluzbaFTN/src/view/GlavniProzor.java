@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -59,7 +60,7 @@ public class GlavniProzor extends JFrame{
 		ToolBar tb = new ToolBar();
 		add(tb, BorderLayout.NORTH);
 		
-		JTabbedPane tp= TabbedPane.getInstance();
+		JTabbedPane tp = TabbedPane.getInstance();
 		add(tp, BorderLayout.CENTER);
 		
 		StatusBar sb = new StatusBar();
@@ -94,7 +95,6 @@ public class GlavniProzor extends JFrame{
 			@Override
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
-				String[] options = {"Yes", "No" };
 				JFrame frame = (JFrame) e.getComponent();
 				int code = JOptionPane.showConfirmDialog(frame, "Da li ste sigurni da želite da zatvorite aplikaciju?",
 						"Zatvaranje aplikacije?", JOptionPane.YES_NO_OPTION);
@@ -139,5 +139,14 @@ public class GlavniProzor extends JFrame{
 	public Dimension getScreenSize() {
 		return screenSize;
 	}		
+	
+	
+	public static ImageIcon resizeIcon(ImageIcon icon) {
+		Image image = icon.getImage();
+		Image resizedIcon = image.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+		
+		icon = new ImageIcon(resizedIcon);
+		return icon;
+	}
 	
 }

@@ -50,17 +50,12 @@ public class TabbedPane extends JTabbedPane{
 	
 	public void azurirajPrikaz(String akcija, int vrednost) {
 		AbstractTableModelStudenti model = (AbstractTableModelStudenti) studentTable.getModel();
-		//AbstractTableModelProfesori modelProf = (AbstractTableModelProfesori) profesorTable.getModel();
 		model.fireTableDataChanged();
 		validate();
-		//modelProf.fireTableDataChanged();
 	}
 	
 	public void azurirajPrikazProf(String akcija, int vrednost) {
-		//AbstractTableModelStudenti model = (AbstractTableModelStudenti) studentTable.getModel();
 		AbstractTableModelProfesori modelProf = (AbstractTableModelProfesori) profesorTable.getModel();
-
-		//model.fireTableDataChanged();
 		modelProf.fireTableDataChanged();
 		validate();
 	}
@@ -71,7 +66,6 @@ public class TabbedPane extends JTabbedPane{
 		    JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
 		    int index = sourceTabbedPane.getSelectedIndex();
 		    TabbedPane.getInstance().setIndex(index);
-		    System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
 		  }
 		};
 		

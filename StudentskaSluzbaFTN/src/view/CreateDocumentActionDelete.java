@@ -16,7 +16,7 @@ public class CreateDocumentActionDelete extends AbstractAction {
 	public CreateDocumentActionDelete() {
 		putValue(NAME, "Delete");
 		putValue(SHORT_DESCRIPTION, "Brisanje entiteta (Ctrl-D)");
-		putValue(SMALL_ICON, new ImageIcon("images/trash.png"));
+		putValue(SMALL_ICON, GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
 	}

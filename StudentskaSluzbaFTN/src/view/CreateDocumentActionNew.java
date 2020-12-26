@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Image;
+
 //Kod napisan po uzoru na materijale sa vježbi
 
 import java.awt.event.ActionEvent;
@@ -9,8 +11,6 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
-import controller.DodavanjeStudenta;
-
 
 public class CreateDocumentActionNew extends AbstractAction {
 
@@ -19,7 +19,7 @@ public class CreateDocumentActionNew extends AbstractAction {
 	public CreateDocumentActionNew() {
 		putValue(NAME, "New");
 		putValue(SHORT_DESCRIPTION, "Dodavanje novog entiteta (Ctrl-N)");
-		putValue(SMALL_ICON, new ImageIcon("images/add.png"));
+		putValue(SMALL_ICON, GlavniProzor.resizeIcon(new ImageIcon("images/plus.png")));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_N);
 	}
@@ -28,7 +28,7 @@ public class CreateDocumentActionNew extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		
 		if(TabbedPane.getInstance().getIndex() == 0) {
-			DodavanjeStudenta ds = new DodavanjeStudenta(GlavniProzor.getInstance());
+			DodavanjeStudentaView ds = new DodavanjeStudentaView(GlavniProzor.getInstance());
 		} else if(TabbedPane.getInstance().getIndex() == 1) {
 			DodavanjeProfesoraView dp = new DodavanjeProfesoraView(GlavniProzor.getInstance());
 		}
