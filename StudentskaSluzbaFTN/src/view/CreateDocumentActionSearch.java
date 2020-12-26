@@ -16,7 +16,7 @@ public class CreateDocumentActionSearch extends AbstractAction {
 	public CreateDocumentActionSearch() {
 	
 		putValue(SHORT_DESCRIPTION, "Pretraga entiteta");
-		putValue(SMALL_ICON, new ImageIcon("images/search.png"));
+		putValue(SMALL_ICON, GlavniProzor.resizeIcon(new ImageIcon("images/search.png")));
 	}
 
 	@Override

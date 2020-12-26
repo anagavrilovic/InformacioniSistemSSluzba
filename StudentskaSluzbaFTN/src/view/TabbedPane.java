@@ -26,7 +26,7 @@ public class TabbedPane extends JTabbedPane{
 		return instance;
 	}
 	
-	public TabbedPane() {
+	private TabbedPane() {
 		super();
 
 		Font font = new Font("sans-serif", Font.BOLD, 12);
@@ -61,7 +61,6 @@ public class TabbedPane extends JTabbedPane{
 		    JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
 		    int index = sourceTabbedPane.getSelectedIndex();
 		    TabbedPane.getInstance().setIndex(index);
-		    System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
 		  }
 		};
 		

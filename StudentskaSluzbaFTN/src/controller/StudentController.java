@@ -8,13 +8,9 @@ import java.util.regex.Pattern;
 import model.BazaStudenti;
 import model.Student;
 import model.Student.Status;
-import view.DodavanjeStudentaView;
-import view.GlavniProzor;
 import view.TabbedPane;
 
 public class StudentController {
-	//private Student student;
-	//private DodavanjeStudentaView studentView;
 	
 	public static StudentController instance = null;
 	
@@ -36,7 +32,7 @@ public class StudentController {
 			return "Unesite ime studenta!";
 		}
 		ime = ime.trim();
-		if (ime.isEmpty()) {
+		if (ime.isEmpty()) { 
 			return "Unesite ime studenta!";
 		}
 		if(!Pattern.matches("[a-zA-Z]+", ime)) {
@@ -90,14 +86,6 @@ public class StudentController {
 			return "Unesite broj telefona studenta!";
 		}
 		
-		if(!Pattern.matches("[0-9]+", brTel)) {
-			return "Broj telefona se mora sastojati isključivo od cifara!";
-		}
-		
-		if(!(brTel.length() == 9 || brTel.length() == 10)) {
-			return "Broj telefona mora sadrzati 9 ili 10 cifara!";
-		}
-		
 		// validacija za email
 		if (email == null) {
 			return "Unesite e-mail adresu studenta!";
@@ -106,11 +94,8 @@ public class StudentController {
 		if (email.isEmpty()) {
 			return "Unesite e-mail adresu studenta!";
 		}
-		
-		if(!email.contains("@")) {
-			return "Neispravna e-mail adresa!";
-		}
-		if(!email.contains(".")) {
+		 
+		if(!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,}", email)) {
 			return "Neispravna e-mail adresa!";
 		}
 		
@@ -123,13 +108,8 @@ public class StudentController {
 			return "Unesite broj indeksa studenta!";
 		}
 		
-		if(BazaStudenti.getInstance() != null) {
-			for(Student student : BazaStudenti.getInstance().getStudentList()) {
-				if (brIndeksa == student.getBrojIndeksa()) {
-					return "Već postoji student sa ovim brojem indeksa";
-				}
-			}
-		}
+		if(!BazaStudenti.getInstance().validirajStudenta(brIndeksa))
+			return "Već postoji student sa ovim brojem indeksa!";  
 		
 		// validacija za godinu upisa
 		if (godUpisa == null) {
@@ -159,26 +139,4 @@ public class StudentController {
 		return "Model uspešno ažuriran!";
 		}
 	
-	
-	/*public Student getStudent() {
-		return student;
-	}
-
-	private void setStudent(Student student) {
-		if (student == null) {
-			throw new NullPointerException();
-		}
-		this.student = student;
-	}
-
-	public DodavanjeStudentaView getStudentView() {
-		return studentView;
-	}
-
-	private void setStudentView(DodavanjeStudentaView studentView) {
-		if (studentView == null) {
-			throw new NullPointerException();
-		}
-		this.studentView = studentView;
-	}*/
 }

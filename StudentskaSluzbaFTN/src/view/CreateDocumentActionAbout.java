@@ -12,7 +12,7 @@ public class CreateDocumentActionAbout extends AbstractAction {
 	public CreateDocumentActionAbout() {
 		putValue(NAME, "About");
 		putValue(SHORT_DESCRIPTION, "Opis aplikacije (Ctrl-A)");
-		putValue(SMALL_ICON, new ImageIcon("images/info.png"));
+		putValue(SMALL_ICON, GlavniProzor.resizeIcon(new ImageIcon("images/information.png")));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_A);
 	}

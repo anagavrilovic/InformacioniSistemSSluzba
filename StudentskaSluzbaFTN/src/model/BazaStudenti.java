@@ -43,6 +43,18 @@ public class BazaStudenti {
 		studentList.add(new Student("Atić", "Nevena", "RA67/2018", 3, Status.B, 10.0));
 		studentList.add(new Student("Mijatović", "Nikola", "RA87/2018", 3, Status.B, 10.0));
 	}
+	
+	public boolean validirajStudenta (String brojIndeksa) {
+		if(BazaStudenti.getInstance() != null) {
+			for(Student student : BazaStudenti.getInstance().getStudentList()) {
+				if (brojIndeksa.equals(student.getBrojIndeksa())) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
 
 	public List<Student> getStudentList() {
 		return studentList;

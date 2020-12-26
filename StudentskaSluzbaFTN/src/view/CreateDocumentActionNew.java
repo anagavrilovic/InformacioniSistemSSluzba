@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Image;
+
 //Kod napisan po uzoru na materijale sa vježbi
 
 import java.awt.event.ActionEvent;
@@ -20,7 +22,7 @@ public class CreateDocumentActionNew extends AbstractAction {
 	public CreateDocumentActionNew() {
 		putValue(NAME, "New");
 		putValue(SHORT_DESCRIPTION, "Dodavanje novog entiteta (Ctrl-N)");
-		putValue(SMALL_ICON, new ImageIcon("images/add.png"));
+		putValue(SMALL_ICON, GlavniProzor.resizeIcon(new ImageIcon("images/plus.png")));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
 		putValue(MNEMONIC_KEY, KeyEvent.VK_N);
 	}

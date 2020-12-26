@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
@@ -80,5 +82,14 @@ public class GlavniProzor extends JFrame{
 	public Dimension getScreenSize() {
 		return screenSize;
 	}		
+	
+	
+	public static ImageIcon resizeIcon(ImageIcon icon) {
+		Image image = icon.getImage();
+		Image resizedIcon = image.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+		
+		icon = new ImageIcon(resizedIcon);
+		return icon;
+	}
 	
 }
