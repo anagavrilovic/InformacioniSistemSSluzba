@@ -77,7 +77,7 @@ public class DodavanjeStudentaView {
 			
 			public void windowClosing(WindowEvent e)
 		      {
-				String[] options = {"Yes", "No" };
+				String[] options = {"Da", "Ne" };
 				int opcija = JOptionPane.showOptionDialog(dialog, "Da li ste sigurni da želite da prekinete unos studenta?",
 						"Prekid unosa studenta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
 						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
@@ -143,7 +143,7 @@ public class DodavanjeStudentaView {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String[] options = {"Yes", "No" };
+				String[] options = {"Da", "Ne" };
 				int opcija = JOptionPane.showOptionDialog(dialog, "Da li ste sigurni da želite da prekinete unos studenta?",
 						"Prekid unosa studenta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
 						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
@@ -289,6 +289,7 @@ public class DodavanjeStudentaView {
 		
 		jtfDatum = new JTextField(20);
 		jtfDatum.setBackground(new Color(224, 224, 224));
+		jtfDatum.setToolTipText("dd.MM.yyyy.");
 		jtfDatum.setName("txtDatum");
 		jtfDatum.addFocusListener(studentFocusListener);
 		
@@ -409,7 +410,10 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 8;
 		panel.add(jlTrGod, gbcLeft);
 		
-		String[] god = {"I (prva)                                          ", "II (druga)", "III (treća)", "IV (četvrta)"};
+		String[] god = {"                    I (prva)                    ", 
+				        "                    II (druga)                  ", 
+				        "                    III (treća)                 ", 
+				        "                    IV (četvrta)                "};
 		cbTrGod = new JComboBox<String>(god);
 		cbTrGod.setEditable(false);
 		cbTrGod.setBackground(new Color(224, 224, 224));
@@ -424,7 +428,8 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 9;
 		panel.add(jlFin, gbcLeft);
 		
-		String[] nacin = {"Budžet                                          ", "Samofinansiranje"};
+		String[] nacin = {"                    Budžet              ", 
+				          "               Samofinansiranje         "};
 		cbFin = new JComboBox<String>(nacin);
 		cbFin.setEditable(false);
 		cbFin.setBackground(new Color(224, 224, 224));
