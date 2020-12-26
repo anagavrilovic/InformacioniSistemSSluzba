@@ -125,12 +125,13 @@ public class Profesor {
 		this.predmeti = new ArrayList<Predmet>();
 	}
 	
-	public Profesor (String ime, String prezime, Titula titula, Zvanje zvanje) {
+	public Profesor (String ime, String prezime, Titula titula, Zvanje zvanje, String brLK) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
 		this.titula = titula;
 		this.zvanje = zvanje;
+		this.brojLicneKarte = brLK;
 	}
 	
 	public Profesor (Profesor p) {

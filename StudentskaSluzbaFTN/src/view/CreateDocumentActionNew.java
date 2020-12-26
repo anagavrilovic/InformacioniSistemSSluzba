@@ -9,10 +9,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
-
 import controller.DodavanjeStudenta;
-
-import controller.DodavanjeProfesora;
 
 
 public class CreateDocumentActionNew extends AbstractAction {
@@ -33,7 +30,7 @@ public class CreateDocumentActionNew extends AbstractAction {
 		if(TabbedPane.getInstance().getIndex() == 0) {
 			DodavanjeStudenta ds = new DodavanjeStudenta(GlavniProzor.getInstance());
 		} else if(TabbedPane.getInstance().getIndex() == 1) {
-			DodavanjeProfesora dp = new DodavanjeProfesora(GlavniProzor.getInstance());
+			DodavanjeProfesoraView dp = new DodavanjeProfesoraView(GlavniProzor.getInstance());
 		}
 		
 	}

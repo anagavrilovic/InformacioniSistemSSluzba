@@ -1,26 +1,36 @@
-package controller;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.ProfesorContoller;
 import main.Main;
-import view.GlavniProzor;
+import model.Profesor;
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
 
-public class DodavanjeProfesora {
+public class DodavanjeProfesoraView {
+	
+	private Profesor profesor;
+	private ProfesorContoller profesorController;
 	
 	private JDialog jd;
 	private JPanel jp;
+	
 	private JTextField jtfIme;
 	private JTextField jtfPrz;
 	private JTextField jtfDatum;
@@ -33,27 +43,21 @@ public class DodavanjeProfesora {
 	private JTextField jtfZvanje;
 	private JButton btnPotvrdi;
 	private JButton btnOdustani;
-	private ButtonGroup btnGrupa;
-	
-	
-	public DodavanjeProfesora() {
+	private JComboBox<String> cbTit;
+	private JComboBox<String> cbZv;
+
+	public DodavanjeProfesoraView() {
 		super();
+		this.profesor = new Profesor();
+		this.profesorController = ProfesorContoller.getInstance();
 		this.jd = new JDialog();
 		this.jp = new JPanel();
-		this.jtfIme = new JTextField();
-		this.jtfPrz = new JTextField();
-		this.jtfDatum = new JTextField();
-		this.jtfAdresaStan= new JTextField();
-		this.jtfBrTel = new JTextField();
-		this.jtfeMail = new JTextField();
-		this.jtfAdresaKanc = new JTextField();
-		this.jtfBrLK = new JTextField();
-		this.jtfTitula = new JTextField();
-		this.jtfZvanje = new JTextField();
 	}
 	
-	public DodavanjeProfesora(GlavniProzor gp) {
+	public DodavanjeProfesoraView(GlavniProzor gp) {
 		super();
+		
+		setProfesor();
 		
 		jd = new JDialog(gp, "Dodavanje profesora", true);
 		jd.setSize(500,600);
@@ -77,7 +81,7 @@ public class DodavanjeProfesora {
 		gbcLabIme.anchor = GridBagConstraints.LINE_START;
 		jp.add(jlIme, gbcLabIme);
 		
-	    jtfIme = new JTextField(20); 
+		jtfIme = new JTextField(20); 
 		GridBagConstraints gbctfIme = new GridBagConstraints();
 		gbctfIme.gridx = 5;
 		gbctfIme.gridy = 0;
@@ -95,7 +99,7 @@ public class DodavanjeProfesora {
 		gbcLabPrz.anchor = GridBagConstraints.LINE_START;
 		jp.add(jlPrz, gbcLabPrz);
 		
-		jtfPrz = new JTextField(20); 
+	    jtfPrz = new JTextField(20); 
 		GridBagConstraints gbctfPrz = new GridBagConstraints();
 		gbctfPrz.gridx = 5;
 		gbctfPrz.gridy = 1;
@@ -221,14 +225,23 @@ public class DodavanjeProfesora {
 		gbcTitula.anchor = GridBagConstraints.LINE_START;
 		jp.add(jlTitula, gbcTitula);
 		
-		jtfTitula= new JTextField(20); 
+		/*jtfTitula= new JTextField(20); 
 		GridBagConstraints gbctfTitula = new GridBagConstraints();
 		gbctfTitula.gridx = 5;
 		gbctfTitula.gridy = 8;
 		gbctfTitula.weightx = 100;
 		//gbctfTitula.fill = GridBagConstraints.HORIZONTAL;
 		gbctfTitula.insets = new Insets(20, 20, 0, 20);
-		jp.add(jtfTitula, gbctfTitula);
+		jp.add(jtfTitula, gbctfTitula);*/
+		
+		String[] titulaProf = {"BSc", "MSc", "mr", "dr", "Prof. dr"};
+		this.cbTit = new JComboBox<String>(titulaProf);
+		GridBagConstraints gbctfTitula = new GridBagConstraints();
+		cbTit.setEditable(false);
+		gbctfTitula.gridx = 5;
+		gbctfTitula.gridy = 8;
+		gbctfTitula.insets = new Insets(20, 97, 0, 10);
+		jp.add(cbTit, gbctfTitula);
 		
 		JLabel jlZvanje = new JLabel("Zvanje*");
 		GridBagConstraints gbcZvanje = new GridBagConstraints();
@@ -239,16 +252,27 @@ public class DodavanjeProfesora {
 		gbcZvanje.anchor = GridBagConstraints.LINE_START;
 		jp.add(jlZvanje, gbcZvanje);
 		
-		jtfZvanje= new JTextField(20); 
+		/*jtfZvanje= new JTextField(20); 
 		GridBagConstraints gbctfZvanje = new GridBagConstraints();
 		gbctfZvanje.gridx = 5;
 		gbctfZvanje.gridy = 9;
 		gbctfZvanje.weightx = 100;
 		//gbctfZvanje.fill = GridBagConstraints.HORIZONTAL;
 		gbctfZvanje.insets = new Insets(20, 20, 0, 20);
-		jp.add(jtfZvanje,gbctfZvanje);
+		jp.add(jtfZvanje,gbctfZvanje);*/
 		
-		btnGrupa = new ButtonGroup();
+		String[] zvanjeProf = {"Saradnik u nastavi", "Asistent", "Asistent sa doktoratom", "Docent",
+							   "Vanredni profesor", "Redovni profesor", "Profesor emeritus"};
+		this.cbZv = new JComboBox<String>(zvanjeProf);
+		GridBagConstraints gbctfZvanje = new GridBagConstraints();
+		cbZv.setEditable(false);
+		gbctfZvanje.gridx = 5;
+		gbctfZvanje.gridy = 9;
+		gbctfZvanje.insets = new Insets(20, 20, 0, 20);
+		jp.add(cbZv, gbctfZvanje);
+		
+		int ind = cbZv.getSelectedIndex();
+		
 		
 		btnPotvrdi = new JButton("Potvrdi");
 		GridBagConstraints gbcPotvrdi = new GridBagConstraints();
@@ -257,6 +281,15 @@ public class DodavanjeProfesora {
 		gbcPotvrdi.gridwidth = 3;
 		gbcPotvrdi.insets = new Insets(40, 10, 0, 150);
 		jp.add(btnPotvrdi, gbcPotvrdi);
+		
+		btnPotvrdi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				potvrdi();
+			}
+		});
 		
 		
 		btnOdustani = new JButton("Odustani");
@@ -267,12 +300,76 @@ public class DodavanjeProfesora {
 		gbcOdustani.insets = new Insets(40, 20, 0, 20);
 		jp.add(btnOdustani, gbcOdustani);
 		
+		btnOdustani.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				jd.dispose();
+			}
+		});
+		
 		Main.changeFont(jp, f);
 		jd.add(jp);
 		jd.setVisible(true);
-
 	}
 	
+	public void setProfesor() {
+		profesor = new Profesor();
+		profesorController = null;
+		
+		refreshView();
+	}
+	
+	public void refreshView() {
+		TabbedPane.getInstance().azurirajPrikazProf(null, -1);
+	}
+	
+	public void potvrdi() {
+		if (profesorController == null) {
+			profesorController = new ProfesorContoller(profesor, this);
+		}
+		String ime = jtfIme.getText();
+		String prezime = jtfPrz.getText();
+		String datum = jtfDatum.getText();
+		String adresaStan = jtfAdresaStan.getText();
+		String brTel = jtfBrTel.getText();
+		String eMail = jtfeMail.getText();
+		String adresaKanc = jtfAdresaKanc.getText();
+		String brLK = jtfBrLK.getText();
+		
+		
+		Titula tit;
+		if(this.cbTit.getSelectedIndex() == 0) 
+			tit = Titula.BSc;
+		else if(this.cbTit.getSelectedIndex() == 1)
+			tit = Titula.MSc;
+		else if(this.cbTit.getSelectedIndex() == 2)
+			tit = Titula.mr;
+		else if(this.cbTit.getSelectedIndex() == 3)
+			tit = Titula.dr;
+		else 
+			tit = Titula.ProfDr;
+		
+		Zvanje zv;
+		if(this.cbZv.getSelectedIndex() == 0)
+			zv = Zvanje.SaradnikUNastavi;
+		else if(this.cbZv.getSelectedIndex() == 1)
+			zv = Zvanje.Asistent;
+		else if(this.cbZv.getSelectedIndex() == 2)
+			zv = Zvanje.AsistentSaDoktoratom;
+		else if(this.cbZv.getSelectedIndex() == 3)
+			zv = Zvanje.Docent;
+		else if(this.cbZv.getSelectedIndex() == 4)
+			zv = Zvanje.VanredniProfesor;
+		else if(this.cbZv.getSelectedIndex() == 5)
+			zv = Zvanje.RedovniProfesor;
+		else 
+			zv = Zvanje.VanredniProfesor;
+		
+		String message = profesorController.updateProfesor(ime, prezime, datum, adresaStan, 
+											brTel, eMail, adresaKanc, brLK, tit, zv);
+
+		JOptionPane.showMessageDialog(jd, message);
+	}
 }
-
-

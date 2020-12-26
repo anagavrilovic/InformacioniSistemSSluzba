@@ -3,17 +3,15 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import model.ProfesoriJtable;
-
 public class TabbedPane extends JTabbedPane{
 	
 	StudentTable studentTable;
+	ProfesorTable profesorTable;
 	private int index;
 	
 	public static TabbedPane instance = null;
@@ -40,10 +38,11 @@ public class TabbedPane extends JTabbedPane{
 		this.addTab("Student", spStudent);
 		azurirajPrikaz(null, -1);
 		
-		ProfesoriJtable profesoriTable = new ProfesoriJtable();
+		profesorTable = new ProfesorTable();
 		//profesoriTable.setAutoCreateRowSorter(true);
-		JScrollPane spProfesor = new JScrollPane(profesoriTable);
+		JScrollPane spProfesor = new JScrollPane(profesorTable);
 		this.addTab("Profesor", spProfesor);
+		azurirajPrikazProf(null, -1);
 		
 		this.addChangeListener(changeListener);
 		
@@ -51,8 +50,19 @@ public class TabbedPane extends JTabbedPane{
 	
 	public void azurirajPrikaz(String akcija, int vrednost) {
 		AbstractTableModelStudenti model = (AbstractTableModelStudenti) studentTable.getModel();
-
+		//AbstractTableModelProfesori modelProf = (AbstractTableModelProfesori) profesorTable.getModel();
 		model.fireTableDataChanged();
+		validate();
+		//modelProf.fireTableDataChanged();
+	}
+	
+	public void azurirajPrikazProf(String akcija, int vrednost) {
+		//AbstractTableModelStudenti model = (AbstractTableModelStudenti) studentTable.getModel();
+		AbstractTableModelProfesori modelProf = (AbstractTableModelProfesori) profesorTable.getModel();
+
+		//model.fireTableDataChanged();
+		modelProf.fireTableDataChanged();
+		validate();
 	}
 	
 	// Preuzeto sa sajta: http://www.java2s.com/Tutorial/Java/0240__Swing/ListeningforSelectedTabChanges.htm

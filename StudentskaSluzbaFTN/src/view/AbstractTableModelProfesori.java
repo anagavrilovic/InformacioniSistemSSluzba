@@ -1,15 +1,11 @@
-package model;
+package view;
 
 import javax.swing.table.AbstractTableModel;
 
-public class AbstractTableModelProfesori extends AbstractTableModel {
-	
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+import model.BazaProfesori;
 
+public class AbstractTableModelProfesori extends AbstractTableModel{
+	
 	public AbstractTableModelProfesori() {}
 
 	public int getRowCount() {
@@ -27,5 +23,4 @@ public class AbstractTableModelProfesori extends AbstractTableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		return BazaProfesori.getInstance().getValueAt(rowIndex, columnIndex);
 	}
-
 }

@@ -33,10 +33,10 @@ public class BazaProfesori {
 
 	private void inicijalizacijaProfesira() {
 		this.profesori = new ArrayList<Profesor>();
-		profesori.add(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor));
-		profesori.add(new Profesor("Veljko", "Petrović", Titula.ProfDr, Zvanje.RedovniProfesor));
-		profesori.add(new Profesor("Milan", "Rapaić", Titula.ProfDr, Zvanje.VanredniProfesor));
-		profesori.add(new Profesor("Petar", "Marić", Titula.dr, Zvanje.Docent));
+		profesori.add(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852"));
+		profesori.add(new Profesor("Veljko", "Petrović", Titula.ProfDr, Zvanje.RedovniProfesor, "882651493"));
+		profesori.add(new Profesor("Milan", "Rapaić", Titula.ProfDr, Zvanje.VanredniProfesor, "010607244"));
+		profesori.add(new Profesor("Petar", "Marić", Titula.dr, Zvanje.Docent, "040961175"));
 	}
 
 	public List<Profesor> getProfesori() {
@@ -76,8 +76,9 @@ public class BazaProfesori {
 		}
 	}
 
-	public void dodajProfesora(String ime, String prezime, Titula titula, Zvanje zvanje) {
-		this.profesori.add(new Profesor(ime, prezime, titula, zvanje));
+	public void dodajProfesora(Profesor p) {
+		this.profesori.add(new Profesor(p.getIme(), p.getPrezime(), p.getTitula(),
+							p.getZvanje(), p.getBrojLicneKarte()));
 	}
 
 	/*public void izbrisiProfesora(long id) {
