@@ -28,39 +28,32 @@ public class StudentController {
 			String brIndeksa, String godUpisa, int trGodStudija, Status status) {
 		
 		// validacija za ime
-		if (ime == null) {
+		if (ime == null) 
 			return "Unesite ime studenta!";
-		}
+		
 		ime = ime.trim();
-		if (ime.isEmpty()) { 
+		if (ime.isEmpty()) 
 			return "Unesite ime studenta!";
-		}
-		if(!Pattern.matches("[a-zA-Z]+", ime)) {
+		if(!Pattern.matches("[a-zA-Z]+", ime)) 
 			return "Ime se mora sastojati isključivo od slova!";
-		}
 
 		// validacija za prezime
-		if (prezime == null) {
+		if (prezime == null) 
 			return "Unesite prezime studenta!";
-		}
-		prezime = prezime.trim();
-		if (prezime.isEmpty()) {
-			return "Unesite prezime studenta!";
-		}
 		
-		if(!Pattern.matches("[a-zA-Z]+", prezime)) {
+		prezime = prezime.trim();
+		if (prezime.isEmpty()) 
+			return "Unesite prezime studenta!";
+		if(!Pattern.matches("[a-zA-Z]+", prezime)) 
 			return "Prezime se mora sastojati isključivo od slova!";
-		}
 
 		// validacija za datum
-		if (datRodj == null) {
+		if (datRodj == null) 
 			return "Unesite datum rodjenja studenta!";
-		}
-		datRodj = datRodj.trim();
-		if (datRodj.isEmpty()) {
-			return "Unesite datum rodjenja studenta!";
-		}
 		
+		datRodj = datRodj.trim();
+		if (datRodj.isEmpty()) 
+			return "Unesite datum rodjenja studenta!";
 		Date date;
 		try {
 			date = new SimpleDateFormat("dd.MM.yyyy.").parse(datRodj);
@@ -69,57 +62,55 @@ public class StudentController {
 		}
 		
 		// validacija za adresu
-		if (adresa == null) {
+		if (adresa == null) 
 			return "Unesite adresu studenta!";
-		}
+		
 		adresa = adresa.trim();
-		if (adresa.isEmpty()) {
+		if (adresa.isEmpty()) 
 			return "Unesite adresu studenta!";
-		}
 		
 		// validacija za broj telefona
-		if (brTel == null) {
+		if (brTel == null) 
 			return "Unesite broj telefona studenta!";
-		}
+
 		brTel = brTel.trim();
-		if (brTel.isEmpty()) {
+		if (brTel.isEmpty()) 
 			return "Unesite broj telefona studenta!";
-		}
+		if(brTel.length() != 9 && brTel.length() != 10) 
+			return "Broj telefona mora sadržati 9 ili 10 cifara!";
 		
 		// validacija za email
-		if (email == null) {
+		if (email == null) 
 			return "Unesite e-mail adresu studenta!";
-		}
+		
 		email = email.trim();
-		if (email.isEmpty()) {
+		if (email.isEmpty()) 
 			return "Unesite e-mail adresu studenta!";
-		}
-		 
-		if(!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,}", email)) {
+		if(!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,}", email)) 
 			return "Neispravna e-mail adresa!";
-		}
 		
 		// validacija za broj indeksa
-		if (brIndeksa == null) {
+		if (brIndeksa == null) 
 			return "Unesite broj indeksa studenta!";
-		}
-		brIndeksa = brIndeksa.trim();
-		if (brIndeksa.isEmpty()) {
-			return "Unesite broj indeksa studenta!";
-		}
 		
+		brIndeksa = brIndeksa.trim();
+		if (brIndeksa.isEmpty()) 
+			return "Unesite broj indeksa studenta!";
 		if(!BazaStudenti.getInstance().validirajStudenta(brIndeksa))
 			return "Već postoji student sa ovim brojem indeksa!";  
 		
 		// validacija za godinu upisa
-		if (godUpisa == null) {
+		if (godUpisa == null) 
 			return "Unesite godinu upisa studenta!";
-		}
+		
 		godUpisa = godUpisa.trim();
-		if (godUpisa.isEmpty()) {
+		if (godUpisa.isEmpty()) 
 			return "Unesite godinu upisa studenta!";
-		}
+		if(godUpisa.length() != 4) 
+			return "Godina upisa se sastoji od 4 cifre!";
 		int god = Integer.parseInt(godUpisa);
+		
+		
 		
 		Student student = new Student();
 		student.setIme(ime);

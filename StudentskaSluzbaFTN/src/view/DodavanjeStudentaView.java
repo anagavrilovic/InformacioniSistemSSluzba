@@ -232,7 +232,7 @@ public class DodavanjeStudentaView {
 		String message = StudentController.getInstance().dodajStudenta(ime, prezime, datRodj, adresa, brTel, email, brojInd, godUpisa, trGod, status);
 		
 		if (!message.equals("Model uspešno ažuriran!")) {
-			JOptionPane.showMessageDialog(dialog, message, "Nisu uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
+			JOptionPane.showMessageDialog(dialog, message, "Nisu ispravno uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/remove-user.png")));
 		} else  {
 			JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
@@ -399,6 +399,38 @@ public class DodavanjeStudentaView {
 		jtfGodUpisa.setBackground(new Color(224, 224, 224));
 		jtfGodUpisa.setName("txtGodUpisa");
 		jtfGodUpisa.addFocusListener(studentFocusListener);
+		jtfGodUpisa.addKeyListener(new KeyListener() {
+			 
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+ 
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					return;
+				}
+				char c = e.getKeyChar();
+				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
+						&& c != '9') {
+					JOptionPane.showMessageDialog(dialog, "Dozvoljen je unos samo cifara!");
+					JTextField txt = (JTextField) e.getComponent();
+					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
+				}
+			}
+ 
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					return;
+				}
+				JTextField txt = (JTextField) e.getComponent();
+				if (txt.getText().length() >= 4) {
+					JOptionPane.showMessageDialog(null, "Morate uneti tačno 4 karaktera!");
+					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
+				}
+			}
+		});
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 7;
