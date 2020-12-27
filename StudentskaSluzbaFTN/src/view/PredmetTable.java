@@ -11,9 +11,10 @@ import javax.swing.table.TableCellRenderer;
 
 import main.Main;
 
-public class ProfesorTable extends JTable{
+public class PredmetTable extends JTable{
 	
-	public ProfesorTable() {
+	public PredmetTable() {
+		
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -31,14 +32,13 @@ public class ProfesorTable extends JTable{
 		this.getTableHeader().setPreferredSize(new Dimension(0, 28));
 		this.getTableHeader().setReorderingAllowed(false);
 		
-		this.setModel(new AbstractTableModelProfesori());
+		this.setModel(new AbstractTableModelPredmeti());
 	} 
 
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		
 		Component c = super.prepareRenderer(renderer, row, column);
-	
 		if (isRowSelected(row)) {
 			c.setBackground(Color.LIGHT_GRAY);
 		} else {
