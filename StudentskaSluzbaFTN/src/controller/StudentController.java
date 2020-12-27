@@ -78,6 +78,8 @@ public class StudentController {
 			return "Unesite broj telefona studenta!";
 		if(brTel.length() != 9 && brTel.length() != 10) 
 			return "Broj telefona mora sadržati 9 ili 10 cifara!";
+		if(!Pattern.matches("[0-9]+", brTel)) 
+			return "Broj telefona se mora sastojati isključivo od slova!";
 		
 		// validacija za email
 		if (email == null) 
@@ -108,8 +110,9 @@ public class StudentController {
 			return "Unesite godinu upisa studenta!";
 		if(godUpisa.length() != 4) 
 			return "Godina upisa se sastoji od 4 cifre!";
+		if(!Pattern.matches("[0-9]+", godUpisa)) 
+			return "Godina upisa se mora sastojati isključivo od slova!";
 		int god = Integer.parseInt(godUpisa);
-		
 		
 		
 		Student student = new Student();
