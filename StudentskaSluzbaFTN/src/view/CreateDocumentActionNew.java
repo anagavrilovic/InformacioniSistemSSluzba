@@ -31,6 +31,8 @@ public class CreateDocumentActionNew extends AbstractAction {
 			DodavanjeStudentaView ds = new DodavanjeStudentaView(GlavniProzor.getInstance());
 		} else if(TabbedPane.getInstance().getIndex() == 1) {
 			DodavanjeProfesoraView dp = new DodavanjeProfesoraView(GlavniProzor.getInstance());
+		} else if(TabbedPane.getInstance().getIndex() == 2) {
+			DodavanjePredmetaView dp = new DodavanjePredmetaView(GlavniProzor.getInstance());
 		}
 		
 	}
