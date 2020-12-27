@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,7 +7,6 @@ import javax.swing.JDialog;
 import javax.swing.JTextArea;
 
 import main.Main;
-import view.GlavniProzor;
 
 public class AboutDialog {
 	private JDialog dialog;
