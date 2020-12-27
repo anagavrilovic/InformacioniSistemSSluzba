@@ -31,21 +31,21 @@ public class ProfesorContoller {
 								 String brTel, String eMail, String adresaKanc,
 								 String brLK, Titula titula, Zvanje zvanje) {
 		
-		if(ime.trim().equals("")  || ime == null) 
+		if(ime.equals("")  || ime == null) 
 			return "Morate uneti ime profesora!";
-		else if(prz.trim().equals("") || prz == null )
+		else if(prz.equals("") || prz == null )
 			return "Morate uneti prezime profesora!";
-		else if(datum.trim().equals("") || datum == null)
+		else if(datum.equals("") || datum == null)
 			return "Morate uneti datum rođenja profesora!";
-		else if(adresaStan.trim().equals("") || adresaStan == null)
+		else if(adresaStan.equals("") || adresaStan == null)
 			return "Morate uneti adresu stanovanja profesora!";
-		else if(brTel.trim().equals("") || brTel == null)
+		else if(brTel.equals("") || brTel == null)
 			return "Morate uneti kontakt telefon profesora!";
-		else if(eMail.trim().equals("") || eMail == null)
+		else if(eMail.equals("") || eMail == null)
 			return "Morate uneti e-Mail adresu profesora!";
-		else if(adresaKanc.trim().equals("") || adresaKanc == null)
+		else if(adresaKanc.equals("") || adresaKanc == null)
 			return "Morate uneti adresu kancelarije profesora!";
-		else if(brLK.trim().equals("") || brLK == null)
+		else if(brLK.equals("") || brLK == null)
 			return "Morate uneti broj lične karte profesora!";
 		else if(titula == null)
 			return "Morate uneti titulu profesora!";

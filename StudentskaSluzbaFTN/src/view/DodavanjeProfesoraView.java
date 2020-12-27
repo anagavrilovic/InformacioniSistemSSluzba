@@ -164,15 +164,14 @@ public class DodavanjeProfesoraView {
 	
 public void potvrdi() {
 		
-		String ime = jtfIme.getText();
-		String prezime = jtfPrz.getText();
-		String datum = jtfDatum.getText();
-		String adresaStan = jtfAdresaStan.getText();
-		String brTel = jtfBrTel.getText();
-		String eMail = jtfeMail.getText();
-		String adresaKanc = jtfAdresaKanc.getText();
-		String brLK = jtfBrLK.getText();
-		
+		String ime = jtfIme.getText().trim();
+		String prezime = jtfPrz.getText().trim();
+		String datum = jtfDatum.getText().trim();
+		String adresaStan = jtfAdresaStan.getText().trim();
+		String brTel = jtfBrTel.getText().trim();
+		String eMail = jtfeMail.getText().trim();
+		String adresaKanc = jtfAdresaKanc.getText().trim();
+		String brLK = jtfBrLK.getText().trim();
 		
 		Titula tit;
 		if(this.cbTit.getSelectedIndex() == 0) 
