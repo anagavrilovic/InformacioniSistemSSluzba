@@ -96,8 +96,12 @@ public class GlavniProzor extends JFrame{
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
 				JFrame frame = (JFrame) e.getComponent();
-				int code = JOptionPane.showConfirmDialog(frame, "Da li ste sigurni da želite da zatvorite aplikaciju?",
-						"Zatvaranje aplikacije?", JOptionPane.YES_NO_OPTION);
+				
+				String[] options = {"Da", "Ne" };
+				int code = JOptionPane.showOptionDialog(frame.getContentPane(),"Da li ste sigurni da želite da zatvorite aplikaciju?",
+						"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+						resizeIcon(new ImageIcon("images/question.png")), options, null);
+				
 				if (code != JOptionPane.YES_OPTION) {
 					frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				} else {
