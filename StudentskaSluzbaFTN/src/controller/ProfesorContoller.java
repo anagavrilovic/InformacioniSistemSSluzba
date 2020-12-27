@@ -25,40 +25,32 @@ public class ProfesorContoller {
 	}
 	
 	
-	private ProfesorContoller() {
-		
-	}
+	private ProfesorContoller() {}
 
-	/*public ProfesorContoller(Profesor profesor, DodavanjeProfesoraView profesorView) {
-		setProfesor(profesor);
-		setProfesorView(profesorView);
-	}*/
-	
 	public String updateProfesor(String ime, String prz, String datum, String adresaStan,
 								 String brTel, String eMail, String adresaKanc,
-								 String brLK, Titula titula, Zvanje zvanje){
+								 String brLK, Titula titula, Zvanje zvanje) {
 		
-		if(ime.trim().equals("")  || ime == null) {
-			return "Morate unijeti ime profesora!";
-		}
+		if(ime.trim().equals("")  || ime == null) 
+			return "Morate uneti ime profesora!";
 		else if(prz.trim().equals("") || prz == null )
-			return "Morate unijeti prezime profesora!";
+			return "Morate uneti prezime profesora!";
 		else if(datum.trim().equals("") || datum == null)
-			return "Morate unijeti datum rođenja profesora!";
+			return "Morate uneti datum rođenja profesora!";
 		else if(adresaStan.trim().equals("") || adresaStan == null)
-			return "Morate unijeti adresu stanovanja profesora!";
+			return "Morate uneti adresu stanovanja profesora!";
 		else if(brTel.trim().equals("") || brTel == null)
-			return "Morate unijeti kontakt telefon profesora!";
+			return "Morate uneti kontakt telefon profesora!";
 		else if(eMail.trim().equals("") || eMail == null)
-			return "Morate unijeti e-Mail adresu profesora!";
+			return "Morate uneti e-Mail adresu profesora!";
 		else if(adresaKanc.trim().equals("") || adresaKanc == null)
-			return "Morate unijeti adresu kancelarije profesora!";
+			return "Morate uneti adresu kancelarije profesora!";
 		else if(brLK.trim().equals("") || brLK == null)
-			return "Morate unijeti broj lične karte profesora!";
+			return "Morate uneti broj lične karte profesora!";
 		else if(titula == null)
-			return "Morate unijeti titulu profesora!";
+			return "Morate uneti titulu profesora!";
 		else if(zvanje == null)
-			return "Morate unijeti zvanje profesora!";
+			return "Morate uneti zvanje profesora!";
 		
 		if(!Pattern.matches("[a-zA-Z]+", ime))
 			return "Ime se mora sastojati isključivo od slova!";
@@ -110,27 +102,4 @@ public class ProfesorContoller {
 		
 		return "Uspešno ste uneli profesora!";
 	}
-
-
-	/*public Profesor getStudent() {
-		return profesor;
-	}
-
-	private void setProfesor(Profesor profesor) {
-		if (profesor == null) {
-			throw new NullPointerException();
-		}
-		this.profesor = profesor;
-	}
-
-	public DodavanjeProfesoraView getStudentView() {
-		return profesorView;
-	}
-
-	private void setProfesorView(DodavanjeProfesoraView profesorView) {
-		if (profesorView == null) {
-			throw new NullPointerException();
-		}
-		this.profesorView = profesorView;
-	}*/
 }
