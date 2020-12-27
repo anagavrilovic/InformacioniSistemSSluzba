@@ -26,10 +26,8 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EtchedBorder;
 
 import controller.PredmetController;
-import controller.StudentController;
 import main.Main;
 import model.Predmet.Semestar;
-import model.Student.Status;
 
 public class DodavanjePredmetaView {
 	private JDialog dialog;
@@ -206,7 +204,7 @@ public class DodavanjePredmetaView {
 		String message = PredmetController.getInstance().dodajPredmet(sifraPred, nazivPred, semestar, godStudija, espb);
 		
 		if (!message.equals("Model uspešno ažuriran!")) {
-			JOptionPane.showMessageDialog(dialog, message, "Nisu uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
+			JOptionPane.showMessageDialog(dialog, message, "Nisu ispravno uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 		} else  {
 			JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
@@ -294,6 +292,31 @@ public class DodavanjePredmetaView {
 		jtfEspb.setBackground(new Color(224, 224, 224));
 		jtfEspb.setName("txtESPB");
 		jtfEspb.addFocusListener(predmetFocusListener);
+		jtfEspb.addKeyListener(new KeyListener() {
+			 
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+ 
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+					return;
+				}
+				char c = e.getKeyChar();
+				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
+						&& c != '9') {
+					JOptionPane.showMessageDialog(dialog, "Dozvoljen je unos samo brojeva!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
+							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
+					JTextField txt = (JTextField) e.getComponent();
+					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
+				}
+			}
+ 
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+		});
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 4;

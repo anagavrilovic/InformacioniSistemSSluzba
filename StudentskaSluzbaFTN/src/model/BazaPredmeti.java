@@ -38,6 +38,18 @@ public class BazaPredmeti {
 		predmeti.add(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
 		predmeti.add(new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI));
 	}
+	
+	public boolean validirajSifruPredmeta(String sifraPred) {
+		if(BazaPredmeti.getInstance() != null) {
+			for(Predmet predmet : BazaPredmeti.getInstance().getPredmeti()) {
+				if (sifraPred.equals(predmet.getSifraPredmeta())) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
 
 	public List<Predmet> getPredmeti() {
 		return predmeti;
@@ -80,6 +92,10 @@ public class BazaPredmeti {
 
 	public void dodajPredmet(String sifra, String naziv, int espb, int godina, Semestar semestar) {
 		this.predmeti.add(new Predmet(sifra, naziv, espb, godina, semestar));
+	}
+	
+	public void dodajPredmet(Predmet predmet) {
+		this.predmeti.add(predmet);
 	}
 
 	public void izbrisiPredmet(String sifra) {

@@ -1,7 +1,11 @@
 package controller;
 
+import java.util.regex.Pattern;
+
+import model.BazaPredmeti;
 import model.Predmet;
 import model.Predmet.Semestar;
+import view.TabbedPane;
 
 public class PredmetController {
 	public static PredmetController instance = null;
@@ -27,8 +31,8 @@ public class PredmetController {
 			return "Unesite šifru predmeta!";
 		}
 		
-		/*if(!BazaPredmeti.getInstance().validirajSifruPredmeta(sifraPred))
-			return "Već postoji student sa ovim brojem indeksa!";*/
+		if(!BazaPredmeti.getInstance().validirajSifruPredmeta(sifraPred))
+			return "Već postoji predmet sa ovom šifrom!";
 
 		// validacija za naziv predmeta
 		if (nazivPred == null) {
@@ -47,6 +51,8 @@ public class PredmetController {
 		if (espb.isEmpty()) {
 			return "Unesite broj ESPB bodova!";
 		}
+		if(!Pattern.matches("[0-9]+", espb)) 
+			return "ESPB bodovi se unose u obliku broja!";
 		
 		int espbBod = Integer.parseInt(espb);
 		
@@ -57,8 +63,8 @@ public class PredmetController {
 		predmet.setGodinaStudija(godStud);
 		predmet.setEspb(espbBod);
 		
-		//BazaPredmeti.getInstance().dodajStudenta(predmet);
-		//TabbedPane.getInstance().azurirajPrikaz("Dodavanje predmeta", -1);
+		BazaPredmeti.getInstance().dodajPredmet(predmet);
+		TabbedPane.getInstance().azurirajPrikazPredmet("Dodavanje predmeta", -1);
 
 		return "Model uspešno ažuriran!";
 		}

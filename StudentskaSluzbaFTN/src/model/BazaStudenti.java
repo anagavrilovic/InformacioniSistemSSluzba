@@ -44,7 +44,7 @@ public class BazaStudenti {
 		studentList.add(new Student("Mijatović", "Nikola", "RA87/2018", 3, Status.B, 10.0));
 	}
 	
-	public boolean validirajStudenta (String brojIndeksa) {
+	public boolean validirajStudenta(String brojIndeksa) {
 		if(BazaStudenti.getInstance() != null) {
 			for(Student student : BazaStudenti.getInstance().getStudentList()) {
 				if (brojIndeksa.equals(student.getBrojIndeksa())) {
@@ -104,8 +104,7 @@ public class BazaStudenti {
 	}
 	
 	public void dodajStudenta(Student student) {
-		studentList.add(new Student(student.getPrezime(), student.getIme(), student.getBrojIndeksa(), student.getTrGodStudija(), 
-				student.getStatus(), student.getProsecnaOcena()));
+		studentList.add(student);
 	}
 	
 	public void izbrisiStudenta(String indeks) {

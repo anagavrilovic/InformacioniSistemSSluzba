@@ -336,7 +336,8 @@ public class DodavanjeStudentaView {
 				char c = e.getKeyChar();
 				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
 						&& c != '9') {
-					JOptionPane.showMessageDialog(dialog, "Dozvoljen je unos samo brojeva!");
+					JOptionPane.showMessageDialog(dialog, "Dozvoljen je unos samo brojeva!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
+							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 					JTextField txt = (JTextField) e.getComponent();
 					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
 				}
@@ -349,7 +350,8 @@ public class DodavanjeStudentaView {
 				}
 				JTextField txt = (JTextField) e.getComponent();
 				if (txt.getText().length() >= 10) {
-					JOptionPane.showMessageDialog(null, "Možete uneti maksimalno 10 karaktera!");
+					JOptionPane.showMessageDialog(null, "Možete uneti maksimalno 10 karaktera!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
+							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
 				}
 			}
@@ -413,7 +415,8 @@ public class DodavanjeStudentaView {
 				char c = e.getKeyChar();
 				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
 						&& c != '9') {
-					JOptionPane.showMessageDialog(dialog, "Dozvoljen je unos samo cifara!");
+					JOptionPane.showMessageDialog(dialog, "Dozvoljen je unos samo cifara!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
+							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 					JTextField txt = (JTextField) e.getComponent();
 					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
 				}
@@ -426,7 +429,8 @@ public class DodavanjeStudentaView {
 				}
 				JTextField txt = (JTextField) e.getComponent();
 				if (txt.getText().length() >= 4) {
-					JOptionPane.showMessageDialog(null, "Morate uneti tačno 4 karaktera!");
+					JOptionPane.showMessageDialog(null, "Morate uneti tačno 4 karaktera!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
+							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
 				}
 			}
