@@ -37,7 +37,7 @@ public class CreateDocumentActionClose extends AbstractAction {
 		if (code != JOptionPane.YES_OPTION) {
 			GlavniProzor.getInstance().setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		} else {
-			GlavniProzor.getInstance().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+			GlavniProzor.getInstance().dispose();
 		}
 	}
 }
