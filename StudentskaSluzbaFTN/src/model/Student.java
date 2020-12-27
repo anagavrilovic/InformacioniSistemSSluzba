@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -69,6 +70,7 @@ public class Student {
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
 	}
+
 
 	public String getPrezime() {
 		return prezime;
@@ -186,5 +188,16 @@ public class Student {
 	public void ukloniNepolozen(Predmet predmet) {
 		spisakNepolozenih.remove(predmet);
 	}
+
+	@Override
+	public String toString() {
+		return "Student [prezime=" + prezime + ", ime=" + ime + ", datumRodjenja=" + datumRodjenja
+				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", email=" + email
+				+ ", brojIndeksa=" + brojIndeksa + ", godinaUpisa=" + godinaUpisa + ", trGodStudija=" + trGodStudija
+				+ ", status=" + status + ", prosecnaOcena=" + prosecnaOcena + ", spisakPolozenih=" + spisakPolozenih
+				+ ", spisakNepolozenih=" + spisakNepolozenih + "]";
+	}
+	
+	
 	
 }

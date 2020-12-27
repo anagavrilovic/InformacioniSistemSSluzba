@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.Student.Status;
@@ -54,6 +55,16 @@ public class BazaStudenti {
 		}
 		
 		return true;
+	}
+	
+	public Student pronadjiStudenta(String brojIndeksa) {
+		for(Student student : this.getStudentList()) {
+			if (brojIndeksa.equals(student.getBrojIndeksa())) {
+				return student;
+			} 
+		}
+		
+		return new Student();
 	}
 
 	public List<Student> getStudentList() {
@@ -109,21 +120,27 @@ public class BazaStudenti {
 	
 	public void izbrisiStudenta(String indeks) {
 		for (Student s : studentList) {
-			if (s.getBrojIndeksa() == indeks) {
+			if (s.getBrojIndeksa().equals(indeks)) {
 				studentList.remove(s);
 				break;
 			}
 		}
 	}
 	
-	public void izmeniStudenta(String brIndeksa, String ime, String prezime, int trGodStudija, Status status, double prosecnaOcena) {
-		for (Student s : studentList) {
-			if (s.getBrojIndeksa() == brIndeksa) {
+	public void izmeniStudenta(String stariIndeks, String ime, String prezime, Date datumRodj, String brojIndeksa, String adresa, String email, 
+			String brTel, int godUpisa, int trGodStudija, Status status) {
+		for (Student s : getStudentList()) {
+			if (s.getBrojIndeksa().equals(stariIndeks)) {
 				s.setIme(ime);
 				s.setPrezime(prezime);
+				s.setDatumRodjenja(datumRodj);
+				s.setAdresaStanovanja(adresa);
+				s.setEmail(email);
+				s.setKontaktTelefon(brTel);
+				s.setBrojIndeksa(brojIndeksa);
+				s.setGodinaUpisa(godUpisa);
 				s.setTrGodStudija(trGodStudija);
 				s.setStatus(status);
-				s.setProsecnaOcena(prosecnaOcena);
 			}
 		}
 	}

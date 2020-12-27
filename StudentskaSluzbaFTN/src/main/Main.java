@@ -13,6 +13,7 @@ import model.BazaProfesori;
 import controller.StudentController;
 
 import model.BazaStudenti;
+import model.Student;
 import view.GlavniProzor;
 
 public class Main {
@@ -26,7 +27,7 @@ public class Main {
 		BazaProfesori.getInstance();
 		ProfesorContoller.getInstance();
 		StudentController.getInstance();
-
+		
 	}
 	
 	

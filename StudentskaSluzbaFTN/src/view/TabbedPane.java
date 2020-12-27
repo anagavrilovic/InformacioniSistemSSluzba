@@ -1,12 +1,17 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Insets;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 public class TabbedPane extends JTabbedPane{
 	
@@ -86,6 +91,16 @@ public class TabbedPane extends JTabbedPane{
 	
 	public void setIndex(int index) {
 		this.index = index;
+	}
+	
+	public String getIndexFromSelectedRow() {
+		int row = studentTable.getSelectedRow();
+		
+		if(row != -1) {
+			return (String) studentTable.getValueAt(row, 0);
+		} else {
+			return "";
+		}
 	}
 
 }
