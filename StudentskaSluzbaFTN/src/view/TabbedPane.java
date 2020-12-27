@@ -12,6 +12,7 @@ public class TabbedPane extends JTabbedPane{
 	
 	private StudentTable studentTable;
 	private ProfesorTable profesorTable;
+	private PredmetTable predmetTable;
 	private int index;
 	
 	public static TabbedPane instance = null;
@@ -39,10 +40,14 @@ public class TabbedPane extends JTabbedPane{
 		azurirajPrikaz(null, -1);
 		
 		profesorTable = new ProfesorTable();
-		//profesoriTable.setAutoCreateRowSorter(true);
 		JScrollPane spProfesor = new JScrollPane(profesorTable);
 		this.addTab("Profesor", spProfesor);
 		azurirajPrikazProf(null, -1);
+		
+		predmetTable = new PredmetTable();
+		JScrollPane spPredmet = new JScrollPane(predmetTable);
+		this.addTab("Predmet", spPredmet);
+		azurirajPrikazPredmet(null, -1);
 		
 		this.addChangeListener(changeListener);
 		
@@ -57,6 +62,12 @@ public class TabbedPane extends JTabbedPane{
 	public void azurirajPrikazProf(String akcija, int vrednost) {
 		AbstractTableModelProfesori modelProf = (AbstractTableModelProfesori) profesorTable.getModel();
 		modelProf.fireTableDataChanged();
+		validate();
+	}
+	
+	public void azurirajPrikazPredmet(String akcija, int vrednost) {
+		AbstractTableModelPredmeti modelPredm = (AbstractTableModelPredmeti) predmetTable.getModel();
+		modelPredm.fireTableDataChanged();
 		validate();
 	}
 	
