@@ -41,7 +41,7 @@ public class CreateDocumentActionDelete extends AbstractAction {
 	}
 	
 	private void izvrsiBrisanjeStudenta() {
-		
+
 		if(TabbedPane.getInstance().getIndexFromSelectedRow().equals("")) {
 			JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Selektujte red!", "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
@@ -58,6 +58,7 @@ public class CreateDocumentActionDelete extends AbstractAction {
 		} else {
 			String message = StudentController.getInstance().izbrisiStudenta(TabbedPane.getInstance().getIndexFromSelectedRow());
 		}
+		
 	}
 	
 	private void izvrsiBrisanjeProfesora() {
