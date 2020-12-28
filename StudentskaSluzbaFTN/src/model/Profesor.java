@@ -132,6 +132,7 @@ public class Profesor {
 		this.titula = titula;
 		this.zvanje = zvanje;
 		this.brojLicneKarte = brLK;
+		this.predmeti = new ArrayList<Predmet>();
 	}
 	
 	public Profesor (Profesor p) {

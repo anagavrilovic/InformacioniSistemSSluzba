@@ -3,8 +3,12 @@ package controller;
 import java.util.regex.Pattern;
 
 import model.BazaPredmeti;
+import model.BazaProfesori;
+import model.BazaStudenti;
 import model.Predmet;
 import model.Predmet.Semestar;
+import model.Profesor;
+import model.Student;
 import view.TabbedPane;
 
 public class PredmetController {
@@ -56,6 +60,27 @@ public class PredmetController {
 		TabbedPane.getInstance().azurirajPrikazPredmet("Izmena predmeta", -1);
 
 		return "Predmet uspešno izmenjen!";
+	}
+	
+	public String izbrisiPredmet(String sifraPredm) {
+			
+			for(Student s : BazaStudenti.getInstance().getStudentList()) {
+				for(Predmet p : s.getSpisakNepolozenih()) {
+					if(p.getSifraPredmeta().equals(sifraPredm))
+						s.getSpisakNepolozenih().remove(p);
+				}
+			}
+			
+			for(Profesor prof : BazaProfesori.getInstance().getProfesori()) {
+				for(Predmet p : prof.getPredmeti()) {
+					if(p.getSifraPredmeta().equals(sifraPredm))
+						prof.getPredmeti().remove(p);
+				}
+			}
+			
+			BazaPredmeti.getInstance().izbrisiPredmet(sifraPredm);
+			TabbedPane.getInstance().azurirajPrikazPredmet("Brisanje predmeta", -1);
+			return	"Izbrisali ste izabrani predmet!";
 	}
 	
 	private String validirajPredmet(String sifraPred, String nazivPred, Semestar semestar, int godStud, String espb, String akcija) {

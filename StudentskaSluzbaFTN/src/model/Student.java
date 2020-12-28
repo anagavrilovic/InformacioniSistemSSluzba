@@ -69,6 +69,7 @@ public class Student {
 		this.trGodStudija = trGodStudija;
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
+		this.spisakNepolozenih = new ArrayList<Predmet>();
 	}
 
 
