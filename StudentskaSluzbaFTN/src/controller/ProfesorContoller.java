@@ -24,13 +24,14 @@ public class ProfesorContoller {
 		return instance;
 	}
 	
+	private Date datumRodjenja;
+	
 	
 	private ProfesorContoller() {}
-
-	public String updateProfesor(String ime, String prz, String datum, String adresaStan,
+	
+	private String validacijaProfesora(String ime, String prz, String datum, String adresaStan,
 								 String brTel, String eMail, String adresaKanc,
-								 String brLK, Titula titula, Zvanje zvanje) {
-		
+								 String brLK, Titula titula, Zvanje zvanje, boolean valLK) {
 		if(ime.equals("")  || ime == null) 
 			return "Morate uneti ime profesora!";
 		else if(prz.equals("") || prz == null )
@@ -52,9 +53,9 @@ public class ProfesorContoller {
 		else if(zvanje == null)
 			return "Morate uneti zvanje profesora!";
 		
-		if(!Pattern.matches("[a-zA-Z]+", ime))
+		if(!Pattern.matches("[a-zA-ZčćšđžČĆŠĐŽ]+", ime))
 			return "Ime se mora sastojati isključivo od slova!";
-		else if(!Pattern.matches("[a-zA-Z]+", prz))
+		else if(!Pattern.matches("[a-zA-ZčćšđžČĆŠĐŽ]+", prz))
 			return "Prezime se mora sastojati isključivo od slova!";
 		
 		 if(!Pattern.matches("[0-9]+", brTel))
@@ -74,19 +75,11 @@ public class ProfesorContoller {
 		 else if(!(brLK.length() == 9))
 			 return "Broj lične karte mora da sadrži tačno 9 cifara!";
 		 
-		 if(!BazaProfesori.getInstance().validirajProfesora(brLK))
-			 return "Broj lične karte mora biti jedinstven!";
+		 if(valLK) {
+			 if(!BazaProfesori.getInstance().validirajProfesora(brLK))
+				 return "Broj lične karte mora biti jedinstven!"; 	 
+		 }
 		 
-		/* if(BazaProfesori.getInstance() != null) {
-			 for(Profesor p : BazaProfesori.getInstance().getProfesori()) {
-				 if(brLK.equals(p.getBrojLicneKarte())) {
-					 return "Broj lične karte mora biti jedinstven!";
-				 }
-			 }
-		 }*/
-		 
-		 Date datumRodjenja;
-			 
 		try {
 			 datumRodjenja = new SimpleDateFormat("dd.MM.yyyy.").parse(datum);
 		} catch (ParseException e) {
@@ -94,12 +87,46 @@ public class ProfesorContoller {
 			return "Pogrešan format datuma!";
 		}
 		
+		return "Uspešna validacija!";		
+	}
+	
+
+	public String dodajProfesora(String ime, String prz, String datum, String adresaStan,
+								 String brTel, String eMail, String adresaKanc,
+								 String brLK, Titula titula, Zvanje zvanje) {
+		
+		
+		String validacija = validacijaProfesora(ime, prz, datum, adresaStan, brTel, eMail,
+												adresaKanc, brLK, titula, zvanje, true);
+		
+		if(!(validacija.equals("Uspešna validacija!")))
+				return validacija;
+		
+		
 		Profesor prof= new Profesor(prz, ime, datumRodjenja, adresaStan, 
-			        eMail, adresaKanc, brLK, titula, zvanje);
+			        				eMail, adresaKanc, brLK, titula, zvanje);
 		
 		BazaProfesori.getInstance().dodajProfesora(prof);
 		TabbedPane.getInstance().azurirajPrikazProf("Dodavanje profesora", -1);
 		
 		return "Uspešno ste uneli profesora!";
+	}
+	
+	
+	public String izmeniProfesora(String ime, String prz, String datum, String adresaStan,
+								  String brTel, String eMail, String adresaKanc,
+								  String brLK, Titula titula, Zvanje zvanje) {
+		
+		String validacija = validacijaProfesora(ime, prz, datum, adresaStan, brTel, eMail,
+												adresaKanc, brLK, titula, zvanje, false);
+		
+		if(!(validacija.equals("Uspešna validacija!")))
+		return validacija;
+		
+		BazaProfesori.getInstance().izmeniProfesora(prz, ime, datumRodjenja, adresaStan, brTel,
+												eMail, adresaKanc, brLK, titula, zvanje);
+		TabbedPane.getInstance().azurirajPrikazProf("Izmena profesora", -1);
+		
+		return "Uspešno ste izmenili izabranog profesora!";
 	}
 }

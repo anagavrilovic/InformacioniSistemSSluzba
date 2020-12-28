@@ -235,4 +235,19 @@ public class Profesor {
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
+
+	@Override
+	public String toString() {
+		return "Profesor [prezime=" + prezime + ", ime=" + ime + ", datumRodjenja=" + datumRodjenja
+				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", emailAdresa="
+				+ emailAdresa + ", adresaKancelarije=" + adresaKancelarije + ", brojLicneKarte=" + brojLicneKarte
+				+ ", titula=" + titula + ", zvanje=" + zvanje + ", predmeti=" + predmeti + ", getPrezime()="
+				+ getPrezime() + ", getIme()=" + getIme() + ", getDatumRodjenja()=" + getDatumRodjenja()
+				+ ", getAdresaStanovanja()=" + getAdresaStanovanja() + ", getKontaktTelefon()=" + getKontaktTelefon()
+				+ ", getEmailAdresa()=" + getEmailAdresa() + ", getAdresaKancelarije()=" + getAdresaKancelarije()
+				+ ", getBrojLicneKarte()=" + getBrojLicneKarte() + ", getTitula()=" + getTitula() + ", getZvanje()="
+				+ getZvanje() + ", getPredmeti()=" + getPredmeti() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
+	}
+	
 }

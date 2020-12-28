@@ -24,6 +24,15 @@ public class CreateDocumentActionEdit extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
+		if(TabbedPane.getInstance().getIndex() == 0) {
+		//	DodavanjeStudentaView ds = new DodavanjeStudentaView(GlavniProzor.getInstance());
+		} else if(TabbedPane.getInstance().getIndex() == 1) {
+			IzmenaProfesoraView ip = new IzmenaProfesoraView (GlavniProzor.getInstance(),
+				TabbedPane.getInstance().nadjiKlljuc());	
+			System.out.println(TabbedPane.getInstance().getProfesorTable().getSelectedRow());
+		} else if(TabbedPane.getInstance().getIndex() == 2) {
+			//DodavanjePredmetaView dp = new DodavanjePredmetaView(GlavniProzor.getInstance());
+		}
 	}
 
 }

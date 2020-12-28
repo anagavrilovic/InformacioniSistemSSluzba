@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.Profesor.Titula;
@@ -70,15 +71,16 @@ public class BazaProfesori {
 		case 2:
 			return profesor.getTitula().toString();
 		case 3:
-			return profesor.getZvanje().toString();
+			return profesor.getZvanje().toString();	
+		case 4:
+			return profesor.getBrojLicneKarte();
 		default:
 			return null;
 		}
 	}
 
 	public void dodajProfesora(Profesor p) {
-		this.profesori.add(new Profesor(p.getIme(), p.getPrezime(), p.getTitula(),
-							p.getZvanje(), p.getBrojLicneKarte()));
+		this.profesori.add(p);
 	}
 	
 	public boolean validirajProfesora(String brLK) {
@@ -92,24 +94,55 @@ public class BazaProfesori {
 		 }
 		 return true;
 	}
+	
+	public Profesor nadjiProfesora(String brLK) {
+		
+		Profesor ret = null;
+		
+		for(Profesor p : BazaProfesori.getInstance().getProfesori()) {
+			 if(brLK.equals(p.getBrojLicneKarte())) {
+				 ret =  p;
+				 break;
+			 }
+		 }
 
-	/*public void izbrisiProfesora(long id) {
+		return ret;
+	}
+
+	/*public void izbrisiProfesora(Profesor prof) {
 		for (Profesor p : profesori) {
 			if (p.getId() == id) {
 				profesori.remove(p);
 				break;
 			}
 		}
-	}
+	}*/
 
-	public void izmeniProfesora(long id, String ime, String prezime, String titula, String zvanje) {
+	public void izmeniProfesora(String prz, String ime, Date datum, String adresaStan,
+			  					String brTel, String eMail, String adresaKanc,
+			  					String brLK, Titula titula, Zvanje zvanje) {
 		for (Profesor p : profesori) {
-			if (p.getId() == id) {
+			if (p.getBrojLicneKarte().equals(brLK)) {
 				p.setIme(ime);
-				p.setPrezime(prezime);
+				p.setPrezime(prz);
+				p.setDatumRodjenja(datum);
+				p.setAdresaStanovanja(adresaStan);
+				p.setKontaktTelefon(brTel);
+				p.setEmailAdresa(eMail);
+				p.setAdresaKancelarije(adresaKanc);
+				p.setBrojLicneKarte(brLK);
 				p.setTitula(titula);
 				p.setZvanje(zvanje);
+	
+				break;
 			}
 		}
-	}*/
+		//ispisiListu();
+	}
+	
+	public void ispisiListu() {
+		
+		for(Profesor p : profesori)
+			System.out.println(p);
+	}
 }
