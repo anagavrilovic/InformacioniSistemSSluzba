@@ -115,16 +115,25 @@ public class ProfesorContoller {
 	
 	public String izmeniProfesora(String ime, String prz, String datum, String adresaStan,
 								  String brTel, String eMail, String adresaKanc,
-								  String brLK, Titula titula, Zvanje zvanje) {
+								  String brLK, Titula titula, Zvanje zvanje, String kljuc) {
 		
-		String validacija = validacijaProfesora(ime, prz, datum, adresaStan, brTel, eMail,
-												adresaKanc, brLK, titula, zvanje, false);
+		String validacija;
 		
+		if(brLK.equals(kljuc)) {	
+			 validacija = validacijaProfesora(ime, prz, datum, adresaStan, brTel, eMail,
+											  adresaKanc, brLK, titula, zvanje, false);
+		}
+		else {
+			 validacija = validacijaProfesora(ime, prz, datum, adresaStan, brTel, eMail,
+					 						  adresaKanc, brLK, titula, zvanje, true);
+		}
+			
+			
 		if(!(validacija.equals("Uspešna validacija!")))
 		return validacija;
 		
 		BazaProfesori.getInstance().izmeniProfesora(prz, ime, datumRodjenja, adresaStan, brTel,
-												eMail, adresaKanc, brLK, titula, zvanje);
+												    eMail, adresaKanc, brLK, titula, zvanje, kljuc);
 		TabbedPane.getInstance().azurirajPrikazProf("Izmena profesora", -1);
 		
 		return "Uspešno ste izmenili izabranog profesora!";

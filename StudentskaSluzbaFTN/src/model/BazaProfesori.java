@@ -120,9 +120,9 @@ public class BazaProfesori {
 
 	public void izmeniProfesora(String prz, String ime, Date datum, String adresaStan,
 			  					String brTel, String eMail, String adresaKanc,
-			  					String brLK, Titula titula, Zvanje zvanje) {
+			  					String brLK, Titula titula, Zvanje zvanje, String kljuc) {
 		for (Profesor p : profesori) {
-			if (p.getBrojLicneKarte().equals(brLK)) {
+			if (p.getBrojLicneKarte().equals(kljuc)) {
 				p.setIme(ime);
 				p.setPrezime(prz);
 				p.setDatumRodjenja(datum);
@@ -137,7 +137,7 @@ public class BazaProfesori {
 				break;
 			}
 		}
-		//ispisiListu();
+		ispisiListu();
 	}
 	
 	public void ispisiListu() {

@@ -228,7 +228,7 @@ public void potvrdi() {
 			zv = Zvanje.VanredniProfesor;
 		
 		String message = ProfesorContoller.getInstance().izmeniProfesora(ime, prezime, datum, 
-										adresaStan, brTel, eMail, adresaKanc, brLK, tit, zv);
+										adresaStan, brTel, eMail, adresaKanc, brLK, tit, zv, kljuc);
 		
 		if(message.equals("Uspešno ste izmenili izabranog profesora!")) {
 			
@@ -527,7 +527,7 @@ public void potvrdi() {
 				}
 				JTextField txt = (JTextField) e.getComponent();
 				if (txt.getText().length() >= 9) {
-					JOptionPane.showMessageDialog(null, "Možete uneti maksimalno 10 karaktera!",
+					JOptionPane.showMessageDialog(null, "Morate uneti tačno 9 cifara!",
 													  "Greška", JOptionPane.INFORMATION_MESSAGE,
 							       GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 					txt.setText(txt.getText().substring(0, 9));
