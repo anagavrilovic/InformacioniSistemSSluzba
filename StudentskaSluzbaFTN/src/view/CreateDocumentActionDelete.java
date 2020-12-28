@@ -34,34 +34,33 @@ public class CreateDocumentActionDelete extends AbstractAction {
 		} else if(TabbedPane.getInstance().getIndex() == 1) {
 			
 		} else if(TabbedPane.getInstance().getIndex() == 2) {
-			
-			JFrame frame = GlavniProzor.getInstance();
-			
-			String[] options = {"Da", "Ne" };
-			
-			if(TabbedPane.getInstance().getSifraPredFromSelectedRow().equals("")) {
-				JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Morate selektovati red!", 
-											  "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
-											  GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
-				return;
-			}
-			
-			int code = JOptionPane.showOptionDialog(frame.getContentPane(),"Da li ste sigurni da želite da izbrišete selektovani predmet?",
-					"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-					 GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), options, null);
-			
-			if (code == JOptionPane.YES_OPTION) {
-				String ret = PredmetController.getInstance().izbrisiPredmet(TabbedPane.getInstance().getSifraPredFromSelectedRow());
-				JOptionPane.showMessageDialog(frame, ret, "Brisanje predmeta", JOptionPane.INFORMATION_MESSAGE,
-											   GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")));
-				
-			} else {
-				frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-			}
-			
-			
-			
+			brisanjePredmeta();
 		}
+	}
+	
+	private void brisanjePredmeta() {
+		
+		JFrame frame = GlavniProzor.getInstance();
+		
+		String[] options = {"Da", "Ne" };
+		
+		if(TabbedPane.getInstance().getSifraPredFromSelectedRow().equals("")) {
+			JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Morate selektovati red!", 
+										  "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
+										  GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
+			return;
+		}
+		
+		int code = JOptionPane.showOptionDialog(frame.getContentPane(),"Da li ste sigurni da želite da izbrišete selektovani predmet?",
+				"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+				 GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")), options, null);
+		
+		if (code == JOptionPane.YES_OPTION) {
+			String ret = PredmetController.getInstance().izbrisiPredmet(TabbedPane.getInstance().getSifraPredFromSelectedRow());
+			//JOptionPane.showMessageDialog(frame, ret, "Brisanje predmeta", JOptionPane.INFORMATION_MESSAGE,
+			//							   GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")));	
+		} else 
+			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 }
