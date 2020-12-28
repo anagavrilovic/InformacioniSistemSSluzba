@@ -70,11 +70,11 @@ public class IzmenaPredmetaView {
 		
 		predmet = BazaPredmeti.getInstance().pronadjiPredmet(sifra);
 		
-		dialog = new JDialog(gp, "Dodavanje predmeta", true);
+		dialog = new JDialog(gp, "Izmena predmeta", true);
 		dialog.setSize(500, 600);
 		dialog.setResizable(false);
 		dialog.setLocationRelativeTo(null);
-		dialog.setIconImage(GlavniProzor.resizeIcon(new ImageIcon("images/plus.png")).getImage());
+		dialog.setIconImage(GlavniProzor.resizeIcon(new ImageIcon("images/edit.png")).getImage());
 		
 		dialog.addWindowListener(new WindowAdapter() {
 			
@@ -122,6 +122,8 @@ public class IzmenaPredmetaView {
 		dodajPrazanRed2();
 		
 		btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.setBackground(new Color(90, 216, 252));
+		btnPotvrdi.setForeground(Color.WHITE);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
 			@Override
@@ -138,6 +140,8 @@ public class IzmenaPredmetaView {
 		panel.add(btnPotvrdi, gbcLeft);
 		
 		btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(new Color(90, 216, 252));
+		btnOdustani.setForeground(Color.WHITE);
 		btnOdustani.addActionListener(new ActionListener() {
 			
 			@Override

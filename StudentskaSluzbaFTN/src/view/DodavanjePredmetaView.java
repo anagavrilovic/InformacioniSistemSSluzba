@@ -108,6 +108,8 @@ public class DodavanjePredmetaView {
 		dodajPrazanRed2();
 		
 		btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.setBackground(new Color(90, 216, 252));
+		btnPotvrdi.setForeground(Color.WHITE);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
 			@Override
@@ -124,6 +126,8 @@ public class DodavanjePredmetaView {
 		panel.add(btnPotvrdi, gbcLeft);
 		
 		btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(new Color(90, 216, 252));
+		btnOdustani.setForeground(Color.WHITE);
 		btnOdustani.addActionListener(new ActionListener() {
 			
 			@Override

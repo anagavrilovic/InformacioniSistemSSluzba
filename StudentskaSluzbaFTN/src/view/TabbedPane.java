@@ -46,6 +46,7 @@ public class TabbedPane extends JTabbedPane{
 		this.setForeground(Color.WHITE);
 		
 		studentTable = new StudentTable();
+		//studentTable.setPreferredSize(new Dimension(GlavniProzor.width, GlavniProzor.heigth));
 		JScrollPane spStudent = new JScrollPane(studentTable);
 		this.addTab("Student", spStudent);
 		azurirajPrikazStudent(null, -1);

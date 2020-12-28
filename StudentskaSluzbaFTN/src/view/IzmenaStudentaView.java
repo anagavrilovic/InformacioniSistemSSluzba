@@ -38,7 +38,7 @@ public class IzmenaStudentaView {
 	
 	private JDialog dialog;
 	private JPanel panelInfo;
-	private JPanel panelPolozeni;
+	private PrikazPolozenihIspita panelPolozeni;
 	private JPanel panelNepolozeni;
 	
 	private JTextField jtfIme;
@@ -85,7 +85,7 @@ public class IzmenaStudentaView {
 		student = BazaStudenti.getInstance().pronadjiStudenta(index);
 		
 		dialog = new JDialog(gp, "Izmena studenta", true);
-		dialog.setSize(500, 600);
+		dialog.setSize(800, 600);
 		dialog.setResizable(false);
 		dialog.setLocationRelativeTo(null);
 		dialog.setIconImage(GlavniProzor.resizeIcon(new ImageIcon("images/edit.png")).getImage());
@@ -119,12 +119,12 @@ public class IzmenaStudentaView {
 		
 		gbcLeft = new GridBagConstraints();
 		gbcLeft.weightx = 100;
-		gbcLeft.insets = new Insets(10, 50, 10, 0);
+		gbcLeft.insets = new Insets(10, 200, 10, 0);
 		gbcLeft.anchor = GridBagConstraints.WEST;
 		
 		gbcRight = new GridBagConstraints();
 		gbcRight.weightx = 100;
-		gbcRight.insets = new Insets(10, 0, 10, 50);
+		gbcRight.insets = new Insets(10, 0, 10, 200);
 		gbcRight.anchor = GridBagConstraints.EAST;
 		
 		dodajIme();
@@ -140,6 +140,8 @@ public class IzmenaStudentaView {
 		dodajPrazanRed();
 		
 		btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.setBackground(new Color(90, 216, 252));
+		btnPotvrdi.setForeground(Color.WHITE);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
 			@Override
@@ -152,10 +154,12 @@ public class IzmenaStudentaView {
 		dialog.getRootPane().setDefaultButton(btnPotvrdi);
 		gbcLeft.gridx = 0;
 		gbcLeft.gridy = 11;
-		gbcLeft.insets = new Insets(0, 120, 0, 0);
+		gbcLeft.insets = new Insets(0, 270, 0, 0);
 		panelInfo.add(btnPotvrdi, gbcLeft);
 		
 		btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(new Color(90, 216, 252));
+		btnOdustani.setForeground(Color.WHITE);
 		btnOdustani.addActionListener(new ActionListener() {
 			
 			@Override
@@ -173,11 +177,11 @@ public class IzmenaStudentaView {
 		});
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 11;
-		gbcRight.insets = new Insets(0, 0, 0, 120);
+		gbcRight.insets = new Insets(0, 0, 0, 270);
 		panelInfo.add(btnOdustani, gbcRight);
 		
 		
-		panelPolozeni = new JPanel();
+		panelPolozeni = new PrikazPolozenihIspita();
 		panelNepolozeni = new JPanel();
 		
 		Main.changeFont(panelInfo, f);

@@ -40,7 +40,7 @@ public class ProfesorTable extends JTable{
 		Component c = super.prepareRenderer(renderer, row, column);
 	
 		if (isRowSelected(row)) {
-			c.setBackground(Color.LIGHT_GRAY);
+			c.setBackground(new Color(224, 224, 224));
 		} else {
 			c.setBackground(Color.WHITE);
 		}
