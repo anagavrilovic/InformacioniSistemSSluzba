@@ -9,7 +9,10 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
 
+import controller.PredmetController;
+import controller.ProfesorContoller;
 import controller.StudentController;
 
 public class CreateDocumentActionDelete extends AbstractAction {
@@ -28,25 +31,53 @@ public class CreateDocumentActionDelete extends AbstractAction {
 	public void actionPerformed(ActionEvent arg0) {
 		
 		if(TabbedPane.getInstance().getIndex() == 0) {
-			
-			if(TabbedPane.getInstance().getIndexFromSelectedRow().equals("")) {
-				JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Selektujte red!", "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
-						GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
-				return;
-			}
-			
-			String message = StudentController.getInstance().izbrisiStudenta(TabbedPane.getInstance().getIndexFromSelectedRow());
-			
-			JOptionPane.showMessageDialog(GlavniProzor.getInstance(), message, "Uspešno brisanje", JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")));
-			
-		} /*else if(TabbedPane.getInstance().getIndex() == 1) {
-				IzmenaProfesoraView ip = new IzmenaProfesoraView (GlavniProzor.getInstance(),
-				TabbedPane.getInstance().nadjiKlljuc());
+			izvrsiBrisanjeStudenta();
+		} else if(TabbedPane.getInstance().getIndex() == 1) {
+			izvrsiBrisanjeProfesora();
 		} else if(TabbedPane.getInstance().getIndex() == 2) {
-			IzmenaPredmetaView ip = new IzmenaPredmetaView(GlavniProzor.getInstance(), TabbedPane.getInstance().getSifraPredFromSelectedRow());
-		}*/
+			
+		}
 		
+	}
+	
+	private void izvrsiBrisanjeStudenta() {
+		
+		if(TabbedPane.getInstance().getIndexFromSelectedRow().equals("")) {
+			JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Selektujte red!", "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
+			return;
+		}
+		
+		String[] options = {"Da", "Ne" };
+		int opcija = JOptionPane.showOptionDialog(GlavniProzor.getInstance(), "Da li ste sigurni da želite da izbrišete studenta?",
+				"Brisanje studenta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+				GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")), 
+				options, options[1]);
+		if (opcija != JOptionPane.YES_OPTION) {
+			return;
+		} else {
+			String message = StudentController.getInstance().izbrisiStudenta(TabbedPane.getInstance().getIndexFromSelectedRow());
+		}
+	}
+	
+	private void izvrsiBrisanjeProfesora() {
+		
+		if(TabbedPane.getInstance().nadjiKlljuc().equals("")) {
+			JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Selektujte red!", "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
+			return;
+		}
+		
+		String[] options = {"Da", "Ne" };
+		int opcija = JOptionPane.showOptionDialog(GlavniProzor.getInstance(), "Da li ste sigurni da želite da izbrišete profesora?",
+				"Brisanje profesora?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+				GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")), 
+				options, options[1]);
+		if (opcija != JOptionPane.YES_OPTION) {
+			return;
+		} else {
+			String message = ProfesorContoller.getInstance().izbrisiProfesora(TabbedPane.getInstance().nadjiKlljuc());
+		}
 	}
 
 }

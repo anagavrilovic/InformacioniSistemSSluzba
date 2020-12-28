@@ -72,9 +72,9 @@ public class StudentController {
 	
 	public String izbrisiStudenta(String index) {
 		
-		BazaStudenti.getInstance().izbrisiStudenta(index);
 		BazaPredmeti.getInstance().izbrisiStudentaSaPolozenihPredmeta(index);
 		BazaPredmeti.getInstance().izbrisiStudentaSaNepolozenihPredmeta(index);
+		BazaStudenti.getInstance().izbrisiStudenta(index);
 		
 		TabbedPane.getInstance().azurirajPrikazStudent("Brisanje", -1);
 		

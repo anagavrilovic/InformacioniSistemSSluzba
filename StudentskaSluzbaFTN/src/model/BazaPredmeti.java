@@ -82,6 +82,13 @@ public class BazaPredmeti {
 			}
 		}
 	}
+	
+	public void izbrisiProfesora(String brojLK) {
+		for(Predmet p : getPredmeti()) {
+			if(p.getProfesor().getBrojLicneKarte().equals(brojLK))
+				p.setProfesor(new Profesor());
+		}
+	}
 
 
 	public List<Predmet> getPredmeti() {

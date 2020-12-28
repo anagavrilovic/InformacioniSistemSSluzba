@@ -65,6 +65,7 @@ public class Predmet {
 		this.semestar = semestar;
 		this.studentiPolozili = new ArrayList<Student>();
 		this.studentiNisuPolozili = new ArrayList<Student>();
+		this.profesor = new Profesor();
 	}
 	
 	public Predmet(Predmet p) {
@@ -78,7 +79,7 @@ public class Predmet {
 		this.studentiPolozili = p.studentiPolozili;
 		this.studentiNisuPolozili = p.studentiNisuPolozili;
 	}
-	
+
 	
 	public String getSifraPredmeta() {
 		return sifraPredmeta;

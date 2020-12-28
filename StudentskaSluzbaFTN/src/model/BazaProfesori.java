@@ -109,14 +109,14 @@ public class BazaProfesori {
 		return ret;
 	}
 
-	/*public void izbrisiProfesora(Profesor prof) {
+	public void izbrisiProfesora(String brojLK) {
 		for (Profesor p : profesori) {
-			if (p.getId() == id) {
+			if (p.getBrojLicneKarte().equals(brojLK)) {
 				profesori.remove(p);
 				break;
 			}
 		}
-	}*/
+	}
 
 	public void izmeniProfesora(String prz, String ime, Date datum, String adresaStan,
 			  					String brTel, String eMail, String adresaKanc,

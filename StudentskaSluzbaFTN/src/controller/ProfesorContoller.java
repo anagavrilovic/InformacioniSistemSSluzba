@@ -1,16 +1,16 @@
 package controller;
 
-import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Pattern;
 
+import model.BazaPredmeti;
 import model.BazaProfesori;
+import model.BazaStudenti;
 import model.Profesor;
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
-import view.DodavanjeProfesoraView;
 import view.TabbedPane;
 
 public class ProfesorContoller {
@@ -137,5 +137,15 @@ public class ProfesorContoller {
 		TabbedPane.getInstance().azurirajPrikazProf("Izmena profesora", -1);
 		
 		return "Uspešno ste izmenili izabranog profesora!";
+	}
+	
+	public String izbrisiProfesora(String brojLK) {
+		
+		BazaPredmeti.getInstance().izbrisiProfesora(brojLK);
+		BazaProfesori.getInstance().izbrisiProfesora(brojLK);
+		
+		TabbedPane.getInstance().azurirajPrikazProf("brisanje", -1);
+		
+		return "Profesor uspešno izbrisan!";
 	}
 }
