@@ -27,9 +27,9 @@ public class CreateDocumentActionEdit extends AbstractAction {
 			IzmenaStudentaView is = new IzmenaStudentaView(GlavniProzor.getInstance(), TabbedPane.getInstance().getIndexFromSelectedRow());
 		} /*else if(TabbedPane.getInstance().getIndex() == 1) {
 			DodavanjeProfesoraView dp = new DodavanjeProfesoraView(GlavniProzor.getInstance());
-		} else if(TabbedPane.getInstance().getIndex() == 2) {
-			DodavanjePredmetaView dp = new DodavanjePredmetaView(GlavniProzor.getInstance());
-		}*/
+		} */else if(TabbedPane.getInstance().getIndex() == 2) {
+			IzmenaPredmetaView ip = new IzmenaPredmetaView(GlavniProzor.getInstance(), TabbedPane.getInstance().getSifraPredFromSelectedRow());
+		}
 	}
 
 }

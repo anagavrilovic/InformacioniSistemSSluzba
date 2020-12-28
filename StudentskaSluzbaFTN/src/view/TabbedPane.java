@@ -42,7 +42,7 @@ public class TabbedPane extends JTabbedPane{
 		studentTable = new StudentTable();
 		JScrollPane spStudent = new JScrollPane(studentTable);
 		this.addTab("Student", spStudent);
-		azurirajPrikaz(null, -1);
+		azurirajPrikazStudent(null, -1);
 		
 		profesorTable = new ProfesorTable();
 		JScrollPane spProfesor = new JScrollPane(profesorTable);
@@ -58,7 +58,7 @@ public class TabbedPane extends JTabbedPane{
 		
 	}
 	
-	public void azurirajPrikaz(String akcija, int vrednost) {
+	public void azurirajPrikazStudent(String akcija, int vrednost) {
 		AbstractTableModelStudenti model = (AbstractTableModelStudenti) studentTable.getModel();
 		model.fireTableDataChanged();
 		validate();
@@ -98,6 +98,16 @@ public class TabbedPane extends JTabbedPane{
 		
 		if(row != -1) {
 			return (String) studentTable.getValueAt(row, 0);
+		} else {
+			return "";
+		}
+	}
+	
+	public String getSifraPredFromSelectedRow() {
+		int row = predmetTable.getSelectedRow();
+		
+		if(row != -1) {
+			return (String) predmetTable.getValueAt(row, 0);
 		} else {
 			return "";
 		}

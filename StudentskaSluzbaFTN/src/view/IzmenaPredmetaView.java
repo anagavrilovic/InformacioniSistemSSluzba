@@ -27,9 +27,13 @@ import javax.swing.border.EtchedBorder;
 
 import controller.PredmetController;
 import main.Main;
+import model.BazaPredmeti;
+import model.Predmet;
 import model.Predmet.Semestar;
+import model.Student.Status;
 
-public class DodavanjePredmetaView {
+public class IzmenaPredmetaView {
+	
 	private JDialog dialog;
 	private JPanel panel;
 	
@@ -52,9 +56,19 @@ public class DodavanjePredmetaView {
 	private GridBagConstraints gbcRight;
 	
 	private PredmetFocusListener predmetFocusListener;
+	private Predmet predmet;
 	
 	
-	public DodavanjePredmetaView(GlavniProzor gp) {
+	public IzmenaPredmetaView(GlavniProzor gp, String sifra) {
+		
+		if(sifra.equals("")) {
+			JOptionPane.showMessageDialog(dialog, "Selektujte red!", "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
+			return;
+		}
+		
+		
+		predmet = BazaPredmeti.getInstance().pronadjiPredmet(sifra);
 		
 		dialog = new JDialog(gp, "Dodavanje predmeta", true);
 		dialog.setSize(500, 600);
@@ -67,8 +81,8 @@ public class DodavanjePredmetaView {
 			public void windowClosing(WindowEvent e)
 		      {
 				String[] options = {"Da", "Ne" };
-				int opcija = JOptionPane.showOptionDialog(dialog, "Da li ste sigurni da želite da prekinete unos predmeta?",
-						"Prekid unosa predmeta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+				int opcija = JOptionPane.showOptionDialog(dialog, "Da li ste sigurni da želite da prekinete izmenu predmeta?",
+						"Prekid izmene predmeta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
 						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
 						options, options[0]);
 				if (opcija != JOptionPane.YES_OPTION) {
@@ -201,19 +215,15 @@ public class DodavanjePredmetaView {
 			semestar = Semestar.LETNJI;
 		}
 		
-		String message = PredmetController.getInstance().dodajPredmet(sifraPred, nazivPred, semestar, godStudija, espb);
+		String message = PredmetController.getInstance().izmeniPredmet(predmet.getSifraPredmeta(), sifraPred, nazivPred, semestar, godStudija, espb);
 		
-		if (!message.equals("Predmet uspešno dodat!")) {
+		if (!message.equals("Predmet uspešno izmenjen!")) {
 			JOptionPane.showMessageDialog(dialog, message, "Nisu ispravno uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 		} else  {
 			JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/check.png")));
-			jtfSifraPred.setText("");
-			jtfNazivPred.setText("");
-			jtfEspb.setText("");
-			cbGodStudija.setSelectedIndex(0);
-			cbSemestar.setSelectedIndex(0);
+			dialog.dispose();
 		}
 		
 	}
@@ -227,6 +237,7 @@ public class DodavanjePredmetaView {
 		jtfSifraPred = new JTextField(20);
 		jtfSifraPred.setBackground(new Color(224, 224, 224));
 		jtfSifraPred.setName("txtSifraPred");
+		jtfSifraPred.setText(predmet.getSifraPredmeta());
 		jtfSifraPred.addFocusListener(predmetFocusListener);
 		
 		gbcRight.gridx = 1;
@@ -242,6 +253,7 @@ public class DodavanjePredmetaView {
 		jtfNazivPred = new JTextField(20);
 		jtfNazivPred.setBackground(new Color(224, 224, 224));
 		jtfNazivPred.setName("txtNazivPred");
+		jtfNazivPred.setText(predmet.getNazivPredmeta());
 		jtfNazivPred.addFocusListener(predmetFocusListener);
 		
 		gbcRight.gridx = 1;
@@ -257,6 +269,12 @@ public class DodavanjePredmetaView {
 		String[] semestar = {"                    Zimski                       ",
 							 "                     Letnji                       "};
 		cbSemestar = new JComboBox<String>(semestar);
+		
+		if(predmet.getSemestar() == Semestar.ZIMSKI)
+			cbSemestar.setSelectedIndex(0);
+		else
+			cbSemestar.setSelectedIndex(1);
+		
 		cbSemestar.setEditable(false);
 		cbSemestar.setBackground(new Color(224, 224, 224));
 		
@@ -275,6 +293,7 @@ public class DodavanjePredmetaView {
 				        "                     III (treća)                ", 
 				        "                     IV (četvrta)               "};
 		cbGodStudija = new JComboBox<String>(god);
+		cbGodStudija.setSelectedIndex(predmet.getGodinaStudija() - 1);
 		cbGodStudija.setEditable(false);
 		cbGodStudija.setBackground(new Color(224, 224, 224));
 		
@@ -291,6 +310,7 @@ public class DodavanjePredmetaView {
 		jtfEspb = new JTextField(20);
 		jtfEspb.setBackground(new Color(224, 224, 224));
 		jtfEspb.setName("txtESPB");
+		jtfEspb.setText(espbToString(predmet.getEspb()));
 		jtfEspb.addFocusListener(predmetFocusListener);
 		jtfEspb.addKeyListener(new KeyListener() {
 			 
@@ -343,6 +363,13 @@ public class DodavanjePredmetaView {
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 6;
 		panel.add(label2, gbcRight);
+	}
+	
+	private String espbToString(int espb) {
+		if(espb != 0)
+			return String.valueOf(predmet.getEspb());
+		else
+			return "";
 	}
 	
 }

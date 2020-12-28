@@ -33,9 +33,9 @@ import main.Main;
 import model.BazaStudenti;
 import model.Student;
 import model.Student.Status;
-import view.DodavanjeStudentaView.StudentFocusListener;
 
 public class IzmenaStudentaView {
+	
 	private JDialog dialog;
 	private JPanel panelInfo;
 	private JPanel panelPolozeni;

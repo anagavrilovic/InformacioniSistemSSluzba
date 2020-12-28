@@ -50,6 +50,16 @@ public class BazaPredmeti {
 		
 		return true;
 	}
+	
+	public Predmet pronadjiPredmet(String sifra) {
+		for(Predmet predmet : this.getPredmeti()) {
+			if (sifra.equals(predmet.getSifraPredmeta())) {
+				return predmet;
+			} 
+		}
+		
+		return new Predmet();
+	}
 
 	public List<Predmet> getPredmeti() {
 		return predmeti;
@@ -100,20 +110,22 @@ public class BazaPredmeti {
 
 	public void izbrisiPredmet(String sifra) {
 		for (Predmet p : predmeti) {
-			if (p.getSifraPredmeta() == sifra) {
+			if (p.getSifraPredmeta().equals(sifra)) {
 				predmeti.remove(p);
 				break;
 			}
 		}
 	}
 
-	public void izmeniPredmet(String sifra, String naziv, int espb, int godina, Semestar semestar) {
-		for (Predmet p : predmeti) {
-			if (p.getSifraPredmeta() == sifra) {
+	public void izmeniPredmet(String staraSifra, String sifra, String naziv, int espb, int godina, Semestar semestar) {
+		for (Predmet p : getPredmeti()) {
+			if (p.getSifraPredmeta().equals(staraSifra)) {
+				p.setSifraPredmeta(sifra);
 				p.setNazivPredmeta(naziv);;
 				p.setEspb(espb);
 				p.setGodinaStudija(godina);
 				p.setSemestar(semestar);
+				
 			}
 		}
 	}
