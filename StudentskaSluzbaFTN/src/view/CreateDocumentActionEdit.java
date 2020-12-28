@@ -23,13 +23,14 @@ public class CreateDocumentActionEdit extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+
 		if(TabbedPane.getInstance().getIndex() == 0) {
 			IzmenaStudentaView is = new IzmenaStudentaView(GlavniProzor.getInstance(), TabbedPane.getInstance().getIndexFromSelectedRow());
-		} /*else if(TabbedPane.getInstance().getIndex() == 1) {
-			DodavanjeProfesoraView dp = new DodavanjeProfesoraView(GlavniProzor.getInstance());
-		} */else if(TabbedPane.getInstance().getIndex() == 2) {
+		} else if(TabbedPane.getInstance().getIndex() == 1) {
+				IzmenaProfesoraView ip = new IzmenaProfesoraView (GlavniProzor.getInstance(),
+				TabbedPane.getInstance().nadjiKlljuc());
+		} else if(TabbedPane.getInstance().getIndex() == 2) {
 			IzmenaPredmetaView ip = new IzmenaPredmetaView(GlavniProzor.getInstance(), TabbedPane.getInstance().getSifraPredFromSelectedRow());
 		}
 	}
-
 }

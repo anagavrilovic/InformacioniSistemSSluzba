@@ -11,7 +11,13 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+
+import javax.swing.table.AbstractTableModel;
+
+import model.BazaProfesori;
+
 
 public class TabbedPane extends JTabbedPane{
 	
@@ -93,6 +99,7 @@ public class TabbedPane extends JTabbedPane{
 		this.index = index;
 	}
 	
+
 	public String getIndexFromSelectedRow() {
 		int row = studentTable.getSelectedRow();
 		
@@ -113,4 +120,37 @@ public class TabbedPane extends JTabbedPane{
 		}
 	}
 
+	public String nadjiKlljuc() {
+		int red = profesorTable.getSelectedRow();
+		
+		if(red != -1)
+			return (String) BazaProfesori.getInstance().getValueAt(red, 4);
+		else
+			return "";
+	}
+
+	public StudentTable getStudentTable() {
+		return studentTable;
+	}
+
+	public void setStudentTable(StudentTable studentTable) {
+		this.studentTable = studentTable;
+
+	}
+
+	public ProfesorTable getProfesorTable() {
+		return profesorTable;
+	}
+
+	public void setProfesorTable(ProfesorTable profesorTable) {
+		this.profesorTable = profesorTable;
+	}
+
+	public PredmetTable getPredmetTable() {
+		return predmetTable;
+	}
+
+	public void setPredmetTable(PredmetTable predmetTable) {
+		this.predmetTable = predmetTable;
+	}
 }

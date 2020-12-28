@@ -13,6 +13,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -22,15 +24,18 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controller.ProfesorContoller;
 import main.Main;
+import model.BazaProfesori;
+import model.Profesor;
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
 
-public class DodavanjeProfesoraView {
+public class IzmenaProfesoraView {
 	
 	private JDialog jd;
 	private JPanel jp;
@@ -59,20 +64,30 @@ public class DodavanjeProfesoraView {
 	private JButton btnPotvrdi;
 	private JButton btnOdustani;
 	
+	private String kljuc;
+	
 	private MyFocusListener focusListener;
 
-	public DodavanjeProfesoraView() {
+	public IzmenaProfesoraView() {
 		super();
 		this.jd = new JDialog();
 		this.jp = new JPanel();
 	}
 	
-	public DodavanjeProfesoraView(GlavniProzor gp) {
+	public IzmenaProfesoraView(GlavniProzor gp, String kljuc) {
 		super();
 	
 		focusListener  = new MyFocusListener();
 		
-		jd = new JDialog(gp, "Dodavanje profesora", true);
+		this.kljuc =kljuc;
+		
+		if(kljuc.equals("")) {
+			JOptionPane.showMessageDialog(jd, "Morate selektovati red!", "Nijedan red nije selektovan", 
+		    JOptionPane.INFORMATION_MESSAGE, GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
+			return;
+		}
+		
+		jd = new JDialog(gp, "Izmena profesora", true);
 		jd.setSize(500,600);
 		jd.setResizable(false);
 		jd.setLocationRelativeTo(null);
@@ -81,8 +96,8 @@ public class DodavanjeProfesoraView {
 			
 			public void windowClosing(WindowEvent e) {
 				String[] options = {"Da", "Ne" };
-				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete unos profesora?",
-						"Prekid unosa profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete izmenu profesora?",
+						"Prekid izmene profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
 						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
 						options, options[0]);
 				
@@ -92,6 +107,7 @@ public class DodavanjeProfesoraView {
 					jd.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 			}
 		});
+		
 		
 		jp = new JPanel();
 		jp.setVisible(true);
@@ -144,8 +160,8 @@ public class DodavanjeProfesoraView {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String[] options = {"Da", "Ne" };
-				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete unos profesora?",
-						"Prekid unosa profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete izmenu profesora?",
+						"Prekid izmene profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
 						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
 						options, options[0]);
 
@@ -157,8 +173,18 @@ public class DodavanjeProfesoraView {
 		});
 		
 		Main.changeFont(jp, f);
-		jd.setIconImage(GlavniProzor.resizeIcon(new ImageIcon("images/plus.png")).getImage());
-		jd.add(jp);
+		jd.setIconImage(GlavniProzor.resizeIcon(new ImageIcon("images/edit.png")).getImage());
+		
+		JTabbedPane tp = new JTabbedPane();
+		Font font = new Font("sans-serif", Font.BOLD, 12);
+		tp.setFont(font);
+		tp.setBackground(new Color(90, 216, 252));
+		tp.setForeground(Color.WHITE);
+		
+		tp.add("Informacije", jp);
+		tp.add("Predmeti", new JPanel());
+		
+		jd.add(tp);
 		jd.setVisible(true);		
 	}
 	
@@ -201,27 +227,15 @@ public void potvrdi() {
 		else 
 			zv = Zvanje.VanredniProfesor;
 		
-		String message = ProfesorContoller.getInstance().dodajProfesora(ime, prezime, datum, 
-										adresaStan, brTel, eMail, adresaKanc, brLK, tit, zv);
-
-		//JOptionPane.showMessageDialog(jd, message);
+		String message = ProfesorContoller.getInstance().izmeniProfesora(ime, prezime, datum, 
+										adresaStan, brTel, eMail, adresaKanc, brLK, tit, zv, kljuc);
 		
-		if(message.equals("Uspešno ste uneli profesora!")) {
+		if(message.equals("Uspešno ste izmenili izabranog profesora!")) {
 			
-			JOptionPane.showMessageDialog(jd, message, "Uspešan unos", 
+			JOptionPane.showMessageDialog(jd, message, "Uspešno ste izmenili izabranog profesora", 
 					JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));
-			
-			jtfIme.setText("");
-			jtfPrz.setText("");
-			jtfDatum.setText("");
-			jtfAdresaStan.setText("");
-			jtfBrTel.setText("");
-			jtfeMail.setText("");
-			jtfAdresaKanc.setText("");
-			jtfBrLK.setText("");
-			cbTit.setSelectedIndex(0);
-			cbZv.setSelectedIndex(0);
+			jd.dispose();
 		}
 		else {
 			JOptionPane.showMessageDialog(jd, message, "Nisu uneti svi podaci", 
@@ -275,6 +289,14 @@ public void potvrdi() {
 		}
 	}
 	
+	private Profesor popuniPolja() {
+		
+		//int ind = TabbedPane.getInstance().getProfesorTable().getSelectedRow();
+		//String kljuc = BazaProfesori.getInstance().getValueAt(row, 4);
+		return BazaProfesori.getInstance().nadjiProfesora(kljuc);
+				
+	}
+	
 	private GridBagConstraints gdbcLabele (GridBagConstraints gbc, int y) {
 		gbc.gridx = 0;
 		gbc.gridy = y;
@@ -301,6 +323,7 @@ public void potvrdi() {
 		jtfIme = new JTextField(20);
 		jtfIme.setBackground(new Color(224, 224, 224));
 		jtfIme.setName("txtIme");
+		jtfIme.setText(BazaProfesori.getInstance().nadjiProfesora(kljuc).getIme());
 		jtfIme.addFocusListener(focusListener);
 		
 		GridBagConstraints gbctfIme = new GridBagConstraints();
@@ -317,6 +340,7 @@ public void potvrdi() {
 	    jtfPrz = new JTextField(20); 
 	    jtfPrz.setBackground(new Color(224, 224, 224));
 	    jtfPrz.setName("txtPrz");
+	    jtfPrz.setText(BazaProfesori.getInstance().nadjiProfesora(kljuc).getPrezime());
 	    jtfPrz.addFocusListener(focusListener);
 		
 		GridBagConstraints gbctfPrz = new GridBagConstraints();
@@ -333,6 +357,15 @@ public void potvrdi() {
 		jtfDatum = new JTextField(20); 
 		jtfDatum.setBackground(new Color(224, 224, 224));
 		jtfDatum.setName("txtDatum");
+		
+		Date date = BazaProfesori.getInstance().nadjiProfesora(kljuc).getDatumRodjenja();
+		String dateStr = "";
+		if(date!=null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy.");
+			dateStr = sdf.format(date);
+		}
+		
+		jtfDatum.setText(dateStr);
 		jtfDatum.addFocusListener(focusListener);
 		jtfDatum.setToolTipText("Format: dd.MM.yyyy.");
 		GridBagConstraints gbctfDatum = new GridBagConstraints();
@@ -349,6 +382,7 @@ public void potvrdi() {
 		jtfAdresaStan = new JTextField(20); 
 		jtfAdresaStan.setBackground(new Color(224, 224, 224));
 		jtfAdresaStan.setName("txtAdresaStan");
+		jtfAdresaStan.setText(BazaProfesori.getInstance().nadjiProfesora(kljuc).getAdresaStanovanja());
 		jtfAdresaStan.addFocusListener(focusListener);
 		GridBagConstraints gbctfAdresaStan = new GridBagConstraints();
 		gbctfAdresaStan = gdbcTxt(gbctfAdresaStan, 3);
@@ -364,6 +398,7 @@ public void potvrdi() {
 		jtfBrTel= new JTextField(20); 
 		jtfBrTel.setBackground(new Color(224, 224, 224));
 		jtfBrTel.setName("txtBrTel");
+		jtfBrTel.setText(BazaProfesori.getInstance().nadjiProfesora(kljuc).getKontaktTelefon());
 		jtfBrTel.addFocusListener(focusListener);
 		
 		jtfBrTel.addKeyListener(new KeyListener() {
@@ -422,6 +457,7 @@ public void potvrdi() {
 		jtfeMail = new JTextField(20);
 		jtfeMail.setBackground(new Color(224, 224, 224));
 		jtfeMail.setName("txteMail");
+		jtfeMail.setText(BazaProfesori.getInstance().nadjiProfesora(kljuc).getEmailAdresa());
 		jtfeMail.addFocusListener(focusListener);
 		GridBagConstraints gbctfeMail = new GridBagConstraints();
 		gbctfeMail = gdbcTxt(gbctfeMail, 5);
@@ -437,6 +473,7 @@ public void potvrdi() {
 		jtfAdresaKanc= new JTextField(20); 
 		jtfAdresaKanc.setBackground(new Color(224, 224, 224));
 		jtfAdresaKanc.setName("txtAdresaKanc");
+		jtfAdresaKanc.setText(BazaProfesori.getInstance().nadjiProfesora(kljuc).getAdresaKancelarije());
 		jtfAdresaKanc.addFocusListener(focusListener);
 		GridBagConstraints gbctfAdresaKanc = new GridBagConstraints();
 		gbctfAdresaKanc = gdbcTxt(gbctfAdresaKanc, 6);
@@ -452,6 +489,7 @@ public void potvrdi() {
 		jtfBrLK= new JTextField(20); 
 		jtfBrLK.setBackground(new Color(224, 224, 224));
 		jtfBrLK.setName("txtBrLK");
+		jtfBrLK.setText(BazaProfesori.getInstance().nadjiProfesora(kljuc).getBrojLicneKarte());
 		jtfBrLK.addFocusListener(focusListener);
 		
 		jtfBrLK.addKeyListener(new KeyListener() {
@@ -516,6 +554,18 @@ public void potvrdi() {
 							   "                     Prof. dr                     "
 							   };
 		this.cbTit = new JComboBox<String>(titulaProf);
+		
+		if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getTitula() == Titula.BSc)
+			cbTit.setSelectedIndex(0);
+		else if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getTitula() == Titula.MSc)
+			cbTit.setSelectedIndex(1);
+		else if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getTitula() == Titula.mr)
+			cbTit.setSelectedIndex(2);	
+		else if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getTitula() == Titula.dr)
+			cbTit.setSelectedIndex(3);
+		else 
+			cbTit.setSelectedIndex(4);
+		
 		GridBagConstraints gbctfTitula = new GridBagConstraints();
 		cbTit.setEditable(false);
 		gbctfTitula.gridx = 5;
@@ -540,6 +590,22 @@ public void potvrdi() {
 							   "			Profesor emeritus			"
 							   };
 		this.cbZv = new JComboBox<String>(zvanjeProf);
+		
+		if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getZvanje() == Zvanje.SaradnikUNastavi)
+			cbZv.setSelectedIndex(0);
+		else if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getZvanje() == Zvanje.Asistent)
+			cbZv.setSelectedIndex(1);
+		else if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getZvanje() == Zvanje.AsistentSaDoktoratom)
+			cbZv.setSelectedIndex(2);
+		else if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getZvanje() == Zvanje.Docent)
+			cbZv.setSelectedIndex(3);
+		else if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getZvanje() == Zvanje.VanredniProfesor)
+			cbZv.setSelectedIndex(4);
+		else if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getZvanje() == Zvanje.RedovniProfesor)
+			cbZv.setSelectedIndex(5);
+		else
+			cbZv.setSelectedIndex(6);
+		
 		GridBagConstraints gbctfZvanje = new GridBagConstraints();
 		cbZv.setEditable(false);
 		gbctfZvanje.gridx = 5;

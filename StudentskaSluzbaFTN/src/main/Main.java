@@ -27,7 +27,6 @@ public class Main {
 		BazaProfesori.getInstance();
 		ProfesorContoller.getInstance();
 		StudentController.getInstance();
-		
 	}
 	
 	
