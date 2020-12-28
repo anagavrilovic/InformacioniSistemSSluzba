@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Pattern;
 
+import model.BazaPredmeti;
 import model.BazaStudenti;
 import model.Student;
 import model.Student.Status;
@@ -67,6 +68,17 @@ public class StudentController {
 		TabbedPane.getInstance().azurirajPrikazStudent("Izmena studenta", -1);
 
 		return "Student uspešno izmenjen!";
+	}
+	
+	public String izbrisiStudenta(String index) {
+		
+		BazaStudenti.getInstance().izbrisiStudenta(index);
+		BazaPredmeti.getInstance().izbrisiStudentaSaPolozenihPredmeta(index);
+		BazaPredmeti.getInstance().izbrisiStudentaSaNepolozenihPredmeta(index);
+		
+		TabbedPane.getInstance().azurirajPrikazStudent("Brisanje", -1);
+		
+		return "Student uspešno izbrisan!";
 	}
 	
 	

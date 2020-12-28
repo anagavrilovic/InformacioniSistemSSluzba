@@ -63,6 +63,8 @@ public class Predmet {
 		this.espb = espb;
 		this.godinaStudija = godina; 
 		this.semestar = semestar;
+		this.studentiPolozili = new ArrayList<Student>();
+		this.studentiNisuPolozili = new ArrayList<Student>();
 	}
 	
 	public Predmet(Predmet p) {
@@ -76,7 +78,8 @@ public class Predmet {
 		this.studentiPolozili = p.studentiPolozili;
 		this.studentiNisuPolozili = p.studentiNisuPolozili;
 	}
-
+	
+	
 	public String getSifraPredmeta() {
 		return sifraPredmeta;
 	}

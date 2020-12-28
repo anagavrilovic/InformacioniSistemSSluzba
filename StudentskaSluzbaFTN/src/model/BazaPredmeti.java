@@ -60,6 +60,29 @@ public class BazaPredmeti {
 		
 		return new Predmet();
 	}
+	
+	public void izbrisiStudentaSaPolozenihPredmeta(String index) {
+		for(Predmet p : getPredmeti()) {
+			for(Student s : p.getStudentiPolozili()) {
+				if (s.getBrojIndeksa().equals(index)) {
+					p.getStudentiPolozili().remove(s);
+					break;
+				}
+			}
+		}
+	}
+	
+	public void izbrisiStudentaSaNepolozenihPredmeta(String index) {
+		for(Predmet p : getPredmeti()) {
+			for(Student s : p.getStudentiNisuPolozili()) {
+				if (s.getBrojIndeksa().equals(index)) {
+					p.getStudentiNisuPolozili().remove(s);
+					break;
+				}
+			}
+		}
+	}
+
 
 	public List<Predmet> getPredmeti() {
 		return predmeti;
