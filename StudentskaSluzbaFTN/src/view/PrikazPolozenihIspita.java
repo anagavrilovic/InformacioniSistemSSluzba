@@ -149,7 +149,8 @@ public class PrikazPolozenihIspita extends JPanel {
 			return;
 		} else {
 			IspitiController.getInstance().ponistiOcenu(index, ponistavanjePred);
-			//osveziLabele();
+			prosecnaOcena.setText("Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).getProsecnaOcena());
+			espbBodovi.setText("Ukupno ESPB: " + BazaStudenti.getInstance().pronadjiStudenta(index).getUkupnoESPB());
 		}
 		
 	}
@@ -158,19 +159,5 @@ public class PrikazPolozenihIspita extends JPanel {
 		AbstractTableModelPolozeniIspiti modelPredm = (AbstractTableModelPolozeniIspiti) predmetTable.getModel();
 		modelPredm.fireTableDataChanged();
 		validate();
-	}
-	
-	/*private void osveziLabele() {
-		String ocena = "Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).getProsecnaOcena();
-			prosecnaOcena = new JLabel(ocena);
-			panelSouth.add(prosecnaOcena, new GridBagConstraints(0, 0, 1, 1, 100, 0, GridBagConstraints.EAST,
-	                GridBagConstraints.NONE, new Insets(10, 0, 5, 80), 0, 0));
-			
-			String espb = "Ukupno ESPB: " + BazaStudenti.getInstance().pronadjiStudenta(index).getUkupnoESPB();
-			espbBodovi = new JLabel(espb);
-			panelSouth.add(espbBodovi, new GridBagConstraints(0, 1, 1, 1, 100, 0, GridBagConstraints.EAST,
-	                GridBagConstraints.NONE, new Insets(5, 0, 10, 80), 0, 0));
-	}*/
-	
-	
+	}	
 }
