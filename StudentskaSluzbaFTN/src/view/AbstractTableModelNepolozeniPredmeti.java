@@ -4,14 +4,14 @@ import javax.swing.table.AbstractTableModel;
 
 import model.BazaPredmeti;
 
-public class AbstractTableModelPredmeti extends AbstractTableModel{
+public class AbstractTableModelNepolozeniPredmeti extends AbstractTableModel{
 	
-	public AbstractTableModelPredmeti() {}
+	public AbstractTableModelNepolozeniPredmeti() {}
 
 	public int getRowCount() {
 		
 		if(!(BazaPredmeti.getInstance().getPredmeti() == null))
-			return BazaPredmeti.getInstance().getPredmeti().size();
+			return BazaPredmeti.getInstance().getNepolozeniPredmeti().size();
 		else
 			return -1;
 	}
@@ -25,6 +25,6 @@ public class AbstractTableModelPredmeti extends AbstractTableModel{
 	}
 	
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return BazaPredmeti.getInstance().getValueAt(rowIndex, columnIndex);
+		return BazaPredmeti.getInstance().getValueAtNepolozeniPredmeti(rowIndex, columnIndex);
 	}
 }

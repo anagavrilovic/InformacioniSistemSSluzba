@@ -7,11 +7,12 @@ import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
 public class StudentTable extends JTable{
 
-	public StudentTable() {
+	public StudentTable(AbstractTableModel atms) {
 		super();
 
 		this.setRowSelectionAllowed(true);
@@ -31,7 +32,7 @@ public class StudentTable extends JTable{
 
 	    this.setIntercellSpacing(new Dimension(15, 4));
 		
-		this.setModel(new AbstractTableModelStudenti());
+		this.setModel(atms);
 	}
 	
 	// Preuzeto iz materijala sa vezbi

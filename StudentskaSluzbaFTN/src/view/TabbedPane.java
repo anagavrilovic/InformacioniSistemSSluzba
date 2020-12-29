@@ -16,6 +16,7 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import javax.swing.table.AbstractTableModel;
 
+import model.BazaPredmeti;
 import model.BazaProfesori;
 
 
@@ -45,17 +46,20 @@ public class TabbedPane extends JTabbedPane{
 		this.setBackground(new Color(90, 216, 252));
 		this.setForeground(Color.WHITE);
 		
-		studentTable = new StudentTable();
+		AbstractTableModelStudenti atms = new AbstractTableModelStudenti();
+		studentTable = new StudentTable(atms);
 		JScrollPane spStudent = new JScrollPane(studentTable);
 		this.addTab("Student", spStudent);
 		azurirajPrikazStudent(null, -1);
 		
-		profesorTable = new ProfesorTable();
+		AbstractTableModelProfesori atmprof = new AbstractTableModelProfesori();
+		profesorTable = new ProfesorTable(atmprof);
 		JScrollPane spProfesor = new JScrollPane(profesorTable);
 		this.addTab("Profesor", spProfesor);
 		azurirajPrikazProf(null, -1);
 		
-		predmetTable = new PredmetTable();
+		AbstractTableModelPredmeti atmp = new AbstractTableModelPredmeti();
+		predmetTable = new PredmetTable(atmp);
 		JScrollPane spPredmet = new JScrollPane(predmetTable);
 		this.addTab("Predmet", spPredmet);
 		azurirajPrikazPredmet(null, -1);

@@ -18,6 +18,7 @@ public class BazaPredmeti {
 
 	private List<Predmet> predmeti;
 	private List<String> kolone;
+	private List<Predmet> nepolozeniPredmeti;
 
 	private BazaPredmeti() {
 	
@@ -26,9 +27,11 @@ public class BazaPredmeti {
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra predmeta");
 		this.kolone.add("Naziv predmeta");
-		this.kolone.add("Broj bodova");
-		this.kolone.add("Godina");
+		this.kolone.add("ESPB");
+		this.kolone.add("Godina studija");
 		this.kolone.add("Semestar");
+		
+		this.nepolozeniPredmeti = new ArrayList<Predmet>();
 	}
 
 	private void inicijalizacijaPredmeta() {
@@ -89,6 +92,18 @@ public class BazaPredmeti {
 				p.setProfesor(new Profesor());
 		}
 	}
+	
+	public void nadjiNepolozeneIspite(String index) {
+		
+		List<Student> studenti = BazaStudenti.getInstance().getStudentList();
+		
+		for(Student s : studenti) {
+			if(s.getBrojIndeksa().equals(index)) {
+				setNepolozeniPredmeti(s.getSpisakNepolozenih());
+				break;
+			}
+		}
+	}
 
 
 	public List<Predmet> getPredmeti() {
@@ -98,7 +113,15 @@ public class BazaPredmeti {
 	public void setPredmeti(List<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
+	
+	
+	public List<Predmet> getNepolozeniPredmeti() {
+		return nepolozeniPredmeti;
+	}
 
+	public void setNepolozeniPredmeti(List<Predmet> nepolozeniPredmeti) {
+		this.nepolozeniPredmeti = nepolozeniPredmeti;
+	}
 
 	public int getColumnCount() {
 		return 5;
@@ -114,6 +137,24 @@ public class BazaPredmeti {
 
 	public String getValueAt(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);
+		switch (column) {
+		case 0:
+			return predmet.getSifraPredmeta();
+		case 1:
+			return predmet.getNazivPredmeta();
+		case 2:
+			return Integer.toString(predmet.getEspb());
+		case 3:
+			return Integer.toString(predmet.getGodinaStudija());
+		case 4:
+			return predmet.getSemestar().toString();
+		default:
+			return null;
+		}
+	}
+	
+	public String getValueAtNepolozeniPredmeti(int row, int column) {
+		Predmet predmet = this.nepolozeniPredmeti.get(row);
 		switch (column) {
 		case 0:
 			return predmet.getSifraPredmeta();

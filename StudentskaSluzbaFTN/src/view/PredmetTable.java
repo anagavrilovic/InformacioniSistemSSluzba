@@ -7,13 +7,15 @@ import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import main.Main;
+import model.BazaPredmeti;
 
 public class PredmetTable extends JTable{
 	
-	public PredmetTable() {
+	public PredmetTable(AbstractTableModel atm) {
 		
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
@@ -32,7 +34,9 @@ public class PredmetTable extends JTable{
 		this.getTableHeader().setPreferredSize(new Dimension(0, 28));
 		this.getTableHeader().setReorderingAllowed(false);
 		
-		this.setModel(new AbstractTableModelPredmeti());
+		this.setModel(atm);
+		
+		//BazaPredmeti.getInstance().inicijalizacijaPredmeta();
 	} 
 
 	@Override

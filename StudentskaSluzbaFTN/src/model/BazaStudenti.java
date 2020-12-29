@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Predmet.Semestar;
 import model.Student.Status;
 
 
@@ -21,6 +22,7 @@ public class BazaStudenti {
 	
 	private List<Student> studentList;
 	private List<String> kolone;
+	private ArrayList<Predmet> nepolozeniPredmeti;
 	
 	private BazaStudenti() {
 		
@@ -38,8 +40,10 @@ public class BazaStudenti {
 	private void initStudente() {
 		studentList = new ArrayList<Student>();
 		
-		studentList.add(new Student("Gavrilović", "Ana", "RA65/2018", 3, Status.B, 10.0));
-		studentList.add(new Student("Klještan", "Marija", "RA55/2018", 3, Status.B, 10.0));
+		Student s1 = new Student("Gavrilović", "Ana", "RA65/2018", 3, Status.B, 10.0);
+		studentList.add(s1);
+		Student s2 = new Student("Klještan", "Marija", "RA55/2018", 3, Status.B, 10.0);
+		studentList.add(s2);
 		studentList.add(new Student("Samardžija", "Milica", "RA66/2018", 3, Status.B, 10.0));
 		studentList.add(new Student("Atić", "Nevena", "RA67/2018", 3, Status.B, 10.0));
 		studentList.add(new Student("Mijatović", "Nikola", "RA87/2018", 3, Status.B, 10.0));

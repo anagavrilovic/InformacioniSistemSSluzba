@@ -7,13 +7,14 @@ import java.awt.Font;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import main.Main;
 
 public class ProfesorTable extends JTable{
 	
-	public ProfesorTable() {
+	public ProfesorTable(AbstractTableModel atmp) {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -31,7 +32,7 @@ public class ProfesorTable extends JTable{
 		this.getTableHeader().setPreferredSize(new Dimension(0, 28));
 		this.getTableHeader().setReorderingAllowed(false);
 		
-		this.setModel(new AbstractTableModelProfesori());
+		this.setModel(atmp);
 	} 
 
 	@Override

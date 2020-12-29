@@ -71,7 +71,7 @@ public class Student {
 		this.prosecnaOcena = prosecnaOcena;
 		this.spisakNepolozenih = new ArrayList<Predmet>();
 	}
-
+	
 
 	public String getPrezime() {
 		return prezime;
