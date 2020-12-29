@@ -7,21 +7,35 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.crypto.interfaces.DHPrivateKey;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EtchedBorder;
 
+import controller.IspitiController;
 import model.BazaPredmeti;
 
 public class PrikazNepolozenihIspita extends JPanel{
 	
+	public static PrikazNepolozenihIspita instance = null;
+	
+	public static PrikazNepolozenihIspita getInstance(String index) {
+		
+		if (instance == null) {
+			instance = new PrikazNepolozenihIspita(index);
+		}
+		return instance;
+	}
+	
+	private JTable predmetTable;
 	private JButton btnDodaj;
 	private JButton btnObrisi;
 	private JButton btnPolaganje;
 	private JTable nepolozeniIspitiTab;
 	
-	public PrikazNepolozenihIspita (String index) {
+	private PrikazNepolozenihIspita (String index) {
 		
 		Dimension dim = new Dimension(100, 25);
 		
@@ -41,6 +55,7 @@ public class PrikazNepolozenihIspita extends JPanel{
 		this.btnPolaganje.setPreferredSize(dim);
 		
 		this.setLayout(new BorderLayout());
+		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
 		
 		Dimension panDimX = new Dimension(800, 80);
 		Dimension panDimY = new Dimension(80, 660);
@@ -75,9 +90,15 @@ public class PrikazNepolozenihIspita extends JPanel{
 		
 		BazaPredmeti.getInstance().nadjiNepolozeneIspite(index);
 		AbstractTableModelNepolozeniPredmeti atmp = new AbstractTableModelNepolozeniPredmeti();
-		JTable predmetTable = new PredmetTable(atmp);
+		predmetTable = new PredmetTable(atmp);
 		JScrollPane spPredmet = new JScrollPane(predmetTable);
 		this.add(spPredmet);
 			
+	}
+	
+	public void azurirajPrikazPredmet(String akcija, int vrednost) {
+		AbstractTableModelNepolozeniPredmeti modelPredm = (AbstractTableModelNepolozeniPredmeti) predmetTable.getModel();
+		modelPredm.fireTableDataChanged();
+		validate();
 	}
 }

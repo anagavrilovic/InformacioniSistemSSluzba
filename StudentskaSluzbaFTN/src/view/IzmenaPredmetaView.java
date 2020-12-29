@@ -62,7 +62,7 @@ public class IzmenaPredmetaView {
 	public IzmenaPredmetaView(GlavniProzor gp, String sifra) {
 		
 		if(sifra.equals("")) {
-			JOptionPane.showMessageDialog(dialog, "Selektujte red!", "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
+			JOptionPane.showMessageDialog(dialog, "Selektujte predmet!", "Nije selektovan nijedan predmet", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
 			return;
 		}
@@ -140,8 +140,8 @@ public class IzmenaPredmetaView {
 		panel.add(btnPotvrdi, gbcLeft);
 		
 		btnOdustani = new JButton("Odustani");
-		btnOdustani.setBackground(new Color(90, 216, 252));
-		btnOdustani.setForeground(Color.WHITE);
+		btnOdustani.setBackground(Color.WHITE);
+		btnOdustani.setForeground(new Color(90, 216, 252));
 		btnOdustani.addActionListener(new ActionListener() {
 			
 			@Override

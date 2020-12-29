@@ -48,7 +48,8 @@ public class CreateDocumentActionDelete extends AbstractAction {
 	private void izvrsiBrisanjeStudenta() {
 
 		if(TabbedPane.getInstance().getIndexFromSelectedRow().equals("")) {
-			JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Selektujte red!", "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
+			JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Selektujte studenta!", "Nije selektovan nijedan student", 
+					JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
 			return;
 		}
@@ -69,7 +70,8 @@ public class CreateDocumentActionDelete extends AbstractAction {
 	private void izvrsiBrisanjeProfesora() {
 		
 		if(TabbedPane.getInstance().nadjiKlljuc().equals("")) {
-			JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Selektujte red!", "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
+			JOptionPane.showMessageDialog(GlavniProzor.getInstance(), "Selektujte profesora!", "Nije selektovan nijedan profesor", 
+					JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
 			return;
 		}

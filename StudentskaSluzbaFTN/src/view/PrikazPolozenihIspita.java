@@ -8,16 +8,24 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 
+import controller.IspitiController;
+import controller.StudentController;
 import main.Main;
+import model.BazaPredmeti;
 import model.BazaStudenti;
+import model.Predmet;
 
 public class PrikazPolozenihIspita extends JPanel {
 	
@@ -26,9 +34,27 @@ public class PrikazPolozenihIspita extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	public static PrikazPolozenihIspita instance = null;
+	
+	public static PrikazPolozenihIspita getInstance(String index) {
+		
+		if (instance == null) {
+			instance = new PrikazPolozenihIspita(index);
+		}
+		return instance;
+	}
+	
+	private String index;
 	private JButton btnPonistiOcenu;
+	private JLabel prosecnaOcena;
+	private JLabel espbBodovi;
+	private JPanel panelSouth;
+	
+	private PredmetTable predmetTable;
+	private Predmet ponistavanjePred;
+	
 
-	public PrikazPolozenihIspita(String index) {
+	private PrikazPolozenihIspita(String index) {
 		
 		this.setBackground(Color.WHITE);
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
@@ -45,6 +71,13 @@ public class PrikazPolozenihIspita extends JPanel {
 		btnPonistiOcenu.setForeground(Color.WHITE);
 		panelNorth.add(btnPonistiOcenu, new GridBagConstraints(0, 0, 1, 1, 100, 0, GridBagConstraints.WEST,
                 GridBagConstraints.NONE, new Insets(20, 80, 20, 0), 0, 0));
+		btnPonistiOcenu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ponistiOcenu();
+			}
+		});
 		this.add(panelNorth, BorderLayout.NORTH);
 		
 		
@@ -58,7 +91,7 @@ public class PrikazPolozenihIspita extends JPanel {
 		panelEast.setPreferredSize(new Dimension(80, 660));
 		this.add(panelEast, BorderLayout.EAST);
 		
-		JPanel panelSouth = new JPanel();
+		panelSouth = new JPanel();
 		panelSouth.setPreferredSize(new Dimension(800, 100));
 		panelSouth.setBackground(Color.WHITE);
 		panelSouth.setLayout(new GridBagLayout());
@@ -66,18 +99,18 @@ public class PrikazPolozenihIspita extends JPanel {
 		
 		
 		AbstractTableModelPolozeniIspiti atmPI = new AbstractTableModelPolozeniIspiti(index);
-		JTable predmetTable = new PredmetTable(atmPI);
+		predmetTable = new PredmetTable(atmPI);
 		JScrollPane spPredmet = new JScrollPane(predmetTable);
 		this.add(spPredmet, BorderLayout.CENTER);
 		
-		
+		this.index = index;
 		String ocena = "Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).getProsecnaOcena();
-		JLabel prosecnaOcena = new JLabel(ocena);
+		prosecnaOcena = new JLabel(ocena);
 		panelSouth.add(prosecnaOcena, new GridBagConstraints(0, 0, 1, 1, 100, 0, GridBagConstraints.EAST,
                 GridBagConstraints.NONE, new Insets(10, 0, 5, 80), 0, 0));
 		
 		String espb = "Ukupno ESPB: " + BazaStudenti.getInstance().pronadjiStudenta(index).getUkupnoESPB();
-		JLabel espbBodovi = new JLabel(espb);
+		espbBodovi = new JLabel(espb);
 		panelSouth.add(espbBodovi, new GridBagConstraints(0, 1, 1, 1, 100, 0, GridBagConstraints.EAST,
                 GridBagConstraints.NONE, new Insets(5, 0, 10, 80), 0, 0));
 		
@@ -88,9 +121,56 @@ public class PrikazPolozenihIspita extends JPanel {
 		Main.changeFont(this, f);
 	}
 	
+	public String getSifraPredFromSelectedRow() {
+		int row = predmetTable.getSelectedRow();
+		
+		if(row != -1) {
+			return (String) predmetTable.getValueAt(row, 0);
+		} else {
+			return "";
+		}
+	}
 	
+	private void ponistiOcenu() {
+		if(getSifraPredFromSelectedRow().equals("")) {
+			JOptionPane.showMessageDialog(this.getParent(), "Selektujte predmet!", "Nije selektovan nijedan predmet", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
+			return;
+		}
+		
+		ponistavanjePred = BazaPredmeti.getInstance().pronadjiPredmet(getSifraPredFromSelectedRow());
+		
+		String[] options = {"Da", "Ne" };
+		int opcija = JOptionPane.showOptionDialog(GlavniProzor.getInstance(), "Da li ste sigurni da želite da poništite ocenu?",
+				"Poništavanje ocene?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+				GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")), 
+				options, options[1]);
+		if (opcija != JOptionPane.YES_OPTION) {
+			return;
+		} else {
+			IspitiController.getInstance().ponistiOcenu(index, ponistavanjePred);
+			//osveziLabele();
+		}
+		
+	}
 	
+	public void azurirajPrikazPredmet(String akcija, int vrednost) {
+		AbstractTableModelPolozeniIspiti modelPredm = (AbstractTableModelPolozeniIspiti) predmetTable.getModel();
+		modelPredm.fireTableDataChanged();
+		validate();
+	}
 	
+	/*private void osveziLabele() {
+		String ocena = "Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).getProsecnaOcena();
+			prosecnaOcena = new JLabel(ocena);
+			panelSouth.add(prosecnaOcena, new GridBagConstraints(0, 0, 1, 1, 100, 0, GridBagConstraints.EAST,
+	                GridBagConstraints.NONE, new Insets(10, 0, 5, 80), 0, 0));
+			
+			String espb = "Ukupno ESPB: " + BazaStudenti.getInstance().pronadjiStudenta(index).getUkupnoESPB();
+			espbBodovi = new JLabel(espb);
+			panelSouth.add(espbBodovi, new GridBagConstraints(0, 1, 1, 1, 100, 0, GridBagConstraints.EAST,
+	                GridBagConstraints.NONE, new Insets(5, 0, 10, 80), 0, 0));
+	}*/
 	
 	
 }

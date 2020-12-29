@@ -77,7 +77,7 @@ public class IzmenaStudentaView {
 	public IzmenaStudentaView(GlavniProzor gp, String index) {
 		
 		if(index.equals("")) {
-			JOptionPane.showMessageDialog(dialog, "Selektujte red!", "Nije selektovan nijedan red", JOptionPane.INFORMATION_MESSAGE, 
+			JOptionPane.showMessageDialog(dialog, "Selektujte studenta!", "Nije selektovan nijedan student", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
 			return;
 		}
@@ -159,9 +159,8 @@ public class IzmenaStudentaView {
 		panelInfo.add(btnPotvrdi, gbcLeft);
 		
 		btnOdustani = new JButton("Odustani");
-		btnOdustani.setBackground(new Color(90, 216, 252));
-		btnOdustani.setForeground(Color.white);
-		btnOdustani.setForeground(Color.WHITE);
+		btnOdustani.setBackground(Color.WHITE);
+		btnOdustani.setForeground(new Color(90, 216, 252));
 		btnOdustani.addActionListener(new ActionListener() {
 			
 			@Override
@@ -182,8 +181,8 @@ public class IzmenaStudentaView {
 		gbcRight.insets = new Insets(0, 0, 0, 270);
 		panelInfo.add(btnOdustani, gbcRight);
 		
-		panelPolozeni = new PrikazPolozenihIspita(index);
-		panelNepolozeni = new PrikazNepolozenihIspita(index);
+		panelPolozeni = PrikazPolozenihIspita.getInstance(index);
+		panelNepolozeni = PrikazNepolozenihIspita.getInstance(index);
 		
 		Main.changeFont(panelInfo, f);
 		
