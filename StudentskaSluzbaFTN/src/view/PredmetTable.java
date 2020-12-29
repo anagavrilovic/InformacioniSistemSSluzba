@@ -35,8 +35,6 @@ public class PredmetTable extends JTable{
 		this.getTableHeader().setReorderingAllowed(false);
 		
 		this.setModel(atm);
-		
-		//BazaPredmeti.getInstance().inicijalizacijaPredmeta();
 	} 
 
 	@Override
@@ -44,7 +42,7 @@ public class PredmetTable extends JTable{
 		
 		Component c = super.prepareRenderer(renderer, row, column);
 		if (isRowSelected(row)) {
-			c.setBackground(Color.LIGHT_GRAY);
+			c.setBackground(new Color(224, 224, 224));
 		} else {
 			c.setBackground(Color.WHITE);
 		}

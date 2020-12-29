@@ -46,20 +46,20 @@ public class TabbedPane extends JTabbedPane{
 		this.setBackground(new Color(90, 216, 252));
 		this.setForeground(Color.WHITE);
 		
-		AbstractTableModelStudenti atms = new AbstractTableModelStudenti();
-		studentTable = new StudentTable(atms);
+		AbstractTableModelStudenti atmStud = new AbstractTableModelStudenti();
+		studentTable = new StudentTable(atmStud);
 		JScrollPane spStudent = new JScrollPane(studentTable);
 		this.addTab("Student", spStudent);
 		azurirajPrikazStudent(null, -1);
 		
-		AbstractTableModelProfesori atmprof = new AbstractTableModelProfesori();
-		profesorTable = new ProfesorTable(atmprof);
+		AbstractTableModelProfesori atmProf = new AbstractTableModelProfesori();
+		profesorTable = new ProfesorTable(atmProf);
 		JScrollPane spProfesor = new JScrollPane(profesorTable);
 		this.addTab("Profesor", spProfesor);
 		azurirajPrikazProf(null, -1);
 		
-		AbstractTableModelPredmeti atmp = new AbstractTableModelPredmeti();
-		predmetTable = new PredmetTable(atmp);
+		AbstractTableModelPredmeti atmPred = new AbstractTableModelPredmeti();
+		predmetTable = new PredmetTable(atmPred);
 		JScrollPane spPredmet = new JScrollPane(predmetTable);
 		this.addTab("Predmet", spPredmet);
 		azurirajPrikazPredmet(null, -1);

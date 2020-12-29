@@ -1,6 +1,6 @@
 package view;
 
-//Kod napisan po uzoru na materijale sa vježbi
+//Kod napisan po uzoru na materijale sa vežbi
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;

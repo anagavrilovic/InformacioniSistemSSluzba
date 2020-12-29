@@ -14,7 +14,7 @@ import main.Main;
 
 public class ProfesorTable extends JTable{
 	
-	public ProfesorTable(AbstractTableModel atmp) {
+	public ProfesorTable(AbstractTableModel atm) {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -32,7 +32,7 @@ public class ProfesorTable extends JTable{
 		this.getTableHeader().setPreferredSize(new Dimension(0, 28));
 		this.getTableHeader().setReorderingAllowed(false);
 		
-		this.setModel(atmp);
+		this.setModel(atm);
 	} 
 
 	@Override
@@ -41,7 +41,7 @@ public class ProfesorTable extends JTable{
 		Component c = super.prepareRenderer(renderer, row, column);
 	
 		if (isRowSelected(row)) {
-			c.setBackground(Color.LIGHT_GRAY);
+			c.setBackground(new Color(224, 224, 224));
 		} else {
 			c.setBackground(Color.WHITE);
 		}

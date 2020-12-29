@@ -12,7 +12,7 @@ import javax.swing.table.TableCellRenderer;
 
 public class StudentTable extends JTable{
 
-	public StudentTable(AbstractTableModel atms) {
+	public StudentTable(AbstractTableModel atm) {
 		super();
 
 		this.setRowSelectionAllowed(true);
@@ -32,7 +32,7 @@ public class StudentTable extends JTable{
 
 	    this.setIntercellSpacing(new Dimension(15, 4));
 		
-		this.setModel(atms);
+		this.setModel(atm);
 	}
 	
 	// Preuzeto iz materijala sa vezbi
@@ -40,7 +40,7 @@ public class StudentTable extends JTable{
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		Component c = super.prepareRenderer(renderer, row, column);
 		if (isRowSelected(row)) {
-			c.setBackground(Color.LIGHT_GRAY);
+			c.setBackground(new Color(224, 224, 224));
 		} else {
 			c.setBackground(Color.WHITE);
 		}

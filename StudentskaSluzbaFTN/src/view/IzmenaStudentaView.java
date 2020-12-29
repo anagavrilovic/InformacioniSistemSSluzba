@@ -1,4 +1,4 @@
-package view;
+ package view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -38,7 +38,7 @@ public class IzmenaStudentaView {
 	
 	private JDialog dialog;
 	private JPanel panelInfo;
-	private JPanel panelPolozeni;
+	private PrikazPolozenihIspita panelPolozeni;
 	private JPanel panelNepolozeni;
 	
 	private JTextField jtfIme;
@@ -85,7 +85,6 @@ public class IzmenaStudentaView {
 		student = BazaStudenti.getInstance().pronadjiStudenta(index);
 		
 		dialog = new JDialog(gp, "Izmena studenta", true);
-		//dialog.setSize(500, 600);
 		dialog.setSize(800, 600);
 		dialog.setResizable(false);
 		dialog.setLocationRelativeTo(null);
@@ -143,6 +142,7 @@ public class IzmenaStudentaView {
 		btnPotvrdi = new JButton("Potvrdi");
 		btnPotvrdi.setBackground(new Color(90, 216, 252));
 		btnPotvrdi.setForeground(Color.white);
+		btnPotvrdi.setForeground(Color.WHITE);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
 			@Override
@@ -161,6 +161,7 @@ public class IzmenaStudentaView {
 		btnOdustani = new JButton("Odustani");
 		btnOdustani.setBackground(new Color(90, 216, 252));
 		btnOdustani.setForeground(Color.white);
+		btnOdustani.setForeground(Color.WHITE);
 		btnOdustani.addActionListener(new ActionListener() {
 			
 			@Override
@@ -181,8 +182,7 @@ public class IzmenaStudentaView {
 		gbcRight.insets = new Insets(0, 0, 0, 270);
 		panelInfo.add(btnOdustani, gbcRight);
 		
-		
-		panelPolozeni = new JPanel();
+		panelPolozeni = new PrikazPolozenihIspita(index);
 		panelNepolozeni = new PrikazNepolozenihIspita(index);
 		
 		Main.changeFont(panelInfo, f);

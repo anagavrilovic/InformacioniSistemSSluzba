@@ -70,6 +70,35 @@ public class Student {
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
 		this.spisakNepolozenih = new ArrayList<Predmet>();
+		this.spisakPolozenih = new ArrayList<Ocena>();
+	}
+	
+	public int getUkupnoESPB() {
+		int espb = 0;
+		
+		for(Ocena o : getSpisakPolozenih()) {
+			espb += o.getPredmet().getEspb();
+		}
+		
+		return espb;
+	}
+	
+	public String getValueAt(int row, int column) {
+		Predmet predmet = this.getSpisakPolozenih().get(row).getPredmet();
+		switch (column) {
+		case 0:
+			return predmet.getSifraPredmeta();
+		case 1:
+			return predmet.getNazivPredmeta();
+		case 2:
+			return Integer.toString(predmet.getEspb());
+		case 3:
+			return Integer.toString(predmet.getGodinaStudija());
+		case 4:
+			return predmet.getSemestar().toString();
+		default:
+			return null;
+		}
 	}
 	
 
