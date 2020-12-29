@@ -42,6 +42,7 @@ public class BazaPredmeti {
 		predmeti.add(new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI));
 	}
 	
+	
 	public boolean validirajSifruPredmeta(String sifraPred) {
 		if(BazaPredmeti.getInstance() != null) {
 			for(Predmet predmet : BazaPredmeti.getInstance().getPredmeti()) {

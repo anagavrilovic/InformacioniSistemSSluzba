@@ -144,4 +144,12 @@ public class Predmet {
 	public void setStudentiNisuPolozili(ArrayList<Student> studentiNisuPolozili) {
 		this.studentiNisuPolozili = studentiNisuPolozili;
 	}
+
+	@Override
+	public String toString() {
+		return "Predmet [sifraPredmeta=" + sifraPredmeta + ", nazivPredmeta=" + nazivPredmeta + ", semestar=" + semestar
+				+ ", godinaStudija=" + godinaStudija + ", espb=" + espb + "]";
+	}
+	
+	
 }

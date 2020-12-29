@@ -141,8 +141,8 @@ public class DodavanjeStudentaView {
 		panel.add(btnPotvrdi, gbcLeft);
 		
 		btnOdustani = new JButton("Odustani");
-		btnOdustani.setBackground(new Color(90, 216, 252));
-		btnOdustani.setForeground(Color.WHITE);
+		btnOdustani.setBackground(Color.white);
+		btnOdustani.setForeground(new Color(90, 216, 252));
 		btnOdustani.addActionListener(new ActionListener() {
 			
 			@Override

@@ -141,7 +141,6 @@ public class IzmenaStudentaView {
 		
 		btnPotvrdi = new JButton("Potvrdi");
 		btnPotvrdi.setBackground(new Color(90, 216, 252));
-		btnPotvrdi.setForeground(Color.white);
 		btnPotvrdi.setForeground(Color.WHITE);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
@@ -159,9 +158,8 @@ public class IzmenaStudentaView {
 		panelInfo.add(btnPotvrdi, gbcLeft);
 		
 		btnOdustani = new JButton("Odustani");
-		btnOdustani.setBackground(new Color(90, 216, 252));
-		btnOdustani.setForeground(Color.white);
-		btnOdustani.setForeground(Color.WHITE);
+		btnOdustani.setBackground(Color.white);
+		btnOdustani.setForeground(new Color(90, 216, 252));
 		btnOdustani.addActionListener(new ActionListener() {
 			
 			@Override
@@ -183,7 +181,7 @@ public class IzmenaStudentaView {
 		panelInfo.add(btnOdustani, gbcRight);
 		
 		panelPolozeni = new PrikazPolozenihIspita(index);
-		panelNepolozeni = new PrikazNepolozenihIspita(index);
+		panelNepolozeni =new PrikazNepolozenihIspita(index);
 		
 		Main.changeFont(panelInfo, f);
 		

@@ -82,7 +82,7 @@ public class IzmenaProfesoraView {
 		this.kljuc =kljuc;
 		
 		if(kljuc.equals("")) {
-			JOptionPane.showMessageDialog(jd, "Morate selektovati red!", "Nijedan red nije selektovan", 
+			JOptionPane.showMessageDialog(jd, "Morate selektovati profesora!", "Nijedan profesor nije selektovan", 
 		    JOptionPane.INFORMATION_MESSAGE, GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
 			return;
 		}
@@ -128,6 +128,8 @@ public class IzmenaProfesoraView {
 		dodajZvanje();
 
 		btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.setBackground(new Color(90, 216, 252));
+		btnPotvrdi.setForeground(Color.WHITE);
 		GridBagConstraints gbcPotvrdi = new GridBagConstraints();
 		gbcPotvrdi.gridx = 3;
 		gbcPotvrdi.gridy = 11;
@@ -147,6 +149,8 @@ public class IzmenaProfesoraView {
 		jd.getRootPane().setDefaultButton(btnPotvrdi);
 		
 		btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(Color.white);
+		btnOdustani.setForeground(new Color(90, 216, 252));
 		GridBagConstraints gbcOdustani = new GridBagConstraints();
 		gbcOdustani.gridx = 5;
 		gbcOdustani.gridy = 11;

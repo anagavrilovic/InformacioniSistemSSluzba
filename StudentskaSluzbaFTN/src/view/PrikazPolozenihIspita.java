@@ -3,7 +3,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,7 +25,9 @@ public class PrikazPolozenihIspita extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
 	private JButton btnPonistiOcenu;
+	private JTable predmetTable;
 
 	public PrikazPolozenihIspita(String index) {
 		
@@ -66,7 +67,7 @@ public class PrikazPolozenihIspita extends JPanel {
 		
 		
 		AbstractTableModelPolozeniIspiti atmPI = new AbstractTableModelPolozeniIspiti(index);
-		JTable predmetTable = new PredmetTable(atmPI);
+		this.predmetTable = new PredmetTable(atmPI);
 		JScrollPane spPredmet = new JScrollPane(predmetTable);
 		this.add(spPredmet, BorderLayout.CENTER);
 		
@@ -89,8 +90,10 @@ public class PrikazPolozenihIspita extends JPanel {
 	}
 	
 	
-	
-	
-	
+	public void azurirajPrikaz() {
+		AbstractTableModelPolozeniIspiti model = (AbstractTableModelPolozeniIspiti)  predmetTable.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
 	
 }

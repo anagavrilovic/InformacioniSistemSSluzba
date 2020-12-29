@@ -23,9 +23,12 @@ public class BazaStudenti {
 	private List<Student> studentList;
 	private List<String> kolone;
 	private ArrayList<Predmet> nepolozeniPredmeti;
+	private ArrayList<Ocena> polozeniPredmeti;
 	
 	private BazaStudenti() {
 		
+		inicijalizacijaNepolozenihPredmeta();
+		inicijalizacijaPolozenihPredmeta();
 		initStudente();
 		
 		kolone = new ArrayList<String>();
@@ -41,12 +44,40 @@ public class BazaStudenti {
 		studentList = new ArrayList<Student>();
 		
 		Student s1 = new Student("Gavrilović", "Ana", "RA65/2018", 3, Status.B, 10.0);
+		s1.setSpisakNepolozenih(nepolozeniPredmeti);
+		s1.setSpisakPolozenih(polozeniPredmeti);
 		studentList.add(s1);
+		s1.setSpisakNepolozenih(nepolozeniPredmeti);
 		Student s2 = new Student("Klještan", "Marija", "RA55/2018", 3, Status.B, 10.0);
 		studentList.add(s2);
 		studentList.add(new Student("Samardžija", "Milica", "RA66/2018", 3, Status.B, 10.0));
 		studentList.add(new Student("Atić", "Nevena", "RA67/2018", 3, Status.B, 10.0));
 		studentList.add(new Student("Mijatović", "Nikola", "RA87/2018", 3, Status.B, 10.0));
+	}
+	
+	private void inicijalizacijaNepolozenihPredmeta() {
+		this.nepolozeniPredmeti = new ArrayList<Predmet>();
+		nepolozeniPredmeti.add(new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI));
+		nepolozeniPredmeti.add(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
+		nepolozeniPredmeti.add(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
+	}
+	
+	private void inicijalizacijaPolozenihPredmeta() {
+		this.polozeniPredmeti = new ArrayList<Ocena>();
+		Ocena o1 = new Ocena();
+		o1.setOcena(10);
+		o1.setPredmet(new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI));
+		o1.setStudent( new Student("Gavrilović", "Ana", "RA65/2018", 3, Status.B, 7));
+		polozeniPredmeti.add(o1);
+	}
+	
+	public void ispisiListuNepolozenih(String index) {
+		
+		Student s = pronadjiStudenta(index);
+		
+		for(Predmet p : s.getSpisakNepolozenih()) {
+			System.out.println(p);
+		}
 	}
 	
 	
