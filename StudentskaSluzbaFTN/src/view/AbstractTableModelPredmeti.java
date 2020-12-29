@@ -9,7 +9,10 @@ public class AbstractTableModelPredmeti extends AbstractTableModel{
 	public AbstractTableModelPredmeti() {}
 
 	public int getRowCount() {
-		return BazaPredmeti.getInstance().getPredmeti().size();
+		if(!(BazaPredmeti.getInstance().getPredmeti() == null))
+			return BazaPredmeti.getInstance().getPredmeti().size();
+		else
+			return -1;
 	}
 	
 	public int getColumnCount() {

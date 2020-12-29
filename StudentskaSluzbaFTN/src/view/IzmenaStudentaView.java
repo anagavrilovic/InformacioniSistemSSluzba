@@ -1,4 +1,4 @@
-package view;
+ package view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -181,7 +181,7 @@ public class IzmenaStudentaView {
 		panelInfo.add(btnOdustani, gbcRight);
 		
 		
-		panelPolozeni = new PrikazPolozenihIspita();
+		panelPolozeni = new PrikazPolozenihIspita(index);
 		panelNepolozeni = new JPanel();
 		
 		Main.changeFont(panelInfo, f);

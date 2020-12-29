@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Predmet.Semestar;
 import model.Student.Status;
 
 
@@ -44,6 +45,7 @@ public class BazaStudenti {
 		studentList.add(new Student("Atić", "Nevena", "RA67/2018", 3, Status.B, 10.0));
 		studentList.add(new Student("Mijatović", "Nikola", "RA87/2018", 3, Status.B, 10.0));
 	}
+	
 	
 	public boolean validirajStudenta(String brojIndeksa) {
 		if(BazaStudenti.getInstance() != null) {
