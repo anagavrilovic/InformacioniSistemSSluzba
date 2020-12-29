@@ -250,7 +250,9 @@ public class DodavanjeStudentaView {
 			jtfBrInd.setText("");
 			jtfGodUpisa.setText("");
 			cbTrGod.setSelectedIndex(0);
-			cbFin.setSelectedIndex(0);*/  dialog.dispose();
+			cbFin.setSelectedIndex(0);*/  
+			
+			dialog.dispose();
 		}
 		
 	}
