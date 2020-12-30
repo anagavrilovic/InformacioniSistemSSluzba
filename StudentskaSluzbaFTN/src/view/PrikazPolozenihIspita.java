@@ -34,16 +34,6 @@ public class PrikazPolozenihIspita extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public static PrikazPolozenihIspita instance = null;
-	
-	public static PrikazPolozenihIspita getInstance(String index) {
-		
-		if (instance == null) {
-			instance = new PrikazPolozenihIspita(index);
-		}
-		return instance;
-	}
-	
 	private String index;
 	private JButton btnPonistiOcenu;
 	private JLabel prosecnaOcena;
@@ -54,7 +44,7 @@ public class PrikazPolozenihIspita extends JPanel {
 	private Predmet ponistavanjePred;
 	
 
-	private PrikazPolozenihIspita(String index) {
+	public PrikazPolozenihIspita(String index) {
 		
 		this.setBackground(Color.WHITE);
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
@@ -104,7 +94,7 @@ public class PrikazPolozenihIspita extends JPanel {
 		this.add(spPredmet, BorderLayout.CENTER);
 		
 		this.index = index;
-		String ocena = "Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).getProsecnaOcena();
+		String ocena = "Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).izracunajProsecnuOcenu();
 		prosecnaOcena = new JLabel(ocena);
 		panelSouth.add(prosecnaOcena, new GridBagConstraints(0, 0, 1, 1, 100, 0, GridBagConstraints.EAST,
                 GridBagConstraints.NONE, new Insets(10, 0, 5, 80), 0, 0));
@@ -143,13 +133,13 @@ public class PrikazPolozenihIspita extends JPanel {
 		String[] options = {"Da", "Ne" };
 		int opcija = JOptionPane.showOptionDialog(GlavniProzor.getInstance(), "Da li ste sigurni da želite da poništite ocenu?",
 				"Poništavanje ocene?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-				GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")), 
+				GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
 				options, options[1]);
 		if (opcija != JOptionPane.YES_OPTION) {
 			return;
 		} else {
 			IspitiController.getInstance().ponistiOcenu(index, ponistavanjePred);
-			prosecnaOcena.setText("Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).getProsecnaOcena());
+			prosecnaOcena.setText("Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).izracunajProsecnuOcenu());
 			espbBodovi.setText("Ukupno ESPB: " + BazaStudenti.getInstance().pronadjiStudenta(index).getUkupnoESPB());
 		}
 		

@@ -1,11 +1,9 @@
 package controller;
 
+import model.BazaPredmeti;
 import model.BazaStudenti;
 import model.Ocena;
 import model.Predmet;
-import model.Student;
-import view.PrikazNepolozenihIspita;
-import view.PrikazPolozenihIspita;
 
 
 public class IspitiController {
@@ -36,9 +34,19 @@ public class IspitiController {
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakPolozenih().remove(ocena);
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakNepolozenih().add(predmet);
 		
-		PrikazPolozenihIspita.getInstance(index).azurirajPrikazPredmet(null, -1);
-		PrikazNepolozenihIspita.getInstance(index).azurirajPrikazPredmet(null, -1);
+		//pi.azurirajPrikazPredmet(null, -1);
+		//PrikazNepolozenihIspita.getInstance(index).azurirajPrikazPredmet(null, -1);
 		
 	}
 		
+	
+	public void ukloniPredmet(String index, Predmet predmet) {
+		
+		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakNepolozenih().remove(predmet);
+		BazaPredmeti.getInstance().pronadjiPredmet(predmet.getSifraPredmeta()).getStudentiNisuPolozili().
+			remove(BazaStudenti.getInstance().pronadjiStudenta(index));
+		
+		//PrikazNepolozenihIspita.getInstance(index).azurirajPrikazPredmet(null, -1);
+		
+	}
 }

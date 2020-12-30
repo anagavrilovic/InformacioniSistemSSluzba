@@ -55,22 +55,37 @@ public class Student {
 		this.godinaUpisa = godinaUpisa;
 		this.trGodStudija = trGodStudija;
 		this.status = status;
-		this.prosecnaOcena = prosecnaOcena;
 		this.spisakPolozenih = spisakPolozenih;
 		this.spisakNepolozenih = spisakNepolozenih;
+		this.prosecnaOcena = prosecnaOcena;
 	}
 	
-	public Student(String prezime, String ime, String brojIndeksa, int trGodStudija, Status status,
-			double prosecnaOcena) {
+	public Student(String prezime, String ime, String brojIndeksa, int trGodStudija, Status status) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
 		this.brojIndeksa = brojIndeksa;
 		this.trGodStudija = trGodStudija;
 		this.status = status;
-		this.prosecnaOcena = prosecnaOcena;
 		this.spisakNepolozenih = new ArrayList<Predmet>();
 		this.spisakPolozenih = new ArrayList<Ocena>();
+		this.prosecnaOcena = izracunajProsecnuOcenu();
+	}
+	
+	public double izracunajProsecnuOcenu() {
+		double prosOc = 0;
+		
+		for(Ocena o : getSpisakPolozenih()) {
+			prosOc += o.getOcena();
+		}
+		
+		if(getSpisakPolozenih().size() != 0) {
+			prosOc = prosOc/getSpisakPolozenih().size();
+		} else {
+			prosOc = 0;
+		}
+		
+		return prosOc;
 	}
 	
 	public int getUkupnoESPB() {

@@ -181,8 +181,8 @@ public class IzmenaStudentaView {
 		gbcRight.insets = new Insets(0, 0, 0, 270);
 		panelInfo.add(btnOdustani, gbcRight);
 		
-		panelPolozeni = PrikazPolozenihIspita.getInstance(index);
-		panelNepolozeni = PrikazNepolozenihIspita.getInstance(index);
+		panelPolozeni = new PrikazPolozenihIspita(index);
+		panelNepolozeni = new PrikazNepolozenihIspita(index);
 		
 		Main.changeFont(panelInfo, f);
 		

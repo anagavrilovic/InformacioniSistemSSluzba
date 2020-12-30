@@ -40,16 +40,19 @@ public class BazaStudenti {
 	private void initStudente() {
 		studentList = new ArrayList<Student>();
 		
-		Student s1 = new Student("Gavrilović", "Ana", "RA65/2018", 3, Status.B, 10.0);
+		Student s1 = new Student("Gavrilović", "Ana", "RA65/2018", 3, Status.B);
 		s1.setSpisakPolozenih(initPredmeteAna());
+		s1.setProsecnaOcena(s1.izracunajProsecnuOcenu());
 		studentList.add(s1);
-		Student s2 = new Student("Klještan", "Marija", "RA55/2018", 3, Status.B, 10.0);
+		Student s2 = new Student("Klještan", "Marija", "RA55/2018", 3, Status.B);
 		s2.setSpisakPolozenih(initPredmeteMarija());
+		s2.setProsecnaOcena(s2.izracunajProsecnuOcenu());
 		studentList.add(s2);
-		studentList.add(new Student("Samardžija", "Milica", "RA66/2018", 3, Status.B, 10.0));
-		studentList.add(new Student("Atić", "Nevena", "RA67/2018", 3, Status.B, 10.0));
-		Student s3 = new Student("Mijatović", "Nikola", "RA87/2018", 3, Status.B, 10.0);
+		studentList.add(new Student("Samardžija", "Milica", "RA66/2018", 3, Status.B));
+		studentList.add(new Student("Atić", "Nevena", "RA67/2018", 3, Status.B));
+		Student s3 = new Student("Mijatović", "Nikola", "RA87/2018", 3, Status.B);
 		s3.setSpisakPolozenih(initPredmeteNikola());
+		s3.setProsecnaOcena(s3.izracunajProsecnuOcenu());
 		studentList.add(s3);
 	}
 	
@@ -164,8 +167,8 @@ public class BazaStudenti {
 		return kolone.size();
 	}
 	
-	public void dodajStudenta(String brojIndeksa, String ime, String prezime, int trGodStudija, Status status, double prosecnaOcena) {
-		studentList.add(new Student(prezime, ime, brojIndeksa, trGodStudija, status, prosecnaOcena));
+	public void dodajStudenta(String brojIndeksa, String ime, String prezime, int trGodStudija, Status status) {
+		studentList.add(new Student(prezime, ime, brojIndeksa, trGodStudija, status));
 	}
 	
 	public void dodajStudenta(Student student) {
