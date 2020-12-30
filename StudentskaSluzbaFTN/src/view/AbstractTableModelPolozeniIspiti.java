@@ -15,7 +15,7 @@ public class AbstractTableModelPolozeniIspiti extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return BazaPredmeti.getInstance().getColumnCount();
+		return BazaStudenti.getInstance().getColumnCountPolozeniPredmeti();
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class AbstractTableModelPolozeniIspiti extends AbstractTableModel {
 	}
 	
 	public String getColumnName(int column) {
-		return BazaPredmeti.getInstance().getColumnName(column);
+		return BazaStudenti.getInstance().getColumnNamePolozeniPredmeti(column);
 	}
 
 	@Override

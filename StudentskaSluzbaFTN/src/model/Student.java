@@ -99,22 +99,34 @@ public class Student {
 	}
 	
 	public String getValueAt(int row, int column) {
-		Predmet predmet = this.getSpisakPolozenih().get(row).getPredmet();
+		Ocena ocena = this.getSpisakPolozenih().get(row);
 		switch (column) {
 		case 0:
-			return predmet.getSifraPredmeta();
+			return ocena.getPredmet().getSifraPredmeta();
 		case 1:
-			return predmet.getNazivPredmeta();
+			return ocena.getPredmet().getNazivPredmeta();
 		case 2:
-			return Integer.toString(predmet.getEspb());
+			return Integer.toString(ocena.getPredmet().getEspb());
 		case 3:
-			return Integer.toString(predmet.getGodinaStudija());
+			return Integer.toString(ocena.getOcena());
 		case 4:
-			return predmet.getSemestar().toString();
+			return dateToString(ocena.getDatum());
 		default:
 			return null;
 		}
 	}
+	
+	private String dateToString(Date date) {
+		if(date != null) {
+			String retVal;
+			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy.");
+			retVal = sdf.format(date);
+			return retVal;
+		} 
+		
+		return "";
+	}
+	
 	
 
 	public String getPrezime() {

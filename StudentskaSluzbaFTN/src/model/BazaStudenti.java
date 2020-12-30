@@ -22,6 +22,7 @@ public class BazaStudenti {
 	
 	private List<Student> studentList;
 	private List<String> kolone;
+	private List<String> kolonePP;
 	private ArrayList<Predmet> nepolozeniPredmeti;
 	
 	private BazaStudenti() {
@@ -36,6 +37,13 @@ public class BazaStudenti {
 		kolone.add("Godina studija");
 		kolone.add("Status");
 		kolone.add("Prosek");
+		
+		kolonePP = new ArrayList<String>();
+		kolonePP.add("Šifra predmeta");
+		kolonePP.add("Naziv predmeta");
+		kolonePP.add("ESPB");
+		kolonePP.add("Ocena");
+		kolonePP.add("Datum");
 	}
 	
 	private void initStudente() {
@@ -210,5 +218,15 @@ public class BazaStudenti {
 			}
 		}
 	}
+	
+	public int getColumnCountPolozeniPredmeti() {
+		return 5;
+	}
+	
+	public String getColumnNamePolozeniPredmeti(int index) {
+		return this.kolonePP.get(index);
+	}
+	
+	
 	
 }
