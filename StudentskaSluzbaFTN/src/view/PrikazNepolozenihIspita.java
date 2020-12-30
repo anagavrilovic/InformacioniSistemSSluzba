@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,8 +19,12 @@ import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 
 import controller.IspitiController;
+
+import main.Main;
+
 import model.BazaPredmeti;
 import model.Predmet;
+
 
 public class PrikazNepolozenihIspita extends JPanel{
 	
@@ -28,17 +33,18 @@ public class PrikazNepolozenihIspita extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String index;
-	
 	private JTable predmetTable;
 	private JButton btnDodaj;
 	private JButton btnObrisi;
 	private JButton btnPolaganje;
 	private JTable nepolozeniIspitiTab;
+	private String index;
 	
 	private Predmet brisanjePredmeta;
 	
 	public PrikazNepolozenihIspita (String index) {
+		
+		this.index = index;
 		
 		Dimension dim = new Dimension(100, 25);
 		
@@ -63,6 +69,16 @@ public class PrikazNepolozenihIspita extends JPanel{
 		this.btnPolaganje.setBackground(new Color(90, 216, 252));
 		this.btnPolaganje.setForeground(Color.white);
 		this.btnPolaganje.setPreferredSize(dim);
+		
+		PrikazNepolozenihIspita p = this;
+		this.btnPolaganje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				UpisOcene upis = new UpisOcene (p);
+			}
+		});
 		
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
@@ -108,12 +124,6 @@ public class PrikazNepolozenihIspita extends JPanel{
 		IspitiController.getInstance().setPrikazNepolozenih(this);			
 	}
 	
-	public void azurirajPrikazPredmet(String akcija, int vrednost) {
-		AbstractTableModelNepolozeniPredmeti modelPredm = (AbstractTableModelNepolozeniPredmeti) predmetTable.getModel();
-		modelPredm.fireTableDataChanged();
-		validate();
-	}
-	
 	private void ukloniPredmet() {
 		if(getSifraPredFromSelectedRow().equals("")) {
 			JOptionPane.showMessageDialog(this.getParent(), "Selektujte predmet!", "Nije selektovan nijedan predmet", JOptionPane.INFORMATION_MESSAGE, 
@@ -140,6 +150,42 @@ public class PrikazNepolozenihIspita extends JPanel{
 		
 		if(row != -1) {
 			return (String) predmetTable.getValueAt(row, 0);
+		}else {
+			return "";
+		}
+	}
+	
+	public void azurirajPrikazPredmet(String akcija, int vrednost) {
+		AbstractTableModelNepolozeniPredmeti model = (AbstractTableModelNepolozeniPredmeti) nepolozeniIspitiTab.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
+	
+
+	public JTable getNepolozeniIspitiTab() {
+		return nepolozeniIspitiTab;
+	}
+
+	public void setNepolozeniIspitiTab(JTable nepolozeniIspitiTab) {
+		this.nepolozeniIspitiTab = nepolozeniIspitiTab;
+	}
+
+
+
+	public String getIndex() {
+		return index;
+	}
+
+	public void setIndex(String index) {
+		this.index = index;
+	}
+	
+	public String nadjiSifruPredmeta() {
+		int row = nepolozeniIspitiTab.getSelectedRow();
+		
+		if(row != -1) {
+			return (String) nepolozeniIspitiTab.getValueAt(row, 0);
+
 		} else {
 			return "";
 		}

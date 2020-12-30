@@ -2,7 +2,9 @@ package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JTextArea;
 
@@ -46,8 +48,9 @@ public class AboutDialog {
 		
 		
 		Font f = new Font("sans-serif", Font.PLAIN, 12);
-		Main.changeFont(textArea, f);		
+		Main.changeFont(textArea, f);	
 		
+		dialog.setIconImage(new ImageIcon("images/information.png").getImage());
 		dialog.add(textArea);
 		dialog.setVisible(true);
 		

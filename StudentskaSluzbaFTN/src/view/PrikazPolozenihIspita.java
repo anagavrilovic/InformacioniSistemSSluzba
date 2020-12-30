@@ -3,7 +3,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -21,7 +20,9 @@ import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 
 import controller.IspitiController;
+
 import controller.StudentController;
+
 import main.Main;
 import model.BazaPredmeti;
 import model.BazaStudenti;
@@ -89,7 +90,9 @@ public class PrikazPolozenihIspita extends JPanel {
 		
 		
 		AbstractTableModelPolozeniIspiti atmPI = new AbstractTableModelPolozeniIspiti(index);
-		predmetTable = new PredmetTable(atmPI);
+
+		this.predmetTable = new PredmetTable(atmPI);
+
 		JScrollPane spPredmet = new JScrollPane(predmetTable);
 		this.add(spPredmet, BorderLayout.CENTER);
 		
@@ -103,8 +106,6 @@ public class PrikazPolozenihIspita extends JPanel {
 		espbBodovi = new JLabel(espb);
 		panelSouth.add(espbBodovi, new GridBagConstraints(0, 1, 1, 1, 100, 0, GridBagConstraints.EAST,
                 GridBagConstraints.NONE, new Insets(5, 0, 10, 80), 0, 0));
-		
-		
 		
 		
 		Font f = new Font("sans-serif", Font.PLAIN, 13);
@@ -123,6 +124,7 @@ public class PrikazPolozenihIspita extends JPanel {
 		}
 	}
 	
+
 	private void ponistiOcenu() {
 		if(getSifraPredFromSelectedRow().equals("")) {
 			JOptionPane.showMessageDialog(this.getParent(), "Selektujte predmet!", "Nije selektovan nijedan predmet", JOptionPane.INFORMATION_MESSAGE, 
@@ -147,6 +149,7 @@ public class PrikazPolozenihIspita extends JPanel {
 		
 	}
 	
+
 	public void azurirajPrikazPredmet(String akcija, int vrednost) {
 		AbstractTableModelPolozeniIspiti modelPredm = (AbstractTableModelPolozeniIspiti) predmetTable.getModel();
 		modelPredm.fireTableDataChanged();

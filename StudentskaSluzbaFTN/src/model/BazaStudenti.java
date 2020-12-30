@@ -26,6 +26,7 @@ public class BazaStudenti {
 	
 	private BazaStudenti() {
 		
+		inicijalizacijaNepolozenihPredmeta();
 		initStudente();
 		
 		kolone = new ArrayList<String>();
@@ -54,6 +55,14 @@ public class BazaStudenti {
 		s3.setSpisakPolozenih(initPredmeteNikola());
 		s3.setProsecnaOcena(s3.izracunajProsecnuOcenu());
 		studentList.add(s3);
+	}
+	
+	
+	private void inicijalizacijaNepolozenihPredmeta() {
+		this.nepolozeniPredmeti = new ArrayList<Predmet>();
+		nepolozeniPredmeti.add(new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI));
+		nepolozeniPredmeti.add(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
+		nepolozeniPredmeti.add(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
 	}
 	
 	// ------

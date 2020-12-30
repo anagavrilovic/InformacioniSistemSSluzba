@@ -141,7 +141,6 @@ public class IzmenaStudentaView {
 		
 		btnPotvrdi = new JButton("Potvrdi");
 		btnPotvrdi.setBackground(new Color(90, 216, 252));
-		btnPotvrdi.setForeground(Color.white);
 		btnPotvrdi.setForeground(Color.WHITE);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
@@ -182,7 +181,7 @@ public class IzmenaStudentaView {
 		panelInfo.add(btnOdustani, gbcRight);
 		
 		panelPolozeni = new PrikazPolozenihIspita(index);
-		panelNepolozeni = new PrikazNepolozenihIspita(index);
+		panelNepolozeni =new PrikazNepolozenihIspita(index);
 		
 		Main.changeFont(panelInfo, f);
 		

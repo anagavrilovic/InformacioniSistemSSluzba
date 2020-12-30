@@ -112,6 +112,8 @@ public class DodavanjeProfesoraView {
 		dodajZvanje();
 
 		btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.setBackground(new Color(90, 216, 252));
+		btnPotvrdi.setForeground(Color.WHITE);
 		GridBagConstraints gbcPotvrdi = new GridBagConstraints();
 		gbcPotvrdi.gridx = 3;
 		gbcPotvrdi.gridy = 11;
@@ -131,6 +133,8 @@ public class DodavanjeProfesoraView {
 		jd.getRootPane().setDefaultButton(btnPotvrdi);
 		
 		btnOdustani = new JButton("Odustani");
+		btnOdustani.setBackground(Color.white);
+		btnOdustani.setForeground(new Color(90, 216, 252));
 		GridBagConstraints gbcOdustani = new GridBagConstraints();
 		gbcOdustani.gridx = 5;
 		gbcOdustani.gridy = 11;

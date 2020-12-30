@@ -152,5 +152,4 @@ public class Predmet {
 				+ ", studentiPolozili=" + studentiPolozili + ", studentiNisuPolozili=" + studentiNisuPolozili + "]";
 	}
 	
-	
 }

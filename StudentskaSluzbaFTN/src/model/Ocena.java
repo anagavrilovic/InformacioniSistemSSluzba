@@ -56,5 +56,12 @@ public class Ocena {
 	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
+
+	@Override
+	public String toString() {
+		return "Ocena [ocena=" + ocena + ", datum=" + datum + "]";
+	}
+	
+	
 	
 }
