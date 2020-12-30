@@ -33,7 +33,6 @@ public class PrikazNepolozenihIspita extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JTable predmetTable;
 	private JButton btnDodaj;
 	private JButton btnObrisi;
 	private JButton btnPolaganje;
@@ -117,8 +116,8 @@ public class PrikazNepolozenihIspita extends JPanel{
 		this.index = index;
 		BazaPredmeti.getInstance().nadjiNepolozeneIspite(index);
 		AbstractTableModelNepolozeniPredmeti atmp = new AbstractTableModelNepolozeniPredmeti();
-		predmetTable = new PredmetTable(atmp);
-		JScrollPane spPredmet = new JScrollPane(predmetTable);
+		nepolozeniIspitiTab = new PredmetTable(atmp);
+		JScrollPane spPredmet = new JScrollPane(nepolozeniIspitiTab);
 		this.add(spPredmet);
 		
 		IspitiController.getInstance().setPrikazNepolozenih(this);			
@@ -146,10 +145,10 @@ public class PrikazNepolozenihIspita extends JPanel{
 	}
 	
 	public String getSifraPredFromSelectedRow() {
-		int row = predmetTable.getSelectedRow();
+		int row = nepolozeniIspitiTab.getSelectedRow();
 		
 		if(row != -1) {
-			return (String) predmetTable.getValueAt(row, 0);
+			return (String) nepolozeniIspitiTab.getValueAt(row, 0);
 		}else {
 			return "";
 		}
