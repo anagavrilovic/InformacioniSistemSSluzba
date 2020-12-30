@@ -104,7 +104,8 @@ public class PrikazNepolozenihIspita extends JPanel{
 		predmetTable = new PredmetTable(atmp);
 		JScrollPane spPredmet = new JScrollPane(predmetTable);
 		this.add(spPredmet);
-			
+		
+		IspitiController.getInstance().setPrikazNepolozenih(this);			
 	}
 	
 	public void azurirajPrikazPredmet(String akcija, int vrednost) {

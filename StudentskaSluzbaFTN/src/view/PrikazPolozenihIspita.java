@@ -109,6 +109,8 @@ public class PrikazPolozenihIspita extends JPanel {
 		
 		Font f = new Font("sans-serif", Font.PLAIN, 13);
 		Main.changeFont(this, f);
+		
+		IspitiController.getInstance().setPrikazPolozenih(this);
 	}
 	
 	public String getSifraPredFromSelectedRow() {
