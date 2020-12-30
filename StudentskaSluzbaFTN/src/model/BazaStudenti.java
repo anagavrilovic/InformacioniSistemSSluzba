@@ -23,6 +23,7 @@ public class BazaStudenti {
 	private List<Student> studentList;
 	private List<String> kolone;
 	private ArrayList<Predmet> nepolozeniPredmeti;
+	//private ArrayList<Student> izabraniStudenti;
 	
 	private BazaStudenti() {
 		
@@ -210,5 +211,20 @@ public class BazaStudenti {
 			}
 		}
 	}
+	
+	/*public ArrayList<Student> getlistaIzabranih() {
+		ArrayList<Student> retList = new ArrayList<Student>();
+		
+		for(Student s : getStudentList()) {
+			if(s.getS())
+				retList.add(s);
+		}
+		
+		return retList;
+	}
+	
+	public void setListaIzabranih() {
+		this.izabraniStudenti = getlistaIzabranih();
+	}*/
 	
 }

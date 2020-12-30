@@ -18,6 +18,7 @@ import javax.swing.table.AbstractTableModel;
 
 import model.BazaPredmeti;
 import model.BazaProfesori;
+import model.BazaStudenti;
 
 
 public class TabbedPane extends JTabbedPane{
@@ -50,6 +51,7 @@ public class TabbedPane extends JTabbedPane{
 		studentTable = new StudentTable(atmStud);
 		JScrollPane spStudent = new JScrollPane(studentTable);
 		this.addTab("Student", spStudent);
+		//BazaStudenti.getInstance().setListaIzabranih();
 		azurirajPrikazStudent(null, -1);
 		
 		AbstractTableModelProfesori atmProf = new AbstractTableModelProfesori();
