@@ -118,6 +118,7 @@ public class UpisOcene {
 				 int ocena = cbOcena.getSelectedIndex() + 6;
 				 
 				 IspitiController.getInstance().dodajPredmetUListuPolozenih(p, datum, ocena);
+				 PrikazPolozenihIspita.azurirajProsekEspb();
 				 dialog.dispose();
 			}	
 		});

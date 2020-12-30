@@ -35,10 +35,10 @@ public class PrikazPolozenihIspita extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String index;
+	private static String index;
 	private JButton btnPonistiOcenu;
-	private JLabel prosecnaOcena;
-	private JLabel espbBodovi;
+	private static JLabel prosecnaOcena;
+	private static JLabel espbBodovi;
 	private JPanel panelSouth;
 	
 	private PredmetTable predmetTable;
@@ -143,10 +143,15 @@ public class PrikazPolozenihIspita extends JPanel {
 			return;
 		} else {
 			IspitiController.getInstance().ponistiOcenu(index, ponistavanjePred);
-			prosecnaOcena.setText("Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).izracunajProsecnuOcenu());
-			espbBodovi.setText("Ukupno ESPB: " + BazaStudenti.getInstance().pronadjiStudenta(index).getUkupnoESPB());
+			azurirajProsekEspb();
 		}
 		
+	}
+	
+	public static void azurirajProsekEspb() {
+		String format = String.format("%.2f", BazaStudenti.getInstance().pronadjiStudenta(index).izracunajProsecnuOcenu());
+		prosecnaOcena.setText("Prosečna ocena: " + format);
+		espbBodovi.setText("Ukupno ESPB: " + BazaStudenti.getInstance().pronadjiStudenta(index).getUkupnoESPB());
 	}
 	
 
