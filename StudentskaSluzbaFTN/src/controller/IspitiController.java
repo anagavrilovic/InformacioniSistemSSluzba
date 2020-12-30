@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 import model.BazaStudenti;
 import model.Ocena;
 import model.Predmet;
@@ -14,6 +13,9 @@ import view.PrikazPolozenihIspita;
 import view.TabbedPane;
 
 public class IspitiController {
+	
+	private PrikazPolozenihIspita polozeni;
+	private PrikazNepolozenihIspita nepolozeni;
  
 	public static IspitiController instance = null;
  
@@ -49,20 +51,30 @@ public class IspitiController {
 	    o.setStudent(BazaStudenti.getInstance().pronadjiStudenta(index));
 		
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakPolozenih().add(o);
-		PrikazPolozenihIspita ppi = new PrikazPolozenihIspita(index);
-		ppi.azurirajPrikaz();
+		this.polozeni.azurirajPrikazPredmet(null, -1);
 		
 		
-		List<Predmet> nepolozeni = BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakNepolozenih();
-		for(Predmet predm : nepolozeni) {
+		List<Predmet> nepolozeniPredmeti = BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakNepolozenih();
+		for(Predmet predm : nepolozeniPredmeti) {
 			if(predm.getSifraPredmeta().equals(p.getSifraPredmeta())) {
-				nepolozeni.remove(predm);
+				nepolozeniPredmeti.remove(predm);
 				break;
 			}
 		}
 				
-		PrikazNepolozenihIspita pni = new PrikazNepolozenihIspita(index);
-		pni.azurirajPrikaz();
+		this.nepolozeni.azurirajPrikazPredmet(null, -1);
 	}
+
+
+	public void setPrikazPolozenih(PrikazPolozenihIspita polozeni) {
+		this.polozeni = polozeni;
+	}
+
+
+	public void setPrikazNepolozenih(PrikazNepolozenihIspita nepolozeni) {
+		this.nepolozeni = nepolozeni;
+	}
+	
+	
  
 }

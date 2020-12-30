@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 
+import controller.IspitiController;
 import main.Main;
 import model.BazaPredmeti;
 
@@ -101,9 +102,11 @@ public class PrikazNepolozenihIspita extends JPanel{
 		
 		Font f = new Font("sans-serif", Font.PLAIN, 13);
 		Main.changeFont(this, f);		
+		
+		IspitiController.getInstance().setPrikazNepolozenih(this);
 	}
 	
-	public void azurirajPrikaz() {
+	public void azurirajPrikazPredmet(String akcija, int vrednost) {
 		AbstractTableModelNepolozeniPredmeti model = (AbstractTableModelNepolozeniPredmeti) nepolozeniIspitiTab.getModel();
 		model.fireTableDataChanged();
 		validate();
