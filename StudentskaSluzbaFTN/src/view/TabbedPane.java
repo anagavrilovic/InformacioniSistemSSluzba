@@ -127,8 +127,10 @@ public class TabbedPane extends JTabbedPane{
 	public String nadjiKlljuc() {
 		int red = profesorTable.getSelectedRow();
 		
-		if(red != -1)
-			return (String) BazaProfesori.getInstance().getValueAt(red, 4);
+		if(red != -1) {
+			//return (String) BazaProfesori.getInstance().getValueAt(red, 4);
+			return (String) profesorTable.getValueAt(red, 4);
+		}
 		else
 			return "";
 	}
