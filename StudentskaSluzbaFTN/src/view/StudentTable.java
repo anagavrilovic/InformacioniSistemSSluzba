@@ -31,7 +31,7 @@ public class StudentTable extends JTable{
 		this.getTableHeader().setReorderingAllowed(false);
 
 	    this.setIntercellSpacing(new Dimension(15, 4));
-		
+	    
 		this.setModel(atm);
 	}
 	
@@ -46,4 +46,6 @@ public class StudentTable extends JTable{
 		}
 		return c;
 	}
+	
+	
 }
