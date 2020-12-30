@@ -30,6 +30,7 @@ public class BazaProfesori {
 		this.kolone.add("Prezime");
 		this.kolone.add("Titula");
 		this.kolone.add("Zvanje");
+		this.kolone.add("Broj lične karte");
 	}
 
 	private void inicijalizacijaProfesira() {
@@ -50,7 +51,7 @@ public class BazaProfesori {
 
 
 	public int getColumnCount() {
-		return 4;
+		return 5;
 	}
 
 	public String getColumnName(int index) {
