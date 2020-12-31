@@ -20,8 +20,8 @@ public class StudentTable extends JTable{
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		this.setGridColor(Color.LIGHT_GRAY);
-		this.setAutoCreateRowSorter(true);
 		this.setRowHeight(25);
+		this.setAutoCreateRowSorter(true);
 		
 		Font f = new Font("sans-serif", Font.PLAIN, 12);
 		this.setFont(f);
