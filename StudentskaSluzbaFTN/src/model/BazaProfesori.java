@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import model.Predmet.Semestar;
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
 
@@ -20,9 +21,11 @@ public class BazaProfesori {
 
 	private List<Profesor> profesori;
 	private List<String> kolone;
+	private ArrayList<Predmet> predmeti;
 
 	private BazaProfesori() {
-	
+		
+		inicijalizacijaPredmeta();
 		inicijalizacijaProfesira();
 
 		this.kolone = new ArrayList<String>();
@@ -35,10 +38,21 @@ public class BazaProfesori {
 
 	private void inicijalizacijaProfesira() {
 		this.profesori = new ArrayList<Profesor>();
-		profesori.add(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852"));
+		Profesor p1 = new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852");
+		p1.setPredmeti(predmeti);
+		profesori.add(p1);
 		profesori.add(new Profesor("Veljko", "Petrović", Titula.ProfDr, Zvanje.RedovniProfesor, "882651493"));
 		profesori.add(new Profesor("Milan", "Rapaić", Titula.ProfDr, Zvanje.VanredniProfesor, "010607244"));
 		profesori.add(new Profesor("Petar", "Marić", Titula.dr, Zvanje.Docent, "040961175"));
+	}
+	
+	private void inicijalizacijaPredmeta() {
+		
+		this.predmeti = new ArrayList<Predmet>();
+		predmeti.add(new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI));
+		predmeti.add(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
+		predmeti.add(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
+		predmeti.add(new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI));
 	}
 
 	public List<Profesor> getProfesori() {
