@@ -16,6 +16,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import controller.PretragaPredmeta;
 import controller.PretragaProfesora;
 
 public class ToolBar extends JToolBar{
@@ -73,24 +74,34 @@ public class ToolBar extends JToolBar{
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
 				String unos = text.getText();
-				boolean validanUnos = PretragaProfesora.getInstance().validacijaUnosa(unos);
-				if(validanUnos) {
-					btnSearch.setEnabled(true);
-					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-						if(TabbedPane.getInstance().getIndex() == 0) {
-							
-						} else if(TabbedPane.getInstance().getIndex() == 1) {
+				 
+				if(TabbedPane.getInstance().getIndex() == 0) {
+ 
+				} else if(TabbedPane.getInstance().getIndex() == 1) {
+					boolean validanUnos = PretragaProfesora.getInstance().validacijaUnosa(unos);
+ 
+					if(validanUnos) {
+						btnSearch.setEnabled(true);
+						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 							PretragaProfesora.getInstance().pronadjiProfesore();
-								
-						} else if(TabbedPane.getInstance().getIndex() == 2) {
-							
-						}
-
+					}
+					else {
+						btnSearch.setEnabled(false);
+					}
+ 
+				} else if(TabbedPane.getInstance().getIndex() == 2) {
+					boolean validanUnos = PretragaPredmeta.getInstance().validacijaUnosa(unos);
+					 
+					if(validanUnos) {
+						btnSearch.setEnabled(true);
+						if(e.getKeyCode() == KeyEvent.VK_ENTER)
+							PretragaPredmeta.getInstance().pronadjiPredmete();
+					}
+					else {
+						btnSearch.setEnabled(false);
 					}
 				}
-				else {
-					btnSearch.setEnabled(false);
-				}
+ 
 			}
 			
 			@Override
@@ -116,7 +127,7 @@ public class ToolBar extends JToolBar{
 					PretragaProfesora.getInstance().pronadjiProfesore();
 						
 				} else if(TabbedPane.getInstance().getIndex() == 2) {
-					
+					PretragaPredmeta.getInstance().pronadjiPredmete();
 				}
 			}
 		});
