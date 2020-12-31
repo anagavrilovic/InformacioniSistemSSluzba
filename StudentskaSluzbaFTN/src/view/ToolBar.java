@@ -16,6 +16,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import controller.PretragaPredmeta;
 import controller.PretragaProfesora;
 import controller.PretragaStudenata;
 
@@ -96,9 +97,17 @@ public class ToolBar extends JToolBar{
 					}
 						
 				} else if(TabbedPane.getInstance().getIndex() == 2) {
-					
+					boolean validanUnos = PretragaPredmeta.getInstance().validacijaUnosa(unos);
+					 
+					if(validanUnos) {
+						btnSearch.setEnabled(true);
+						if(e.getKeyCode() == KeyEvent.VK_ENTER)
+							PretragaPredmeta.getInstance().pronadjiPredmete();
+					}
+					else {
+						btnSearch.setEnabled(false);
+					}
 				}
-
 			}
 			
 			@Override
@@ -122,7 +131,7 @@ public class ToolBar extends JToolBar{
 				} else if(TabbedPane.getInstance().getIndex() == 1) {
 					PretragaProfesora.getInstance().pronadjiProfesore();
 				} else if(TabbedPane.getInstance().getIndex() == 2) {
-					
+					PretragaPredmeta.getInstance().pronadjiPredmete();
 				}
 			}
 		});

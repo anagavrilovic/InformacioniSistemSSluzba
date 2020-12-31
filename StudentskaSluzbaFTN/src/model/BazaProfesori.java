@@ -63,21 +63,25 @@ public class BazaProfesori {
 	}
 
 	public String getValueAt(int row, int column) {
-		Profesor profesor = this.profesori.get(row);
-		switch (column) {
-		case 0:
-			return profesor.getIme();
-		case 1:
-			return profesor.getPrezime();
-		case 2:
-			return profesor.getTitula().toString();
-		case 3:
-			return profesor.getZvanje().toString();	
-		case 4:
-			return profesor.getBrojLicneKarte();
-		default:
-			return null;
+	
+		if(this.profesori.get(row).getDodaj()) {
+			Profesor profesor = this.profesori.get(row);
+			switch (column) {
+			case 0:
+				return profesor.getIme();
+			case 1:
+				return profesor.getPrezime();
+			case 2:
+				return profesor.getTitula().toString();
+			case 3:
+				return profesor.getZvanje().toString();	
+			case 4:
+				return profesor.getBrojLicneKarte();
+			default:
+				return null;
+			}
 		}
+		return "";
 	}
 
 	public void dodajProfesora(Profesor p) {
