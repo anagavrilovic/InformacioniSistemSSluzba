@@ -213,13 +213,13 @@ public class DodavanjePredmetaView {
 		} else  {
 			/*JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/check.png")));*/
-			/*jtfSifraPred.setText("");
+			jtfSifraPred.setText("");
 			jtfNazivPred.setText("");
 			jtfEspb.setText("");
 			cbGodStudija.setSelectedIndex(0);
-			cbSemestar.setSelectedIndex(0);*/
+			cbSemestar.setSelectedIndex(0);
 			
-			dialog.dispose();
+			//dialog.dispose();
 		}
 		
 	}
