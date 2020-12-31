@@ -3,10 +3,10 @@ package model;
 import java.util.Date;
 
 public class Ocena {
-	public Student student;
-	public Predmet predmet;
-	public int ocena;
-	public Date datum;
+	private Student student;
+	private Predmet predmet;
+	private int ocena;
+	private Date datum;
 	
 	
 	public Ocena() {

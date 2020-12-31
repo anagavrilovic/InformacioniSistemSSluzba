@@ -9,19 +9,20 @@ public class Student {
 	
 	public enum Status{B, S};
 	
-	public String prezime;
-	public String ime;
-	public Date datumRodjenja;
-	public String adresaStanovanja;
-	public String kontaktTelefon;
-	public String email;
-	public String brojIndeksa;
-	public int godinaUpisa;
-	public int trGodStudija;
-	public Status status;
-	public double prosecnaOcena;
-	public ArrayList<Ocena> spisakPolozenih;
-	public ArrayList<Predmet> spisakNepolozenih;
+	private String prezime;
+	private String ime;
+	private Date datumRodjenja;
+	private String adresaStanovanja;
+	private String kontaktTelefon;
+	private String email;
+	private String brojIndeksa;
+	private int godinaUpisa;
+	private int trGodStudija;
+	private Status status;
+	private double prosecnaOcena;
+	private ArrayList<Ocena> spisakPolozenih;
+	private ArrayList<Predmet> spisakNepolozenih;
+	private boolean s = true;
 	
 	
 	public Student() {
@@ -244,6 +245,14 @@ public class Student {
 	
 	public void ukloniNepolozen(Predmet predmet) {
 		spisakNepolozenih.remove(predmet);
+	}
+
+	public boolean getS() {
+		return s;
+	}
+
+	public void setS(boolean s) {
+		this.s = s;
 	}
 
 	@Override
