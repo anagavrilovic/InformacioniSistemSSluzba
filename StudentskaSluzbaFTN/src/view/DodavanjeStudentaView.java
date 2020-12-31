@@ -239,9 +239,9 @@ public class DodavanjeStudentaView {
 			JOptionPane.showMessageDialog(dialog, message, "Nisu ispravno uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/remove-user.png")));
 		} else  {
-			JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));
-			/*jtfIme.setText("");
+			/*JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));*/
+			jtfIme.setText("");
 			jtfPrezime.setText("");
 			jtfDatum.setText("");
 			jtfAdresa.setText("");
@@ -250,9 +250,9 @@ public class DodavanjeStudentaView {
 			jtfBrInd.setText("");
 			jtfGodUpisa.setText("");
 			cbTrGod.setSelectedIndex(0);
-			cbFin.setSelectedIndex(0);*/  
+			cbFin.setSelectedIndex(0);
 			
-			dialog.dispose();
+			//dialog.dispose();
 		}
 		
 	}

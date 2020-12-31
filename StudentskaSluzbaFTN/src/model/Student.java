@@ -23,6 +23,7 @@ public class Student {
 	private ArrayList<Ocena> spisakPolozenih;
 	private ArrayList<Predmet> spisakNepolozenih;
 	private boolean s = true;
+	private ArrayList<Predmet> listaPredZaDodavanje;
 	
 	
 	public Student() {
@@ -262,6 +263,58 @@ public class Student {
 				+ ", brojIndeksa=" + brojIndeksa + ", godinaUpisa=" + godinaUpisa + ", trGodStudija=" + trGodStudija
 				+ ", status=" + status + ", prosecnaOcena=" + prosecnaOcena + ", spisakPolozenih=" + spisakPolozenih
 				+ ", spisakNepolozenih=" + spisakNepolozenih + "]";
+	}
+	
+	public void setListaPredmetaZaDodavanje() {
+		ArrayList<Predmet> predmetList = new ArrayList<Predmet>();
+		
+		
+		for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
+			boolean polozen = false;
+			boolean nepolozen = false;
+			
+			if(p.getGodinaStudija() >= getTrGodStudija()) {
+				for(Ocena o : getSpisakPolozenih()) {
+					if(o.getPredmet().getSifraPredmeta().equals(p.getSifraPredmeta())) {
+						polozen = true;
+						break;
+					}
+				}
+				
+				if(!polozen) {
+					for(Predmet p1 : getSpisakNepolozenih()) {
+						if(p1.getSifraPredmeta().equals(p.getSifraPredmeta())) {
+							nepolozen = true;
+							break;
+						}
+					}
+					
+					if(!nepolozen)
+					predmetList.add(p);
+				}
+			}
+		}
+		
+		
+		listaPredZaDodavanje = predmetList;
+	}
+	
+	public int getColumnCountDodavanje() {
+		return 1;
+	}
+	
+	public String getValueAtPredDodavanje(int row, int column) {
+		if(column == 0) 
+			return this.getListaPredZaDodavanje().get(row).getSifraNaziv();
+		else return " ";
+	}
+
+	public ArrayList<Predmet> getListaPredZaDodavanje() {
+		return listaPredZaDodavanje;
+	}
+
+	public void setListaPredZaDodavanje(ArrayList<Predmet> listaPredZaDodavanje) {
+		this.listaPredZaDodavanje = listaPredZaDodavanje;
 	}
 	
 	

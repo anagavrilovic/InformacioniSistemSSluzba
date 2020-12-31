@@ -51,6 +51,13 @@ public class PrikazNepolozenihIspita extends JPanel{
 		this.btnDodaj.setBackground(new Color(90, 216, 252));
 		this.btnDodaj.setForeground(Color.white);
 		this.btnDodaj.setPreferredSize(dim);
+		this.btnDodaj.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DodavanjePremetaStudentu dps = new DodavanjePremetaStudentu(index);
+			}
+		});
 		
 		this.btnObrisi = new JButton("Obriši");
 		this.btnObrisi.setBackground(new Color(90, 216, 252));

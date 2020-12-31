@@ -165,4 +165,8 @@ public class Predmet {
 				+ ", studentiPolozili=" + studentiPolozili + ", studentiNisuPolozili=" + studentiNisuPolozili + "]";
 	}
 	
+	public String getSifraNaziv() {
+		return this.getSifraPredmeta() + " - " + this.getNazivPredmeta();
+	}
+	
 }

@@ -7,10 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.JPanel;
 
 import model.BazaStudenti;
 import model.Ocena;
 import model.Predmet;
+import view.DodavanjePremetaStudentu;
 import view.PrikazNepolozenihIspita;
 import view.PrikazPolozenihIspita;
 
@@ -22,6 +24,7 @@ public class IspitiController {
 	
 	private PrikazPolozenihIspita polozeni;
 	private PrikazNepolozenihIspita nepolozeni;
+	private DodavanjePremetaStudentu dsp;
 
 
 	public static IspitiController instance = null;
@@ -73,6 +76,10 @@ public class IspitiController {
 	public void setPrikazNepolozenih(PrikazNepolozenihIspita nepolozeni) {
 		this.nepolozeni = nepolozeni;
 	}
+	
+	public void setDodavanjePredmeta(DodavanjePremetaStudentu dodaj) {
+		this.dsp = dodaj;
+	}
 
 
 	public boolean validirajDatum (String jtfText)  {
@@ -109,6 +116,27 @@ public class IspitiController {
 		}
 				
 		this.nepolozeni.azurirajPrikazPredmet(null, -1);
+	}
+	
+	public void dodajPredmetStudentu(String index, String sifraPred) {
+		
+		for(Predmet p : BazaStudenti.getInstance().pronadjiStudenta(index).getListaPredZaDodavanje()) {
+			if(p.getSifraPredmeta().equals(sifraPred)) {
+				BazaStudenti.getInstance().pronadjiStudenta(index).getListaPredZaDodavanje().remove(p);
+				break;
+			}
+			
+		}
+		
+		for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
+			if(p.getSifraPredmeta().equals(sifraPred)) {
+				BazaStudenti.getInstance().pronadjiStudenta(index).dodajNepolozen(p);
+			}
+		}
+		
+		this.nepolozeni.azurirajPrikazPredmet(null, -1);
+		this.dsp.azurirajPrikazPredmet(" ", -1);
+		
 	}
 	
 }
