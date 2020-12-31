@@ -29,6 +29,7 @@ public class Predmet {
 	private int espb;
 	private ArrayList<Student> studentiPolozili;
 	private ArrayList<Student> studentiNisuPolozili;
+	private boolean prikazi;
 	
 	public Predmet() {
 		super();
@@ -40,6 +41,7 @@ public class Predmet {
 		this.espb = 0;
 		this.studentiPolozili = new ArrayList<Student>();
 		this.studentiNisuPolozili = new ArrayList<Student>();
+		this.prikazi = true;
 	}
 
 	public Predmet(String sifraPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudija, 
@@ -54,6 +56,7 @@ public class Predmet {
 		this.espb = espb;
 		this.studentiPolozili = studentiPolozili;
 		this.studentiNisuPolozili = studentiNisuPolozili;
+		this.prikazi = true;
 	}
 	
 	public Predmet(String sifra, String naziv, int espb, int godina, Semestar semestar) {
@@ -66,6 +69,7 @@ public class Predmet {
 		this.studentiPolozili = new ArrayList<Student>();
 		this.studentiNisuPolozili = new ArrayList<Student>();
 		this.profesor = new Profesor();
+		this.prikazi = true;
 	}
 	
 	public Predmet(Predmet p) {
@@ -78,6 +82,7 @@ public class Predmet {
 		this.espb = p.espb;
 		this.studentiPolozili = p.studentiPolozili;
 		this.studentiNisuPolozili = p.studentiNisuPolozili;
+		this.prikazi = true;
 	}
 
 	
@@ -143,6 +148,14 @@ public class Predmet {
 
 	public void setStudentiNisuPolozili(ArrayList<Student> studentiNisuPolozili) {
 		this.studentiNisuPolozili = studentiNisuPolozili;
+	}
+	
+	public boolean isPrikazi() {
+		return prikazi;
+	}
+
+	public void setPrikazi(boolean prikazi) {
+		this.prikazi = prikazi;
 	}
 
 	@Override

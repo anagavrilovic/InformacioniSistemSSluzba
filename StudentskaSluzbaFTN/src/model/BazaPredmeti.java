@@ -19,6 +19,7 @@ public class BazaPredmeti {
 	private List<Predmet> predmeti;
 	private List<String> kolone;
 	private List<Predmet> nepolozeniPredmeti;
+	private boolean prikaziPredmet;
 
 	private BazaPredmeti() {
 	
@@ -32,6 +33,7 @@ public class BazaPredmeti {
 		this.kolone.add("Semestar");
 		
 		this.nepolozeniPredmeti = new ArrayList<Predmet>();
+
 	}
 
 	private void inicijalizacijaPredmeta() {
@@ -138,20 +140,48 @@ public class BazaPredmeti {
 
 	public String getValueAt(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);
-		switch (column) {
-		case 0:
-			return predmet.getSifraPredmeta();
-		case 1:
-			return predmet.getNazivPredmeta();
-		case 2:
-			return Integer.toString(predmet.getEspb());
-		case 3:
-			return Integer.toString(predmet.getGodinaStudija());
-		case 4:
-			return predmet.getSemestar().toString();
-		default:
-			return null;
+		if(predmet.isPrikazi()) {
+			switch (column) {
+			case 0:
+				return predmet.getSifraPredmeta();
+			case 1:
+				return predmet.getNazivPredmeta();
+			case 2:
+				return Integer.toString(predmet.getEspb());
+			case 3:
+				return Integer.toString(predmet.getGodinaStudija());
+			case 4:
+				return predmet.getSemestar().toString();
+			default:
+				return null;
+			}
 		}
+		return  "";
+	}
+	
+	public boolean prikaziPredmet(Predmet p) {
+		return prikaziPredmet;
+	}
+	
+	public String getValueAtSort(int row, int column) {
+		Predmet predmet = this.predmeti.get(row);
+		if(predmet.isPrikazi()) {
+			switch (column) {
+			case 0:
+				return predmet.getSifraPredmeta();
+			case 1:
+				return predmet.getNazivPredmeta();
+			case 2:
+				return Integer.toString(predmet.getEspb());
+			case 3:
+				return Integer.toString(predmet.getGodinaStudija());
+			case 4:
+				return predmet.getSemestar().toString();
+			default:
+				return null;
+			}
+		}
+		return "";
 	}
 	
 	public String getValueAtNepolozeniPredmeti(int row, int column) {
@@ -201,4 +231,13 @@ public class BazaPredmeti {
 			}
 		}
 	}
+
+	public boolean isPrikaziPredmet() {
+		return prikaziPredmet;
+	}
+
+	public void setPrikaziPredmet(boolean prikaziPredmet) {
+		this.prikaziPredmet = prikaziPredmet;
+	}
+		
 }
