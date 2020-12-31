@@ -48,6 +48,9 @@ public class PretragaProfesora {
 		
 		List<Profesor> profesori = new ArrayList<Profesor>();
 		
+		if(unos == null)
+			unos = "";
+		
 		StringTokenizer st = new StringTokenizer(unos);
 		
 		String[] delovi = {"", ""};
