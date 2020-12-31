@@ -94,6 +94,7 @@ public class Profesor {
 	private Titula titula;
 	private Zvanje zvanje;
 	private ArrayList<Predmet>predmeti;
+	private Boolean dodaj;
 	
 	public Profesor () {
 		super();
@@ -108,8 +109,20 @@ public class Profesor {
 		this.titula = Titula.BSc;
 		this.zvanje = Zvanje.Asistent;
 		this.predmeti = new ArrayList<Predmet>();
+		this.dodaj = true;
 	}
 	
+	public Boolean getDodaj() {
+		return dodaj;
+	}
+
+
+
+	public void setDodaj(Boolean dodaj) {
+		this.dodaj = dodaj;
+	}
+
+
 	public Profesor (String prz, String ime, Date dt, String adrStan, String email, String adrKanc, 
 					 String brlk, Titula titula, Zvanje zvanje) {
 		super();
@@ -123,6 +136,7 @@ public class Profesor {
 		this.titula = titula;
 		this.zvanje = zvanje;
 		this.predmeti = new ArrayList<Predmet>();
+		this.dodaj = true;
 	}
 	
 	public Profesor (String ime, String prezime, Titula titula, Zvanje zvanje, String brLK) {
@@ -133,6 +147,7 @@ public class Profesor {
 		this.zvanje = zvanje;
 		this.brojLicneKarte = brLK;
 		this.predmeti = new ArrayList<Predmet>();
+		this.dodaj = true;
 	}
 	
 	public Profesor (Profesor p) {
@@ -147,6 +162,7 @@ public class Profesor {
 		this.titula = p.titula;
 		this.zvanje = p.zvanje;
 		this.predmeti = p.predmeti;
+		this.dodaj = true;
 	}
 
 	public String getPrezime() {
