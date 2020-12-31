@@ -22,7 +22,7 @@ public class PredmetTable extends JTable{
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		this.setGridColor(Color.LIGHT_GRAY);
-		this.setAutoCreateRowSorter(true);
+		//this.setAutoCreateRowSorter(true);
 		this.setRowHeight(25);
 		this.setIntercellSpacing(new Dimension(15, 4));
 		

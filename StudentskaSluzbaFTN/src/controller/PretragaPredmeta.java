@@ -23,7 +23,7 @@ public class PretragaPredmeta {
 	
 	private String unos;
 	private String naziv;
-	public static int brojPrikazanih = 0;
+//	public static int brojPrikazanih = 0;
 	
 	public PretragaPredmeta() {
 		this.naziv = "";
@@ -63,14 +63,14 @@ public class PretragaPredmeta {
 		if(unos == "") {
 			for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
 				p.setPrikazi(true);
-				 brojPrikazanih++;
+				// brojPrikazanih++;
 			}
 		} 
 		else {
 			for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
 				if(p.getNazivPredmeta().toLowerCase().contains(unos.toLowerCase())) {
 					p.setPrikazi(true);
-					 brojPrikazanih++;
+					// brojPrikazanih++;
 				}
 				else 
 					p.setPrikazi(false);
@@ -78,6 +78,6 @@ public class PretragaPredmeta {
 		}
 		
 		TabbedPane.getInstance().azurirajPrikazPredmet("Pretraga predmeta", -1);
-		brojPrikazanih = 0;
+		//brojPrikazanih = 0;
 	}
 }
