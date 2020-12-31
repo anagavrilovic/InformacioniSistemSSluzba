@@ -71,26 +71,26 @@ public class ToolBar extends JToolBar{
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
 				String unos = text.getText();
-				boolean validanUnos = PretragaProfesora.getInstance().validacijaUnosa(unos);
-				if(validanUnos) {
-					btnSearch.setEnabled(true);
-					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-						if(TabbedPane.getInstance().getIndex() == 0) {
-							
-						} else if(TabbedPane.getInstance().getIndex() == 1) {
+ 
+				if(TabbedPane.getInstance().getIndex() == 0) {
+ 
+				} else if(TabbedPane.getInstance().getIndex() == 1) {
+					boolean validanUnos = PretragaProfesora.getInstance().validacijaUnosa(unos);
+ 
+					if(validanUnos) {
+						btnSearch.setEnabled(true);
+						if(e.getKeyCode() == KeyEvent.VK_ENTER)
 							PretragaProfesora.getInstance().pronadjiProfesore();
-								
-						} else if(TabbedPane.getInstance().getIndex() == 2) {
-							
-						}
-
 					}
+					else {
+						btnSearch.setEnabled(false);
+					}
+ 
+				} else if(TabbedPane.getInstance().getIndex() == 2) {
+ 
 				}
-				else {
-					btnSearch.setEnabled(false);
-				}
+ 
 			}
 			
 			@Override
@@ -114,7 +114,6 @@ public class ToolBar extends JToolBar{
 					
 				} else if(TabbedPane.getInstance().getIndex() == 1) {
 					PretragaProfesora.getInstance().pronadjiProfesore();
-						
 				} else if(TabbedPane.getInstance().getIndex() == 2) {
 					
 				}
