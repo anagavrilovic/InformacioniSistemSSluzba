@@ -1,10 +1,13 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -24,6 +27,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 import controller.PredmetController;
 import main.Main;
@@ -42,21 +47,26 @@ public class IzmenaPredmetaView {
 	private JComboBox<String> cbSemestar;
 	private JComboBox<String> cbGodStudija;
 	private JTextField jtfEspb;
+	private static JTextField jtfProfesor;
 	
 	private JButton btnPotvrdi;
 	private JButton btnOdustani;
+	
+	private static JButton btnPlus;
+	private static JButton btnMinus;
 	
 	private JLabel jlSifraPred;
 	private JLabel jlNazivPred;
 	private JLabel jlSemestar;
 	private JLabel jlGodStudija;
 	private JLabel jlEspb;
+	private JLabel jlProfesor;
 	
 	private GridBagConstraints gbcLeft;
 	private GridBagConstraints gbcRight;
 	
 	private PredmetFocusListener predmetFocusListener;
-	private Predmet predmet;
+	private static Predmet predmet;
 	
 	
 	public IzmenaPredmetaView(GlavniProzor gp, String sifra) {
@@ -104,13 +114,13 @@ public class IzmenaPredmetaView {
 		predmetFocusListener = new PredmetFocusListener();
 		
 		gbcLeft = new GridBagConstraints();
-		gbcLeft.weightx = 100;
-		gbcLeft.insets = new Insets(10, 50, 10, 0);
+		gbcLeft.weightx = 0;
+		gbcLeft.insets = new Insets(10, 25, 10, 0);
 		gbcLeft.anchor = GridBagConstraints.WEST;
 		
 		gbcRight = new GridBagConstraints();
 		gbcRight.weightx = 100;
-		gbcRight.insets = new Insets(10, 0, 10, 50);
+		gbcRight.insets = new Insets(10, 0, 10, 25);
 		gbcRight.anchor = GridBagConstraints.EAST;
 		
 		dodajSifruPredmeta();
@@ -118,6 +128,7 @@ public class IzmenaPredmetaView {
 		dodajSemestar();
 		dodajGodinuStudija();
 		dodajEsbp();
+		dodajProfesora();
 		dodajPrazanRed1();
 		dodajPrazanRed2();
 		
@@ -210,6 +221,7 @@ public class IzmenaPredmetaView {
 		String sifraPred = jtfSifraPred.getText();
 		String nazivPred = jtfNazivPred.getText();
 		String espb = jtfEspb.getText();
+		String profesor = jtfProfesor.getText();
 		
 		int godStudija = cbGodStudija.getSelectedIndex() + 1;
 		Semestar semestar;
@@ -219,7 +231,7 @@ public class IzmenaPredmetaView {
 			semestar = Semestar.LETNJI;
 		}
 		
-		String message = PredmetController.getInstance().izmeniPredmet(predmet.getSifraPredmeta(), sifraPred, nazivPred, semestar, godStudija, espb);
+		String message = PredmetController.getInstance().izmeniPredmet(predmet.getSifraPredmeta(), sifraPred, nazivPred, semestar, godStudija, espb, profesor);
 		
 		if (!message.equals("Predmet uspešno izmenjen!")) {
 			JOptionPane.showMessageDialog(dialog, message, "Nisu ispravno uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
@@ -231,14 +243,14 @@ public class IzmenaPredmetaView {
 		}
 		
 	}
-	
 	private void dodajSifruPredmeta() {
 		jlSifraPred = new JLabel("Šifra predmeta*:");
 		gbcRight.gridx = 0;
 		gbcRight.gridy = 0;
 		panel.add(jlSifraPred, gbcLeft);
 		
-		jtfSifraPred = new JTextField(20);
+		jtfSifraPred = new JTextField();
+		jtfSifraPred.setPreferredSize(new Dimension(260, 23));
 		jtfSifraPred.setBackground(new Color(224, 224, 224));
 		jtfSifraPred.setName("txtSifraPred");
 		jtfSifraPred.setText(predmet.getSifraPredmeta());
@@ -248,13 +260,15 @@ public class IzmenaPredmetaView {
 		gbcRight.gridy = 0;
 		panel.add(jtfSifraPred, gbcRight);
 	}
+	
 	private void dodajNazivPredmeta() {
 		jlNazivPred = new JLabel("Naziv predmeta*:");
 		gbcLeft.gridx = 0;
 		gbcLeft.gridy = 1;
 		panel.add(jlNazivPred, gbcLeft);
 		
-		jtfNazivPred = new JTextField(20);
+		jtfNazivPred = new JTextField();
+		jtfNazivPred.setPreferredSize(new Dimension(260, 23));
 		jtfNazivPred.setBackground(new Color(224, 224, 224));
 		jtfNazivPred.setName("txtNazivPred");
 		jtfNazivPred.setText(predmet.getNazivPredmeta());
@@ -264,15 +278,17 @@ public class IzmenaPredmetaView {
 		gbcRight.gridy = 1;
 		panel.add(jtfNazivPred, gbcRight);
 	}
+	
 	private void dodajSemestar() {
 		jlSemestar = new JLabel("Semestar*:");
 		gbcLeft.gridx = 0;
 		gbcLeft.gridy = 2;
 		panel.add(jlSemestar, gbcLeft);
 		
-		String[] semestar = {"                    Zimski                       ",
-							 "                     Letnji                       "};
+		String[] semestar = {"                             Zimski",
+							 "                             Letnji"};
 		cbSemestar = new JComboBox<String>(semestar);
+		cbSemestar.setPreferredSize(new Dimension(260, 23));
 		
 		if(predmet.getSemestar() == Semestar.ZIMSKI)
 			cbSemestar.setSelectedIndex(0);
@@ -286,17 +302,19 @@ public class IzmenaPredmetaView {
 		gbcRight.gridy = 2;
 		panel.add(cbSemestar, gbcRight);
 	}
+	
 	private void dodajGodinuStudija() {
 		jlGodStudija = new JLabel("Godina studija*:");
 		gbcLeft.gridx = 0;
 		gbcLeft.gridy = 3;
 		panel.add(jlGodStudija, gbcLeft);
 		
-		String[] god = {"                     I (prva)                   ", 
-				        "                     II (druga)                 ", 
-				        "                     III (treća)                ", 
-				        "                     IV (četvrta)               "};
+		String[] god = {"                              I (prva)", 
+				        "                              II (druga)", 
+				        "                              III (treća)", 
+				        "                              IV (četvrta)"};
 		cbGodStudija = new JComboBox<String>(god);
+		cbGodStudija.setPreferredSize(new Dimension(260, 23));
 		cbGodStudija.setSelectedIndex(predmet.getGodinaStudija() - 1);
 		cbGodStudija.setEditable(false);
 		cbGodStudija.setBackground(new Color(224, 224, 224));
@@ -305,13 +323,15 @@ public class IzmenaPredmetaView {
 		gbcRight.gridy = 3;
 		panel.add(cbGodStudija, gbcRight);
 	}
+	
 	private void dodajEsbp() {
-		jlEspb = new JLabel("Broj ESPB bodova:*:");
+		jlEspb = new JLabel("Broj ESPB bodova*:");
 		gbcLeft.gridx = 0;
 		gbcLeft.gridy = 4;
 		panel.add(jlEspb, gbcLeft);
 		
-		jtfEspb = new JTextField(20);
+		jtfEspb = new JTextField();
+		jtfEspb.setPreferredSize(new Dimension(260, 23));
 		jtfEspb.setBackground(new Color(224, 224, 224));
 		jtfEspb.setName("txtESPB");
 		jtfEspb.setText(espbToString(predmet.getEspb()));
@@ -346,18 +366,85 @@ public class IzmenaPredmetaView {
 		gbcRight.gridy = 4;
 		panel.add(jtfEspb, gbcRight);
 	}
-	private void dodajPrazanRed1() {
-		JLabel label1 = new JLabel(" ");
+	
+	private void dodajProfesora() {
+		jlProfesor = new JLabel("Profesor*:");
 		gbcLeft.gridx = 0;
 		gbcLeft.gridy = 5;
-		panel.add(label1, gbcLeft);
+		panel.add(jlProfesor, gbcLeft);
 		
-		JLabel label2 = new JLabel(" ");
+		JPanel panelProfesor = new JPanel();
+		panelProfesor.setBackground(Color.WHITE);
+		panelProfesor.setLayout(new FlowLayout());
+		
+		jtfProfesor = new JTextField();
+		jtfProfesor.setPreferredSize(new Dimension(200, 23));
+		jtfProfesor.setBackground(Color.white);
+		jtfProfesor.setBorder(new LineBorder(java.awt.Color.gray));
+		jtfProfesor.setName("txtProfesor");
+		jtfProfesor.setText(predmet.getImePrezimeProfesora());
+		jtfProfesor.setEditable(false);
+		panelProfesor.add(jtfProfesor);
+		
+		btnPlus = new JButton();
+		btnPlus.setPreferredSize(new Dimension(22, 22));
+		btnPlus.setMargin(new Insets(0, 0, 0, 0));
+		btnPlus.setText("+");
+		btnPlus.setBackground(new Color(90, 216, 252));
+		btnPlus.setForeground(Color.white);
+		if(jtfProfesor.getText().isEmpty() || jtfProfesor.getText().isBlank() || jtfProfesor.getText() == null) {
+		    btnPlus.setEnabled(true);
+		} else { 
+		    btnPlus.setEnabled(false);
+		}
+		btnPlus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DodavanjeProfesoraPredmetu dpp = new DodavanjeProfesoraPredmetu(predmet.getSifraPredmeta());
+				
+			}
+		});
+		
+		
+		btnMinus = new JButton();
+		btnMinus.setPreferredSize(new Dimension(22, 22));
+		btnMinus.setMargin(new Insets(0, 0, 0, 0));
+		btnMinus.setText("-");
+		btnMinus.setBackground(Color.white);
+		btnMinus.setForeground(new Color(90, 216, 252));
+		if(jtfProfesor.getText().isEmpty() || jtfProfesor.getText().isBlank() || jtfProfesor.getText() == null) {
+		    btnMinus.setEnabled(false);
+		} else { 
+		    btnMinus.setEnabled(true);
+		}
+		
+		panelProfesor.add(btnPlus);
+		panelProfesor.add(btnMinus);
+		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 5;
-		panel.add(label2, gbcRight);
+		panel.add(panelProfesor, gbcRight);
+		
 	}
-	private void dodajPrazanRed2() {
+	
+	public static void azurirajProfesora() {
+		jtfProfesor.setText(predmet.getImePrezimeProfesora());
+		
+		if(jtfProfesor.getText().isEmpty() || jtfProfesor.getText().isBlank() || jtfProfesor.getText() == null) {
+		    btnPlus.setEnabled(true);
+		} else { 
+		    btnPlus.setEnabled(false);
+		}
+		
+		if(jtfProfesor.getText().isEmpty() || jtfProfesor.getText().isBlank() || jtfProfesor.getText() == null) {
+		    btnMinus.setEnabled(false);
+		} else { 
+		    btnMinus.setEnabled(true);
+		}
+	}
+	
+	private void dodajPrazanRed1() {
 		JLabel label1 = new JLabel(" ");
 		gbcLeft.gridx = 0;
 		gbcLeft.gridy = 6;
@@ -366,6 +453,18 @@ public class IzmenaPredmetaView {
 		JLabel label2 = new JLabel(" ");
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 6;
+		panel.add(label2, gbcRight);
+	}
+	
+	private void dodajPrazanRed2() {
+		JLabel label1 = new JLabel(" ");
+		gbcLeft.gridx = 0;
+		gbcLeft.gridy = 7;
+		panel.add(label1, gbcLeft);
+		
+		JLabel label2 = new JLabel(" ");
+		gbcRight.gridx = 1;
+		gbcRight.gridy = 7;
 		panel.add(label2, gbcRight);
 	}
 	

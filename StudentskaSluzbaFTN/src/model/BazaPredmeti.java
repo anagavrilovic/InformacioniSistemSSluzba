@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import model.Predmet.Semestar;
 
@@ -268,7 +269,7 @@ public class BazaPredmeti {
 		}
 	}
 
-	public void izmeniPredmet(String staraSifra, String sifra, String naziv, int espb, int godina, Semestar semestar) {
+	public void izmeniPredmet(String staraSifra, String sifra, String naziv, int espb, int godina, Semestar semestar, String profesor) {
 		for (Predmet p : getPredmeti()) {
 			if (p.getSifraPredmeta().equals(staraSifra)) {
 				p.setSifraPredmeta(sifra);
@@ -277,6 +278,20 @@ public class BazaPredmeti {
 				p.setGodinaStudija(godina);
 				p.setSemestar(semestar);
 				
+				String brojLK;
+				StringTokenizer st = new StringTokenizer(profesor);
+				if(st.hasMoreElements()) {
+					brojLK = st.nextToken();
+				} else {
+					brojLK = "";
+				}
+				
+				for(Profesor prof : BazaProfesori.getInstance().getProfesori()) {
+					if(prof.getBrojLicneKarte().equals(brojLK)) {
+						p.setProfesor(prof);
+						break;
+					}
+				}
 			}
 		}
 	}

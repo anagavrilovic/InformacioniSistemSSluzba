@@ -46,7 +46,7 @@ public class PredmetController {
 		return "Predmet uspešno dodat!";
 	}
 	
-	public String izmeniPredmet(String staraSifra, String sifraPred, String nazivPred, Semestar semestar, int godStud, String espb) {
+	public String izmeniPredmet(String staraSifra, String sifraPred, String nazivPred, Semestar semestar, int godStud, String espb, String profesor) {
 		
 		if(!staraSifra.equals(sifraPred))
 			if(!BazaPredmeti.getInstance().validirajSifruPredmeta(sifraPred))
@@ -56,7 +56,7 @@ public class PredmetController {
 		if(!validacija.equals("Uspešno"))
 			return validacija;
 		
-		BazaPredmeti.getInstance().izmeniPredmet(staraSifra, sifraPred, nazivPred, espbBod, godStud, semestar);
+		BazaPredmeti.getInstance().izmeniPredmet(staraSifra, sifraPred, nazivPred, espbBod, godStud, semestar, profesor);
 		TabbedPane.getInstance().azurirajPrikazPredmet("Izmena predmeta", -1);
 
 		return "Predmet uspešno izmenjen!";

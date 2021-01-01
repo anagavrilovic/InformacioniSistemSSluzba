@@ -1,6 +1,7 @@
 package controller;
 
 import model.BazaPredmeti;
+import model.BazaProfesori;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +13,9 @@ import javax.swing.JPanel;
 import model.BazaStudenti;
 import model.Ocena;
 import model.Predmet;
+import model.Profesor;
 import view.DodavanjePremetaStudentu;
+import view.DodavanjeProfesoraPredmetu;
 import view.PrikazNepolozenihIspita;
 import view.PrikazPolozenihIspita;
 
@@ -25,6 +28,7 @@ public class IspitiController {
 	private PrikazPolozenihIspita polozeni;
 	private PrikazNepolozenihIspita nepolozeni;
 	private DodavanjePremetaStudentu dsp;
+	private DodavanjeProfesoraPredmetu dpp;
 
 
 	public static IspitiController instance = null;
@@ -79,6 +83,10 @@ public class IspitiController {
 	
 	public void setDodavanjePredmeta(DodavanjePremetaStudentu dodaj) {
 		this.dsp = dodaj;
+	}
+	
+	public void setDodavanjeProfesoraPredmetu(DodavanjeProfesoraPredmetu dpp) {
+		this.dpp = dpp;
 	}
 
 
@@ -137,6 +145,18 @@ public class IspitiController {
 		this.nepolozeni.azurirajPrikazPredmet(null, -1);
 		this.dsp.azurirajPrikazPredmet(" ", -1);
 		
+	}
+	
+	public void dodajProfesoraPredmetu(String sifraPredmeta, String brojLK) {
+		
+		for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
+			if(p.getSifraPredmeta().equals(sifraPredmeta)) {
+				p.setProfesor(BazaProfesori.getInstance().nadjiProfesora(brojLK));
+				BazaProfesori.getInstance().nadjiProfesora(brojLK).getPredmeti().add(p);
+			}
+		}
+		
+		this.dpp.azurirajPrikazPredmet(null, -1);
 	}
 	
 }
