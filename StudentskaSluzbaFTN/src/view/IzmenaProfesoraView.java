@@ -88,7 +88,7 @@ public class IzmenaProfesoraView {
 		}
 		
 		jd = new JDialog(gp, "Izmena profesora", true);
-		jd.setSize(500,600);
+		jd.setSize(600,600);
 		jd.setResizable(false);
 		jd.setLocationRelativeTo(null);
 		
@@ -186,7 +186,7 @@ public class IzmenaProfesoraView {
 		tp.setForeground(Color.WHITE);
 		
 		tp.add("Informacije", jp);
-		tp.add("Predmeti", new JPanel());
+		tp.add("Predmeti", new ProfesorPredajePredmeteView(kljuc));
 		
 		jd.add(tp);
 		jd.setVisible(true);		
