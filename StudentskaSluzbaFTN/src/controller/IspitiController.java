@@ -182,6 +182,7 @@ public class IspitiController {
 		for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
 			if(p.getSifraPredmeta().equals(sifraPredmeta)) {
 				BazaProfesori.getInstance().nadjiProfesora(brLK).getPredmeti().add(p);
+				p.setProfesor(BazaProfesori.getInstance().nadjiProfesora(brLK));
 			}		
 		}
 	

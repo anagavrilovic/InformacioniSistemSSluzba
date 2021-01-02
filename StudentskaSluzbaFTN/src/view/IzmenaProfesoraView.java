@@ -95,16 +95,16 @@ public class IzmenaProfesoraView {
 		jd.addWindowListener(new WindowAdapter() {
 			
 			public void windowClosing(WindowEvent e) {
-				String[] options = {"Da", "Ne" };
+			/*	String[] options = {"Da", "Ne" };
 				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete izmenu profesora?",
 						"Prekid izmene profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
 						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
-						options, options[0]);
+						options, options[0]);*/
 				
-				if (opcija == JOptionPane.YES_OPTION) 
+			//	if (opcija == JOptionPane.YES_OPTION) 
 					jd.dispose();
-				else 
-					jd.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+				//else 
+				//	jd.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 			}
 		});
 		
@@ -163,16 +163,16 @@ public class IzmenaProfesoraView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String[] options = {"Da", "Ne" };
+				/*String[] options = {"Da", "Ne" };
 				int opcija = JOptionPane.showOptionDialog(jd, "Da li ste sigurni da želite da prekinete izmenu profesora?",
 						"Prekid izmene profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
 						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
 						options, options[0]);
 
-				if (opcija == JOptionPane.YES_OPTION) 
+				if (opcija == JOptionPane.YES_OPTION) */
 					jd.dispose();
-				else 
-					jd.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+				/*else 
+					jd.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);*/
 			}
 		});
 		
@@ -236,9 +236,9 @@ public void potvrdi() {
 		
 		if(message.equals("Uspešno ste izmenili izabranog profesora!")) {
 			
-			JOptionPane.showMessageDialog(jd, message, "Uspešno ste izmenili izabranog profesora", 
+		/*	JOptionPane.showMessageDialog(jd, message, "Uspešno ste izmenili izabranog profesora", 
 					JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));
+					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));*/
 			jd.dispose();
 		}
 		else {
