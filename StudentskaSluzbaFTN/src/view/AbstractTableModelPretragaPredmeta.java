@@ -6,6 +6,11 @@ import model.BazaPredmeti;
 
 public class AbstractTableModelPretragaPredmeta extends AbstractTableModel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public AbstractTableModelPretragaPredmeta() {}
 
 	public int getRowCount() {

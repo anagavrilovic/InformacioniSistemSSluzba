@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -13,9 +15,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 
+import controller.IspitiController;
 import model.BazaPredmeti;
+import view.DodavanjePredmetaProfesoru.AbstractTableModelSpisakPredmeta;
 
 public class ProfesorPredajePredmeteView extends JPanel{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private JButton btnDodajPredmet;
 	private JButton btnUkloniPredmet;
@@ -32,6 +41,14 @@ public class ProfesorPredajePredmeteView extends JPanel{
 		this.btnDodajPredmet.setBackground(new Color(90, 216, 252));
 		this.btnDodajPredmet.setForeground(Color.white);
 		this.btnDodajPredmet.setPreferredSize(dim);
+		this.btnDodajPredmet.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DodavanjePredmetaProfesoru dpp = new DodavanjePredmetaProfesoru(brLK);
+			}
+		});
 		
 		this.btnUkloniPredmet = new JButton("Ukloni Predmet");
 		this.btnUkloniPredmet.setBackground(new Color(90, 216, 252));
@@ -73,7 +90,16 @@ public class ProfesorPredajePredmeteView extends JPanel{
 		AbstractTableModelProfesorPredajePredmete atmppp = new AbstractTableModelProfesorPredajePredmete();
 		predmetiTabela = new PredmetTable(atmppp);
 		JScrollPane jsp = new JScrollPane(predmetiTabela);
+		
+		IspitiController.getInstance().setProfesorPredajePredmete(this);
+		
 		this.add(jsp);
+	}
+	
+	public void azurirajPrikazPredmet(String akcija, int vrednost) {
+		AbstractTableModelProfesorPredajePredmete model = (AbstractTableModelProfesorPredajePredmete) predmetiTabela.getModel();
+		model.fireTableDataChanged();
+		predmetiTabela.validate();
 	}
 
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Profesor {
 	
@@ -94,6 +95,7 @@ public class Profesor {
 	private Titula titula;
 	private Zvanje zvanje;
 	private ArrayList<Predmet>predmeti;
+	private ArrayList<Predmet> profesorNePredaje;
 	private Boolean dodaj;
 	
 	public Profesor () {
@@ -109,19 +111,10 @@ public class Profesor {
 		this.titula = Titula.BSc;
 		this.zvanje = Zvanje.Asistent;
 		this.predmeti = new ArrayList<Predmet>();
+		this.profesorNePredaje = new ArrayList<Predmet>();
 		this.dodaj = true;
 	}
 	
-	public Boolean getDodaj() {
-		return dodaj;
-	}
-
-
-
-	public void setDodaj(Boolean dodaj) {
-		this.dodaj = dodaj;
-	}
-
 
 	public Profesor (String prz, String ime, Date dt, String adrStan, String email, String adrKanc, 
 					 String brlk, Titula titula, Zvanje zvanje) {
@@ -136,6 +129,7 @@ public class Profesor {
 		this.titula = titula;
 		this.zvanje = zvanje;
 		this.predmeti = new ArrayList<Predmet>();
+		this.profesorNePredaje = new ArrayList<Predmet>();
 		this.dodaj = true;
 	}
 	
@@ -147,6 +141,7 @@ public class Profesor {
 		this.zvanje = zvanje;
 		this.brojLicneKarte = brLK;
 		this.predmeti = new ArrayList<Predmet>();
+		this.profesorNePredaje = new ArrayList<Predmet>();
 		this.dodaj = true;
 	}
 	
@@ -162,6 +157,7 @@ public class Profesor {
 		this.titula = p.titula;
 		this.zvanje = p.zvanje;
 		this.predmeti = p.predmeti;
+		this.profesorNePredaje = p.profesorNePredaje;
 		this.dodaj = true;
 	}
 
@@ -252,6 +248,25 @@ public class Profesor {
 	public void setPredmeti(ArrayList<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
+	
+	public ArrayList<Predmet> getProfesorNePredaje() {
+		return profesorNePredaje;
+	}
+
+
+	public void setProfesorNePredaje(ArrayList<Predmet> profesorNePredaje) {
+		this.profesorNePredaje = profesorNePredaje;
+	}
+	
+	public Boolean getDodaj() {
+		return dodaj;
+	}
+
+
+	public void setDodaj(Boolean dodaj) {
+		this.dodaj = dodaj;
+	}
+
 
 	@Override
 	public String toString() {
