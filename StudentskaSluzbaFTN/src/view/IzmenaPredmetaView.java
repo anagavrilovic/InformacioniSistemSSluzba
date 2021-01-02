@@ -30,6 +30,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
+import controller.IspitiController;
 import controller.PredmetController;
 import main.Main;
 import model.BazaPredmeti;
@@ -418,6 +419,29 @@ public class IzmenaPredmetaView {
 		} else { 
 		    btnMinus.setEnabled(true);
 		}
+		
+		btnMinus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				
+				String[] options = {"Potvrdi", "Odustani" };
+				int opcija = JOptionPane.showOptionDialog(GlavniProzor.getInstance(), "Da li ste sigurni?",
+						"Ukloni Profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
+						options, options[0]);
+				if (opcija == JOptionPane.YES_OPTION) {
+					IspitiController.getInstance().ukloniProfesoraSaPredmeta(predmet.getProfesor().getBrojLicneKarte(), 
+																			predmet);
+					jtfProfesor.setText("");
+				} 
+				else {
+					return;
+				}
+			}
+		});
 		
 		panelProfesor.add(btnPlus);
 		panelProfesor.add(btnMinus);

@@ -200,5 +200,13 @@ public class IspitiController {
 		
 	}
 	
+	public void ukloniProfesoraSaPredmeta(String brLK, Predmet predmet) {
+		
+		BazaPredmeti.getInstance().pronadjiPredmet(predmet.getSifraPredmeta()).setProfesor(new Profesor());
+		BazaProfesori.getInstance().nadjiProfesora(brLK).getPredmeti().remove(predmet);
+		
+		this.ppp.azurirajPrikazPredmet(null, -1);
+	}
+	
 }
 
