@@ -10,6 +10,7 @@ import model.BazaProfesori;
 import model.BazaStudenti;
 import model.Ocena;
 import model.Predmet;
+import model.Profesor;
 import view.DodavanjePredmetaProfesoru;
 import view.DodavanjePremetaStudentu;
 import view.DodavanjeProfesoraPredmetu;
