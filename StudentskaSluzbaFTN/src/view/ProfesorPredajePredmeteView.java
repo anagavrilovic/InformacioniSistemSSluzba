@@ -6,14 +6,20 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 
+import controller.IspitiController;
 import model.BazaPredmeti;
+import model.Predmet;
 
 public class ProfesorPredajePredmeteView extends JPanel{
 	
@@ -21,6 +27,7 @@ public class ProfesorPredajePredmeteView extends JPanel{
 	private JButton btnUkloniPredmet;
 	private JTable predmetiTabela;
 	private String brLK;
+	private Predmet ukloniPredmet;
 	
 	public ProfesorPredajePredmeteView(String brLK) {
 		
@@ -37,6 +44,13 @@ public class ProfesorPredajePredmeteView extends JPanel{
 		this.btnUkloniPredmet.setBackground(new Color(90, 216, 252));
 		this.btnUkloniPredmet.setForeground(Color.white);
 		this.btnUkloniPredmet.setPreferredSize(dim);
+		this.btnUkloniPredmet.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ukloniPredmet();
+			}
+		});	
 		
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
@@ -74,6 +88,37 @@ public class ProfesorPredajePredmeteView extends JPanel{
 		predmetiTabela = new PredmetTable(atmppp);
 		JScrollPane jsp = new JScrollPane(predmetiTabela);
 		this.add(jsp);
+	}
+	
+	private void ukloniPredmet() {
+		if(getSifraPredFromSelectedRow().equals("")) {
+			JOptionPane.showMessageDialog(this.getParent(), "Selektujte predmet!", "Nije selektovan nijedan predmet", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/minus.png")));
+			return;
+		}
+		
+		ukloniPredmet = BazaPredmeti.getInstance().pronadjiPredmet(getSifraPredFromSelectedRow());
+		
+		String[] options = {"Potvrdi", "Odustani" };
+		int opcija = JOptionPane.showOptionDialog(GlavniProzor.getInstance(), "Da li ste sigurni da želite da uklonite predmet?",
+				"Ukloni predmet", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+				GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
+				options, options[1]);
+		if (opcija != JOptionPane.YES_OPTION) {
+			return;
+		} else {
+			IspitiController.getInstance().ukloniPredmetProfesoru(brLK, ukloniPredmet);
+		}
+	}
+	
+	public String getSifraPredFromSelectedRow() {
+		int row = predmetiTabela.getSelectedRow();
+		
+		if(row != -1) {
+			return (String) predmetiTabela.getValueAt(row, 0);
+		}else {
+			return "";
+		}
 	}
 
 }

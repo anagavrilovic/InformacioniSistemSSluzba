@@ -140,14 +140,14 @@ public class PrikazNepolozenihIspita extends JPanel{
 		brisanjePredmeta = BazaPredmeti.getInstance().pronadjiPredmet(getSifraPredFromSelectedRow());
 		
 		String[] options = {"Da", "Ne" };
-		int opcija = JOptionPane.showOptionDialog(GlavniProzor.getInstance(), "Da li ste sigurni da želite da uklonite predmet ovom studentu?",
-				"Uklanjanje predmeta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+		int opcija = JOptionPane.showOptionDialog(GlavniProzor.getInstance(), "Da li ste sigurni da želite da uklonite predmet?",
+				"Uklanjanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
 				GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
 				options, options[1]);
 		if (opcija != JOptionPane.YES_OPTION) {
 			return;
 		} else {
-			IspitiController.getInstance().ukloniPredmet(index, brisanjePredmeta);
+			IspitiController.getInstance().ukloniPredmetStudentu(index, brisanjePredmeta);
 		}
 	}
 	

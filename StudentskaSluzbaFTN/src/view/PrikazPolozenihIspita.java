@@ -97,8 +97,8 @@ public class PrikazPolozenihIspita extends JPanel {
 		this.add(spPredmet, BorderLayout.CENTER);
 		
 		this.index = index;
-		String ocena = "Prosečna ocena: " + BazaStudenti.getInstance().pronadjiStudenta(index).izracunajProsecnuOcenu();
-		prosecnaOcena = new JLabel(ocena);
+		String format = String.format("%.2f", BazaStudenti.getInstance().pronadjiStudenta(index).izracunajProsecnuOcenu());
+		prosecnaOcena = new JLabel("Prosečna ocena: " + format);
 		panelSouth.add(prosecnaOcena, new GridBagConstraints(0, 0, 1, 1, 100, 0, GridBagConstraints.EAST,
                 GridBagConstraints.NONE, new Insets(10, 0, 5, 80), 0, 0));
 		
