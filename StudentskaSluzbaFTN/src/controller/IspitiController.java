@@ -61,7 +61,7 @@ public class IspitiController {
 	}
 		
 	
-	public void ukloniPredmet(String index, Predmet predmet) {
+	public void ukloniPredmetStudentu(String index, Predmet predmet) {
 		
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakNepolozenih().remove(predmet);
 		BazaPredmeti.getInstance().pronadjiPredmet(predmet.getSifraPredmeta()).getStudentiNisuPolozili().
@@ -187,6 +187,15 @@ public class IspitiController {
 		this.dpredprof.azurirajPrikazPredmet("", -1);
 		this.ppp.azurirajPrikazPredmet(null, -1);
 
+	}
+	
+	public void ukloniPredmetProfesoru(String brojLK, Predmet predmet) {
+		
+		BazaProfesori.getInstance().nadjiProfesora(brojLK).getPredmeti().remove(predmet);
+		BazaPredmeti.getInstance().pronadjiPredmet(predmet.getSifraPredmeta()).setProfesor(new Profesor());
+		
+		// azuriranje prikaza
+		
 	}
 	
 }
