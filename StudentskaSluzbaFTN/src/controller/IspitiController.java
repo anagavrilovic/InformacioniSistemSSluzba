@@ -1,25 +1,21 @@
 package controller;
 
-import model.BazaPredmeti;
-import model.BazaProfesori;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.JPanel;
-
+import model.BazaPredmeti;
+import model.BazaProfesori;
 import model.BazaStudenti;
 import model.Ocena;
 import model.Predmet;
-import model.Profesor;
+import view.DodavanjePredmetaProfesoru;
 import view.DodavanjePremetaStudentu;
 import view.DodavanjeProfesoraPredmetu;
 import view.PrikazNepolozenihIspita;
 import view.PrikazPolozenihIspita;
-
-
+import view.ProfesorPredajePredmeteView;
 import view.TabbedPane;
 
 
@@ -30,6 +26,8 @@ public class IspitiController {
 	private DodavanjePremetaStudentu dsp;
 	private DodavanjeProfesoraPredmetu dpp;
 
+	private DodavanjePredmetaProfesoru dpredprof;
+	private ProfesorPredajePredmeteView ppp;
 
 	public static IspitiController instance = null;
 	
@@ -89,7 +87,16 @@ public class IspitiController {
 		this.dpp = dpp;
 	}
 
-
+	public void setDodavanjePredmetaProfesoru(DodavanjePredmetaProfesoru dpp) {
+		this.dpredprof = dpp;
+	}
+	
+	public void setProfesorPredajePredmete(ProfesorPredajePredmeteView ppp) {
+		this.ppp = ppp;
+	}
+	
+	
+	//Student 2- potrebno za funkcionalnost upis ocjene 
 	public boolean validirajDatum (String jtfText)  {
 		
 		Date datum;
@@ -102,6 +109,7 @@ public class IspitiController {
 		}	
 	}
 	
+	//Student 2- potrebno za funkcionalnost upis ocjene 
 	public void dodajPredmetUListuPolozenih(Predmet p, String datum, int ocena) {
 		
 		String index = TabbedPane.getInstance().getIndexFromSelectedRow();
@@ -157,6 +165,28 @@ public class IspitiController {
 		}
 		
 		this.dpp.azurirajPrikazPredmet(null, -1);
+	}
+
+	//Student 2- potrebno za funkcionalnost Dodavanje predmeta profesoru
+	public void dodajPredmetProfesoru(String brLK, String sifraPredmeta) {
+			
+		for(Predmet p : BazaProfesori.getInstance().nadjiProfesora(brLK).getProfesorNePredaje()) {
+			if(p.getSifraPredmeta().equals(sifraPredmeta)) {
+				BazaProfesori.getInstance().nadjiProfesora(brLK).getProfesorNePredaje().remove(p);
+				break;
+			}
+		}
+
+		
+		for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
+			if(p.getSifraPredmeta().equals(sifraPredmeta)) {
+				BazaProfesori.getInstance().nadjiProfesora(brLK).getPredmeti().add(p);
+			}		
+		}
+	
+		this.dpredprof.azurirajPrikazPredmet("", -1);
+		this.ppp.azurirajPrikazPredmet(null, -1);
+
 	}
 	
 }

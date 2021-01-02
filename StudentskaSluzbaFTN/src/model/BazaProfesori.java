@@ -22,6 +22,7 @@ public class BazaProfesori {
 	private List<Profesor> profesori;
 	private List<String> kolone;
 	private ArrayList<Predmet> predmeti;
+	private ArrayList<Predmet> profesorNePredaje;
 
 	private BazaProfesori() {
 		
@@ -39,20 +40,23 @@ public class BazaProfesori {
 	private void inicijalizacijaProfesira() {
 		this.profesori = new ArrayList<Profesor>();
 		Profesor p1 = new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852");
-		p1.setPredmeti(predmeti);
+		//p1.getPredmeti().add((new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI)));
+		//p1.setProfesorNePredaje(profesorNePredaje);
 		profesori.add(p1);
-		profesori.add(new Profesor("Veljko", "Petrović", Titula.ProfDr, Zvanje.RedovniProfesor, "882651493"));
+		Profesor p2 = new Profesor("Veljko", "Petrović", Titula.ProfDr, Zvanje.RedovniProfesor, "882651493");
+		//p2.getPredmeti().add(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
+		profesori.add(p2);
 		profesori.add(new Profesor("Milan", "Rapaić", Titula.ProfDr, Zvanje.VanredniProfesor, "010607244"));
 		profesori.add(new Profesor("Petar", "Marić", Titula.dr, Zvanje.Docent, "040961175"));
 	}
 	
 	private void inicijalizacijaPredmeta() {
 		
-		this.predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI));
-		predmeti.add(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
-		predmeti.add(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
-		predmeti.add(new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI));
+		this.profesorNePredaje = new ArrayList<Predmet>();
+		//predmeti.add(new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI));
+		profesorNePredaje.add(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
+		profesorNePredaje.add(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
+		profesorNePredaje.add(new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI));
 	}
 
 	public List<Profesor> getProfesori() {
@@ -62,7 +66,38 @@ public class BazaProfesori {
 	public void setProfesori(List<Profesor> profesori) {
 		this.profesori = profesori;
 	}
+	
+	public ArrayList<Predmet> getProfesorNePredaje() {
+		return profesorNePredaje;
+	}
 
+	public void setProfesorNePredaje(ArrayList<Predmet> profesorNePredaje) {
+		this.profesorNePredaje = profesorNePredaje;
+	}
+
+	public void nadjiPredmeteKojeNePredajeProfesor(String brLK) {
+		ArrayList<Predmet> ret = new ArrayList<Predmet>();
+		
+		for(Profesor prof : profesori) {
+			if(prof.getBrojLicneKarte().equals(brLK)) {
+				for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
+					if(!(p.getProfesor().getBrojLicneKarte().equals(brLK))) {
+						ret.add(p);
+					}
+				}
+				prof.setProfesorNePredaje(ret);
+				setProfesorNePredaje(ret);
+			}
+		}
+		
+	
+		/*for(Profesor prof : profesori) {
+			if(prof.getBrojLicneKarte().equals(brLK)) {
+				setProfesorNePredaje(prof.getProfesorNePredaje());
+			}
+		}*/
+	}
+	
 
 	public int getColumnCount() {
 		return 5;

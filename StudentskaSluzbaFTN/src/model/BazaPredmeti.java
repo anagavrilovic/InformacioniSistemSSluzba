@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import model.Predmet.Semestar;
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
 
 public class BazaPredmeti {
 	
@@ -36,6 +38,8 @@ public class BazaPredmeti {
 		this.kolone.add("Godina studija");
 		this.kolone.add("Semestar");
 		
+		//zaglavlje tabele koja prikazuje predmete koje predaje profesor
+		
 		this.profesorKolone = new ArrayList<String>();
 		this.profesorKolone.add("Šifra");
 		this.profesorKolone.add("Naziv");
@@ -48,10 +52,21 @@ public class BazaPredmeti {
 
 	private void inicijalizacijaPredmeta() {
 		this.predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI));
-		predmeti.add(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
-		predmeti.add(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
-		predmeti.add(new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI));
+		Predmet p1 = new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI);
+		//p1.setProfesor(new Profesor("Petar", "Marić", Titula.dr, Zvanje.Docent, "040961175"));
+		predmeti.add(p1);
+		
+		Predmet p2 = new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI);
+		//p2.setProfesor(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852"));
+		predmeti.add(p2);
+		
+		Predmet p3 = new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI);
+		//p3.setProfesor(new Profesor("Milan", "Rapaić", Titula.ProfDr, Zvanje.VanredniProfesor, "010607244"));
+		predmeti.add(p3);
+		
+		Predmet p4 = new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI);
+		//p4.setProfesor(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852"));
+		predmeti.add(p4);
 	}
 	
 	
@@ -121,14 +136,29 @@ public class BazaPredmeti {
 	public void nadjiPredmeteKojePredajeProfesor(String brLK) {
 		List<Profesor> profesori = BazaProfesori.getInstance().getProfesori();
 		
-		for(Profesor prof : profesori) {
+		//1. pristup (dodaj predmete svakom profesoru)
+		/*for(Profesor prof : profesori) {
 			if(prof.getBrojLicneKarte().equals(brLK)) {
 				setProfesorPredaje(prof.getPredmeti());
 			}
+		}*/
+		
+		//2.pristup-> nadji preko predmeta
+		ArrayList<Predmet> ret = new ArrayList<Predmet>();
+		
+		for(Profesor prof : profesori) {
+			if(prof.getBrojLicneKarte().equals(brLK)) {
+				for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
+					if((p.getProfesor().getBrojLicneKarte().equals(brLK))) {
+						ret.add(p);
+					}
+				}
+				prof.setPredmeti(ret);
+				setProfesorPredaje(ret);
+			}
 		}
 	}
-
-
+	
 	public List<Predmet> getPredmeti() {
 		return predmeti;
 	}
@@ -154,9 +184,12 @@ public class BazaPredmeti {
 		this.profesorPredaje = profesorPredaje;
 	}
 
+
 	public int getColumnCount() {
 		return 5;
 	}
+	
+	//za tabelu koja predstavlja prikaz predmeta koje predaje profesor
 	
 	public String getColumNameProf(int index) {
 		return this.profesorKolone.get(index);
@@ -195,6 +228,8 @@ public class BazaPredmeti {
 		return prikaziPredmet;
 	}
 	
+	//potrebno za implemenataciju pretrage predmeta
+	
 	public String getValueAtSort(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);
 		if(predmet.isPrikazi()) {
@@ -216,6 +251,8 @@ public class BazaPredmeti {
 		return "";
 	}
 	
+	//potrebno za implementaciju prikaza nepolozenih predmeta
+	
 	public String getValueAtNepolozeniPredmeti(int row, int column) {
 		Predmet predmet = this.nepolozeniPredmeti.get(row);
 		switch (column) {
@@ -233,6 +270,8 @@ public class BazaPredmeti {
 			return null;
 		}
 	}
+	
+	//potrebno za implementaciju funkcionalnosti profesor predaje predmete
 	
 	public String getValueAtProfesorPredmeti(int row, int column) {
 		Predmet predmet = this.profesorPredaje.get(row);
@@ -276,6 +315,7 @@ public class BazaPredmeti {
 				p.setNazivPredmeta(naziv);;
 				p.setEspb(espb);
 				p.setGodinaStudija(godina);
+
 				p.setSemestar(semestar);
 				
 				String brojLK;
@@ -291,7 +331,7 @@ public class BazaPredmeti {
 						p.setProfesor(prof);
 						break;
 					}
-				}
+				}	
 			}
 		}
 	}
