@@ -237,8 +237,8 @@ public class IzmenaPredmetaView {
 			JOptionPane.showMessageDialog(dialog, message, "Nisu ispravno uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 		} else  {
-			JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/check.png")));
+			/*JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/check.png")));*/
 			dialog.dispose();
 		}
 		
@@ -379,7 +379,7 @@ public class IzmenaPredmetaView {
 		
 		jtfProfesor = new JTextField();
 		jtfProfesor.setPreferredSize(new Dimension(200, 23));
-		jtfProfesor.setBackground(Color.white);
+		jtfProfesor.setBackground(new Color(224, 224, 224));
 		jtfProfesor.setBorder(new LineBorder(java.awt.Color.gray));
 		jtfProfesor.setName("txtProfesor");
 		jtfProfesor.setText(predmet.getImePrezimeProfesora());

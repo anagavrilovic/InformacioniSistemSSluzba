@@ -195,7 +195,7 @@ public class IspitiController {
 		BazaProfesori.getInstance().nadjiProfesora(brojLK).getPredmeti().remove(predmet);
 		BazaPredmeti.getInstance().pronadjiPredmet(predmet.getSifraPredmeta()).setProfesor(new Profesor());
 		
-		// azuriranje prikaza
+		this.ppp.azurirajPrikazPredmet(null, -1);
 		
 	}
 	

@@ -267,8 +267,8 @@ public class IzmenaStudentaView {
 			JOptionPane.showMessageDialog(dialog, message, "Nisu ispravno uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/remove-user.png")));
 		} else  {
-			JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));
+			/*JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
+					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));*/
 			dialog.dispose();
 		}
 	}
