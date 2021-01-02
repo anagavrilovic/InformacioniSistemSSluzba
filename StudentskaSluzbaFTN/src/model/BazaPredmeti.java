@@ -52,19 +52,19 @@ public class BazaPredmeti {
 	private void inicijalizacijaPredmeta() {
 		this.predmeti = new ArrayList<Predmet>();
 		Predmet p1 = new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI);
-		p1.setProfesor(new Profesor("Petar", "Marić", Titula.dr, Zvanje.Docent, "040961175"));
+		//p1.setProfesor(new Profesor("Petar", "Marić", Titula.dr, Zvanje.Docent, "040961175"));
 		predmeti.add(p1);
 		
 		Predmet p2 = new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI);
-		p2.setProfesor(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852"));
+		//p2.setProfesor(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852"));
 		predmeti.add(p2);
 		
 		Predmet p3 = new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI);
-		p3.setProfesor(new Profesor("Milan", "Rapaić", Titula.ProfDr, Zvanje.VanredniProfesor, "010607244"));
+		//p3.setProfesor(new Profesor("Milan", "Rapaić", Titula.ProfDr, Zvanje.VanredniProfesor, "010607244"));
 		predmeti.add(p3);
 		
 		Predmet p4 = new Predmet("E2218", "Operativni sistemi", 8, 2, Semestar.LETNJI);
-		p4.setProfesor(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852"));
+		//p4.setProfesor(new Profesor("Aleksandar", "Kovačević", Titula.dr, Zvanje.RedovniProfesor, "726941852"));
 		predmeti.add(p4);
 	}
 	
