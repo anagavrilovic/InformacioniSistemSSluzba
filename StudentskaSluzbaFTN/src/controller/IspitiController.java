@@ -101,11 +101,15 @@ public class IspitiController {
 	public boolean validirajDatum (String jtfText)  {
 		
 		Date datum;
+		Date todayDate = new Date();
 		
 		try {
 			 datum = new SimpleDateFormat("dd.MM.yyyy.").parse(jtfText);
+			 if(todayDate.before(datum)) {
+				    return false;
+				}
 			 return true;
-		} catch (ParseException e){
+		} catch (Exception e){
 			return false;
 		}	
 	}
