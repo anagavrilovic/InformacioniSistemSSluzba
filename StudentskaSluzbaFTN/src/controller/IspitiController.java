@@ -119,6 +119,12 @@ public class IspitiController {
 		o.setPredmet(p);
 		o.setOcena(ocena);
 	    o.setStudent(BazaStudenti.getInstance().pronadjiStudenta(index));
+	    try {
+			o.setDatum( new SimpleDateFormat("dd.MM.yyyy.").parse(datum));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakPolozenih().add(o);
 		this.polozeni.azurirajPrikazPredmet(null, -1);

@@ -53,6 +53,7 @@ public class BazaStudenti {
 		Student s1 = new Student("Gavrilović", "Ana", "RA65/2018", 3, Status.B);
 		s1.setSpisakPolozenih(initPredmeteAna());
 		s1.setProsecnaOcena(s1.izracunajProsecnuOcenu());
+		s1.setSpisakNepolozenih(nepolozeniPredmeti);
 		studentList.add(s1);
 		Student s2 = new Student("Klještan", "Marija", "RA55/2018", 3, Status.B);
 		s2.setSpisakPolozenih(initPredmeteMarija());
@@ -69,8 +70,8 @@ public class BazaStudenti {
 	
 	private void inicijalizacijaNepolozenihPredmeta() {
 		this.nepolozeniPredmeti = new ArrayList<Predmet>();
-		nepolozeniPredmeti.add(new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI));
-		nepolozeniPredmeti.add(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
+		//nepolozeniPredmeti.add(new Predmet("E2212", "Matematička analiza 1", 9, 1, Semestar.ZIMSKI));
+		//nepolozeniPredmeti.add(new Predmet("E2214", "Objektno programiranje", 8, 2, Semestar.ZIMSKI));
 		nepolozeniPredmeti.add(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
 	}
 	
@@ -86,7 +87,7 @@ public class BazaStudenti {
 		ocene.add(o2);
 		Ocena o3 = new Ocena();
 		o3.setPredmet(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
-		ocene.add(o3);
+		//ocene.add(o3);
 		
 		return ocene;
 	}
