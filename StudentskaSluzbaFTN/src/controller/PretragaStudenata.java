@@ -23,6 +23,12 @@ public class PretragaStudenata {
 	
 	
 	public void pretraziStudente(String text) {
+		
+		if(text.isEmpty() || text == null) {
+			BazaStudenti.getInstance().izaberiSve();
+		}
+		
+		
 		StringTokenizer st = new StringTokenizer(text);
 		ArrayList<String> reci = new ArrayList<String>();
 		int brojReci = st.countTokens();
@@ -67,8 +73,8 @@ public class PretragaStudenata {
 			}
 		}
 		
-		//BazaStudenti.getInstance().setListaIzabranih();
-		TabbedPane.getInstance().azurirajPrikazPredmet(null, -1);
+		BazaStudenti.getInstance().setListaIzabranih();
+		TabbedPane.getInstance().azurirajPrikazStudent(null, -1);
 	}
 	
 	// https://docs.oracle.com/javase/7/docs/api/java/util/StringTokenizer.html

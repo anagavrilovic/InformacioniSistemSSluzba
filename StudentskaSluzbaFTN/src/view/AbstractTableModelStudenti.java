@@ -12,7 +12,7 @@ public class AbstractTableModelStudenti extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return BazaStudenti.getInstance().getStudentList().size();
+		return BazaStudenti.getInstance().getlistaIzabranih().size();
 	}
 	
 	@Override

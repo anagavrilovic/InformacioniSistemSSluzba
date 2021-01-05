@@ -24,7 +24,7 @@ public class BazaStudenti {
 	private List<String> kolone;
 	private List<String> kolonePP;
 	private ArrayList<Predmet> nepolozeniPredmeti;
-	//private ArrayList<Student> izabraniStudenti;
+	private ArrayList<Student> izabraniStudenti;
 	
 	private BazaStudenti() {
 		
@@ -160,7 +160,7 @@ public class BazaStudenti {
 	}
 	
 	public String getValueAt(int row, int column) {
-		Student student = this.studentList.get(row);
+		Student student = this.izabraniStudenti.get(row);
 		switch (column) {
 		case 0:
 			return student.getBrojIndeksa();
@@ -231,7 +231,7 @@ public class BazaStudenti {
 	
 	
 
-	/*public ArrayList<Student> getlistaIzabranih() {
+	public ArrayList<Student> getlistaIzabranih() {
 		ArrayList<Student> retList = new ArrayList<Student>();
 		
 		for(Student s : getStudentList()) {
@@ -244,6 +244,14 @@ public class BazaStudenti {
 	
 	public void setListaIzabranih() {
 		this.izabraniStudenti = getlistaIzabranih();
-	}*/
+	}
+	
+	public void izaberiSve() {
+		for(Student s : this.getStudentList()) {
+			s.setS(true);
+		}
+		
+		this.setListaIzabranih();
+	}
 	
 }
