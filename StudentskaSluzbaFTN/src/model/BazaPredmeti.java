@@ -25,7 +25,7 @@ public class BazaPredmeti {
 	private List<Predmet> nepolozeniPredmeti;
 	private List<Predmet> profesorPredaje;
 	private List<String> profesorKolone;
-	private boolean prikaziPredmet;
+	private List<Predmet> prikaziPredmet;
 
 	private BazaPredmeti() {
 	
@@ -183,6 +183,29 @@ public class BazaPredmeti {
 	public void setProfesorPredaje(List<Predmet> profesorPredaje) {
 		this.profesorPredaje = profesorPredaje;
 	}
+	
+	public ArrayList<Predmet> prikaziPredmete() {
+		ArrayList<Predmet> ret = new ArrayList<Predmet>();
+		
+		for(Predmet p : predmeti) {
+			if(p.isPrikazi())
+				ret.add(p);
+		}
+		
+		return ret;
+	}
+	
+	public void setListaIzabranih() {
+		this.prikaziPredmet = prikaziPredmete();
+	}
+	
+	public void prikaziSve() {
+		for(Predmet p : this.predmeti) {
+			p.setPrikazi(true);
+		}
+		
+		this.setListaIzabranih();
+	}
 
 
 	public int getColumnCount() {
@@ -204,8 +227,8 @@ public class BazaPredmeti {
 	}
 
 	public String getValueAt(int row, int column) {
-		Predmet predmet = this.predmeti.get(row);
-		if(predmet.isPrikazi()) {
+		Predmet predmet = this.prikaziPredmet.get(row);
+	
 			switch (column) {
 			case 0:
 				return predmet.getSifraPredmeta();
@@ -220,13 +243,8 @@ public class BazaPredmeti {
 			default:
 				return null;
 			}
-		}
-		return  "";
 	}
 	
-	public boolean prikaziPredmet(Predmet p) {
-		return prikaziPredmet;
-	}
 	
 	//potrebno za implemenataciju pretrage predmeta
 	
@@ -336,12 +354,4 @@ public class BazaPredmeti {
 		}
 	}
 
-	public boolean isPrikaziPredmet() {
-		return prikaziPredmet;
-	}
-
-	public void setPrikaziPredmet(boolean prikaziPredmet) {
-		this.prikaziPredmet = prikaziPredmet;
-	}
-		
 }

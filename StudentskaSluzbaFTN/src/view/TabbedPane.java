@@ -58,12 +58,14 @@ public class TabbedPane extends JTabbedPane{
 		profesorTable = new ProfesorTable(atmProf);
 		JScrollPane spProfesor = new JScrollPane(profesorTable);
 		this.addTab("Profesor", spProfesor);
+		BazaProfesori.getInstance().prikaziSve();
 		azurirajPrikazProf(null, -1);
 		
 		AbstractTableModelPredmeti atmPred = new AbstractTableModelPredmeti();
 		predmetTable = new PredmetTable(atmPred);
 		JScrollPane spPredmet = new JScrollPane(predmetTable);
 		this.addTab("Predmet", spPredmet);
+		BazaPredmeti.getInstance().prikaziSve();
 		azurirajPrikazPredmet(null, -1);
 		
 		this.addChangeListener(changeListener);

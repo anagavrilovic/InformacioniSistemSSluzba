@@ -63,7 +63,7 @@ public class PretragaPredmeta {
 		if(unos == "") {
 			for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
 				p.setPrikazi(true);
-				// brojPrikazanih++;
+				BazaPredmeti.getInstance().prikaziSve();
 			}
 		} 
 		else {
@@ -76,7 +76,7 @@ public class PretragaPredmeta {
 					p.setPrikazi(false);
 			}
 		}
-		
+		BazaPredmeti.getInstance().setListaIzabranih();
 		TabbedPane.getInstance().azurirajPrikazPredmet("Pretraga predmeta", -1);
 		//brojPrikazanih = 0;
 	}

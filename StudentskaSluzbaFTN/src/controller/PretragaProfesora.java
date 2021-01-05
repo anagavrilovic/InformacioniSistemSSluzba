@@ -63,12 +63,11 @@ public class PretragaProfesora {
 		this.prezime = delovi[0];
 		this.ime = delovi[1];
 		
-		System.out.println("prz" + prezime);
-		System.out.println("ime" + ime);
-		
 		if(prezime == "" && ime =="") {
-			for(Profesor p : BazaProfesori.getInstance().getProfesori())
+			for(Profesor p : BazaProfesori.getInstance().getProfesori()) {
 				p.setDodaj(true);
+				BazaProfesori.getInstance().prikaziSve();
+			}
 		}
 		else if(prezime != "" && ime == "") {
 			for(Profesor p :  BazaProfesori.getInstance().getProfesori()) {
@@ -96,7 +95,7 @@ public class PretragaProfesora {
 				}
 			}
 		}
-		
+		BazaProfesori.getInstance().setListaIzabranih();
 		TabbedPane.getInstance().azurirajPrikazProf("Pretraga profesora", -1);
 	}
 }

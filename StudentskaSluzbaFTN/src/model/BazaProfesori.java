@@ -20,8 +20,8 @@ public class BazaProfesori {
 	}
 
 	private List<Profesor> profesori;
+	private List<Profesor> prikaziProfesore = new ArrayList<Profesor>();
 	private List<String> kolone;
-	private ArrayList<Predmet> predmeti;
 	private ArrayList<Predmet> profesorNePredaje;
 
 	private BazaProfesori() {
@@ -74,6 +74,15 @@ public class BazaProfesori {
 	public void setProfesorNePredaje(ArrayList<Predmet> profesorNePredaje) {
 		this.profesorNePredaje = profesorNePredaje;
 	}
+	
+	
+	public List<Profesor> getPrikaziProfesore() {
+		return prikaziProfesore;
+	}
+
+	public void setPrikaziProfesore(List<Profesor> prikaziProfesore) {
+		this.prikaziProfesore = prikaziProfesore;
+	}
 
 	public void nadjiPredmeteKojeNePredajeProfesor(String brLK) {
 		ArrayList<Predmet> ret = new ArrayList<Predmet>();
@@ -89,13 +98,29 @@ public class BazaProfesori {
 				setProfesorNePredaje(ret);
 			}
 		}
-		
+	}
 	
-		/*for(Profesor prof : profesori) {
-			if(prof.getBrojLicneKarte().equals(brLK)) {
-				setProfesorNePredaje(prof.getProfesorNePredaje());
-			}
-		}*/
+	public ArrayList<Profesor> prikaziProfesore() {
+		ArrayList<Profesor> ret = new ArrayList<Profesor>();
+		
+		for(Profesor p : profesori) {
+			if(p.getDodaj())
+				ret.add(p);
+		}
+		
+		return ret;
+	}
+	
+	public void setListaIzabranih() {
+		this.prikaziProfesore = prikaziProfesore();
+	}
+	
+	public void prikaziSve() {
+		for(Profesor p : this.profesori) {
+			p.setDodaj(true);
+		}
+		
+		this.setListaIzabranih();
 	}
 	
 
@@ -113,8 +138,7 @@ public class BazaProfesori {
 
 	public String getValueAt(int row, int column) {
 	
-		if(this.profesori.get(row).getDodaj()) {
-			Profesor profesor = this.profesori.get(row);
+			Profesor profesor = this.prikaziProfesore.get(row);
 			switch (column) {
 			case 0:
 				return profesor.getIme();
@@ -129,8 +153,6 @@ public class BazaProfesori {
 			default:
 				return null;
 			}
-		}
-		return "";
 	}
 
 	public void dodajProfesora(Profesor p) {

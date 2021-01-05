@@ -9,7 +9,7 @@ public class AbstractTableModelProfesori extends AbstractTableModel{
 	public AbstractTableModelProfesori() {}
 
 	public int getRowCount() {
-		return BazaProfesori.getInstance().getProfesori().size();
+		return BazaProfesori.getInstance().prikaziProfesore().size();
 	}
 	
 	public int getColumnCount() {
