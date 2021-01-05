@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -27,6 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.GroupLayout.Alignment;
 
 import controller.ProfesorContoller;
 import main.Main;
@@ -551,13 +553,9 @@ public void potvrdi() {
 		jp.add(jlTitula, gbcTitula);
 		
 		
-		String[] titulaProf = {"                     BSc                          ", 
-							   "                     MSc                          ", 
-							   "                     mr                           ", 
-							   "                     dr                           ", 
-							   "                     Prof. dr                     "
-							   };
+		String[] titulaProf = {"BSc", "MSc", "mr", "dr", "Prof. dr"};
 		this.cbTit = new JComboBox<String>(titulaProf);
+		this.cbTit.setPreferredSize(new Dimension(205, 23));
 		
 		if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getTitula() == Titula.BSc)
 			cbTit.setSelectedIndex(0);
@@ -585,15 +583,10 @@ public void potvrdi() {
 		jp.add(jlZvanje, gbcZvanje);
 		
 		
-		String[] zvanjeProf = {"            Saradnik u nastavi          ", 
-							   "            Asistent                    ", 
-							   "			Asistent sa doktoratom		", 
-							   "			Docent						",
-							   "			Vanredni profesor			", 
-							   "			Redovni profesor			", 
-							   "			Profesor emeritus			"
-							   };
+		String[] zvanjeProf = {"Saradnik u nastavi", "Asistent", "Asistent sa doktoratom", "Docent", 
+				   			   "Vanredni profesor", "Redovni profesor", "Profesor emeritus"};
 		this.cbZv = new JComboBox<String>(zvanjeProf);
+		cbZv.setPreferredSize(new Dimension(205, 23));
 		
 		if(BazaProfesori.getInstance().nadjiProfesora(kljuc).getZvanje() == Zvanje.SaradnikUNastavi)
 			cbZv.setSelectedIndex(0);

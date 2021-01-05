@@ -81,6 +81,7 @@ public class PredmetController {
 			}
 			
 			BazaPredmeti.getInstance().izbrisiPredmet(sifraPredm);
+			BazaPredmeti.getInstance().prikaziSve();
 			TabbedPane.getInstance().azurirajPrikazPredmet("Brisanje predmeta", -1);
 			return	"Izbrisali ste izabrani predmet!";
 	}

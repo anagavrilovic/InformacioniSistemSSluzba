@@ -99,6 +99,11 @@ public class ProfesorPredajePredmeteView extends JPanel{
 		BazaPredmeti.getInstance().nadjiPredmeteKojePredajeProfesor(brLK);
 		AbstractTableModelProfesorPredajePredmete atmppp = new AbstractTableModelProfesorPredajePredmete();
 		predmetiTabela = new PredmetTable(atmppp);
+		this.predmetiTabela.getColumnModel().getColumn(0).setPreferredWidth(30);
+		this.predmetiTabela.getColumnModel().getColumn(1).setPreferredWidth(180);
+		this.predmetiTabela.getColumnModel().getColumn(2).setPreferredWidth(30);
+		this.predmetiTabela.getColumnModel().getColumn(3).setPreferredWidth(15);
+
 		JScrollPane jsp = new JScrollPane(predmetiTabela);
 		
 		IspitiController.getInstance().setProfesorPredajePredmete(this);

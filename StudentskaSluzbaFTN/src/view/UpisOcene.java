@@ -220,11 +220,7 @@ public class UpisOcene {
 		gbcl.insets = new Insets(20, 20, 0, 40);
 		panel.add(jlOcena, gbcl);
 		
-		Integer[] ocena = {                    6                  , 
-		                                       7                  , 
-		                                       8                  , 
-		      								   9				  ,
-		      					 		      10                  };
+		Integer[] ocena = {6, 7, 8, 9, 10};
 		
 		cbOcena = new JComboBox<Integer>(ocena);
 		cbOcena.setPreferredSize(new Dimension(180, 25));
@@ -265,7 +261,6 @@ public class UpisOcene {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override

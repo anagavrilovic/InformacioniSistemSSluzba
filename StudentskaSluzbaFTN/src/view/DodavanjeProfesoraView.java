@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -212,9 +213,10 @@ public void potvrdi() {
 		
 		if(message.equals("Uspešno ste uneli profesora!")) {
 			
-			JOptionPane.showMessageDialog(jd, message, "Uspešan unos", 
+			/*JOptionPane.showMessageDialog(jd, message, "Uspešan unos", 
 					JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));
+					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));*/
+			jd.dispose();
 			
 			jtfIme.setText("");
 			jtfPrz.setText("");
@@ -513,37 +515,28 @@ public void potvrdi() {
 		jp.add(jlTitula, gbcTitula);
 		
 		
-		String[] titulaProf = {"                     BSc                          ", 
-							   "                     MSc                          ", 
-							   "                     mr                           ", 
-							   "                     dr                           ", 
-							   "                     Prof. dr                     "
-							   };
+		String[] titulaProf = {"BSc", "MSc", "mr", "dr", "Prof. dr"};
 		this.cbTit = new JComboBox<String>(titulaProf);
 		GridBagConstraints gbctfTitula = new GridBagConstraints();
 		cbTit.setEditable(false);
+		cbTit.setPreferredSize(new Dimension(205, 23));
 		gbctfTitula.gridx = 5;
 		gbctfTitula.gridy = 8;
 		gbctfTitula.insets = new Insets(20, 20, 0, 20);
 		jp.add(cbTit, gbctfTitula);
 	}
 	
-	private void dodajZvanje() {
+	    private void dodajZvanje() {
 		JLabel jlZvanje = new JLabel("Zvanje*");
 		GridBagConstraints gbcZvanje = new GridBagConstraints();
 		gbcZvanje = gdbcLabele(gbcZvanje, 9);
 		jp.add(jlZvanje, gbcZvanje);
 		
 		
-		String[] zvanjeProf = {"            Saradnik u nastavi          ", 
-							   "            Asistent                    ", 
-							   "			Asistent sa doktoratom		", 
-							   "			Docent						",
-							   "			Vanredni profesor			", 
-							   "			Redovni profesor			", 
-							   "			Profesor emeritus			"
-							   };
+		String[] zvanjeProf = {"Saradnik u nastavi", "Asistent", "Asistent sa doktoratom", "Docent", 
+							   "Vanredni profesor", "Redovni profesor", "Profesor emeritus"};
 		this.cbZv = new JComboBox<String>(zvanjeProf);
+		cbZv.setPreferredSize(new Dimension(205, 23));
 		GridBagConstraints gbctfZvanje = new GridBagConstraints();
 		cbZv.setEditable(false);
 		gbctfZvanje.gridx = 5;

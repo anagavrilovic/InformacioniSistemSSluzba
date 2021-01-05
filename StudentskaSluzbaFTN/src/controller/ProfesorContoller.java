@@ -142,10 +142,10 @@ public class ProfesorContoller {
 	}
 	
 	public String izbrisiProfesora(String brojLK) {
-		
+				
 		BazaPredmeti.getInstance().izbrisiProfesora(brojLK);
 		BazaProfesori.getInstance().izbrisiProfesora(brojLK);
-		
+
 		BazaProfesori.getInstance().prikaziSve();
 		TabbedPane.getInstance().azurirajPrikazProf("brisanje", -1);
 		

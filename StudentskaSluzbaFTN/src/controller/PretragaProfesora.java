@@ -34,7 +34,7 @@ public class PretragaProfesora {
 		
 		String temp = u.trim();
 
-		//preuzeto sa sajta https://www.javatpoint.com/string-tokenizer-in-java
+		/**REFERENCA: https://www.javatpoint.com/string-tokenizer-in-java*/
 		StringTokenizer st = new StringTokenizer(temp);
 		int num = st.countTokens();
 				
