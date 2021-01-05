@@ -44,7 +44,8 @@ public class IspitiController {
 	
 	private IspitiController() {}
 		
-	
+	// STUDENT 1: 
+	// funkcionalnost: #ponistavanje_ocene
 	public void ponistiOcenu(String index, Predmet predmet) {
 		
 		Ocena ocena = new Ocena();
@@ -63,7 +64,8 @@ public class IspitiController {
 		
 	}
 		
-	
+	// STUDENT 1: 
+	// funkcionalnost: #uklanjanje_predemta_sa_studenta
 	public void ukloniPredmetStudentu(String index, Predmet predmet) {
 		
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakNepolozenih().remove(predmet);
@@ -151,6 +153,8 @@ public class IspitiController {
 		this.nepolozeni.azurirajPrikazPredmet(null, -1);
 	}
 	
+	// STUDENT 1: 
+	// funkcionalnost: #dodavanje_predmeta_studentu
 	public void dodajPredmetStudentu(String index, String sifraPred) {
 		
 		for(Predmet p : BazaStudenti.getInstance().pronadjiStudenta(index).getListaPredZaDodavanje()) {
@@ -172,6 +176,8 @@ public class IspitiController {
 		
 	}
 	
+	// STUDENT 1: 
+	// funkcionalnost: #dodavanje_profesora_na_predmet
 	public void dodajProfesoraPredmetu(String sifraPredmeta, String brojLK) {
 		
 		for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
@@ -207,6 +213,8 @@ public class IspitiController {
 
 	}
 	
+	// STUDENT 1: 
+	// funkcionalnost: #uklanjanje_predmeta_sa_profesora
 	public void ukloniPredmetProfesoru(String brojLK, Predmet predmet) {
 		
 		BazaProfesori.getInstance().nadjiProfesora(brojLK).getPredmeti().remove(predmet);

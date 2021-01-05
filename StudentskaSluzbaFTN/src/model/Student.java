@@ -22,8 +22,9 @@ public class Student {
 	private double prosecnaOcena;
 	private ArrayList<Ocena> spisakPolozenih;
 	private ArrayList<Predmet> spisakNepolozenih;
-	private boolean s = true;
-	private ArrayList<Predmet> listaPredZaDodavanje;
+	private boolean s = true;  										// indikator koji se koristi za pretragu studenata
+	private ArrayList<Predmet> listaPredZaDodavanje;				// lista predmeta koja treba da se pojavi pri prikazu 
+																	// liste predmeta za dodavanje
 	
 	
 	public Student() {
@@ -74,6 +75,7 @@ public class Student {
 		this.prosecnaOcena = izracunajProsecnuOcenu();
 	}
 	
+	// STUDENT 1: metoda koja se koristi za prikaz i računanje prosečne ocene studenta u panelu za prikaz položenih ispita 
 	public double izracunajProsecnuOcenu() {
 		double prosOc = 0;
 		
@@ -90,6 +92,8 @@ public class Student {
 		return prosOc;
 	}
 	
+	// STUDENT 1: metoda koja se koristi za prikaz i računanje ESPB bodova studenta u panelu za prikaz položenih ispita
+	// funkcionalnost: #prikaz_polozenih_ispita
 	public int getUkupnoESPB() {
 		int espb = 0;
 		
@@ -100,6 +104,8 @@ public class Student {
 		return espb;
 	}
 	
+	// STUDENT 1: metoda koja se koristi za prikaz tabele sa položenim ispitima studenta
+	// funkcionalnost: #prikaz_polozenih_ispita
 	public String getValueAt(int row, int column) {
 		Ocena ocena = this.getSpisakPolozenih().get(row);
 		switch (column) {
@@ -118,6 +124,7 @@ public class Student {
 		}
 	}
 	
+	// STUDENT 1: konverzija datuma u string
 	private String dateToString(Date date) {
 		if(date != null) {
 			String retVal;
@@ -265,6 +272,8 @@ public class Student {
 				+ ", spisakNepolozenih=" + spisakNepolozenih + "]";
 	}
 	
+	// STUDENT 1: metoda koja formira listu predmeta koje je moguće dodati određenom studentu
+	// funkcionalnost: #dodavanje_predmeta_studentu
 	public void setListaPredmetaZaDodavanje() {
 		ArrayList<Predmet> predmetList = new ArrayList<Predmet>();
 		
@@ -299,10 +308,14 @@ public class Student {
 		listaPredZaDodavanje = predmetList;
 	}
 	
+	// STUDENT 1: metoda koja vraća broj kolona za tabelu za dodavanje predmeta
+	// funkcionalnost: #dodavanje_predmeta_studentu
 	public int getColumnCountDodavanje() {
 		return 1;
 	}
 	
+	// STUDENT 1:
+	// funkcionalnost: #dodavanje_predmeta_studentu
 	public String getValueAtPredDodavanje(int row, int column) {
 		if(column == 0) 
 			return this.getListaPredZaDodavanje().get(row).getSifraNaziv();

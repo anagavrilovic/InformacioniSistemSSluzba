@@ -22,9 +22,9 @@ public class BazaStudenti {
 	
 	private List<Student> studentList;
 	private List<String> kolone;
-	private List<String> kolonePP;
+	private List<String> kolonePP;							// STUDENT 1: lista naziva kolona za #prikaz_polozenih_predmeta
 	private ArrayList<Predmet> nepolozeniPredmeti;
-	private ArrayList<Student> izabraniStudenti;
+	private ArrayList<Student> izabraniStudenti;			// STUDENT 1: lista studenata koji treba da se prikažu kao rezultat pretrage
 	
 	private BazaStudenti() {
 		
@@ -75,7 +75,7 @@ public class BazaStudenti {
 		nepolozeniPredmeti.add(new Predmet("E2216", "Sistemi automatskog upravljanja", 8, 2, Semestar.LETNJI));
 	}
 	
-	// ------
+	// ------ probne inicijalizacije
 	private ArrayList<Ocena> initPredmeteAna() {
 		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
 		
@@ -92,7 +92,7 @@ public class BazaStudenti {
 		return ocene;
 	}
 	
-	//----
+	//---- probne inicijalizacije
 	private ArrayList<Ocena> initPredmeteMarija() {
 		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
 
@@ -109,7 +109,7 @@ public class BazaStudenti {
 		return ocene;
 	}
 	
-	//------
+	//------ probne inicijalizacije
 	private ArrayList<Ocena> initPredmeteNikola() {
 		ArrayList<Ocena> ocene = new ArrayList<Ocena>();
 
@@ -120,7 +120,8 @@ public class BazaStudenti {
 		return ocene;
 	}
 	
-	
+	// STUDENT 1: validacija za jedinstvenost broja indeksa
+	// funkcionalnost: #dodavanje_studenta
 	public boolean validirajStudenta(String brojIndeksa) {
 		if(BazaStudenti.getInstance() != null) {
 			for(Student student : BazaStudenti.getInstance().getStudentList()) {
@@ -133,6 +134,7 @@ public class BazaStudenti {
 		return true;
 	}
 	
+	// trazi studenta sa odreženim brojem indeksa
 	public Student pronadjiStudenta(String brojIndeksa) {
 		for(Student student : this.getStudentList()) {
 			if (brojIndeksa.equals(student.getBrojIndeksa())) {
@@ -151,6 +153,8 @@ public class BazaStudenti {
 		this.studentList = studentList;
 	}
 	
+	// STUDENT 1: metode za ispis tabele za prikaz studenata
+	// funkcionalnost: #prikaz_studenata
 	public String getColumnName(int index) {
 		return this.kolone.get(index);
 	}
@@ -186,6 +190,8 @@ public class BazaStudenti {
 		return kolone.size();
 	}
 	
+	// STUDENT 1: 
+	// funkcionalnost: #dodavanje_studenta
 	public void dodajStudenta(String brojIndeksa, String ime, String prezime, int trGodStudija, Status status) {
 		studentList.add(new Student(prezime, ime, brojIndeksa, trGodStudija, status));
 	}
@@ -194,6 +200,9 @@ public class BazaStudenti {
 		studentList.add(student);
 	}
 	
+	
+	// STUDENT 1: 
+	// funkcionalnost: #brisanje_studenta
 	public void izbrisiStudenta(String indeks) {
 		for (Student s : studentList) {
 			if (s.getBrojIndeksa().equals(indeks)) {
@@ -203,6 +212,8 @@ public class BazaStudenti {
 		}
 	}
 	
+	// STUDENT 1: 
+	// funkcionalnost: #izmena_studenta
 	public void izmeniStudenta(String stariIndeks, String ime, String prezime, Date datumRodj, String brojIndeksa, String adresa, String email, 
 			String brTel, int godUpisa, int trGodStudija, Status status) {
 		for (Student s : getStudentList()) {
@@ -230,7 +241,8 @@ public class BazaStudenti {
 	}
 	
 	
-
+	// STUDENT 1: popunjava listu studenata koji treba da se prikažu kao rezultat pretrage
+	// funkcionalnost: #pretraga_studenata
 	public ArrayList<Student> getlistaIzabranih() {
 		ArrayList<Student> retList = new ArrayList<Student>();
 		
@@ -246,6 +258,8 @@ public class BazaStudenti {
 		this.izabraniStudenti = getlistaIzabranih();
 	}
 	
+	// STUDENT 1: kada treba prikazati sve studente
+	// funkcionalnost: #prikaz_studenata #pretraga_studenata
 	public void izaberiSve() {
 		for(Student s : this.getStudentList()) {
 			s.setS(true);

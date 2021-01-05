@@ -30,8 +30,8 @@ public class Main {
 	}
 	
 	
-	// Metoda preuzeta sa stackoverflow-a
-	// https://stackoverflow.com/questions/12730230/set-the-same-font-for-all-component-java
+	/** REFERENCA: https://stackoverflow.com/questions/12730230/set-the-same-font-for-all-component-java */
+	// metoda koja menja font svakoj komponenti na prosledjenoj roditeljskoj komponenti
 	public static void changeFont (Component component, Font font) {
 	    component.setFont (font);
 	    if (component instanceof Container) {

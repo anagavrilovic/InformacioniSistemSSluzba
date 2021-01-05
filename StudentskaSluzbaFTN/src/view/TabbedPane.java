@@ -88,7 +88,7 @@ public class TabbedPane extends JTabbedPane{
 		validate();
 	}
 	
-	// Preuzeto sa sajta: http://www.java2s.com/Tutorial/Java/0240__Swing/ListeningforSelectedTabChanges.htm
+	/** REFERENCA: http://www.java2s.com/Tutorial/Java/0240__Swing/ListeningforSelectedTabChanges.htm */
 	ChangeListener changeListener = new ChangeListener() {
 		  public void stateChanged(ChangeEvent changeEvent) {
 		    JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();

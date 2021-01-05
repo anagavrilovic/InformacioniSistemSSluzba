@@ -69,7 +69,8 @@ public class BazaPredmeti {
 		predmeti.add(p4);
 	}
 	
-	
+	// STUDENT 1: metoda koja se poyiva pri dodavanju predmeta za proveru jedinstvenosti šifre predmeta
+	// funkcionalnost: #dodavanje_predmeta
 	public boolean validirajSifruPredmeta(String sifraPred) {
 		if(BazaPredmeti.getInstance() != null) {
 			for(Predmet predmet : BazaPredmeti.getInstance().getPredmeti()) {
@@ -189,6 +190,7 @@ public class BazaPredmeti {
 		return 5;
 	}
 	
+	// STUDENT 2:
 	//za tabelu koja predstavlja prikaz predmeta koje predaje profesor
 	
 	public String getColumNameProf(int index) {
@@ -228,7 +230,8 @@ public class BazaPredmeti {
 		return prikaziPredmet;
 	}
 	
-	//potrebno za implemenataciju pretrage predmeta
+	// STUDENT 2:
+	// potrebno za implemenataciju pretrage predmeta
 	
 	public String getValueAtSort(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);
@@ -251,6 +254,7 @@ public class BazaPredmeti {
 		return "";
 	}
 	
+	// STUDENT 2:
 	//potrebno za implementaciju prikaza nepolozenih predmeta
 	
 	public String getValueAtNepolozeniPredmeti(int row, int column) {
@@ -291,6 +295,8 @@ public class BazaPredmeti {
 		}
 	}
 
+	// STUDENT 1: 
+	// funkcionalnost: #dodavanje_predmeta
 	public void dodajPredmet(String sifra, String naziv, int espb, int godina, Semestar semestar) {
 		this.predmeti.add(new Predmet(sifra, naziv, espb, godina, semestar));
 	}
@@ -308,6 +314,8 @@ public class BazaPredmeti {
 		}
 	}
 
+	// STUDENT 1: 
+	// funkcionalnost: #izmena_predmeta
 	public void izmeniPredmet(String staraSifra, String sifra, String naziv, int espb, int godina, Semestar semestar, String profesor) {
 		for (Predmet p : getPredmeti()) {
 			if (p.getSifraPredmeta().equals(staraSifra)) {

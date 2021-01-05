@@ -71,7 +71,7 @@ public class PretragaStudenata {
 		TabbedPane.getInstance().azurirajPrikazStudent(null, -1);
 	}
 	
-	// https://docs.oracle.com/javase/7/docs/api/java/util/StringTokenizer.html
+	/** REFERENCA: https://docs.oracle.com/javase/7/docs/api/java/util/StringTokenizer.html */
 	public boolean validacijaUnosa(String text) {
 		StringTokenizer st = new StringTokenizer(text);
 		int reci = st.countTokens();
