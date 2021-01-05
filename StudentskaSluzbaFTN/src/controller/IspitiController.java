@@ -14,6 +14,7 @@ import model.Profesor;
 import view.DodavanjePredmetaProfesoru;
 import view.DodavanjePremetaStudentu;
 import view.DodavanjeProfesoraPredmetu;
+import view.IzmenaPredmetaView;
 import view.PrikazNepolozenihIspita;
 import view.PrikazPolozenihIspita;
 import view.ProfesorPredajePredmeteView;
@@ -29,6 +30,7 @@ public class IspitiController {
 
 	private DodavanjePredmetaProfesoru dpredprof;
 	private ProfesorPredajePredmeteView ppp;
+	private IzmenaPredmetaView ipv;
 
 	public static IspitiController instance = null;
 	
@@ -94,6 +96,10 @@ public class IspitiController {
 	
 	public void setProfesorPredajePredmete(ProfesorPredajePredmeteView ppp) {
 		this.ppp = ppp;
+	}
+	
+	public void setIzmenaPredmetaView(IzmenaPredmetaView ipv) {
+		this.ipv = ipv;
 	}
 	
 	
@@ -215,7 +221,8 @@ public class IspitiController {
 		BazaPredmeti.getInstance().pronadjiPredmet(predmet.getSifraPredmeta()).setProfesor(new Profesor());
 		BazaProfesori.getInstance().nadjiProfesora(brLK).getPredmeti().remove(predmet);
 		
-		this.ppp.azurirajPrikazPredmet(null, -1);
+		this.dpp.azurirajPrikazPredmet(null, -1);
+		this.ipv.azurirajProfesora();
 	}
 	
 }

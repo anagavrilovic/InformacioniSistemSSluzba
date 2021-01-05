@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -28,7 +27,6 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
 
 import controller.IspitiController;
 import controller.PredmetController;
@@ -36,7 +34,6 @@ import main.Main;
 import model.BazaPredmeti;
 import model.Predmet;
 import model.Predmet.Semestar;
-import model.Student.Status;
 
 public class IzmenaPredmetaView {
 	
@@ -173,6 +170,8 @@ public class IzmenaPredmetaView {
 		gbcRight.gridy = 7;
 		gbcRight.insets = new Insets(0, 0, 0, 120);
 		panel.add(btnOdustani, gbcRight);
+		
+		IspitiController.getInstance().setIzmenaPredmetaView(this);
 		
 		
 		Main.changeFont(panel, f);
