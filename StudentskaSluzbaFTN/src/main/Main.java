@@ -1,11 +1,12 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
-
+import javax.swing.UIManager;
 
 import controller.ProfesorContoller;
 import model.BazaProfesori;
@@ -13,12 +14,17 @@ import model.BazaProfesori;
 import controller.StudentController;
 
 import model.BazaStudenti;
-import model.Student;
 import view.GlavniProzor;
 
 public class Main {
 
 	public static void main(String[] args) {
+		
+		
+		/** REFERENCA: https://stackoverflow.com/questions/26913923/how-do-you-change-the-size-and-font-of-a-joptionpane */
+		UIManager.put("OptionPane.messageFont", new Font("sans-serif", Font.PLAIN, 13));
+		UIManager.put("OptionPane.buttonFont", new Font("sans-serif", Font.PLAIN, 13));
+		
 		GlavniProzor gp = GlavniProzor.getInstance();
 		gp.setIconImage(new ImageIcon("images/user_group.png").getImage());
 		gp.setVisible(true);

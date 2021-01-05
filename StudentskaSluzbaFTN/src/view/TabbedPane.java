@@ -1,10 +1,13 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIDefaults;
@@ -47,12 +50,7 @@ public class TabbedPane extends JTabbedPane{
 		this.setBackground(new Color(90, 216, 252));
 		this.setForeground(Color.WHITE);
 		
-		AbstractTableModelStudenti atmStud = new AbstractTableModelStudenti();
-		studentTable = new StudentTable(atmStud);
-		JScrollPane spStudent = new JScrollPane(studentTable);
-		this.addTab("Student", spStudent);
-		BazaStudenti.getInstance().izaberiSve();
-		azurirajPrikazStudent(null, -1);
+		this.prikazStudenta();
 		
 		AbstractTableModelProfesori atmProf = new AbstractTableModelProfesori();
 		profesorTable = new ProfesorTable(atmProf);
@@ -69,6 +67,47 @@ public class TabbedPane extends JTabbedPane{
 		azurirajPrikazPredmet(null, -1);
 		
 		this.addChangeListener(changeListener);
+		
+	}
+	
+	public void prikazStudenta() {
+		
+		int width = this.getWidth();
+		int height = this.getHeight();
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		panel.setVisible(true);
+		
+		JPanel panelNorth = new JPanel();
+		panelNorth.setBackground(Color.white);
+		panelNorth.setPreferredSize(new Dimension(width, 20));
+		panel.add(panelNorth, BorderLayout.NORTH);
+		
+		JPanel panelWest = new JPanel();
+		panelWest.setBackground(Color.WHITE);
+		panelWest.setPreferredSize(new Dimension(20, height));
+		panel.add(panelWest, BorderLayout.WEST);
+		
+		JPanel panelEast = new JPanel();
+		panelEast.setBackground(Color.WHITE);
+		panelEast.setPreferredSize(new Dimension(20, height));
+		panel.add(panelEast, BorderLayout.EAST);
+		
+		JPanel panelSouth = new JPanel();
+		panelSouth.setPreferredSize(new Dimension(width, 20));
+		panelSouth.setBackground(Color.WHITE);
+		panelSouth.setLayout(new GridBagLayout());
+		panel.add(panelSouth, BorderLayout.SOUTH);
+		
+		AbstractTableModelStudenti atmStud = new AbstractTableModelStudenti();
+		studentTable = new StudentTable(atmStud);
+		JScrollPane spStudent = new JScrollPane(studentTable);
+		panel.add(spStudent, BorderLayout.CENTER);
+		
+		this.addTab("Student", panel);
+		BazaStudenti.getInstance().izaberiSve();
+		azurirajPrikazStudent(null, -1);
 		
 	}
 	

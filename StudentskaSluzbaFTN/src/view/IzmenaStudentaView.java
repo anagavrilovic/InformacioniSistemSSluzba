@@ -1,6 +1,7 @@
  package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -279,7 +280,8 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 0;
 		panelInfo.add(jlIme, gbcLeft);
 		
-		jtfIme = new JTextField(20);
+		jtfIme = new JTextField();
+		jtfIme.setPreferredSize(new Dimension(205, 23));
 		jtfIme.setBackground(new Color(224, 224, 224));
 		jtfIme.setName("txtIme");
 		jtfIme.setText(student.getIme());
@@ -296,7 +298,8 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 1;
 		panelInfo.add(jlPrezime, gbcLeft);
 		
-		jtfPrezime = new JTextField(20);
+		jtfPrezime = new JTextField();
+		jtfPrezime.setPreferredSize(new Dimension(205, 23));
 		jtfPrezime.setBackground(new Color(224, 224, 224));
 		jtfPrezime.setName("txtPrezime");
 		jtfPrezime.setText(student.getPrezime());
@@ -313,7 +316,8 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 2;
 		panelInfo.add(jlDatum, gbcLeft);
 		
-		jtfDatum = new JTextField(20);
+		jtfDatum = new JTextField();
+		jtfDatum.setPreferredSize(new Dimension(205, 23));
 		jtfDatum.setBackground(new Color(224, 224, 224));
 		jtfDatum.setToolTipText("dd.MM.yyyy.");
 		jtfDatum.setName("txtDatum");
@@ -331,7 +335,8 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 3;
 		panelInfo.add(jlAdresa, gbcLeft);
 		
-		jtfAdresa = new JTextField(20);
+		jtfAdresa = new JTextField();
+		jtfAdresa.setPreferredSize(new Dimension(205, 23));
 		jtfAdresa.setBackground(new Color(224, 224, 224));
 		jtfAdresa.setName("txtAdresa");
 		jtfAdresa.setText(student.getAdresaStanovanja());
@@ -348,7 +353,8 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 4;
 		panelInfo.add(jlBrojTel, gbcLeft);
 		
-		jtfBrojTel = new JTextField(20);
+		jtfBrojTel = new JTextField();
+		jtfBrojTel.setPreferredSize(new Dimension(205, 23));
 		jtfBrojTel.setBackground(new Color(224, 224, 224));
 		jtfBrojTel.setName("txtBrojTel");
 		jtfBrojTel.setText(student.getKontaktTelefon());
@@ -399,7 +405,8 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 5;
 		panelInfo.add(jlEmail, gbcLeft);
 		
-		jtfEmail = new JTextField(20);
+		jtfEmail = new JTextField();
+		jtfEmail.setPreferredSize(new Dimension(205, 23));
 		jtfEmail.setBackground(new Color(224, 224, 224));
 		jtfEmail.setName("txtEmail");
 		jtfEmail.setText(student.getEmail());
@@ -416,7 +423,8 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 6;
 		panelInfo.add(jlBrInd, gbcLeft);
 		
-		jtfBrInd = new JTextField(20);
+		jtfBrInd = new JTextField();
+		jtfBrInd.setPreferredSize(new Dimension(205, 23));
 		jtfBrInd.setBackground(new Color(224, 224, 224));
 		jtfBrInd.setName("txtBrInd");
 		jtfBrInd.setText(student.getBrojIndeksa());
@@ -433,7 +441,8 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 7;
 		panelInfo.add(jlGodUpisa, gbcLeft);
 		
-		jtfGodUpisa = new JTextField(20);
+		jtfGodUpisa = new JTextField();
+		jtfGodUpisa.setPreferredSize(new Dimension(205, 23));
 		jtfGodUpisa.setBackground(new Color(224, 224, 224));
 		jtfGodUpisa.setName("txtGodUpisa");
 		jtfGodUpisa.setText(godinaUpisaToString(student.getGodinaUpisa()));
@@ -484,11 +493,12 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 8;
 		panelInfo.add(jlTrGod, gbcLeft);
 		
-		String[] god = {"                    I (prva)                    ", 
-				        "                    II (druga)                  ", 
-				        "                    III (treća)                 ", 
-				        "                    IV (četvrta)                "};
+		String[] god = {"                      I (prva)", 
+						"                      II (druga)", 
+						"                      III (treća)", 
+        				"                      IV (četvrta)"};
 		cbTrGod = new JComboBox<String>(god);
+		cbTrGod.setPreferredSize(new Dimension(205, 23));
 		cbTrGod.setSelectedIndex(student.getTrGodStudija() - 1);
 		cbTrGod.setEditable(false);
 		cbTrGod.setBackground(new Color(224, 224, 224));
@@ -503,9 +513,10 @@ public class IzmenaStudentaView {
 		gbcLeft.gridy = 9;
 		panelInfo.add(jlFin, gbcLeft);
 		
-		String[] nacin = {"                    Budžet              ", 
-				          "               Samofinansiranje         "};
+		String[] nacin = {"                      Budžet", 
+        				  "                Samofinansiranje"};
 		cbFin = new JComboBox<String>(nacin);
+		cbFin.setPreferredSize(new Dimension(205, 23));
 
 		if(student.getStatus() == Status.B)
 			cbFin.setSelectedIndex(0);

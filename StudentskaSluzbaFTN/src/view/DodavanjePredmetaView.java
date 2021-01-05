@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -212,14 +213,14 @@ public class DodavanjePredmetaView {
 					GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 		} else  {
 			/*JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/check.png")));*/
+					GlavniProzor.resizeIcon(new ImageIcon("images/check.png")));
 			jtfSifraPred.setText("");
 			jtfNazivPred.setText("");
 			jtfEspb.setText("");
 			cbGodStudija.setSelectedIndex(0);
-			cbSemestar.setSelectedIndex(0);
+			cbSemestar.setSelectedIndex(0);*/
 			
-			//dialog.dispose();
+			dialog.dispose();
 		}
 		
 	}
@@ -230,7 +231,8 @@ public class DodavanjePredmetaView {
 		gbcRight.gridy = 0;
 		panel.add(jlSifraPred, gbcLeft);
 		
-		jtfSifraPred = new JTextField(20);
+		jtfSifraPred = new JTextField();
+		jtfSifraPred.setPreferredSize(new Dimension(205, 23));
 		jtfSifraPred.setBackground(new Color(224, 224, 224));
 		jtfSifraPred.setName("txtSifraPred");
 		jtfSifraPred.addFocusListener(predmetFocusListener);
@@ -245,7 +247,8 @@ public class DodavanjePredmetaView {
 		gbcLeft.gridy = 1;
 		panel.add(jlNazivPred, gbcLeft);
 		
-		jtfNazivPred = new JTextField(20);
+		jtfNazivPred = new JTextField();
+		jtfNazivPred.setPreferredSize(new Dimension(205, 23));
 		jtfNazivPred.setBackground(new Color(224, 224, 224));
 		jtfNazivPred.setName("txtNazivPred");
 		jtfNazivPred.addFocusListener(predmetFocusListener);
@@ -260,9 +263,10 @@ public class DodavanjePredmetaView {
 		gbcLeft.gridy = 2;
 		panel.add(jlSemestar, gbcLeft);
 		
-		String[] semestar = {"                    Zimski                       ",
-							 "                     Letnji                       "};
+		String[] semestar = {"                       Zimski",
+		 					 "                        Letnji"};
 		cbSemestar = new JComboBox<String>(semestar);
+		cbSemestar.setPreferredSize(new Dimension(205, 23));
 		cbSemestar.setEditable(false);
 		cbSemestar.setBackground(new Color(224, 224, 224));
 		
@@ -276,11 +280,12 @@ public class DodavanjePredmetaView {
 		gbcLeft.gridy = 3;
 		panel.add(jlGodStudija, gbcLeft);
 		
-		String[] god = {"                     I (prva)                   ", 
-				        "                     II (druga)                 ", 
-				        "                     III (treća)                ", 
-				        "                     IV (četvrta)               "};
+		String[] god = {"                       I (prva)", 
+				        "                       II (druga)", 
+				        "                       III (treća)", 
+				        "                       IV (četvrta)"};
 		cbGodStudija = new JComboBox<String>(god);
+		cbGodStudija.setPreferredSize(new Dimension(205, 23));
 		cbGodStudija.setEditable(false);
 		cbGodStudija.setBackground(new Color(224, 224, 224));
 		
@@ -294,7 +299,8 @@ public class DodavanjePredmetaView {
 		gbcLeft.gridy = 4;
 		panel.add(jlEspb, gbcLeft);
 		
-		jtfEspb = new JTextField(20);
+		jtfEspb = new JTextField();
+		jtfEspb.setPreferredSize(new Dimension(205, 23));
 		jtfEspb.setBackground(new Color(224, 224, 224));
 		jtfEspb.setName("txtESPB");
 		jtfEspb.addFocusListener(predmetFocusListener);

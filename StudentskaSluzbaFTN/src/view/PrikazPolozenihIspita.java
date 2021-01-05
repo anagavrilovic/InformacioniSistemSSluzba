@@ -92,6 +92,11 @@ public class PrikazPolozenihIspita extends JPanel {
 		AbstractTableModelPolozeniIspiti atmPI = new AbstractTableModelPolozeniIspiti(index);
 
 		this.predmetTable = new PredmetTable(atmPI);
+		this.predmetTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+		this.predmetTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+		this.predmetTable.getColumnModel().getColumn(2).setPreferredWidth(15);
+		this.predmetTable.getColumnModel().getColumn(3).setPreferredWidth(15);
+		this.predmetTable.getColumnModel().getColumn(4).setPreferredWidth(30);
 
 		JScrollPane spPredmet = new JScrollPane(predmetTable);
 		this.add(spPredmet, BorderLayout.CENTER);

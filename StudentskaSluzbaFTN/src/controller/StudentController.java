@@ -47,6 +47,7 @@ public class StudentController {
 		student.setStatus(status);
 		
 		BazaStudenti.getInstance().dodajStudenta(student);
+		BazaStudenti.getInstance().izaberiSve();
 		TabbedPane.getInstance().azurirajPrikazStudent("Dodavanje studenta", -1);
 
 		return "Student uspešno dodat!";
@@ -65,6 +66,7 @@ public class StudentController {
 			return validacija;
 		
 		BazaStudenti.getInstance().izmeniStudenta(stariIndeks, ime, prezime, date, brIndeksa, adresa, email, brTel, god, trGodStudija, status);
+		BazaStudenti.getInstance().izaberiSve();
 		TabbedPane.getInstance().azurirajPrikazStudent("Izmena studenta", -1);
 
 		return "Student uspešno izmenjen!";
@@ -76,6 +78,7 @@ public class StudentController {
 		BazaPredmeti.getInstance().izbrisiStudentaSaNepolozenihPredmeta(index);
 		BazaStudenti.getInstance().izbrisiStudenta(index);
 		
+		BazaStudenti.getInstance().izaberiSve();
 		TabbedPane.getInstance().azurirajPrikazStudent("Brisanje", -1);
 		
 		return "Student uspešno izbrisan!";

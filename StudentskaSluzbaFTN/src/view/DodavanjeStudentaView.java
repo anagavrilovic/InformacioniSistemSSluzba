@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,8 +23,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.EtchedBorder;
+import javax.swing.plaf.ColorUIResource;
 
 import controller.StudentController;
 import main.Main;
@@ -76,7 +79,7 @@ public class DodavanjeStudentaView {
 		dialog.addWindowListener(new WindowAdapter() {
 			
 			public void windowClosing(WindowEvent e)
-		      {
+		      {			
 				String[] options = {"Da", "Ne" };
 				int opcija = JOptionPane.showOptionDialog(dialog, "Da li ste sigurni da želite da prekinete unos studenta?",
 						"Prekid unosa studenta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
@@ -240,7 +243,7 @@ public class DodavanjeStudentaView {
 					GlavniProzor.resizeIcon(new ImageIcon("images/remove-user.png")));
 		} else  {
 			/*JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));*/
+					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));
 			jtfIme.setText("");
 			jtfPrezime.setText("");
 			jtfDatum.setText("");
@@ -250,9 +253,9 @@ public class DodavanjeStudentaView {
 			jtfBrInd.setText("");
 			jtfGodUpisa.setText("");
 			cbTrGod.setSelectedIndex(0);
-			cbFin.setSelectedIndex(0);
+			cbFin.setSelectedIndex(0);*/
 			
-			//dialog.dispose();
+			dialog.dispose();
 		}
 		
 	}
@@ -263,7 +266,8 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 0;
 		panel.add(jlIme, gbcLeft);
 		
-		jtfIme = new JTextField(20);
+		jtfIme = new JTextField();
+		jtfIme.setPreferredSize(new Dimension(205, 23));
 		jtfIme.setBackground(new Color(224, 224, 224));
 		jtfIme.setName("txtIme");
 		jtfIme.addFocusListener(studentFocusListener);
@@ -278,7 +282,8 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 1;
 		panel.add(jlPrezime, gbcLeft);
 		
-		jtfPrezime = new JTextField(20);
+		jtfPrezime = new JTextField();
+		jtfPrezime.setPreferredSize(new Dimension(205, 23));
 		jtfPrezime.setBackground(new Color(224, 224, 224));
 		jtfPrezime.setName("txtPrezime");
 		jtfPrezime.addFocusListener(studentFocusListener);
@@ -293,7 +298,8 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 2;
 		panel.add(jlDatum, gbcLeft);
 		
-		jtfDatum = new JTextField(20);
+		jtfDatum = new JTextField();
+		jtfDatum.setPreferredSize(new Dimension(205, 23));
 		jtfDatum.setBackground(new Color(224, 224, 224));
 		jtfDatum.setToolTipText("dd.MM.yyyy.");
 		jtfDatum.setName("txtDatum");
@@ -309,7 +315,8 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 3;
 		panel.add(jlAdresa, gbcLeft);
 		
-		jtfAdresa = new JTextField(20);
+		jtfAdresa = new JTextField();
+		jtfAdresa.setPreferredSize(new Dimension(205, 23));
 		jtfAdresa.setBackground(new Color(224, 224, 224));
 		jtfAdresa.setName("txtAdresa");
 		jtfAdresa.addFocusListener(studentFocusListener);
@@ -324,7 +331,8 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 4;
 		panel.add(jlBrojTel, gbcLeft);
 		
-		jtfBrojTel = new JTextField(20);
+		jtfBrojTel = new JTextField();
+		jtfBrojTel.setPreferredSize(new Dimension(205, 23));
 		jtfBrojTel.setBackground(new Color(224, 224, 224));
 		jtfBrojTel.setName("txtBrojTel");
 		jtfBrojTel.addFocusListener(studentFocusListener);
@@ -373,7 +381,8 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 5;
 		panel.add(jlEmail, gbcLeft);
 		
-		jtfEmail = new JTextField(20);
+		jtfEmail = new JTextField();
+		jtfEmail.setPreferredSize(new Dimension(205, 23));
 		jtfEmail.setBackground(new Color(224, 224, 224));
 		jtfEmail.setName("txtEmail");
 		jtfEmail.addFocusListener(studentFocusListener);
@@ -388,7 +397,8 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 6;
 		panel.add(jlBrInd, gbcLeft);
 		
-		jtfBrInd = new JTextField(20);
+		jtfBrInd = new JTextField();
+		jtfBrInd.setPreferredSize(new Dimension(205, 23));
 		jtfBrInd.setBackground(new Color(224, 224, 224));
 		jtfBrInd.setName("txtBrInd");
 		jtfBrInd.addFocusListener(studentFocusListener);
@@ -403,7 +413,8 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 7;
 		panel.add(jlGodUpisa, gbcLeft);
 		
-		jtfGodUpisa = new JTextField(20);
+		jtfGodUpisa = new JTextField();
+		jtfGodUpisa.setPreferredSize(new Dimension(205, 23));
 		jtfGodUpisa.setBackground(new Color(224, 224, 224));
 		jtfGodUpisa.setName("txtGodUpisa");
 		jtfGodUpisa.addFocusListener(studentFocusListener);
@@ -452,11 +463,12 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 8;
 		panel.add(jlTrGod, gbcLeft);
 		
-		String[] god = {"                    I (prva)                    ", 
-				        "                    II (druga)                  ", 
-				        "                    III (treća)                 ", 
-				        "                    IV (četvrta)                "};
+		String[] god = {"                      I (prva)", 
+						"                      II (druga)", 
+						"                      III (treća)", 
+		        		"                      IV (četvrta)"};
 		cbTrGod = new JComboBox<String>(god);
+		cbTrGod.setPreferredSize(new Dimension(205, 23));
 		cbTrGod.setEditable(false);
 		cbTrGod.setBackground(new Color(224, 224, 224));
 		
@@ -470,9 +482,10 @@ public class DodavanjeStudentaView {
 		gbcLeft.gridy = 9;
 		panel.add(jlFin, gbcLeft);
 		
-		String[] nacin = {"                    Budžet              ", 
-				          "               Samofinansiranje         "};
+		String[] nacin = {"                      Budžet", 
+				          "                Samofinansiranje"};
 		cbFin = new JComboBox<String>(nacin);
+		cbFin.setPreferredSize(new Dimension(205, 23));
 		cbFin.setEditable(false);
 		cbFin.setBackground(new Color(224, 224, 224));
 		

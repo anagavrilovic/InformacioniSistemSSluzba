@@ -88,9 +88,9 @@ public class DodavanjePremetaStudentu {
 			
 		});
 		
-		dialog.getRootPane().setDefaultButton(btnDodaj);
 		panelSouth.add(btnDodaj, new GridBagConstraints(0, 0, 1, 1, 100, 0, GridBagConstraints.WEST,
                 GridBagConstraints.NONE, new Insets(20, 150, 20, 0), 0, 0));
+		dialog.getRootPane().setDefaultButton(btnDodaj);
 		
 		btnOdustani = new JButton("Odustani");
 		btnOdustani.setBackground(Color.WHITE);
