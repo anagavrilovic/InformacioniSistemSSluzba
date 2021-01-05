@@ -282,7 +282,8 @@ public class Profesor {
 				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	
-	// metoda koja se koristi za dodavanje profesora na predmet
+	// STUDENT 1: 
+	// funkcionalnost: #dodavanje_profesora_na_predmet
 	public String getImePrezimeProfesora() {
 		return this.getBrojLicneKarte() + " - " + this.getIme() + " " + this.getPrezime();
 	}

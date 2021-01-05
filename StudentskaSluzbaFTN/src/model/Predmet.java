@@ -169,7 +169,8 @@ public class Predmet {
 		return this.getSifraPredmeta() + " - " + this.getNazivPredmeta();
 	}
 	
-	// metoda koja se koristi za dodavanje profesora na predmet
+	// STUDENT 1: 
+	// funkcionalnost: #dodavanje_profesora_na_predmet
 	public String getImePrezimeProfesora() {
 		if(!this.getProfesor().getBrojLicneKarte().equals(""))
 			return this.getProfesor().getBrojLicneKarte() + " - " + this.getProfesor().getIme() + " " + this.getProfesor().getPrezime();

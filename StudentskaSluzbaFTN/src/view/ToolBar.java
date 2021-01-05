@@ -76,6 +76,7 @@ public class ToolBar extends JToolBar{
 				
 				if(TabbedPane.getInstance().getIndex() == 0) {
 					boolean validanUnos = PretragaStudenata.getInstance().validacijaUnosa(unos);
+					text.setToolTipText("Oblik pretrage: PREZIME IME INDEKS");
 					
 					if(!validanUnos)
 						btnSearch.setEnabled(false);
