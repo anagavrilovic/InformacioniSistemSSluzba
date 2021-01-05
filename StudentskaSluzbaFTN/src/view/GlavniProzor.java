@@ -39,9 +39,6 @@ public class GlavniProzor extends JFrame{
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		
 		Dimension screenSize = tk.getScreenSize();
-		//this.heigth = screenSize.height;
-		//this.width = screenSize.width;
-		//setSize(this.width * 3/4, this.heigth * 3/4);
 		
 		GlavniProzor.heigth = screenSize.height;
 		GlavniProzor.width = screenSize.width;

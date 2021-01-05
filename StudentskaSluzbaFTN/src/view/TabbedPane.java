@@ -1,14 +1,19 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
+import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -46,6 +51,7 @@ public class TabbedPane extends JTabbedPane{
 		
 		this.setBackground(new Color(90, 216, 252));
 		this.setForeground(Color.WHITE);
+
 		
 		AbstractTableModelStudenti atmStud = new AbstractTableModelStudenti();
 		studentTable = new StudentTable(atmStud);
@@ -54,22 +60,94 @@ public class TabbedPane extends JTabbedPane{
 		BazaStudenti.getInstance().izaberiSve();
 		azurirajPrikazStudent(null, -1);
 		
-		AbstractTableModelProfesori atmProf = new AbstractTableModelProfesori();
-		profesorTable = new ProfesorTable(atmProf);
-		JScrollPane spProfesor = new JScrollPane(profesorTable);
-		this.addTab("Profesor", spProfesor);
+		//AbstractTableModelProfesori atmProf = new AbstractTableModelProfesori();
+		//profesorTable = new ProfesorTable(atmProf);
+		//JScrollPane spProfesor = new JScrollPane(profesorTable);
+		//prikaziProfesora();
+		this.addTab("Profesor", prikaziProfesora());
 		BazaProfesori.getInstance().prikaziSve();
 		azurirajPrikazProf(null, -1);
 		
-		AbstractTableModelPredmeti atmPred = new AbstractTableModelPredmeti();
-		predmetTable = new PredmetTable(atmPred);
-		JScrollPane spPredmet = new JScrollPane(predmetTable);
-		this.addTab("Predmet", spPredmet);
+		//AbstractTableModelPredmeti atmPred = new AbstractTableModelPredmeti();
+		//predmetTable = new PredmetTable(atmPred);
+		//JScrollPane spPredmet = new JScrollPane(predmetTable);
+		this.addTab("Predmet", prikaziPredmet());
 		BazaPredmeti.getInstance().prikaziSve();
 		azurirajPrikazPredmet(null, -1);
 		
 		this.addChangeListener(changeListener);
 		
+	}
+	
+	public JPanel prikaziProfesora() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+		panel.setLayout(new BorderLayout());
+		
+		JPanel panelNorth = new JPanel();
+		panelNorth.setBackground(Color.white);
+		panelNorth.setPreferredSize(new Dimension(this.getWidth(), 20));
+		panel.add(panelNorth, BorderLayout.NORTH);
+			
+		JPanel panelWest = new JPanel();
+		panelWest.setBackground(Color.white);
+		panelWest.setPreferredSize(new Dimension(20, this.getHeight()));
+		panel.add(panelWest, BorderLayout.WEST);
+		
+		JPanel panelEast = new JPanel();
+		panelEast.setBackground(Color.white);
+		panelEast.setPreferredSize(new Dimension(20, this.getHeight()));
+		panel.add(panelEast, BorderLayout.EAST);
+		
+		JPanel panelSouth = new JPanel();
+		panelSouth.setBackground(Color.white);
+		panelSouth.setPreferredSize(new Dimension(this.getWidth(), 20));
+		panelSouth.setLayout(new GridBagLayout());
+		panel.add(panelSouth, BorderLayout.SOUTH);
+		
+		AbstractTableModelProfesori atmProf = new AbstractTableModelProfesori();
+		profesorTable = new ProfesorTable(atmProf);
+		JScrollPane sp = new JScrollPane(profesorTable);
+		sp.setBackground(Color.white);
+		panel.add(sp, BorderLayout.CENTER);	
+		return panel;
+	}
+	
+	public JPanel prikaziPredmet() {
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+		panel.setLayout(new BorderLayout());
+		
+		JPanel panelNorth = new JPanel();
+		panelNorth.setBackground(Color.white);
+		panelNorth.setPreferredSize(new Dimension(this.getWidth(), 20));
+		panel.add(panelNorth, BorderLayout.NORTH);
+			
+		JPanel panelWest = new JPanel();
+		panelWest.setBackground(Color.white);
+		panelWest.setPreferredSize(new Dimension(20, this.getHeight()));
+		panel.add(panelWest, BorderLayout.WEST);
+		
+		JPanel panelEast = new JPanel();
+		panelEast.setBackground(Color.white);
+		panelEast.setPreferredSize(new Dimension(20, this.getHeight()));
+		panel.add(panelEast, BorderLayout.EAST);
+		
+		JPanel panelSouth = new JPanel();
+		panelSouth.setBackground(Color.white);
+		panelSouth.setPreferredSize(new Dimension(this.getWidth(), 20));
+		panelSouth.setLayout(new GridBagLayout());
+		panel.add(panelSouth, BorderLayout.SOUTH);
+		
+		AbstractTableModelPredmeti atmPred = new AbstractTableModelPredmeti();
+		predmetTable = new PredmetTable(atmPred);
+		JScrollPane spPredmet = new JScrollPane(predmetTable);
+		spPredmet.setBackground(Color.white);
+		panel.add(spPredmet, BorderLayout.CENTER);	
+		return panel;
 	}
 	
 	public void azurirajPrikazStudent(String akcija, int vrednost) {

@@ -1,11 +1,12 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
-
+import javax.swing.UIManager;
 
 import controller.ProfesorContoller;
 import model.BazaProfesori;
@@ -19,6 +20,12 @@ import view.GlavniProzor;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		UIManager.put("OptionPane.messageFont", new Font("sans-setif", Font.PLAIN, 13));
+		UIManager.put("OptionPane.buttonFont", new Font("sans-setif", Font.PLAIN, 13));
+		
+	//	UIManager.put("Button.background", Color.white);
+		
 		GlavniProzor gp = GlavniProzor.getInstance();
 		gp.setIconImage(new ImageIcon("images/user_group.png").getImage());
 		gp.setVisible(true);

@@ -107,6 +107,7 @@ public class ProfesorContoller {
 			        				eMail, adresaKanc, brLK, titula, zvanje);
 		
 		BazaProfesori.getInstance().dodajProfesora(prof);
+		BazaProfesori.getInstance().prikaziSve();
 		TabbedPane.getInstance().azurirajPrikazProf("Dodavanje profesora", -1);
 		
 		return "Uspešno ste uneli profesora!";
@@ -134,6 +135,7 @@ public class ProfesorContoller {
 		
 		BazaProfesori.getInstance().izmeniProfesora(prz, ime, datumRodjenja, adresaStan, brTel,
 												    eMail, adresaKanc, brLK, titula, zvanje, kljuc);
+		BazaProfesori.getInstance().prikaziSve();
 		TabbedPane.getInstance().azurirajPrikazProf("Izmena profesora", -1);
 		
 		return "Uspešno ste izmenili izabranog profesora!";
@@ -141,9 +143,10 @@ public class ProfesorContoller {
 	
 	public String izbrisiProfesora(String brojLK) {
 		
+		
 		BazaPredmeti.getInstance().izbrisiProfesora(brojLK);
 		BazaProfesori.getInstance().izbrisiProfesora(brojLK);
-		
+		BazaProfesori.getInstance().prikaziSve();
 		TabbedPane.getInstance().azurirajPrikazProf("brisanje", -1);
 		
 		return "Profesor uspešno izbrisan!";

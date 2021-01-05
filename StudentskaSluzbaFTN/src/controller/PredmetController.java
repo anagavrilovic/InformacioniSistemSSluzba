@@ -41,6 +41,7 @@ public class PredmetController {
 		predmet.setEspb(espbBod);
 		
 		BazaPredmeti.getInstance().dodajPredmet(predmet);
+		BazaPredmeti.getInstance().prikaziSve();
 		TabbedPane.getInstance().azurirajPrikazPredmet("Dodavanje predmeta", -1);
 
 		return "Predmet uspešno dodat!";
@@ -57,6 +58,7 @@ public class PredmetController {
 			return validacija;
 		
 		BazaPredmeti.getInstance().izmeniPredmet(staraSifra, sifraPred, nazivPred, espbBod, godStud, semestar, profesor);
+		BazaPredmeti.getInstance().prikaziSve();
 		TabbedPane.getInstance().azurirajPrikazPredmet("Izmena predmeta", -1);
 
 		return "Predmet uspešno izmenjen!";
@@ -79,6 +81,7 @@ public class PredmetController {
 			}
 			
 			BazaPredmeti.getInstance().izbrisiPredmet(sifraPredm);
+			BazaPredmeti.getInstance().prikaziSve();
 			TabbedPane.getInstance().azurirajPrikazPredmet("Brisanje predmeta", -1);
 			return	"Izbrisali ste izabrani predmet!";
 	}

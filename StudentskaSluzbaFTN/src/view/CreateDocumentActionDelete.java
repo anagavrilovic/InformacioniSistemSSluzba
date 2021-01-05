@@ -104,7 +104,7 @@ public class CreateDocumentActionDelete extends AbstractAction {
 		
 		int code = JOptionPane.showOptionDialog(frame.getContentPane(),"Da li ste sigurni da želite da izbrišete selektovani predmet?",
 				"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-				 GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")), options, null);
+				 GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")), options, options[1]);
 		
 		if (code == JOptionPane.YES_OPTION) {
 			String ret = PredmetController.getInstance().izbrisiPredmet(TabbedPane.getInstance().getSifraPredFromSelectedRow());
@@ -112,6 +112,7 @@ public class CreateDocumentActionDelete extends AbstractAction {
 										   GlavniProzor.resizeIcon(new ImageIcon("images/trash.png")));	*/
 		} else 
 			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
 	}
 
 }

@@ -3,7 +3,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,11 +19,9 @@ import javax.swing.border.EtchedBorder;
 
 import controller.IspitiController;
 
-import main.Main;
 
 import model.BazaPredmeti;
 import model.Predmet;
-
 
 public class PrikazNepolozenihIspita extends JPanel{
 	
@@ -124,6 +121,12 @@ public class PrikazNepolozenihIspita extends JPanel{
 		BazaPredmeti.getInstance().nadjiNepolozeneIspite(index);
 		AbstractTableModelNepolozeniPredmeti atmp = new AbstractTableModelNepolozeniPredmeti();
 		nepolozeniIspitiTab = new PredmetTable(atmp);
+		this.nepolozeniIspitiTab.getColumnModel().getColumn(0).setPreferredWidth(30);
+		this.nepolozeniIspitiTab.getColumnModel().getColumn(1).setPreferredWidth(200);
+		this.nepolozeniIspitiTab.getColumnModel().getColumn(2).setPreferredWidth(15);
+		this.nepolozeniIspitiTab.getColumnModel().getColumn(3).setPreferredWidth(15);
+		this.nepolozeniIspitiTab.getColumnModel().getColumn(4).setPreferredWidth(30);
+		
 		JScrollPane spPredmet = new JScrollPane(nepolozeniIspitiTab);
 		this.add(spPredmet);
 		
@@ -167,7 +170,6 @@ public class PrikazNepolozenihIspita extends JPanel{
 		validate();
 	}
 	
-
 	public JTable getNepolozeniIspitiTab() {
 		return nepolozeniIspitiTab;
 	}
@@ -175,8 +177,6 @@ public class PrikazNepolozenihIspita extends JPanel{
 	public void setNepolozeniIspitiTab(JTable nepolozeniIspitiTab) {
 		this.nepolozeniIspitiTab = nepolozeniIspitiTab;
 	}
-
-
 
 	public String getIndex() {
 		return index;
