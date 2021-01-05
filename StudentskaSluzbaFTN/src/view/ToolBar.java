@@ -95,6 +95,9 @@ public class ToolBar extends JToolBar{
 							PretragaProfesora.getInstance().pronadjiProfesore();
 						}
 					}
+					else {
+						btnSearch.setEnabled(false);
+					}
 						
 				} else if(TabbedPane.getInstance().getIndex() == 2) {
 					boolean validanUnos = PretragaPredmeta.getInstance().validacijaUnosa(unos);

@@ -38,7 +38,7 @@ public class PretragaProfesora {
 		StringTokenizer st = new StringTokenizer(temp);
 		int num = st.countTokens();
 				
-		if(num >=0 && num <= 2)
+		if(num <= 2)
 			return true;
 		else
 			return false;
