@@ -29,6 +29,8 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.EtchedBorder;
 
+import controller.KeyListenerStudent;
+import controller.KeyListenerStudentIzmena;
 import controller.StudentController;
 import main.Main;
 import model.BazaStudenti;
@@ -72,6 +74,8 @@ public class IzmenaStudentaView {
 	private GridBagConstraints gbcRight;
 	
 	private StudentFocusListener studentFocusListener;
+	private KeyListenerStudentIzmena studentKeyListener;
+	
 	private Student student;
 	
 	
@@ -117,6 +121,7 @@ public class IzmenaStudentaView {
 		
 		Font f = new Font("sans-serif", Font.PLAIN, 13);
 		studentFocusListener = new StudentFocusListener();
+		studentKeyListener = new KeyListenerStudentIzmena(this);
 		
 		gbcLeft = new GridBagConstraints();
 		gbcLeft.weightx = 100;
@@ -143,6 +148,7 @@ public class IzmenaStudentaView {
 		btnPotvrdi = new JButton("Potvrdi");
 		btnPotvrdi.setBackground(new Color(90, 216, 252));
 		btnPotvrdi.setForeground(Color.WHITE);
+		btnPotvrdi.setEnabled(true);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
 			@Override
@@ -268,8 +274,6 @@ public class IzmenaStudentaView {
 			JOptionPane.showMessageDialog(dialog, message, "Nisu ispravno uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/remove-user.png")));
 		} else  {
-			/*JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));*/
 			dialog.dispose();
 		}
 	}
@@ -286,6 +290,7 @@ public class IzmenaStudentaView {
 		jtfIme.setName("txtIme");
 		jtfIme.setText(student.getIme());
 		jtfIme.addFocusListener(studentFocusListener);
+		jtfIme.addKeyListener(studentKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 0;
@@ -304,6 +309,7 @@ public class IzmenaStudentaView {
 		jtfPrezime.setName("txtPrezime");
 		jtfPrezime.setText(student.getPrezime());
 		jtfPrezime.addFocusListener(studentFocusListener);
+		jtfPrezime.addKeyListener(studentKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 1;
@@ -323,6 +329,7 @@ public class IzmenaStudentaView {
 		jtfDatum.setName("txtDatum");
 		jtfDatum.setText(dateToString(student.getDatumRodjenja()));
 		jtfDatum.addFocusListener(studentFocusListener);
+		jtfDatum.addKeyListener(studentKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 2;
@@ -341,6 +348,7 @@ public class IzmenaStudentaView {
 		jtfAdresa.setName("txtAdresa");
 		jtfAdresa.setText(student.getAdresaStanovanja());
 		jtfAdresa.addFocusListener(studentFocusListener);
+		jtfAdresa.addKeyListener(studentKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 3;
@@ -359,40 +367,7 @@ public class IzmenaStudentaView {
 		jtfBrojTel.setName("txtBrojTel");
 		jtfBrojTel.setText(student.getKontaktTelefon());
 		jtfBrojTel.addFocusListener(studentFocusListener);
-		jtfBrojTel.addKeyListener(new KeyListener() {
-			 
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
- 
-			@Override
-			public void keyReleased(KeyEvent e) {
-				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					return;
-				}
-				char c = e.getKeyChar();
-				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
-						&& c != '9') {
-					JOptionPane.showMessageDialog(dialog, "Dozvoljen je unos samo brojeva!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
-							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
-					JTextField txt = (JTextField) e.getComponent();
-					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
-				}
-			}
- 
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					return;
-				}
-				JTextField txt = (JTextField) e.getComponent();
-				if (txt.getText().length() >= 10) {
-					JOptionPane.showMessageDialog(null, "Možete uneti maksimalno 10 karaktera!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
-							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
-					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
-				}
-			}
-		});
+		jtfBrojTel.addKeyListener(studentKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 4;
@@ -411,6 +386,7 @@ public class IzmenaStudentaView {
 		jtfEmail.setName("txtEmail");
 		jtfEmail.setText(student.getEmail());
 		jtfEmail.addFocusListener(studentFocusListener);
+		jtfEmail.addKeyListener(studentKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 5;
@@ -429,6 +405,7 @@ public class IzmenaStudentaView {
 		jtfBrInd.setName("txtBrInd");
 		jtfBrInd.setText(student.getBrojIndeksa());
 		jtfBrInd.addFocusListener(studentFocusListener);
+		jtfBrInd.addKeyListener(studentKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 6;
@@ -447,40 +424,7 @@ public class IzmenaStudentaView {
 		jtfGodUpisa.setName("txtGodUpisa");
 		jtfGodUpisa.setText(godinaUpisaToString(student.getGodinaUpisa()));
 		jtfGodUpisa.addFocusListener(studentFocusListener);
-		jtfGodUpisa.addKeyListener(new KeyListener() {
-			 
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
- 
-			@Override
-			public void keyReleased(KeyEvent e) {
-				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					return;
-				}
-				char c = e.getKeyChar();
-				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
-						&& c != '9') {
-					JOptionPane.showMessageDialog(dialog, "Dozvoljen je unos samo cifara!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
-							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
-					JTextField txt = (JTextField) e.getComponent();
-					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
-				}
-			}
- 
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					return;
-				}
-				JTextField txt = (JTextField) e.getComponent();
-				if (txt.getText().length() >= 4) {
-					JOptionPane.showMessageDialog(null, "Morate uneti tačno 4 karaktera!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
-							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
-					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
-				}
-			}
-		});
+		jtfGodUpisa.addKeyListener(studentKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 7;
@@ -507,6 +451,7 @@ public class IzmenaStudentaView {
 		gbcRight.gridy = 8;
 		panelInfo.add(cbTrGod, gbcRight);
 	}
+	
 	private void dodajNacinFin() {
 		jlFin = new JLabel("Način finansiranja*:");
 		gbcLeft.gridx = 0;
@@ -530,6 +475,7 @@ public class IzmenaStudentaView {
 		gbcRight.gridy = 9;
 		panelInfo.add(cbFin, gbcRight);
 	}
+	
 	private void dodajPrazanRed() {
 		JLabel label1 = new JLabel(" ");
 		gbcLeft.gridx = 0;
@@ -558,5 +504,12 @@ public class IzmenaStudentaView {
 			return String.valueOf(student.getGodinaUpisa());
 		else
 			return "";
+	}
+	
+	public void osveziDugmad(boolean omoguci) {
+		if(omoguci)
+			btnPotvrdi.setEnabled(true);
+		else
+			btnPotvrdi.setEnabled(false);
 	}
 }

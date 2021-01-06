@@ -70,6 +70,7 @@ public class TabbedPane extends JTabbedPane{
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		panel.setVisible(true);
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
 		
 		JPanel panelNorth = new JPanel();
 		panelNorth.setBackground(Color.white);

@@ -1,7 +1,9 @@
 package controller;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Date;
 import java.util.regex.Pattern;
 
@@ -30,10 +32,6 @@ public class StudentController {
 	public String dodajStudenta(String ime, String prezime, String datRodj, String adresa, String brTel, String email, 
 			String brIndeksa, String godUpisa, int trGodStudija, Status status) {
 		
-		String validacija = validirajStudenta(ime, prezime, datRodj, adresa, brTel, email, brIndeksa, godUpisa, trGodStudija, status, "dodavanje");
-		if(!validacija.equals("Uspešno"))
-			return validacija;
-		
 		Student student = new Student();
 		student.setIme(ime);
 		student.setPrezime(prezime);
@@ -61,10 +59,6 @@ public class StudentController {
 			if(!BazaStudenti.getInstance().validirajStudenta(brIndeksa))
 				return "Već postoji student sa ovim brojem indeksa!"; 
 		
-		String validacija = validirajStudenta(ime, prezime, datRodj, adresa, brTel, email, brIndeksa, godUpisa, trGodStudija, status, "izmena");
-		if(!validacija.equals("Uspešno"))
-			return validacija;
-		
 		BazaStudenti.getInstance().izmeniStudenta(stariIndeks, ime, prezime, date, brIndeksa, adresa, email, brTel, god, trGodStudija, status);
 		BazaStudenti.getInstance().izaberiSve();
 		TabbedPane.getInstance().azurirajPrikazStudent("Izmena studenta", -1);
@@ -84,99 +78,135 @@ public class StudentController {
 		return "Student uspešno izbrisan!";
 	}
 	
+	public boolean validirajNoviIndeks(String stariIndeks, String brIndeksa) {
+		if(!stariIndeks.equals(brIndeksa))
+			if(!BazaStudenti.getInstance().validirajStudenta(brIndeksa))
+				return false; 
+		return true;
+	}
 	
-	private String validirajStudenta(String ime, String prezime, String datRodj, String adresa, String brTel, String email, 
-			String brIndeksa, String godUpisa, int trGodStudija, Status status, String akcija) {
-		
-		// validacija za ime
+	public boolean validirajIme(String ime) {
 		if (ime == null) 
-			return "Unesite ime studenta!"; 
+			return false; 
 		
 		ime = ime.trim();
 		if (ime.isEmpty()) 
-			return "Unesite ime studenta!";
+			return false;
 		if(!Pattern.matches("[a-zA-ZćčžđšĆČŽĐŠ]+", ime)) 
-			return "Ime se mora sastojati isključivo od slova!";
-
-		// validacija za prezime
+			return false;
+		
+		return true;
+	}
+	
+	public boolean validirajPrezime(String prezime) {
 		if (prezime == null) 
-			return "Unesite prezime studenta!";
+			return false;
 		
 		prezime = prezime.trim();
 		if (prezime.isEmpty()) 
-			return "Unesite prezime studenta!";
+			return false;
 		if(!Pattern.matches("[a-zA-ZćčžđšĆČŽĐŠ]+", prezime)) 
-			return "Prezime se mora sastojati isključivo od slova!";
-
-		// validacija za datum
+			return false;
+		
+		return true;
+	}
+	
+	public boolean validirajDatumRodjenja(String datRodj) {
 		if (datRodj == null) 
-			return "Unesite datum rodjenja studenta!";
+			return false;
 		
 		datRodj = datRodj.trim();
 		if (datRodj.isEmpty()) 
-			return "Unesite datum rodjenja studenta!";
-		try {
-			date = new SimpleDateFormat("dd.MM.yyyy.").parse(datRodj);
-		} catch (ParseException e) {
-			return "Datum mora biti u formatu dd.MM.yyyy.";
-		}
+			return false;
 		
-		// validacija za adresu
+		try {
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
+            df.setLenient(false);
+            date = df.parse(datRodj);
+        } catch (ParseException e) {
+            return false;
+        }
+
+		Date today = new Date();
+		if(today.before(date))
+			return false;
+		
+		return true;
+	}
+	
+	public boolean validirajAdresu(String adresa) {
 		if (adresa == null) 
-			return "Unesite adresu studenta!";
+			return false;
 		
 		adresa = adresa.trim();
 		if (adresa.isEmpty()) 
-			return "Unesite adresu studenta!";
+			return false;
 		
-		// validacija za broj telefona
+		return true;
+	}
+	
+	public boolean validirajBrojTelefona(String brTel) {
 		if (brTel == null) 
-			return "Unesite broj telefona studenta!";
+			return false;
 
 		brTel = brTel.trim();
 		if (brTel.isEmpty()) 
-			return "Unesite broj telefona studenta!";
+			return false;
 		if(brTel.length() != 9 && brTel.length() != 10) 
-			return "Broj telefona mora sadržati 9 ili 10 cifara!";
+			return false;
 		if(!Pattern.matches("[0-9]+", brTel)) 
-			return "Broj telefona se mora sastojati isključivo od slova!";
+			return false;
 		
-		// validacija za email
+		return true;
+	}
+	
+	public boolean validirajEmail(String email) {
 		if (email == null) 
-			return "Unesite e-mail adresu studenta!";
+			return false;
 		
 		email = email.trim();
 		if (email.isEmpty()) 
-			return "Unesite e-mail adresu studenta!";
+			return false;
 		if(!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,}", email)) 
-			return "Neispravna e-mail adresa!";
+			return false;
 		
-		// validacija za broj indeksa
+		return true;
+	}
+	
+	public boolean validirajBrIndeksa(String brIndeksa, String akcija) {
 		if (brIndeksa == null) 
-			return "Unesite broj indeksa studenta!";
+			return false;
 		
 		brIndeksa = brIndeksa.trim();
 		if (brIndeksa.isEmpty()) 
-			return "Unesite broj indeksa studenta!";
+			return false;
 		if(akcija.equals("dodavanje")) {
 			if(!BazaStudenti.getInstance().validirajStudenta(brIndeksa))
-				return "Već postoji student sa ovim brojem indeksa!"; 
+				return false;
 		}
 		
-		// validacija za godinu upisa
+		return true;
+	}
+	
+	public boolean validirajGodinuUpisa(String godUpisa) {
 		if (godUpisa == null) 
-			return "Unesite godinu upisa studenta!";
+			return false;
 		
 		godUpisa = godUpisa.trim();
 		if (godUpisa.isEmpty()) 
-			return "Unesite godinu upisa studenta!";
+			return false;
 		if(godUpisa.length() != 4) 
-			return "Godina upisa se sastoji od 4 cifre!";
+			return false;
 		if(!Pattern.matches("[0-9]+", godUpisa)) 
-			return "Godina upisa se mora sastojati isključivo od slova!";
+			return false;
 		god = Integer.parseInt(godUpisa);
 		
-		return "Uspešno";  
+		int trenutnaGodina = Year.now().getValue();
+		if(god > trenutnaGodina)
+			return false;
+		
+		return true;
 	}
+	
 	
 }
