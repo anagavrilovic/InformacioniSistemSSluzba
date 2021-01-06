@@ -1,5 +1,6 @@
 package controller;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,7 +8,6 @@ import java.util.regex.Pattern;
 
 import model.BazaPredmeti;
 import model.BazaProfesori;
-import model.BazaStudenti;
 import model.Profesor;
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
@@ -29,9 +29,104 @@ public class ProfesorContoller {
 	
 	private ProfesorContoller() {}
 	
+	
+	public boolean validirajIme(String ime) {
+		if(ime.equals("")  || ime == null) 
+		    return false;
+		else if(!Pattern.matches("[a-zA-ZčćšđžČĆŠĐŽ]+", ime))
+			return false;
+		
+		return true;
+	}
+	
+	public boolean validirajPrezime(String prz) {
+		 if(prz.equals("") || prz == null )
+			 return false;
+		 else if(!Pattern.matches("[a-zA-ZčćšđžČĆŠĐŽ]+", prz))
+				return false;
+		 
+		 return true;
+	}
+	
+	public boolean validirajDatum(String datum) {
+		
+		 if(datum.equals("") || datum == null )
+			 return false;
+		 
+		 Date date;
+		 Date todayDate = new Date();
+			
+			try {
+				 date = new SimpleDateFormat("dd.MM.yyyy.").parse(datum);
+				 if(todayDate.before(date)) {
+					    return false;
+					}
+				 return true;
+			} catch (Exception e){
+				return false;
+			}		 
+	}
+	
+	public boolean validirajAdresuStanovanja(String adresaStan) {
+		if(adresaStan.equals("") || adresaStan == null )
+			 return false;
+		
+		return true;
+	}
+	
+	public boolean validirajTelefon(String brTel) {
+		if(brTel.equals("") || brTel == null )
+			 return false;
+		else if(!Pattern.matches("[0-9]+", brTel))
+			 return false;
+		else if(!(brTel.length() == 9 || brTel.length() == 10))
+			 return false;
+			 
+		return true;
+	}
+	
+	public boolean validirajEMail (String eMail) {
+		
+		if(eMail.equals("") || eMail == null )
+			 return false;
+			
+		if(!eMail.contains("@"))
+			 return false;
+		 else if(!eMail.contains("."))
+			 return false;
+		 else if(!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,}", eMail))
+			 return false;
+		
+		return true;
+	}
+	
+	public boolean validirajAdresuKancelarije (String adresaKanc) {
+		
+		if(adresaKanc.equals("") || adresaKanc == null )
+			 return false;
+		
+		return true;
+	}
+	
+	public boolean validirajBrojLicneKarte(String brLK) {
+		
+		if(brLK.equals("") || brLK == null )
+			 return false;
+		
+		 if(!Pattern.matches("[0-9]+", brLK))
+				return false;
+		 else if(!(brLK.length() == 9))
+			 return false;
+		 else if(!BazaProfesori.getInstance().validirajProfesora(brLK))
+			 return false;
+		 
+		 return true;
+	}
+	
 	private String validacijaProfesora(String ime, String prz, String datum, String adresaStan,
-								 String brTel, String eMail, String adresaKanc,
-								 String brLK, Titula titula, Zvanje zvanje, boolean valLK) {
+			 String brTel, String eMail, String adresaKanc,
+			 String brLK, Titula titula, Zvanje zvanje, boolean valLK) {
+		
 		if(ime.equals("")  || ime == null) 
 			return "Morate uneti ime profesora!";
 		else if(prz.equals("") || prz == null )
@@ -52,43 +147,44 @@ public class ProfesorContoller {
 			return "Morate uneti titulu profesora!";
 		else if(zvanje == null)
 			return "Morate uneti zvanje profesora!";
-		
+			
 		if(!Pattern.matches("[a-zA-ZčćšđžČĆŠĐŽ]+", ime))
 			return "Ime se mora sastojati isključivo od slova!";
 		else if(!Pattern.matches("[a-zA-ZčćšđžČĆŠĐŽ]+", prz))
 			return "Prezime se mora sastojati isključivo od slova!";
-		
-		 if(!Pattern.matches("[0-9]+", brTel))
+			
+		if(!Pattern.matches("[0-9]+", brTel))
 			return "Broj telefona se mora sastojati isključivo od cifara!";
-		 else if(!(brTel.length() == 9 || brTel.length() == 10))
-			 return "Broj telefona mora da sadrži 9 ili 10 cifara!";
-		 
-		 if(!eMail.contains("@"))
-			 return "Pogrešan format za e-mail adresu!";
-		 else if(!eMail.contains("."))
-			 return "Pogrešan format za e-mail adresu!";
-		 else if(!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,}", eMail))
-			 return "Pogrešan format za e-mail adresu!";
-		 
-		 if(!Pattern.matches("[0-9]+", brLK))
-				return "Broj lične karte se mora sastojati isključivo od cifara!";
-		 else if(!(brLK.length() == 9))
-			 return "Broj lične karte mora da sadrži tačno 9 cifara!";
-		 
-		 if(valLK) {
-			 if(!BazaProfesori.getInstance().validirajProfesora(brLK))
-				 return "Broj lične karte mora biti jedinstven!"; 	 
-		 }
-		 
+		else if(!(brTel.length() == 9 || brTel.length() == 10))
+			return "Broj telefona mora da sadrži 9 ili 10 cifara!";
+			
+		if(!eMail.contains("@"))
+			return "Pogrešan format za e-mail adresu!";
+		else if(!eMail.contains("."))
+			return "Pogrešan format za e-mail adresu!";
+		else if(!Pattern.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,}", eMail))
+			return "Pogrešan format za e-mail adresu!";
+			
+		if(!Pattern.matches("[0-9]+", brLK))
+			return "Broj lične karte se mora sastojati isključivo od cifara!";
+		else if(!(brLK.length() == 9))
+			return "Broj lične karte mora da sadrži tačno 9 cifara!";
+			
+		if(valLK) {
+			if(!BazaProfesori.getInstance().validirajProfesora(brLK))
+				return "Broj lične karte mora biti jedinstven!"; 	 
+			}
+			
 		try {
-			 datumRodjenja = new SimpleDateFormat("dd.MM.yyyy.").parse(datum);
+			datumRodjenja = new SimpleDateFormat("dd.MM.yyyy.").parse(datum);
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return "Pogrešan format datuma!";
 		}
-		
-		return "Uspešna validacija!";		
-	}
+			
+			return "Uspešna validacija!";		
+		}
+	
 	
 
 	public String dodajProfesora(String ime, String prz, String datum, String adresaStan,
@@ -96,11 +192,11 @@ public class ProfesorContoller {
 								 String brLK, Titula titula, Zvanje zvanje) {
 		
 		
-		String validacija = validacijaProfesora(ime, prz, datum, adresaStan, brTel, eMail,
+		/*String validacija = validacijaProfesora(ime, prz, datum, adresaStan, brTel, eMail,
 												adresaKanc, brLK, titula, zvanje, true);
 		
 		if(!(validacija.equals("Uspešna validacija!")))
-				return validacija;
+				return validacija;*/
 		
 		
 		Profesor prof= new Profesor(prz, ime, datumRodjenja, adresaStan, 

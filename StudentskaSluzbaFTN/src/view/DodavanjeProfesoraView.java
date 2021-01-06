@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import controller.ProfesorContoller;
+import controller.ProfesorKeyListener;
 import main.Main;
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
@@ -57,10 +58,11 @@ public class DodavanjeProfesoraView {
 	private JComboBox<String> cbTit;
 	private JComboBox<String> cbZv;
 	
-	private JButton btnPotvrdi;
-	private JButton btnOdustani;
+	public static JButton btnPotvrdi;
+	public static JButton btnOdustani;
 	
 	private MyFocusListener focusListener;
+	private ProfesorKeyListener pkl;
 
 	public DodavanjeProfesoraView() {
 		super();
@@ -72,6 +74,8 @@ public class DodavanjeProfesoraView {
 		super();
 	
 		focusListener  = new MyFocusListener();
+		this.pkl = new ProfesorKeyListener(this);
+		
 		
 		jd = new JDialog(gp, "Dodavanje profesora", true);
 		jd.setSize(500,600);
@@ -113,6 +117,7 @@ public class DodavanjeProfesoraView {
 		dodajZvanje();
 
 		btnPotvrdi = new JButton("Potvrdi");
+		btnPotvrdi.setEnabled(false);
 		btnPotvrdi.setBackground(new Color(90, 216, 252));
 		btnPotvrdi.setForeground(Color.WHITE);
 		GridBagConstraints gbcPotvrdi = new GridBagConstraints();
@@ -209,30 +214,9 @@ public void potvrdi() {
 		String message = ProfesorContoller.getInstance().dodajProfesora(ime, prezime, datum, 
 										adresaStan, brTel, eMail, adresaKanc, brLK, tit, zv);
 
-		//JOptionPane.showMessageDialog(jd, message);
 		
 		if(message.equals("Uspešno ste uneli profesora!")) {
-			
-			/*JOptionPane.showMessageDialog(jd, message, "Uspešan unos", 
-					JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/add-user.png")));*/
 			jd.dispose();
-			
-			jtfIme.setText("");
-			jtfPrz.setText("");
-			jtfDatum.setText("");
-			jtfAdresaStan.setText("");
-			jtfBrTel.setText("");
-			jtfeMail.setText("");
-			jtfAdresaKanc.setText("");
-			jtfBrLK.setText("");
-			cbTit.setSelectedIndex(0);
-			cbZv.setSelectedIndex(0);
-		}
-		else {
-			JOptionPane.showMessageDialog(jd, message, "Nisu uneti svi podaci", 
-					JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/remove-user.png")));
 		}
 	}
 	
@@ -308,6 +292,7 @@ public void potvrdi() {
 		jtfIme.setBackground(new Color(224, 224, 224));
 		jtfIme.setName("txtIme");
 		jtfIme.addFocusListener(focusListener);
+		jtfIme.addKeyListener(pkl);
 		
 		GridBagConstraints gbctfIme = new GridBagConstraints();
 		gbctfIme = gdbcTxt(gbctfIme, 0);
@@ -324,6 +309,7 @@ public void potvrdi() {
 	    jtfPrz.setBackground(new Color(224, 224, 224));
 	    jtfPrz.setName("txtPrz");
 	    jtfPrz.addFocusListener(focusListener);
+	    jtfPrz.addKeyListener(pkl);
 		
 		GridBagConstraints gbctfPrz = new GridBagConstraints();
 		gbctfPrz = gdbcTxt(gbctfPrz, 1);
@@ -341,6 +327,7 @@ public void potvrdi() {
 		jtfDatum.setName("txtDatum");
 		jtfDatum.addFocusListener(focusListener);
 		jtfDatum.setToolTipText("Format: dd.MM.yyyy.");
+		jtfDatum.addKeyListener(pkl);
 		GridBagConstraints gbctfDatum = new GridBagConstraints();
 		gbctfDatum = gdbcTxt(gbctfDatum, 2);
 		jp.add(jtfDatum, gbctfDatum);
@@ -356,6 +343,7 @@ public void potvrdi() {
 		jtfAdresaStan.setBackground(new Color(224, 224, 224));
 		jtfAdresaStan.setName("txtAdresaStan");
 		jtfAdresaStan.addFocusListener(focusListener);
+		jtfAdresaStan.addKeyListener(pkl);
 		GridBagConstraints gbctfAdresaStan = new GridBagConstraints();
 		gbctfAdresaStan = gdbcTxt(gbctfAdresaStan, 3);
 		jp.add(jtfAdresaStan, gbctfAdresaStan);
@@ -371,49 +359,8 @@ public void potvrdi() {
 		jtfBrTel.setBackground(new Color(224, 224, 224));
 		jtfBrTel.setName("txtBrTel");
 		jtfBrTel.addFocusListener(focusListener);
-		
-		jtfBrTel.addKeyListener(new KeyListener() {
-			
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER
-						|| e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					return;
-				}
-				char c = e.getKeyChar();
-				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
-						&& c != '9') {
-					JOptionPane.showMessageDialog(jd, "Dozvoljen je unos samo cifara!",
-											 "Greška", JOptionPane.INFORMATION_MESSAGE,
-						  GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
-					JTextField txt = (JTextField) e.getComponent();
-					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
-				}
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER
-						|| e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					return;
-				}
-				JTextField txt = (JTextField) e.getComponent();
-				if (txt.getText().length() >= 10) {
-					JOptionPane.showMessageDialog(null, "Možete uneti maksimalno 10 karaktera!",
-													  "Greška", JOptionPane.INFORMATION_MESSAGE,
-								   GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
-					txt.setText(txt.getText().substring(0, 10));
-				}
-			}
-		});
-		
+		jtfBrTel.addKeyListener(pkl);
+				
 		GridBagConstraints gbctfBrTel = new GridBagConstraints();
 		gbctfBrTel = gdbcTxt(gbctfBrTel, 4);
 		jp.add(jtfBrTel, gbctfBrTel);
@@ -429,6 +376,7 @@ public void potvrdi() {
 		jtfeMail.setBackground(new Color(224, 224, 224));
 		jtfeMail.setName("txteMail");
 		jtfeMail.addFocusListener(focusListener);
+		jtfeMail.addKeyListener(pkl);
 		GridBagConstraints gbctfeMail = new GridBagConstraints();
 		gbctfeMail = gdbcTxt(gbctfeMail, 5);
 		jp.add(jtfeMail, gbctfeMail);
@@ -444,6 +392,7 @@ public void potvrdi() {
 		jtfAdresaKanc.setBackground(new Color(224, 224, 224));
 		jtfAdresaKanc.setName("txtAdresaKanc");
 		jtfAdresaKanc.addFocusListener(focusListener);
+		jtfAdresaKanc.addKeyListener(pkl);
 		GridBagConstraints gbctfAdresaKanc = new GridBagConstraints();
 		gbctfAdresaKanc = gdbcTxt(gbctfAdresaKanc, 6);
 		jp.add(jtfAdresaKanc, gbctfAdresaKanc);
@@ -458,50 +407,9 @@ public void potvrdi() {
 		jtfBrLK= new JTextField(20); 
 		jtfBrLK.setBackground(new Color(224, 224, 224));
 		jtfBrLK.setName("txtBrLK");
+		jtfBrLK.setToolTipText("broj LK mora biti jedinstven");
 		jtfBrLK.addFocusListener(focusListener);
-		
-		jtfBrLK.addKeyListener(new KeyListener() {
-			
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER
-						|| e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					return;
-				}
-				char c = e.getKeyChar();
-				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
-						&& c != '9') {
-					JOptionPane.showMessageDialog(jd, "Dozvoljen je unos samo cifara!",
-											 "Greška", JOptionPane.INFORMATION_MESSAGE,
-					      GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
-					JTextField txt = (JTextField) e.getComponent();
-					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
-				}
-
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER
-						|| e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					return;
-				}
-				JTextField txt = (JTextField) e.getComponent();
-				if (txt.getText().length() >= 9) {
-					JOptionPane.showMessageDialog(null, "Morate uneti tačno 9 cifara!",
-													  "Greška", JOptionPane.INFORMATION_MESSAGE,
-							       GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
-					txt.setText(txt.getText().substring(0, 9));
-				}
-			}
-		});
+		jtfBrLK.addKeyListener(pkl);
 		
 		GridBagConstraints gbctfBrLK = new GridBagConstraints();
 		gbctfBrLK = gdbcTxt(gbctfBrLK, 7);
