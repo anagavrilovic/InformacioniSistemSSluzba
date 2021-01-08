@@ -29,6 +29,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 import controller.IspitiController;
+import controller.KeyListenerPredmet;
+import controller.KeyListenerPredmetIzmena;
 import controller.PredmetController;
 import main.Main;
 import model.BazaPredmeti;
@@ -64,6 +66,8 @@ public class IzmenaPredmetaView {
 	private GridBagConstraints gbcRight;
 	
 	private PredmetFocusListener predmetFocusListener;
+	private KeyListenerPredmetIzmena predmetKeyListener;
+	
 	private static Predmet predmet;
 	
 	
@@ -110,6 +114,7 @@ public class IzmenaPredmetaView {
 		
 		Font f = new Font("sans-serif", Font.PLAIN, 13);
 		predmetFocusListener = new PredmetFocusListener();
+		predmetKeyListener = new KeyListenerPredmetIzmena(this);
 		
 		gbcLeft = new GridBagConstraints();
 		gbcLeft.weightx = 0;
@@ -133,6 +138,7 @@ public class IzmenaPredmetaView {
 		btnPotvrdi = new JButton("Potvrdi");
 		btnPotvrdi.setBackground(new Color(90, 216, 252));
 		btnPotvrdi.setForeground(Color.WHITE);
+		btnPotvrdi.setEnabled(true);
 		btnPotvrdi.addActionListener(new ActionListener() {
 			
 			@Override
@@ -237,8 +243,6 @@ public class IzmenaPredmetaView {
 			JOptionPane.showMessageDialog(dialog, message, "Nisu ispravno uneti svi podaci", JOptionPane.INFORMATION_MESSAGE, 
 					GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
 		} else  {
-			/*JOptionPane.showMessageDialog(dialog, message, "Uspešno uneti podaci", JOptionPane.INFORMATION_MESSAGE, 
-					GlavniProzor.resizeIcon(new ImageIcon("images/check.png")));*/
 			dialog.dispose();
 		}
 		
@@ -255,6 +259,7 @@ public class IzmenaPredmetaView {
 		jtfSifraPred.setName("txtSifraPred");
 		jtfSifraPred.setText(predmet.getSifraPredmeta());
 		jtfSifraPred.addFocusListener(predmetFocusListener);
+		jtfSifraPred.addKeyListener(predmetKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 0;
@@ -273,6 +278,7 @@ public class IzmenaPredmetaView {
 		jtfNazivPred.setName("txtNazivPred");
 		jtfNazivPred.setText(predmet.getNazivPredmeta());
 		jtfNazivPred.addFocusListener(predmetFocusListener);
+		jtfNazivPred.addKeyListener(predmetKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 1;
@@ -336,31 +342,7 @@ public class IzmenaPredmetaView {
 		jtfEspb.setName("txtESPB");
 		jtfEspb.setText(espbToString(predmet.getEspb()));
 		jtfEspb.addFocusListener(predmetFocusListener);
-		jtfEspb.addKeyListener(new KeyListener() {
-			 
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
- 
-			@Override
-			public void keyReleased(KeyEvent e) {
-				if (e.isActionKey() || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-					return;
-				}
-				char c = e.getKeyChar();
-				if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
-						&& c != '9') {
-					JOptionPane.showMessageDialog(dialog, "Dozvoljen je unos samo brojeva!", "Greška", JOptionPane.INFORMATION_MESSAGE, 
-							GlavniProzor.resizeIcon(new ImageIcon("images/cancel.png")));
-					JTextField txt = (JTextField) e.getComponent();
-					txt.setText(txt.getText().substring(0, txt.getText().length() - 1));
-				}
-			}
- 
-			@Override
-			public void keyPressed(KeyEvent e) {
-			}
-		});
+		jtfEspb.addKeyListener(predmetKeyListener);
 		
 		gbcRight.gridx = 1;
 		gbcRight.gridy = 4;
@@ -496,6 +478,13 @@ public class IzmenaPredmetaView {
 			return String.valueOf(predmet.getEspb());
 		else
 			return "";
+	}
+	
+	public void osveziDugmad(boolean omoguci) {
+		if(omoguci)
+			btnPotvrdi.setEnabled(true);
+		else
+			btnPotvrdi.setEnabled(false);
 	}
 	
 }

@@ -28,11 +28,7 @@ public class PredmetController {
 	private PredmetController() {}
 	
 	public String dodajPredmet(String sifraPred, String nazivPred, Semestar semestar, int godStud, String espb) {
-		
-		String validacija = validirajPredmet(sifraPred, nazivPred, semestar, godStud, espb, "dodavanje");
-		if(!validacija.equals("Uspešno"))
-			return validacija;
-		
+
 		Predmet predmet = new Predmet();
 		predmet.setSifraPredmeta(sifraPred);
 		predmet.setNazivPredmeta(nazivPred);
@@ -53,9 +49,6 @@ public class PredmetController {
 			if(!BazaPredmeti.getInstance().validirajSifruPredmeta(sifraPred))
 				return "Već postoji predmet sa ovom šifrom!"; 
 		
-		String validacija = validirajPredmet(sifraPred, nazivPred, semestar, godStud, espb, "izmena");
-		if(!validacija.equals("Uspešno"))
-			return validacija;
 		
 		BazaPredmeti.getInstance().izmeniPredmet(staraSifra, sifraPred, nazivPred, espbBod, godStud, semestar, profesor);
 		BazaPredmeti.getInstance().prikaziSve();
@@ -86,41 +79,45 @@ public class PredmetController {
 			return	"Izbrisali ste izabrani predmet!";
 	}
 	
-	private String validirajPredmet(String sifraPred, String nazivPred, Semestar semestar, int godStud, String espb, String akcija) {
-		
-		// validacija za sifru predmeta
+	public boolean validirajSifruPredmeta(String sifraPred, String akcija) {
 		if (sifraPred == null) 
-			return "Unesite šifru predmeta!";
+			return false;
 		
 		sifraPred = sifraPred.trim();
 		if (sifraPred.isEmpty()) 
-			return "Unesite šifru predmeta!";
+			return false;
 		
 		if(akcija.equals("dodavanje")) {
 			if(!BazaPredmeti.getInstance().validirajSifruPredmeta(sifraPred))
-				return "Već postoji predmet sa ovom šifrom!";
+				return false;
 		}
-
-		// validacija za naziv predmeta
+		
+		return true;
+	}
+	
+	public boolean validirajNazivPredmeta(String nazivPred) {
 		if (nazivPred == null) 
-			return "Unesite naziv predmeta!";
+			return false;
 		
 		nazivPred = nazivPred.trim();
 		if (nazivPred.isEmpty()) 
-			return "Unesite naziv predmeta!";
+			return false;
 		
-		// validacija za espb
+		return true;
+	}
+	
+	public boolean validirajESPB(String espb) {
 		if (espb == null) 
-			return "Unesite broj ESPB bodova!";
+			return false;
 		
 		espb = espb.trim();
 		if (espb.isEmpty()) 
-			return "Unesite broj ESPB bodova!";
+			return false;
 		if(!Pattern.matches("[0-9]+", espb)) 
-			return "ESPB bodovi se unose u obliku broja!";
+			return false;
 		espbBod = Integer.parseInt(espb);
-
 		
-		return "Uspešno";
+		return true;
 	}
+	
 }

@@ -11,6 +11,7 @@ import model.BazaStudenti;
 import model.Ocena;
 import model.Predmet;
 import model.Profesor;
+import model.Student;
 import view.DodavanjePredmetaProfesoru;
 import view.DodavanjePremetaStudentu;
 import view.DodavanjeProfesoraPredmetu;
@@ -58,6 +59,11 @@ public class IspitiController {
 		
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakPolozenih().remove(ocena);
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakNepolozenih().add(predmet);
+		
+		BazaPredmeti.getInstance().pronadjiPredmet(predmet.getSifraPredmeta()).getStudentiPolozili().
+			remove(BazaStudenti.getInstance().pronadjiStudenta(index));
+		BazaPredmeti.getInstance().pronadjiPredmet(predmet.getSifraPredmeta()).getStudentiNisuPolozili().
+			add(BazaStudenti.getInstance().pronadjiStudenta(index));
 		
 		polozeni.azurirajPrikazPredmet(null, -1);
 		nepolozeni.azurirajPrikazPredmet(null, -1);
@@ -172,6 +178,8 @@ public class IspitiController {
 				BazaStudenti.getInstance().pronadjiStudenta(index).dodajNepolozen(p);
 			}
 		}
+		
+		BazaPredmeti.getInstance().pronadjiPredmet(sifraPred).getStudentiNisuPolozili().add(BazaStudenti.getInstance().pronadjiStudenta(index));
 		
 		this.nepolozeni.azurirajPrikazPredmet(null, -1);
 		this.dsp.azurirajPrikazPredmet(" ", -1);
