@@ -139,6 +139,8 @@ public class IspitiController {
 		}
 		
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakPolozenih().add(o);
+		BazaPredmeti.getInstance().pronadjiPredmet(p.getSifraPredmeta()).getStudentiPolozili().add(BazaStudenti.getInstance().pronadjiStudenta(index));
+		BazaPredmeti.getInstance().pronadjiPredmet(p.getSifraPredmeta()).getStudentiNisuPolozili().remove(BazaStudenti.getInstance().pronadjiStudenta(index));
 		this.polozeni.azurirajPrikazPredmet(null, -1);
 		
 		

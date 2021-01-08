@@ -116,7 +116,7 @@ public class Profesor {
 	}
 	
 
-	public Profesor (String prz, String ime, Date dt, String adrStan, String email, String adrKanc, 
+	public Profesor (String prz, String ime, Date dt, String adrStan, String telefon, String email, String adrKanc, 
 					 String brlk, Titula titula, Zvanje zvanje) {
 		super();
 		this.prezime = prz;
@@ -124,6 +124,7 @@ public class Profesor {
 		this.datumRodjenja = dt;
 		this.adresaStanovanja = adrStan;
 		this.emailAdresa = email;
+		this.kontaktTelefon = telefon;
 		this.adresaKancelarije = adrKanc;
 		this.brojLicneKarte = brlk;
 		this.titula = titula;
@@ -151,6 +152,7 @@ public class Profesor {
 		this.ime = p.ime;
 		this.datumRodjenja = p.datumRodjenja;
 		this.adresaStanovanja = p.adresaStanovanja;
+		this.kontaktTelefon = p.kontaktTelefon;
 		this.emailAdresa = p.emailAdresa;
 		this.adresaKancelarije = p.adresaKancelarije;
 		this.brojLicneKarte = p.brojLicneKarte;

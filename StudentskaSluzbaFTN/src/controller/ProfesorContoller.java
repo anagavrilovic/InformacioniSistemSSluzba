@@ -57,14 +57,17 @@ public class ProfesorContoller {
 		 Date todayDate = new Date();
 			
 			try {
-				 date = new SimpleDateFormat("dd.MM.yyyy.").parse(datum);
-				 if(todayDate.before(date)) {
-					    return false;
-					}
-				 return true;
+				 datumRodjenja = new SimpleDateFormat("dd.MM.yyyy.").parse(datum);
+				// System.out.println("13456");
 			} catch (Exception e){
 				return false;
-			}		 
+			}	
+			
+			 if(todayDate.before(datumRodjenja)) {
+				    return false;
+				}
+			 
+			return true;
 	}
 	
 	public boolean validirajAdresuStanovanja(String adresaStan) {
@@ -127,7 +130,7 @@ public class ProfesorContoller {
 			 String brTel, String eMail, String adresaKanc,
 			 String brLK, Titula titula, Zvanje zvanje, boolean valLK) {
 		
-		if(ime.equals("")  || ime == null) 
+		/*if(ime.equals("")  || ime == null) 
 			return "Morate uneti ime profesora!";
 		else if(prz.equals("") || prz == null )
 			return "Morate uneti prezime profesora!";
@@ -168,19 +171,19 @@ public class ProfesorContoller {
 		if(!Pattern.matches("[0-9]+", brLK))
 			return "Broj lične karte se mora sastojati isključivo od cifara!";
 		else if(!(brLK.length() == 9))
-			return "Broj lične karte mora da sadrži tačno 9 cifara!";
+			return "Broj lične karte mora da sadrži tačno 9 cifara!";*/
 			
 		if(valLK) {
 			if(!BazaProfesori.getInstance().validirajProfesora(brLK))
 				return "Broj lične karte mora biti jedinstven!"; 	 
 			}
 			
-		try {
+		/*try {
 			datumRodjenja = new SimpleDateFormat("dd.MM.yyyy.").parse(datum);
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return "Pogrešan format datuma!";
-		}
+		}*/
 			
 			return "Uspešna validacija!";		
 		}
@@ -199,7 +202,7 @@ public class ProfesorContoller {
 				return validacija;*/
 		
 		
-		Profesor prof= new Profesor(prz, ime, datumRodjenja, adresaStan, 
+		Profesor prof= new Profesor(prz, ime, datumRodjenja, adresaStan, brTel,
 			        				eMail, adresaKanc, brLK, titula, zvanje);
 		
 		BazaProfesori.getInstance().dodajProfesora(prof);
@@ -228,6 +231,8 @@ public class ProfesorContoller {
 			
 		if(!(validacija.equals("Uspešna validacija!")))
 		return validacija;
+		
+		System.out.println("DATUM " + datum);
 		
 		BazaProfesori.getInstance().izmeniProfesora(prz, ime, datumRodjenja, adresaStan, brTel,
 												    eMail, adresaKanc, brLK, titula, zvanje, kljuc);

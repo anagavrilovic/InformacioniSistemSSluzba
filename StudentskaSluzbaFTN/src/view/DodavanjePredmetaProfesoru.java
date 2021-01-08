@@ -30,6 +30,7 @@ import controller.IspitiController;
 import main.Main;
 import model.BazaPredmeti;
 import model.BazaProfesori;
+import model.Profesor;
 
 public class DodavanjePredmetaProfesoru {
 	
@@ -100,7 +101,22 @@ public class DodavanjePredmetaProfesoru {
 					return;
 				}
 				
-				IspitiController.getInstance().dodajPredmetProfesoru(brLK, getSifraPredFromSelectedRow());
+				if(BazaPredmeti.getInstance().pronadjiPredmet(getSifraPredFromSelectedRow()).getProfesor().getBrojLicneKarte() != "") {
+					
+					String[] options = {"Da", "Ne" };
+					int code = JOptionPane.showOptionDialog(dialog,"Da li ste sigurni da želite da zamenite postojećeg \n profesora na selektovanom predmetu?",
+							"Izmena profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+							GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), options, options[1]);
+					
+					if (code != JOptionPane.YES_OPTION) {
+						dialog.dispose();
+					} else {
+						IspitiController.getInstance().dodajPredmetProfesoru(brLK, getSifraPredFromSelectedRow());
+					}
+				}
+				else {
+					IspitiController.getInstance().dodajPredmetProfesoru(brLK, getSifraPredFromSelectedRow());
+				}
 			}
 		});
 		

@@ -225,6 +225,7 @@ public void potvrdi() {
 		else 
 			zv = Zvanje.VanredniProfesor;
 		
+		
 		String message = ProfesorContoller.getInstance().izmeniProfesora(ime, prezime, datum, 
 										adresaStan, brTel, eMail, adresaKanc, brLK, tit, zv, kljuc);
 		
