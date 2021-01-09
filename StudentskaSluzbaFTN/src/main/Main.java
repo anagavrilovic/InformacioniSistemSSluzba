@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
+import java.io.IOException;
+import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
@@ -14,11 +16,15 @@ import model.BazaProfesori;
 import controller.StudentController;
 
 import model.BazaStudenti;
+import serijalizacija.SerijalizacijaPredmeta;
+import serijalizacija.SerijalizacijaProfesora;
+import serijalizacija.SerijalizacijaStudenta;
 import view.GlavniProzor;
 
-public class Main {
+public class Main implements Serializable{
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		
 		
 		
 		/** REFERENCA: https://stackoverflow.com/questions/26913923/how-do-you-change-the-size-and-font-of-a-joptionpane */
@@ -33,6 +39,10 @@ public class Main {
 		BazaProfesori.getInstance();
 		ProfesorContoller.getInstance();
 		StudentController.getInstance();
+		
+		SerijalizacijaStudenta.ispisiStudente();
+		SerijalizacijaProfesora.ispisiProfesore();
+		SerijalizacijaPredmeta.ispisiPredmete();
 	}
 	
 	

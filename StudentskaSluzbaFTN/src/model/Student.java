@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 
-public class Student {
+public class Student implements Serializable {
 	
 	public enum Status{B, S};
 	
@@ -22,8 +23,8 @@ public class Student {
 	private double prosecnaOcena;
 	private ArrayList<Ocena> spisakPolozenih;
 	private ArrayList<Predmet> spisakNepolozenih;
-	private boolean s = true;  										// indikator koji se koristi za pretragu studenata
-	private ArrayList<Predmet> listaPredZaDodavanje;				// lista predmeta koja treba da se pojavi pri prikazu 
+	private transient boolean s = true;  										// indikator koji se koristi za pretragu studenata
+	private transient ArrayList<Predmet> listaPredZaDodavanje;				// lista predmeta koja treba da se pojavi pri prikazu 
 																	// liste predmeta za dodavanje
 	
 	

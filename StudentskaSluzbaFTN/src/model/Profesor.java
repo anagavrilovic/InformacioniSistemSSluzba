@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Profesor {
+public class Profesor implements Serializable {
 	
 	public enum Titula {
 		
@@ -96,7 +97,7 @@ public class Profesor {
 	private Zvanje zvanje;
 	private ArrayList<Predmet>predmeti;
 	private ArrayList<Predmet> profesorNePredaje;
-	private Boolean dodaj;
+	private transient Boolean dodaj;
 	
 	public Profesor () {
 		super();

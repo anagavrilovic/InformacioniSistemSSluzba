@@ -53,7 +53,6 @@ public class ProfesorContoller {
 		 if(datum.equals("") || datum == null )
 			 return false;
 		 
-		 Date date;
 		 Date todayDate = new Date();
 			
 			try {
@@ -232,7 +231,6 @@ public class ProfesorContoller {
 		if(!(validacija.equals("Uspešna validacija!")))
 		return validacija;
 		
-		System.out.println("DATUM " + datum);
 		
 		BazaProfesori.getInstance().izmeniProfesora(prz, ime, datumRodjenja, adresaStan, brTel,
 												    eMail, adresaKanc, brLK, titula, zvanje, kljuc);

@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Predmet {
+public class Predmet implements Serializable{
 	
 	public enum Semestar{
 		 ZIMSKI(0) {
@@ -29,7 +30,7 @@ public class Predmet {
 	private int espb;
 	private ArrayList<Student> studentiPolozili;
 	private ArrayList<Student> studentiNisuPolozili;
-	private boolean prikazi;
+	private transient boolean prikazi;
 	
 	public Predmet() {
 		super();
