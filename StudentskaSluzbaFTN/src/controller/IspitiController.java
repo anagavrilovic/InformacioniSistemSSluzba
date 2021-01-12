@@ -239,7 +239,7 @@ public class IspitiController {
 		BazaPredmeti.getInstance().pronadjiPredmet(predmet.getSifraPredmeta()).setProfesor(new Profesor());
 		BazaProfesori.getInstance().nadjiProfesora(brLK).getPredmeti().remove(predmet);
 		
-		this.dpp.azurirajPrikazPredmet(null, -1);
+		//this.dpp.azurirajPrikazPredmet(null, -1);
 		this.ipv.azurirajProfesora();
 	}
 	

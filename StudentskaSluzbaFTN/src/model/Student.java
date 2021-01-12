@@ -90,6 +90,7 @@ public class Student implements Serializable {
 			prosOc = 0;
 		}
 		
+		this.prosecnaOcena = prosOc;
 		return prosOc;
 	}
 	

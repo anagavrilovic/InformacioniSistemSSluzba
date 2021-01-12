@@ -119,6 +119,7 @@ public class UpisOcene {
 				 
 				 IspitiController.getInstance().dodajPredmetUListuPolozenih(p, datum, ocena);
 				 PrikazPolozenihIspita.azurirajProsekEspb();
+				 TabbedPane.getInstance().azurirajPrikazStudent(null, -1);
 				 dialog.dispose();
 			}	
 		});
