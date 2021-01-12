@@ -53,18 +53,7 @@ public class KeyListenerStudentIzmena implements KeyListener {
 			omoguciEmail = StudentController.getInstance().validirajEmail(txt.getText());
 		else if(txt.getName().equals("txtGodUpisa"))
 			omoguciGodUpisa = StudentController.getInstance().validirajGodinuUpisa(txt.getText());
-		
-		
-		System.out.println("---------------------------");
-		System.out.println("ime" + omoguciIme);
-		System.out.println("prz" + omoguciPrezime);
-		System.out.println("dat" + omoguciDatum);
-		System.out.println("adr" + omoguciAdresu);
-		System.out.println("tel" + omoguciBrTel);
-		System.out.println("eml" + omoguciEmail);
-		System.out.println("ind" + omoguciBrInd);
-		System.out.println("god" + omoguciGodUpisa);
-		System.out.println("---------------------------");
+
 		
 		if(omoguciIme && omoguciPrezime && omoguciAdresu && omoguciBrInd && omoguciBrTel && omoguciDatum && omoguciEmail && omoguciGodUpisa) {
 			is.osveziDugmad(true);

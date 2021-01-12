@@ -40,6 +40,18 @@ public class SerijalizacijaStudenta {
 			}
 		}
 	}
+	
+	public static void ucitajStudente() throws IOException {
+		
+		try(ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("studenti.bin")))) {
+			
+			BazaStudenti.getInstance().setStudentList((List<Student>) ois.readObject());		
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
  
 

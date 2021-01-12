@@ -30,7 +30,7 @@ public class Predmet implements Serializable{
 	private int espb;
 	private ArrayList<Student> studentiPolozili;
 	private ArrayList<Student> studentiNisuPolozili;
-	private transient boolean prikazi;
+	private boolean prikazi;
 	
 	public Predmet() {
 		super();

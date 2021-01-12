@@ -1,9 +1,13 @@
 package serijalizacija;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 
 import model.BazaPredmeti;
 import model.Predmet;
@@ -32,5 +36,18 @@ public class SerijalizacijaPredmeta {
 				}
 			}
 		}
+	}
+	
+	public static void ucitajPredmete() throws IOException {
+		 
+		try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream("predmeti.bin")))){
+
+			BazaPredmeti.getInstance().setPredmeti((List<Predmet>) ois.readObject());
+ 
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+ 
 	}
 }

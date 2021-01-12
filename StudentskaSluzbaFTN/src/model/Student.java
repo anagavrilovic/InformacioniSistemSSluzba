@@ -23,7 +23,7 @@ public class Student implements Serializable {
 	private double prosecnaOcena;
 	private ArrayList<Ocena> spisakPolozenih;
 	private ArrayList<Predmet> spisakNepolozenih;
-	private transient boolean s = true;  										// indikator koji se koristi za pretragu studenata
+	private boolean s = true;  										// indikator koji se koristi za pretragu studenata
 	private transient ArrayList<Predmet> listaPredZaDodavanje;				// lista predmeta koja treba da se pojavi pri prikazu 
 																	// liste predmeta za dodavanje
 	

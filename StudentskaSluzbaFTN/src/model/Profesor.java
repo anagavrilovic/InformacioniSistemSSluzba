@@ -97,7 +97,7 @@ public class Profesor implements Serializable {
 	private Zvanje zvanje;
 	private ArrayList<Predmet>predmeti;
 	private ArrayList<Predmet> profesorNePredaje;
-	private transient Boolean dodaj;
+	private boolean dodaj;
 	
 	public Profesor () {
 		super();

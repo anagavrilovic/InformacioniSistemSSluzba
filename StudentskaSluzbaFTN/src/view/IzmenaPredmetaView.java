@@ -162,7 +162,7 @@ public class IzmenaPredmetaView {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String[] options = {"Da", "Ne" };
-				int opcija = JOptionPane.showOptionDialog(dialog, "Da li ste sigurni da želite da prekinete unos predmeta?",
+				int opcija = JOptionPane.showOptionDialog(dialog, "Da li ste sigurni da želite da prekinete izmenu predmeta?",
 						"Prekid unosa predmeta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
 						GlavniProzor.resizeIcon(new ImageIcon("images/question.png")), 
 						options, options[0]);
