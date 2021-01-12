@@ -12,24 +12,25 @@ public class SerijalizacijaPredmeta {
 
 	public static void ispisiPredmete()throws IOException {
 		
-			ObjectOutputStream out = null;
+		ObjectOutputStream out = null;
+		 
+		try {
+			out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.bin")));
+			out.writeObject(BazaPredmeti.getInstance().getPredmeti());
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
+		finally {
 			
-			try {
-				out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.txt")));
-				for(Predmet p : BazaPredmeti.getInstance().getPredmeti()) {
-					out.writeObject(p);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				if(out != null) {
-					try {
-						out.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+			if(out != null) {
+				try {
+					out.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
+		}
 	}
 }

@@ -10,18 +10,19 @@ import model.Profesor;
 
 public class SerijalizacijaProfesora {
 	
-public static void ispisiProfesore()throws IOException {
+	public static void ispisiProfesore()throws IOException {
 		
 		ObjectOutputStream out = null;
-		
+		 
 		try {
-			out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("profesori.txt")));
-			for(Profesor p : BazaProfesori.getInstance().getProfesori()) {
-				out.writeObject(p);
-			}
-		} catch (IOException e) {
+			out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("profesori.bin")));
+			out.writeObject(BazaProfesori.getInstance().getProfesori());
+		}
+		catch (IOException e) {
 			e.printStackTrace();
-		} finally {
+		} 
+		finally {
+			
 			if(out != null) {
 				try {
 					out.close();

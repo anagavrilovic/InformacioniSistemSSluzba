@@ -39,10 +39,6 @@ public class Main implements Serializable{
 		BazaProfesori.getInstance();
 		ProfesorContoller.getInstance();
 		StudentController.getInstance();
-		
-		SerijalizacijaStudenta.ispisiStudente();
-		SerijalizacijaProfesora.ispisiProfesore();
-		SerijalizacijaPredmeta.ispisiPredmete();
 	}
 	
 	

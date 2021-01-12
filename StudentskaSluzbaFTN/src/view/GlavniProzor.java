@@ -8,12 +8,17 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
+
+import serijalizacija.SerijalizacijaPredmeta;
+import serijalizacija.SerijalizacijaProfesora;
+import serijalizacija.SerijalizacijaStudenta;
 
 public class GlavniProzor extends JFrame{
 	
@@ -92,6 +97,16 @@ public class GlavniProzor extends JFrame{
 			@Override
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
+				
+				try {
+					SerijalizacijaStudenta.ispisiStudente();
+					SerijalizacijaProfesora.ispisiProfesore();
+					SerijalizacijaPredmeta.ispisiPredmete();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				JFrame frame = (JFrame) e.getComponent();
 				
 				String[] options = {"Da", "Ne" };

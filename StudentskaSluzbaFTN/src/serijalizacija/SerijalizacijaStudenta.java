@@ -1,9 +1,14 @@
 package serijalizacija;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.EOFException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 
 import model.BazaStudenti;
 import model.Student;
@@ -12,17 +17,19 @@ public class SerijalizacijaStudenta {
 	
 
 	public static void ispisiStudente()throws IOException {
-		
+		 
 		ObjectOutputStream out = null;
-		
+ 
 		try {
-			out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("studenti.txt")));
-			for(Student s : BazaStudenti.getInstance().getStudentList()) {
-				out.writeObject(s);
-			}
-		} catch (IOException e) {
+			out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("studenti.bin")));
+			out.writeObject(BazaStudenti.getInstance().getStudentList());
+			
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} finally {
+		} 
+		finally {
+			
 			if(out != null) {
 				try {
 					out.close();
@@ -33,5 +40,8 @@ public class SerijalizacijaStudenta {
 			}
 		}
 	}
-
 }
+ 
+
+
+
