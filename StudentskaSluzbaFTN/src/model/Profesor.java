@@ -95,8 +95,8 @@ public class Profesor implements Serializable {
 	private String brojLicneKarte;
 	private Titula titula;
 	private Zvanje zvanje;
-	private ArrayList<Predmet>predmeti;
-	private ArrayList<Predmet> profesorNePredaje;
+	private ArrayList<Predmet>predmeti = new ArrayList<Predmet>();
+	private ArrayList<Predmet> profesorNePredaje = new ArrayList<Predmet>();
 	private boolean dodaj;
 	
 	public Profesor () {

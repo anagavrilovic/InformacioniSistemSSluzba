@@ -98,14 +98,14 @@ public class GlavniProzor extends JFrame{
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
 				
-				try {
+		/*		try {
 					SerijalizacijaStudenta.ispisiStudente();
 					SerijalizacijaProfesora.ispisiProfesore();
 					SerijalizacijaPredmeta.ispisiPredmete();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				}*/
 				
 				JFrame frame = (JFrame) e.getComponent();
 				

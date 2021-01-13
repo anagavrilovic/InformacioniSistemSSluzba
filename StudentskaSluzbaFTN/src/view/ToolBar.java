@@ -89,6 +89,7 @@ public class ToolBar extends JToolBar{
 					}
 				} else if(TabbedPane.getInstance().getIndex() == 1) {
 					boolean validanUnos = PretragaProfesora.getInstance().validacijaUnosa(unos);
+					text.setToolTipText("Oblik pretrage: PREZIME IME ");
 					
 					if(validanUnos) {
 						btnSearch.setEnabled(true);
@@ -102,6 +103,7 @@ public class ToolBar extends JToolBar{
 						
 				} else if(TabbedPane.getInstance().getIndex() == 2) {
 					boolean validanUnos = PretragaPredmeta.getInstance().validacijaUnosa(unos);
+					text.setToolTipText("Oblik pretrage: SIFRAPREDMETA ");
 					 
 					if(validanUnos) {
 						btnSearch.setEnabled(true);

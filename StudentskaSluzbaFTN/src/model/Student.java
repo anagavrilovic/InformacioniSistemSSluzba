@@ -21,11 +21,11 @@ public class Student implements Serializable {
 	private int trGodStudija;
 	private Status status;
 	private double prosecnaOcena;
-	private ArrayList<Ocena> spisakPolozenih;
-	private ArrayList<Predmet> spisakNepolozenih;
-	private boolean s = true;  										// indikator koji se koristi za pretragu studenata
+	private ArrayList<Ocena> spisakPolozenih = new ArrayList<Ocena>();
+	private ArrayList<Predmet> spisakNepolozenih = new ArrayList<Predmet>();
+	private boolean s = true;  																			// indikator koji se koristi za pretragu studenata
 	private transient ArrayList<Predmet> listaPredZaDodavanje;				// lista predmeta koja treba da se pojavi pri prikazu 
-																	// liste predmeta za dodavanje
+																										// liste predmeta za dodavanje
 	
 	
 	public Student() {

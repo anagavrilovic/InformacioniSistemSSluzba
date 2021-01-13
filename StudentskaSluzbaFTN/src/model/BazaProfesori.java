@@ -26,8 +26,8 @@ public class BazaProfesori {
 
 	private BazaProfesori() {
 		
-		//inicijalizacijaPredmeta();
-		//inicijalizacijaProfesira();
+		inicijalizacijaPredmeta();
+		inicijalizacijaProfesira();
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Ime");
@@ -213,7 +213,7 @@ public class BazaProfesori {
 				break;
 			}
 		}
-		ispisiListu();
+	//	ispisiListu();
 	}
 	
 	public void ispisiListu() {

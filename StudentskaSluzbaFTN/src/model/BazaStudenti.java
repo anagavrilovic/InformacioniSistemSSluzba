@@ -28,8 +28,8 @@ public class BazaStudenti {
 	
 	private BazaStudenti() {
 		
-		//inicijalizacijaNepolozenihPredmeta();
-		//initStudente();
+		inicijalizacijaNepolozenihPredmeta();
+		initStudente();
 		
 		kolone = new ArrayList<String>();
 		kolone.add("Indeks");

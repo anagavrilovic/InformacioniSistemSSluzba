@@ -28,8 +28,8 @@ public class Predmet implements Serializable{
 	private int godinaStudija;
 	private Profesor profesor;
 	private int espb;
-	private ArrayList<Student> studentiPolozili;
-	private ArrayList<Student> studentiNisuPolozili;
+	private ArrayList<Student> studentiPolozili = new ArrayList<Student>();
+	private ArrayList<Student> studentiNisuPolozili  = new ArrayList<Student>();
 	private boolean prikazi;
 	
 	public Predmet() {
