@@ -163,7 +163,7 @@ public class BazaStudenti {
 		return this.studentList.get(rowIndex);
 	}
 	
-	public String getValueAt(int row, int column) {
+	public Object getValueAt(int row, int column) {
 		Student student = this.izabraniStudenti.get(row);
 		switch (column) {
 		case 0:
@@ -173,14 +173,14 @@ public class BazaStudenti {
 		case 2:
 			return student.getPrezime();
 		case 3:
-			return Integer.toString(student.getTrGodStudija());
+			return student.getTrGodStudija();
 		case 4:
 			if(student.getStatus() == Status.B) 
 				return "Budžet";
 			else
 				return "Samofinansiranje";
 		case 5:
-			return String.format("%.2f", student.getProsecnaOcena());
+			return student.getProsecnaOcena();
 		default:
 			return null;
 		}
