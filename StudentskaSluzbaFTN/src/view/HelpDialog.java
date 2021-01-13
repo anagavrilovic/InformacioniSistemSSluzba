@@ -28,12 +28,7 @@ public class HelpDialog {
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setVisible(true);
 		
-		textArea.append("Aplikacija predstavlja implementaciju informacionog sistema studentske službe Fakulteta tehničkih nauka u Novom Sadu.\n\n"
-				+ "        Aplikacija pruža sledeće mogućnosti: \n\n"
-				+ "Prikaz entiteta sistema: svaki entitet je predstavljen tabelom u oviru taba glavnog prozora;"
-				+ "Prikazane entitete je moguće sortirati dvoklikom na naziv kolone po kojoj želite sortiranje.\n\n"
-				+ "Dodavanje entiteta sistema: moguća su 4 načina (pritisak prvog dugmeta u ToolBar-u, izbor stavke menija New, "
-				+ "upotrebom odgovarajućih mnemonika, upotrebom odgovarajućeg akceleratora)\n"
+		textArea.append("Aplikacija predstavlja implementaciju informacionog sistema studentske službe Fakulteta tehničkih nauka u Novom Sadu.\n"
 				+ "\n        Mnemonici:\n\n"
 				+ "File meni: Alt + F\n"
 				+ "Edit meni: Alt + E\n"
@@ -47,6 +42,28 @@ public class HelpDialog {
 				+ "Zatvaranje aplikacije: Ctrl + C\n"
 				+ "Izbor Help prozora: Ctrl + H\n"
 				+ "Izbor About prozora: Ctrl + A\n");
+		
+		textArea.append("\n        Aplikacija pruža sledeće mogućnosti: \n\n"
+				+ "Dodavanje entiteta sistema- moguće je na 4 načina: pritiskom prvog dugmeta u ToolBar-u, izborom stavke menija New, "
+				+ "upotrebom odgovarajućih mnemonika, upotrebom odgovarajućeg akceleratora. Sva polja moraju biti validno popunjena, "
+				+ "u suprotnom je pritisak na dugme potvrdi onemogućen. Nakon uspešnog dodavanja, dijalog za dodavanje se automatski zatvara."
+				+ "\r\n\n"
+				+ "Izmena entiteta sistema- nakon što ste selektovali entitet u tabeli, moguće je "
+				+ "izvršiti njegovu izmenu na 3 načina: pritiskom drugog dugmeta na ToolBar-u, \r\n"
+				+ "izborom stavke menija Edit ili upotrebom odgovarajućih mnemonika, nakon čega se otvara dijalog za izmenu, "
+				+ "koji se razlikuje za svaki entitet."
+				+ "\r\n\n"
+				+ "Ukoliko trenutno radite sa entitetom Student, dijalog za izmenu sadrži 3 taba:\r\n"
+				+ "1. Tab informacije pruža osnovne informacije o studentu, koje je moguće izmeniti, ukoliko unesete validne podatke.\r\n"
+				+ "2. Tab položeni predmeti prikazuje spisak položenih predmeta selektovanog studenta, prosečnu ocenu i broj ostvarenih ESPB bodova. "
+				+ "U okviru ovog taba je moguće izvršiti i poništavanje ocene, što rezultira uklanjanjem predmeta iz spiska položenih i "
+				+ "svrstava ga u nepoložene predmete.\r\n"
+				+ "3. Tab nepoloženi predmeti prikazuje spisak nepoloženih predmeta. "
+				+ "Pritiskom na dugme dodaj, otvara se lista predmeta koje student može da sluša i izborom nekog predmeta, "
+				+ "on se dodaje u listu nepoloženih.\r\n"
+				+ "Selektovanjem određenog predmeta i pritiskom na dugme obriši, moguće je ukloniti predmet iz liste nepoloženih.\r\n"
+				+ "U okviru ovog taba se vrši i upis ocene, nakon položenog ispita, čime se predmet iz liste nepoloženih "
+				+ "premešta u listu položenih predmeta, što dovodi do ažuriranja prosečne ocene i ostvarenih ESPB bodova.\n\n");
 	
 		
 		
