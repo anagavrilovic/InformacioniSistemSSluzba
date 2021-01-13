@@ -17,6 +17,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 
+import model.Serijalizacija;
+
+
 public class GlavniProzor extends JFrame{
 	
 
@@ -94,8 +97,15 @@ public class GlavniProzor extends JFrame{
 			@Override
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
+			
+			try {
+				Serijalizacija.sacuvajPodatke();
+			} 
+			catch (IOException | ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+			} 
 				
-		
 				JFrame frame = (JFrame) e.getComponent();
 				
 				String[] options = {"Da", "Ne" };
