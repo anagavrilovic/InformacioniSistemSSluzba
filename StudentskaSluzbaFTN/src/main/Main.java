@@ -16,9 +16,6 @@ import model.BazaProfesori;
 import controller.StudentController;
 
 import model.BazaStudenti;
-import serijalizacija.SerijalizacijaPredmeta;
-import serijalizacija.SerijalizacijaProfesora;
-import serijalizacija.SerijalizacijaStudenta;
 import view.GlavniProzor;
 
 public class Main implements Serializable{

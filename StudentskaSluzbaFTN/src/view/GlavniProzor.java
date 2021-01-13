@@ -16,9 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
-import serijalizacija.SerijalizacijaPredmeta;
-import serijalizacija.SerijalizacijaProfesora;
-import serijalizacija.SerijalizacijaStudenta;
+import model.Serijalizacija;
+
 
 public class GlavniProzor extends JFrame{
 	
@@ -98,14 +97,13 @@ public class GlavniProzor extends JFrame{
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
 				
-		/*		try {
-					SerijalizacijaStudenta.ispisiStudente();
-					SerijalizacijaProfesora.ispisiProfesore();
-					SerijalizacijaPredmeta.ispisiPredmete();
-				} catch (IOException e1) {
+			try {
+				Serijalizacija.sacuvajPodatke();
+			} 
+			catch (IOException | ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}*/
+			} 
 				
 				JFrame frame = (JFrame) e.getComponent();
 				
