@@ -167,15 +167,27 @@ public class Predmet implements Serializable{
 	}
 	
 	public String getSifraNaziv() {
-		return this.getSifraPredmeta() + " - " + this.getNazivPredmeta();
+		StringBuilder str = new StringBuilder();
+		str.append(this.getSifraPredmeta());
+		str.append(" - ");
+		str.append(this.getNazivPredmeta());
+		
+		return str.toString();
 	}
 	
 	// STUDENT 1: 
 	// funkcionalnost: #dodavanje_profesora_na_predmet
 	public String getImePrezimeProfesora() {
-		if(!this.getProfesor().getBrojLicneKarte().equals(""))
-			return this.getProfesor().getBrojLicneKarte() + " - " + this.getProfesor().getIme() + " " + this.getProfesor().getPrezime();
-		else
+		if(!this.getProfesor().getBrojLicneKarte().equals("")) {
+			StringBuilder str = new StringBuilder();
+			str.append(this.getProfesor().getBrojLicneKarte());
+			str.append(" - ");
+			str.append(this.getProfesor().getIme());
+			str.append(" ");
+			str.append(this.getProfesor().getPrezime());
+			
+			return str.toString();
+		} else
 			return "";
 	}
 	

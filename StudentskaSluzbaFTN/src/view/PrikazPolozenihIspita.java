@@ -149,7 +149,7 @@ public class PrikazPolozenihIspita extends JPanel {
 		} else {
 			IspitiController.getInstance().ponistiOcenu(index, ponistavanjePred);
 			azurirajProsekEspb();
-			TabbedPane.getInstance().azurirajPrikazStudent(null, -1);
+			//TabbedPane.getInstance().azurirajPrikazStudent(null, -1);
 		}
 		
 	}

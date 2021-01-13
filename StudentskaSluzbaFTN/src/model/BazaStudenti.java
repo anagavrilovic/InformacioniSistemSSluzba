@@ -28,8 +28,8 @@ public class BazaStudenti {
 	
 	private BazaStudenti() {
 		
-		//inicijalizacijaNepolozenihPredmeta();
-		//initStudente();
+		inicijalizacijaNepolozenihPredmeta();
+		initStudente();
 		
 		kolone = new ArrayList<String>();
 		kolone.add("Indeks");
@@ -180,7 +180,7 @@ public class BazaStudenti {
 			else
 				return "Samofinansiranje";
 		case 5:
-			return Double.toString(student.getProsecnaOcena());
+			return String.format("%.2f", student.getProsecnaOcena());
 		default:
 			return null;
 		}

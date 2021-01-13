@@ -286,9 +286,16 @@ public class Profesor implements Serializable {
 	}
 	
 	// STUDENT 1: 
-	// funkcionalnost: #dodavanje_profesora_na_predmet
-	public String getImePrezimeProfesora() {
-		return this.getBrojLicneKarte() + " - " + this.getIme() + " " + this.getPrezime();
-	}
+		// funkcionalnost: #dodavanje_profesora_na_predmet
+		public String getImePrezimeProfesora() {
+			StringBuilder str = new StringBuilder();
+			str.append(this.getBrojLicneKarte());
+			str.append(" - ");
+			str.append(this.getIme());
+			str.append(" ");
+			str.append(this.getPrezime());
+			
+			return str.toString();
+		}
 	
 }

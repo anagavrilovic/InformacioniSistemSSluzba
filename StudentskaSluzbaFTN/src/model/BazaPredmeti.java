@@ -29,7 +29,7 @@ public class BazaPredmeti {
 
 	private BazaPredmeti() {
 	
-		//inicijalizacijaPredmeta();
+		inicijalizacijaPredmeta();
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra predmeta");
