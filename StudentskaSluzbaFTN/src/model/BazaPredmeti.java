@@ -19,7 +19,7 @@ public class BazaPredmeti {
 		return instance;
 	}
 
-	private List<Predmet> predmeti;
+	private List<Predmet> predmeti = new ArrayList<Predmet>();
 	private List<String> kolone;
 	
 	private List<Predmet> nepolozeniPredmeti;
@@ -29,7 +29,7 @@ public class BazaPredmeti {
 
 	private BazaPredmeti() {
 	
-		inicijalizacijaPredmeta();
+		//inicijalizacijaPredmeta();
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra predmeta");

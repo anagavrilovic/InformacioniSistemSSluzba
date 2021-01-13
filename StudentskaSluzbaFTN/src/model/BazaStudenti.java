@@ -20,7 +20,7 @@ public class BazaStudenti {
 		return instance;
 	}
 	
-	private List<Student> studentList;
+	private List<Student> studentList = new ArrayList<Student>();
 	private List<String> kolone;
 	private List<String> kolonePP;							// STUDENT 1: lista naziva kolona za #prikaz_polozenih_predmeta
 	private ArrayList<Predmet> nepolozeniPredmeti;
@@ -28,8 +28,8 @@ public class BazaStudenti {
 	
 	private BazaStudenti() {
 		
-		inicijalizacijaNepolozenihPredmeta();
-		initStudente();
+		//inicijalizacijaNepolozenihPredmeta();
+		//initStudente();
 		
 		kolone = new ArrayList<String>();
 		kolone.add("Indeks");

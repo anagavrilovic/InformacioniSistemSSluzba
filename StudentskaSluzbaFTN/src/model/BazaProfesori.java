@@ -19,15 +19,15 @@ public class BazaProfesori {
 		return instance;
 	}
 
-	private List<Profesor> profesori;
+	private List<Profesor> profesori = new ArrayList<Profesor>();
 	private List<Profesor> prikaziProfesore = new ArrayList<Profesor>();
 	private List<String> kolone;
 	private ArrayList<Predmet> profesorNePredaje;
 
 	private BazaProfesori() {
 		
-		inicijalizacijaPredmeta();
-		inicijalizacijaProfesira();
+		//inicijalizacijaPredmeta();
+		//inicijalizacijaProfesira();
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Ime");

@@ -16,12 +16,14 @@ import model.BazaProfesori;
 import controller.StudentController;
 
 import model.BazaStudenti;
+import model.Serijalizacija;
 import view.GlavniProzor;
 
 public class Main implements Serializable{
 
 	public static void main(String[] args) throws IOException {
 		
+		Serijalizacija.deserijalizuj();
 		
 		/** REFERENCA: https://stackoverflow.com/questions/26913923/how-do-you-change-the-size-and-font-of-a-joptionpane */
 		UIManager.put("OptionPane.messageFont", new Font("sans-serif", Font.PLAIN, 13));
