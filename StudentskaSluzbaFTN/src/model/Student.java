@@ -284,7 +284,7 @@ public class Student implements Serializable {
 			boolean polozen = false;
 			boolean nepolozen = false;
 			
-			if(p.getGodinaStudija() >= getTrGodStudija()) {
+			if(p.getGodinaStudija() <= getTrGodStudija()) {
 				for(Ocena o : getSpisakPolozenih()) {
 					if(o.getPredmet().getSifraPredmeta().equals(p.getSifraPredmeta())) {
 						polozen = true;

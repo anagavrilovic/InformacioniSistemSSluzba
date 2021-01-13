@@ -16,8 +16,6 @@ import view.TabbedPane;
 public class StudentController {
 	
 	public static StudentController instance = null;
-	private Date date;
-	private int god;
 	
 	public static StudentController getInstance() {
 		
@@ -31,6 +29,17 @@ public class StudentController {
 	
 	public String dodajStudenta(String ime, String prezime, String datRodj, String adresa, String brTel, String email, 
 			String brIndeksa, String godUpisa, int trGodStudija, Status status) {
+		
+		Date date;
+		try {
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
+            df.setLenient(false);
+            date = df.parse(datRodj);
+        } catch (ParseException e) {
+        	date = null;
+        }
+		
+		int god = Integer.parseInt(godUpisa);
 		
 		Student student = new Student();
 		student.setIme(ime);
@@ -58,6 +67,17 @@ public class StudentController {
 		if(!stariIndeks.equals(brIndeksa))
 			if(!BazaStudenti.getInstance().validirajStudenta(brIndeksa))
 				return "Već postoji student sa ovim brojem indeksa!"; 
+		
+		Date date;
+		try {
+            DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
+            df.setLenient(false);
+            date = df.parse(datRodj);
+        } catch (ParseException e) {
+        	date = null;
+        }
+		
+		int god = Integer.parseInt(godUpisa);
 		
 		BazaStudenti.getInstance().izmeniStudenta(stariIndeks, ime, prezime, date, brIndeksa, adresa, email, brTel, god, trGodStudija, status);
 		BazaStudenti.getInstance().izaberiSve();
@@ -119,6 +139,7 @@ public class StudentController {
 		if (datRodj.isEmpty()) 
 			return false;
 		
+		Date date;
 		try {
             DateFormat df = new SimpleDateFormat("dd.MM.yyyy.");
             df.setLenient(false);
@@ -199,7 +220,7 @@ public class StudentController {
 			return false;
 		if(!Pattern.matches("[0-9]+", godUpisa)) 
 			return false;
-		god = Integer.parseInt(godUpisa);
+		int god = Integer.parseInt(godUpisa);
 		
 		int trenutnaGodina = Year.now().getValue();
 		if(god > trenutnaGodina)
