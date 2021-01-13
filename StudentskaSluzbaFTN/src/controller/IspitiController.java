@@ -67,7 +67,6 @@ public class IspitiController {
 		
 		polozeni.azurirajPrikazPredmet(null, -1);
 		nepolozeni.azurirajPrikazPredmet(null, -1);
-		
 	}
 		
 	// STUDENT 1: 
@@ -146,9 +145,7 @@ public class IspitiController {
 		
 		BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakPolozenih().add(o);
 		BazaPredmeti.getInstance().pronadjiPredmet(p.getSifraPredmeta()).getStudentiPolozili().add(BazaStudenti.getInstance().pronadjiStudenta(index));
-		BazaPredmeti.getInstance().pronadjiPredmet(p.getSifraPredmeta()).getStudentiNisuPolozili().remove(BazaStudenti.getInstance().pronadjiStudenta(index));
-	//	this.polozeni.azurirajPrikazPredmet(null, -1);
-		
+		BazaPredmeti.getInstance().pronadjiPredmet(p.getSifraPredmeta()).getStudentiNisuPolozili().remove(BazaStudenti.getInstance().pronadjiStudenta(index));		
 		
 		List<Predmet> nepolozeniPredmeti = BazaStudenti.getInstance().pronadjiStudenta(index).getSpisakNepolozenih();
 		for(Predmet predm : nepolozeniPredmeti) {

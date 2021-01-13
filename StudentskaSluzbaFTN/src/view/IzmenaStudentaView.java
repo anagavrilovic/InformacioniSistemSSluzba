@@ -99,6 +99,8 @@ public class IzmenaStudentaView {
 			
 			public void windowClosing(WindowEvent e)
 		      {
+				TabbedPane.getInstance().azurirajPrikazStudent(null, -1);
+				
 				String[] options = {"Da", "Ne" };
 				int opcija = JOptionPane.showOptionDialog(dialog, "Da li ste sigurni da želite da prekinete izmenu studenta?",
 						"Prekid izmene studenta?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 

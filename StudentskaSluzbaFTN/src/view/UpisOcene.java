@@ -112,14 +112,15 @@ public class UpisOcene {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// Predmet p = new Predmet(upis.sifraPredmeta, upis.nazivPredmeta, upis.espb, upis.godina, upis.semestar);
-				Predmet p = BazaPredmeti.getInstance().pronadjiPredmet(upis.sifraPredmeta);
-				String datum = jtfDatum.getText();
+
+				 Predmet p = BazaPredmeti.getInstance().pronadjiPredmet(upis.sifraPredmeta);
+				 String datum = jtfDatum.getText();
+
 				 int ocena = cbOcena.getSelectedIndex() + 6;
 				 
 				 IspitiController.getInstance().dodajPredmetUListuPolozenih(p, datum, ocena);
 				 PrikazPolozenihIspita.azurirajProsekEspb();
-				// TabbedPane.getInstance().azurirajPrikazStudent(null, -1);
+
 				 dialog.dispose();
 			}	
 		});
