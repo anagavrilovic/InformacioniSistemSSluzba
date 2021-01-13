@@ -101,7 +101,7 @@ public class DodavanjePredmetaProfesoru {
 					return;
 				}
 				
-				if(BazaPredmeti.getInstance().pronadjiPredmet(getSifraPredFromSelectedRow()).getProfesor().getBrojLicneKarte() != "") {
+				if(!BazaPredmeti.getInstance().pronadjiPredmet(getSifraPredFromSelectedRow()).getProfesor().getBrojLicneKarte().equals("")) {
 					
 					String[] options = {"Da", "Ne" };
 					int code = JOptionPane.showOptionDialog(dialog,"Da li ste sigurni da želite da zamenite postojećeg \n profesora na selektovanom predmetu?",
