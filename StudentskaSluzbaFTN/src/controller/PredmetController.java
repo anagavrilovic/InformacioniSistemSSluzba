@@ -61,17 +61,22 @@ public class PredmetController {
 			
 			for(Student s : BazaStudenti.getInstance().getStudentList()) {
 				for(Predmet p : s.getSpisakNepolozenih()) {
-					if(p.getSifraPredmeta().equals(sifraPredm))
+					if(p.getSifraPredmeta().equals(sifraPredm)) {
 						s.getSpisakNepolozenih().remove(p);
+						break;
+					}
 				}
 			}
 			
 			for(Profesor prof : BazaProfesori.getInstance().getProfesori()) {
 				for(Predmet p : prof.getPredmeti()) {
-					if(p.getSifraPredmeta().equals(sifraPredm))
+					if(p.getSifraPredmeta().equals(sifraPredm)) {
 						prof.getPredmeti().remove(p);
+						break;
+					}
 				}
 			}
+			
 			
 			BazaPredmeti.getInstance().izbrisiPredmet(sifraPredm);
 			BazaPredmeti.getInstance().prikaziSve();
