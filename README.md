@@ -1,5 +1,6 @@
 # InformacioniSistemSSluzba
-Projekat iz predmeta Osnovi informacionih sistema i softverskog inženjerstva.
+Project for course The Fundamentals of Information Systems and Software Engineering.
+Java project using Java Swing for providing GUI for the application that is used by a student service worker.
 
 student 1 
 Ana Gavrilović - RA65/2018 
